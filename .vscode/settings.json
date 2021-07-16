@@ -1,0 +1,30 @@
+{
+  "eslint.validate": [
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "[vue]": {
+    "editor.formatOnSave": true,
+    "editor.wordWrapColumn": 160
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "vetur.format.defaultFormatter.css": "none",
+  "vetur.format.defaultFormatter.js": "eslint",
+  "vetur.format.defaultFormatter.less": "none",
+  "vetur.format.defaultFormatter.postcss": "none",
+  "vetur.format.defaultFormatter.stylus": "none",
+  "vetur.format.defaultFormatter.ts": "eslint",
+  "cSpell.words": [
+    "chuko"
+  ],
+  "eslint.format.enable": false,
+  "files.watcherExclude": {
+    "**/target": true
+  }
+}

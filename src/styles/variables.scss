@@ -1,0 +1,76 @@
+@import "~vuetify/src/styles/styles.sass";
+
+$body-font-family: 'Meiryo', "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック", "Osaka", sans-serif;
+
+/** -------------------------------
+  size
+------------------------------- */
+// PC幅の場合のコンテンツ最大幅
+$ec-contents-margin: 0 auto;
+$ec-contents-max-width: 1460px;
+
+
+/** -------------------------------
+  color
+------------------------------- */
+
+// ecサイトのカラー（ボーダーなど装飾系）
+$ec-primary: rgba(216, 11, 36, 1);
+$ec-secondary: rgba(25, 118, 210, 1);
+
+$ec-black: rgba(0, 0, 0, 1);
+$ec-light-grey: rgba(221, 221, 221, 1);
+$ec-light-grey2: rgba(187, 187, 187, 1);
+$ec-grey: rgba(112, 112, 112, 1);
+$ec-red: rgba(216, 11, 36, 1);
+$ec-green: rgba(0, 113, 133, 1);
+
+// テキストカラー
+$text-primary: rgba(216, 11, 36, 1);
+$text-secondary: rgba(25, 118, 210, 1);
+
+$text-white: rgba(255, 255, 255, 1);
+$text-black: rgba(0, 0, 0, 1);
+$text-grey: rgba(112, 112, 112, 1);
+$text-red: rgba(216, 11, 36, 1);
+$text-blue: rgba(76, 89, 216, 1);
+$text-green: rgba(0, 113, 133, 1);
+
+// バックカラー
+$bg-white: rgba(255, 255, 255, 1);
+$bg-black-transparent-3: rgba(0, 0, 0, 0.3);
+$bg-black-transparent-6: rgba(0, 0, 0, 0.6);
+$bg-light-grey: rgba(235, 235, 235, 1);
+$bg-light-grey2: rgba(249, 248, 248, 1);
+$bg-grey: rgba(221, 221, 221, 1);
+$bg-light-red: rgba(246, 206, 206, 1);
+$bg-green: rgba(0, 113, 133, 1);
+
+// お知らせ系のタイプ
+$video-color: rgba(0, 187, 133, 1);
+$shasha-color: rgba(193, 164, 112, 1);
+$recommended-color: rgba(0, 155, 191, 1);
+$new-prod-color: rgba(255, 149, 0, 1);
+$special-color: rgba(143, 118, 214, 1);
+$sale-color: rgba(246, 46, 54, 1);
+$news-color: rgb(119, 119, 119, 1);
+
+
+/** -------------------------------
+  mixin
+------------------------------- */
+// 三点リーダー（2行・高さ指定）
+@mixin ellipsis($height) {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: $height;
+}
+// 三点リーダー（行数指定・高さauto）
+@mixin ellipsis-lines($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

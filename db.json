@@ -1,0 +1,78 @@
+{
+  "news": {
+    "totalCount": 4,
+    "news": [
+      {
+        "rowNo": 1,
+        "newsNo": 1,
+        "newsType": "新製品",
+        "newsTitle": "水族館撮影テクニックをご紹介。",
+        "linkType": 1,
+        "linkTab": 1,
+        "thumbnailUrl": "https://shopimg.kitamura.jp/images/pd/479/596/d1e/955/5c5/f28/97f/ed8/392/3a7/71f/kto/esd/p/M.jpg",
+        "newsContent": "写真家の虫上智さんが水族館での撮影テクニックを紹介しています。最近できた水族館の展示は自然環境に合わせた景観で作られているところが多く",
+        "newsDate": "2021/02/11 16:00:00"
+      },
+      {
+        "rowNo": 2,
+        "newsNo": 2,
+        "newsType": "おすすめ",
+        "newsTitle": "ソニー フルサイズミラーレス",
+        "linkType": 1,
+        "linkTab": 1,
+        "thumbnailUrl": "https://shopimg.kitamura.jp/images/pd/479/596/d1e/955/5c5/f28/97f/ed8/392/3a7/71f/kto/esd/p/M.jpg",
+        "newsContent": "2021年1月27日にソニーからα1が発表となりました。先行展示機を触った印象を含めてα1の魅力を紹介していますので是非ご覧ください。",
+        "newsDate": "2021/02/09 20:00:00"
+      },
+      {
+        "rowNo": 3,
+        "newsNo": 3,
+        "newsType": "おすすめ",
+        "newsTitle": "あああああああああああああああああああああ",
+        "linkType": 1,
+        "linkTab": 1,
+        "thumbnailUrl": "https://shopimg.kitamura.jp/images/pd/479/596/d1e/955/5c5/f28/97f/ed8/392/3a7/71f/kto/esd/p/M.jpg",
+        "newsContent": "▲▲商品です",
+        "newsDate": "2021/01/10 20:00:00"
+      },
+      {
+        "rowNo": 4,
+        "newsNo": 4,
+        "newsType": "新製品",
+        "newsTitle": "カメラカメラカメラ",
+        "linkType": 1,
+        "linkTab": 1,
+        "thumbnailUrl": "https://shopimg.kitamura.jp/images/pd/479/596/d1e/955/5c5/f28/97f/ed8/392/3a7/71f/kto/esd/p/M.jpg",
+        "newsContent": "▲▲商品は○○○です",
+        "newsDate": "2021/01/30 20:00:00"
+      }
+    ]
+  },
+  "error_blank": {},
+  "cart_error": {
+    "message": "エラーがありました（1件）",
+    "details": [
+      {
+        "errorCode": "EN118",
+        "message": "こちらはテストエラーです。"
+      }
+    ]
+  },
+  "session_logged_in": {
+    "isLogin": true,
+    "cartItemCount": 0,
+    "cartTotalAmount": 0,
+    "netMemberId": "@000000000000001",
+    "lastName": "山田",
+    "firstName": "太郎",
+    "kenCode": 14,
+    "nickname": "TEST",
+    "linkedTPoint": false,
+    "favoriteCount": 13
+  },
+  "session_not_logged_in": {
+    "isLogin": false,
+    "cartItemCount": 0,
+    "cartTotalAmount": 0
+  }
+}
