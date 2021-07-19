@@ -374,7 +374,7 @@ export default Vue.extend({
       mainProduct: {} as ProductDetail,
 
       // ↓ ---- 比較 ----
-      comparisonJanCodeList: ['4548736130678', '4548736108288', '4549292146851', '4960759903402'],
+      comparisonJanCodeList: ['4548736130678', '4548736108288', '4549292146851', '4960759903402', '4960759903402'],
       // 結果格納用
       comparisonDetailList: [] as Array<ProductDetail>,
       // ↑ ---- 比較 ----
