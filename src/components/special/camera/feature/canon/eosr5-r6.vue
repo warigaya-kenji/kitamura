@@ -6,9 +6,13 @@
       <!-- ↑ サンプル：パンくず -->
 
       <div class="main-contents-wrap">
+
+     
         <!-- ↓ サンプル：画像の読み込み -->
+        <div class="text-center">
         <img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/bg_top.jpg" @error="noimage" />
         <!-- ↑ サンプル：画像の読み込み -->
+        </div>
 
         <div class="red darken-4 text-center mb-2">
           <span class="white--text text-h6 font-weight-bold">キャノン EOS R5 キャノン EOS R6 好評発売中</span>
@@ -20,31 +24,31 @@
 
         <v-container>
           <v-row>
-            <v-col cols="3">
-              <v-btn elevation="3" block class="v-btn--is-elevated v-btn--has-bg theme--dark white--text text-h6" height="55px" :href="`#point`"
+            <v-col class="mr-0 pr-0">
+              <v-btn elevation="10" block class="black white--text text-h6 ma-0 font-weight-bold" height="55px" :href="`#point`"
                 ><span class="v-btn__content">特徴スペック</span></v-btn
               >
             </v-col>
-            <v-col cols="3">
-              <v-btn elevation="3" block class="v-btn--is-elevated v-btn--has-bg theme--dark white--text text-h6" height="55px" :href="`#hikaku`"
+            <v-col class="mr-0 pr-0">
+              <v-btn elevation="10" block class="black white--text text-h6 ma-0 font-weight-bold" height="55px" :href="`#hikaku`"
                 ><span class="v-btn__content">機種比較</span></v-btn
               >
             </v-col>
-            <v-col cols="3">
-              <v-btn elevation="3" block class="v-btn--is-elevated v-btn--has-bg theme--dark white--text text-h6" height="55px" :href="`#price`"
+            <v-col class="mr-0 pr-0">
+              <v-btn elevation="10" block class="black white--text text-h6 ma-0 font-weight-bold" height="55px" :href="`#price`"
                 ><span class="v-btn__content">お得情報</span></v-btn
               >
             </v-col>
-            <v-col cols="3">
-              <v-btn elevation="3" block class="v-btn--is-elevated v-btn--has-bg theme--dark white--text text-h6" height="55px" :href="`#images`"
+            <v-col class="mr-0 pr-0">
+              <v-btn elevation="10" block class="black white--text text-h6 ma-0 font-weight-bold" height="55px" :href="`#images`"
                 ><span class="v-btn__content">作例</span></v-btn
               >
             </v-col>
           </v-row>
         </v-container>
 
-        <div class="w-100 text-right">
-          <a href="/special/sale-fair/camera/feature/backnumber/" class="boxx tx-wi tx-no pd10 tx-dcno">≫ 話題の新製品バックナンバー</a>
+        <div class="text-right">
+          <v-btn href="/special/sale-fair/camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
         </div>
 
         <subText :textItem="'世界最高8.0段の手ブレ補正による快適な撮影を実現した次世代「EOS R」'" />
@@ -53,55 +57,57 @@
         <!--====== キヤノン EOS R5 ======-->
         <!--====== キヤノン EOS R6 ======-->
         <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in productsList" :key="product">
-          <div class="credit_l clearfix mt-2 mr-5 mb-20">
-            <a href="/ec/pd/4549292157345"><img :src="product.img" class="mx100pr"/></a>
-            <p>
+          <v-container>
+            <v-row>
+              <v-col class="text-center" cols="12" sm="5">
+                <a href="/ec/pd/4549292157345"><img :src="product.img" class="mx100pr"/></a>
+                 <p>
               <a href="/ec/pd/4549292157345">{{ product.name }}</a
-              ><br />
+              >
             </p>
-          </div>
-          <div class="credit_r mt30 text-center">
-            <p class="text-h6">
-              価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span>(税込)</span>
+              </v-col>
+              <v-col class="text-center mt-4" cols="12" sm="6">
+                 <p class="text-h6">
+              価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
             </p>
-            <div>
-              <v-btn
+            <v-btn
                 elevation="3"
-                class="text-h5 font-weight-bold"
                 x-large
                 dark
-                color="#C62828"
-                height="50px"
-                width="50%"
+                color="red"
+                class="text-h5 font-weight-bold accent-4"
+                height="55px"
+                width="65%"
                 :href="`/ec/pd/${mainProduct.janCode}`"
               >
                 <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
                 ご購入はこちら
               </v-btn>
-            </div>
-            <div class="mt-5" v-if="index === 0">
+              <div class="mt-4" v-if="index === 0">
               <p><img src="https://shop.kitamura.jp/images/banner/6931.jpg" alt="電話で相談・ご注文できます" /></p>
             </div>
-          </div>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card>
 
-        <div class="col-sm-12 pa-4 text-center float-left mt-10">
+        <div class="col-sm-12 text-center float-left pa-4 mt-10">
           <v-btn
             elevation="3"
-            class="v-btn--is-elevated v-btn--has-bg black darken-4 white--text text-h6"
+            class="black darken-4 white--text text-h7"
             height="70px"
             width="50%"
             :href="`https://cweb.canon.jp/eos/your-eos/product/eosr/`"
-            ><span class="">メーカーサイトで<br />仕様・作例を詳しく見る</span></v-btn
+            >メーカーサイトで<br />仕様・作例を詳しく見る</v-btn
           >
         </div>
 
         <!--動画で見る-->
         <subText :textItem="'動画で見る キヤノン EOS R5！'" />
-        <div class="w-100 product-video-wrap">
+        <div class="product-video-wrap text-center">
           <div class="">
             <iframe
-              width="95%"
+              width="70%"
               height="315"
               src="https://www.youtube.com/embed/AxJYDPGlcvw?rel=0"
               frameborder="0"
@@ -593,7 +599,7 @@ export default Vue.extend({
   }
 
   .credit_l {
-    width: 35%;
+    width: 100%;
     float: left;
     display: block;
     text-align: center;
@@ -651,9 +657,9 @@ export default Vue.extend({
       }
     }
   }
-  img:hover {
-    opacity: 0.7;
-  }
+  .kg-in {
+    box-shadow: 0px 9px 5px 1px rgb(176 126 164 / 60%) inset;
+}
 }
 </style>
 
