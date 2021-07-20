@@ -48,7 +48,7 @@
         </v-container>
 
         <div class="text-right">
-          <v-btn href="/special/sale-fair/camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
+          <v-btn href="/ec/special/camera/feature/backnumber" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
         </div>
 
         <subText :textItem="'世界最高8.0段の手ブレ補正による快適な撮影を実現した次世代「EOS R」'" />
@@ -669,10 +669,5 @@ export default Vue.extend({
   &-info {
     color: $text-primary;
   }
-}
-.main-contents-wrap {
-  max-width: 950px;
-  margin: 0 auto;
-  padding: 0 12px;
 }
 </style>
