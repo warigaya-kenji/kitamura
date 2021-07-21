@@ -95,7 +95,12 @@ const routes: Array<RouteConfig> = [
     path: '*',
     name: 'not-found-page',
     component: NotFoundPage
-  }
+  },
+  {
+    path: '/ec/guide/tablet/:page',
+    name: 'guide-html-page',
+    component: HtmlPage
+  },
 ];
 
 const router = new VueRouter({

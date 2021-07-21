@@ -1,18 +1,14 @@
 <template>
   <v-app>
-    <div class="test">
-      <!-- ↓ サンプル：パンくず -->
+    <div class="eosr5-r6">
+      <!-- ↓ パンくず -->
       <breadcrumbs :breadcrumbs="breadcrumbs" />
-      <!-- ↑ サンプル：パンくず -->
+      <!-- ↑ パンくず -->
 
       <div class="main-contents-wrap">
-
-     
-        <!-- ↓ サンプル：画像の読み込み -->
-        <div class="text-center">
+        <!-- ↓ 画像の読み込み -->
         <img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/bg_top.jpg" @error="noimage" />
-        <!-- ↑ サンプル：画像の読み込み -->
-        </div>
+        <!-- ↑ 画像の読み込み -->
 
         <div class="red darken-4 text-center mb-2">
           <span class="white--text text-h6 font-weight-bold">キャノン EOS R5 キャノン EOS R6 好評発売中</span>
@@ -22,33 +18,12 @@
           <span>キャノン EOS R5 / キャノン EOS R6</span>
         </div>
 
-        <v-container>
-          <v-row>
-            <v-col class="mr-0 pr-0">
-              <v-btn elevation="10" block class="black white--text text-h6 ma-0 font-weight-bold" height="55px" :href="`#point`"
-                ><span class="v-btn__content">特徴スペック</span></v-btn
-              >
-            </v-col>
-            <v-col class="mr-0 pr-0">
-              <v-btn elevation="10" block class="black white--text text-h6 ma-0 font-weight-bold" height="55px" :href="`#hikaku`"
-                ><span class="v-btn__content">機種比較</span></v-btn
-              >
-            </v-col>
-            <v-col class="mr-0 pr-0">
-              <v-btn elevation="10" block class="black white--text text-h6 ma-0 font-weight-bold" height="55px" :href="`#price`"
-                ><span class="v-btn__content">お得情報</span></v-btn
-              >
-            </v-col>
-            <v-col class="mr-0 pr-0">
-              <v-btn elevation="10" block class="black white--text text-h6 ma-0 font-weight-bold" height="55px" :href="`#images`"
-                ><span class="v-btn__content">作例</span></v-btn
-              >
-            </v-col>
-          </v-row>
-        </v-container>
+        <!-- ↓ ナビボタン -->
+        <naviBtn :naviList="naviList" />
+        <!-- ↑ ナビボタン -->
 
         <div class="text-right">
-          <v-btn href="/ec/special/camera/feature/backnumber" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
+          <v-btn href="camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
         </div>
 
         <subText :textItem="'世界最高8.0段の手ブレ補正による快適な撮影を実現した次世代「EOS R」'" />
@@ -56,48 +31,42 @@
 
         <!--====== キヤノン EOS R5 ======-->
         <!--====== キヤノン EOS R6 ======-->
-        <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in productsList" :key="product">
+        <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in mainProductList" :key="product">
           <v-container>
             <v-row>
               <v-col class="text-center" cols="12" sm="5">
-                <a href="/ec/pd/4549292157345"><img :src="product.img" class="mx100pr"/></a>
-                 <p>
-              <a href="/ec/pd/4549292157345">{{ product.name }}</a
-              >
-            </p>
+                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr" /></router-link>
+                <p>
+                  <a :href="`/ec/pd/${product.janCode}`">{{ product.itemName }}</a>
+                </p>
               </v-col>
               <v-col class="text-center mt-4" cols="12" sm="6">
-                 <p class="text-h6">
-              価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
-            </p>
-            <v-btn
-                elevation="3"
-                x-large
-                dark
-                color="red"
-                class="text-h5 font-weight-bold accent-4"
-                height="55px"
-                width="65%"
-                :href="`/ec/pd/${mainProduct.janCode}`"
-              >
-                <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
-                ご購入はこちら
-              </v-btn>
-              <div class="mt-4" v-if="index === 0">
-              <p><img src="https://shop.kitamura.jp/images/banner/6931.jpg" alt="電話で相談・ご注文できます" /></p>
-            </div>
+                <p class="text-h6">
+                  価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
+                </p>
+                <v-btn
+                  elevation="3"
+                  x-large
+                  dark
+                  color="red"
+                  class="text-h5 font-weight-bold accent-4"
+                  height="55px"
+                  width="65%"
+                  :href="`/ec/pd/${product.janCode}`"
+                >
+                  <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
+                  ご購入はこちら
+                </v-btn>
+                <div class="mt-4" v-if="index === 0">
+                  <p><img src="https://shop.kitamura.jp/images/banner/6931.jpg" alt="電話で相談・ご注文できます" /></p>
+                </div>
               </v-col>
             </v-row>
           </v-container>
         </v-card>
 
         <div class="col-sm-12 text-center float-left pa-4 mt-10">
-          <v-btn
-            elevation="3"
-            class="black darken-4 white--text text-h7"
-            height="70px"
-            width="50%"
-            :href="`https://cweb.canon.jp/eos/your-eos/product/eosr/`"
+          <v-btn elevation="3" class="black darken-4 white--text text-h7" height="70px" width="50%" :href="`https://cweb.canon.jp/eos/your-eos/product/eosr/`"
             >メーカーサイトで<br />仕様・作例を詳しく見る</v-btn
           >
         </div>
@@ -130,9 +99,262 @@
         <!--特徴-->
 
         <!--比較-->
-        <div>
+        <!-- <div>
           <subText :textItem="'キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較'" id="hikaku" />
           <comparisonTable :comparisonDetailList="comparisonDetailList" />
+        </div> -->
+        <subText :textItem="'キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較'" id="hikaku" />
+        <div class="product-comparison mb-5">
+          <p class="mb-2">キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較しました。</p>
+          <table class="product-comparison-table">
+            <tbody>
+              <tr>
+                <th>商品名</th>
+                <td v-for="product in comparisonDetailList" :key="product">{{ product.itemName }}</td>
+              </tr>
+              <tr>
+                <th>発売日</th>
+                <td>2020年7月30日</td>
+                <td>2020年8月27日</td>
+                <td>2018年10月25日</td>
+                <td>2019年9月6日</td>
+                <td>2018年3月23日</td>
+              </tr>
+              <tr>
+                <th>価格</th>
+                <td v-for="product in comparisonDetailList" :key="product">
+                  <span class="primary--text font-weight-bold">¥{{ formatPrice(parseInt(product.price)) }}</span
+                  >（税込）
+                </td>
+              </tr>
+              <tr>
+                <th>有効画素数</th>
+                <td>約4500万画素</td>
+                <td>約2010万画素</td>
+                <td>約3030万画素</td>
+                <td>約6100万画素</td>
+                <td>約2420万画素</td>
+              </tr>
+              <tr>
+                <th>撮像素子</th>
+                <td>
+                  35mmフルサイズ<br />
+                  CMOSセンサー（デュアルピクセルCMOS AF II対応）
+                </td>
+                <td>
+                  35mmフルサイズ<br />
+                  CMOSセンサー（デュアルピクセルCMOS AF II対応）
+                </td>
+                <td>
+                  35mmフルサイズ<br />
+                  CMOSセンサー（デュアルピクセルCMOS AF対応）
+                </td>
+                <td>
+                  35mmフルサイズ<br />
+                  Exmor R CMOSセンサー
+                </td>
+                <td>
+                  35mmフルサイズ<br />
+                  ExmorR CMOSセンサー
+                </td>
+              </tr>
+              <tr>
+                <th>連続撮影速度</th>
+                <td>最高約12コマ/秒</td>
+                <td>最高約12コマ/秒</td>
+                <td>最高約8.0コマ／秒</td>
+                <td>最高約10コマ/秒</td>
+                <td>最高約10コマ/秒</td>
+              </tr>
+              <tr>
+                <th>連続撮影可能枚数</th>
+                <td>
+                  JPEG:約350枚<br />
+                  RAW：約87枚
+                </td>
+                <td>
+                  JPEG:約1000枚以上<br />
+                  RAW：約240枚
+                </td>
+                <td>
+                  JPEG:約100枚<br />
+                  RAW：約34枚
+                </td>
+                <td>
+                  JPEG:約68枚<br />
+                  RAW：約68枚
+                </td>
+                <td>
+                  JPEG:約163枚<br />
+                  RAW：約89枚
+                </td>
+              </tr>
+              <tr>
+                <th>シャッタースピード</th>
+                <td>1／8000～30秒、バルブ</td>
+                <td>1／8000～30秒、バルブ</td>
+                <td>1／8000～30秒、バルブ</td>
+                <td>1／8000～30秒、バルブ</td>
+                <td>1／8000～30秒、バルブ</td>
+              </tr>
+              <tr>
+                <th>ストロボ同調速度</th>
+                <td>1／200秒</td>
+                <td>1／200秒</td>
+                <td>1／200秒</td>
+                <td>1/250秒</td>
+                <td>1/250秒</td>
+              </tr>
+              <tr>
+                <th>ISO感度</th>
+                <td>
+                  ISO100～51200<br />
+                  （拡張：下限ISO50、上限ISO102400)
+                </td>
+                <td>
+                  ISO100～102400<br />
+                  （拡張：下限ISO50、上限ISO204800)
+                </td>
+                <td>
+                  ISO100～12800<br />
+                  （拡張：下限ISO50、上限ISO102400)
+                </td>
+                <td>
+                  ISO100-32000<br />
+                  （拡張：下限ISO50、上限ISO102400)
+                </td>
+                <td>
+                  ISO100-51200<br />
+                  （拡張：下限ISO50、上限ISO204800)
+                </td>
+              </tr>
+              <tr>
+                <th>測距輝度範囲</th>
+                <td>EV－6～20</td>
+                <td>EV－6.5～20</td>
+                <td>EV－6～18</td>
+                <td>EV-3 - EV20</td>
+                <td>EV-3-20</td>
+              </tr>
+              <tr>
+                <th>撮影可能枚数</th>
+                <td>
+                  静止画：約200枚<br />
+                  動画:合計約1時間10分
+                </td>
+                <td>
+                  静止画：約250枚<br />
+                  動画:合計約2時間25分
+                </td>
+                <td>
+                  静止画：約350枚<br />
+                  動画:合計約2時間20分
+                </td>
+                <td>
+                  静止画：約530枚<br />
+                  動画:合計約2時間40分
+                </td>
+                <td>
+                  静止画：約610枚<br />
+                  動画:合計約3時間10分
+                </td>
+              </tr>
+              <tr>
+                <th>手ブレ補正</th>
+                <td>5軸補正　最大8段</td>
+                <td>5軸補正　最大8段</td>
+                <td>レンズ補正のみ</td>
+                <td>5軸補正　最大5.5段</td>
+                <td>5軸補正　最大5.0段</td>
+              </tr>
+              <tr>
+                <th>液晶性能</th>
+                <td>
+                  3.2型/約210万ドット<br />
+                  バリアングル式液晶モニター
+                </td>
+                <td>
+                  3.0型/約162万ドット<br />
+                  バリアングル式液晶モニター
+                </td>
+                <td>
+                  3.15型/約210万ドット<br />
+                  バリアングル式液晶モニター
+                </td>
+                <td>
+                  3.0型/144万ドット<br />
+                  チルト式液晶モニター
+                </td>
+                <td>
+                  3.0型/92万ドット<br />
+                  チルト式液晶モニター
+                </td>
+              </tr>
+              <tr>
+                <th>ファインダー</th>
+                <td>0.5型/576万ドット</td>
+                <td>0.5型/369万ドット</td>
+                <td>0.5型/369万ドット</td>
+                <td>0.5型/576万ドット</td>
+                <td>0.5型/236万ドット</td>
+              </tr>
+              <tr>
+                <th>視野率</th>
+                <td>約100% / 約0.76倍</td>
+                <td>約100% / 約0.76倍</td>
+                <td>約100% / 約0.76倍</td>
+                <td>約100% / 約0.78倍</td>
+                <td>約100% / 約0.78倍</td>
+              </tr>
+              <tr>
+                <th>外形寸法</th>
+                <td>約138.5×97.5×88.0ｍｍ</td>
+                <td>約138.4×97.5×88.4ｍｍ</td>
+                <td>約135.8×98.3×84.4mm</td>
+                <td>約128.9×96.4×67.3mm</td>
+                <td>約126.9×95.6×62.7mm</td>
+              </tr>
+              <tr>
+                <th>質量（本体のみ）</th>
+                <td>約650g</td>
+                <td>約598g</td>
+                <td>約580g</td>
+                <td>約580g</td>
+                <td>約565g</td>
+              </tr>
+              <tr>
+                <th>記録メディア/スロット</th>
+                <td>
+                  CFexpressカード（Type B）/<br />
+                  SD(sUHS-II 対応)デュアルスロット
+                </td>
+                <td>
+                  SDデュアルスロット<br />
+                  slot1/slot12:UHS-II 対応
+                </td>
+                <td>
+                  SDシングルスロット<br />
+                  UHS-II 対応
+                </td>
+                <td>
+                  SDデュアルスロット<br />
+                  slot1/slot12:UHS-II 対応
+                </td>
+                <td>
+                  SDデュアルスロット<br />
+                  slot1のみUHS-II 対応
+                </td>
+              </tr>
+              <tr>
+                <th>動画記録方式</th>
+                <td>8K/4K/フルHD</td>
+                <td>4K/フルHD</td>
+                <td>4K/フルHD/HD</td>
+                <td>4K/フルHD/HD</td>
+                <td>4K/フルHD/HD</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <!--比較-->
 
@@ -156,7 +378,20 @@
         <!-- ↑ ShaSha -->
 
         <subText :textItem="'キヤノン EOS R5 / EOS R6 価格・人気アクセサリー'" />
-        <priceAndPopular :productDetailList="productDetailList" />
+        <!-- <priceAndPopular :productDetailList="productDetailList" /> -->
+        <v-container>
+          <v-row>
+            <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
+              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
+              <p class="font-small blue--text mb-2 height-20">
+                <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
+              </p>
+              <p class="mt-2">
+                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
+            </v-col>
+          </v-row>
+        </v-container>
 
         <subText :textItem="'キヤノン EOS R5 / EOS R6 ご購入時、高値下取り実施中！'" id="price" />
         <v-container class="mb-5">
@@ -180,7 +415,7 @@
                   >キヤノン EOS 5D Mark IV ボディ</v-btn
                 >で下取り実施中です
               </p>
-              <!-- <v-img src="/ts_rsc/1354/images/bnr_shitadori_350-130.jpg" alt="高値下取り実施中" /> -->
+              <img src="/ec/images2/special/camera/feature/canon/eosr5_r6/bnr_shitadori_350-130.jpg" alt="高値下取り実施中" @error="noimage" />
             </v-col>
           </v-row>
         </v-container>
@@ -226,18 +461,66 @@
         <subText :textItem="'EOS R5 / EOS R6 作例画像'" id="images" />
         <v-container>
           <v-row>
-            <v-col cols="6"><img class="mb-5" src="@/assets/special/img/sample.jpg" @error="noimage" width="90%"/></v-col>
-            <v-col cols="6"><img class="mb-5" src="@/assets/special/img/sample.jpg" @error="noimage" width="90%"/></v-col>
+            <v-col cols="12" sm="6" class="ma-0 pa-0"
+              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_01.jpg" @error="noimage" width="90%"
+            /></v-col>
+            <v-col cols="12" sm="6" class="ma-0 pa-0"
+              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_02.jpg" @error="noimage" width="90%"
+            /></v-col>
           </v-row>
           <v-row>
-            <v-col cols="6"><img class="mb-5" src="@/assets/special/img/sample.jpg" @error="noimage" width="90%"/></v-col>
-            <v-col cols="6"><img class="mb-5" src="@/assets/special/img/sample.jpg" @error="noimage" width="90%"/></v-col>
+            <v-col cols="12" sm="6" class="ma-0 pa-0"
+              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_03.jpg" @error="noimage" width="90%"
+            /></v-col>
+            <v-col cols="12" sm="6" class="ma-0 pa-0"
+              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_04.jpg" @error="noimage" width="90%"
+            /></v-col>
           </v-row>
           <v-row>
-            <v-col cols="6"><img class="mb-5" src="@/assets/special/img/sample.jpg" @error="noimage" width="90%"/></v-col>
-            <v-col cols="6"><img class="mb-5" src="@/assets/special/img/sample.jpg" @error="noimage" width="90%"/></v-col>
+            <v-col cols="12" sm="6" class="ma-0 pa-0"
+              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_05.jpg" @error="noimage" width="90%"
+            /></v-col>
+            <v-col cols="12" sm="6" class="ma-0 pa-0"
+              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_06.jpg" @error="noimage" width="90%"
+            /></v-col>
           </v-row>
         </v-container>
+
+        <div>
+          <v-container>
+            <v-row class="mt-30">
+              <v-col cols="2">
+                <v-btn color="#4267b2" height="25px" class="white--text ma-5"><v-icon small>fas fa-thumbs-up</v-icon> いいね! 42 </v-btn></v-col
+              >
+              <v-col cols="2">
+                <v-btn
+                  color="#4267b2"
+                  height="25px"
+                  class="white--text ma-5"
+                  href="https://www.facebook.com/login.php?skip_api_login=1&api_key=966242223397117&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3Dhttps%253A%252F%252Fshop.kitamura.jp%252Fspecial%252Fsale-fair%252Fcamera%252Ffeature%252Fcanon%252Feosr5_r6%252F%26display%3Dpopup%26ref%3Dplugin%26src%3Dlike%26kid_directed_site%3D0&cancel_url=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fclose_window%2F%3Fapp_id%3D966242223397117%26connect%3D0%23_%3D_&display=popup&locale=ja_JP&kid_directed_site=0"
+                  >シェア</v-btn
+                ></v-col
+              >
+              <v-col cols="2">
+                <v-btn
+                  color="#1b95e0"
+                  height="25px"
+                  class="white--text mt-5"
+                  href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fshop.kitamura.jp%2F&ref_src=twsrc%5Etfw&text=%E5%A5%BD%E8%A9%95%E7%99%BA%E5%A3%B2%E4%B8%AD%EF%BC%81%E3%82%AD%E3%83%A4%E3%83%8E%E3%83%B3EOS%20R5%20R6%20%7C%20%E3%82%AB%E3%83%A1%E3%83%A9%E3%81%AE%E3%82%AD%E3%82%BF%E3%83%A0%E3%83%A9%E3%83%8D%E3%83%83%E3%83%88%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97&tw_p=tweetbutton&url=https%3A%2F%2Fshop.kitamura.jp%2Fspecial%2Fsale-fair%2Fcamera%2Ffeature%2Fcanon%2Feosr5_r6%2F"
+                  ><v-icon small>fab fa-twitter</v-icon>ツイート</v-btn
+                ></v-col
+              >
+              <v-col>
+                <v-icon large color="green darken-2"> mdi-domain </v-icon>
+              </v-col>
+            </v-row>
+          </v-container>
+        </div>
+
+        <kitamuraService />
+
+        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
+        <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
   </v-app>
@@ -251,39 +534,33 @@ import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import SubText from '@/components/common/subtext.vue';
+import NaviBtn from '@/components/common/navi-btn.vue';
 import Characteristic from '@/components/common/characteristic.vue';
 import ComparisonTable from '@/components/common/comparison-table.vue';
 import PriceAndPopular from '@/components/common/price-and-popular.vue';
 import ContingencyTable from '@/components/common/contingency-table.vue';
-
+import KitamuraService from '@/components/common/kitamura-service.vue';
+import RecommendedFeatures from '@/components/common/recommended-features.vue';
 export default Vue.extend({
-  name: 'test',
+  name: 'eosr5-r6',
   components: {
     breadcrumbs: Breadcrumbs,
     subText: SubText,
     characteristic: Characteristic,
     comparisonTable: ComparisonTable,
     priceAndPopular: PriceAndPopular,
-    contingencyTable: ContingencyTable
+    contingencyTable: ContingencyTable,
+    kitamuraService: KitamuraService,
+    recommendedFeatures: RecommendedFeatures,
+    naviBtn: NaviBtn
   },
   data() {
     return {
-      productsList: [
-        {
-          name: 'キヤノン EOS R5 ボディ',
-          price: '455,400',
-          img: '//shopimg.kitamura.jp/images/pd/479/596/d1e/955/5c5/f28/97f/ed8/392/3a7/71f/kto/esd/p/M.jpg'
-        },
-        {
-          name: 'キヤノン EOS R6 ボディ',
-          price: '301,950',
-          img: '//shopimg.kitamura.jp/images/pd/731/a75/19f/abf/b41/d16/33c/43a/e3f/44e/b3i/o8z/04r/h/M.jpg'
-        },
-        {
-          name: 'キヤノン EOS R6 RF24-105 IS STM レンズキット',
-          price: '341,550',
-          img: '//shopimg.kitamura.jp/images/pd/7bf/88f/fd4/a3a/636/3a6/2e9/2e9/f13/391/03a/ioc/hf3/n/M.jpg'
-        }
+      naviList: [
+        { naviItem: '特徴スペック', herf: '#point' },
+        { naviItem: '機種比較', herf: '#hikaku' },
+        { naviItem: 'お得情報', herf: '#price' },
+        { naviItem: '作例', herf: '#images' }
       ],
       commonCharacteristicList: [
         {
@@ -352,6 +629,38 @@ export default Vue.extend({
             '直感的に撮影モードが切り替えられるモードダイヤルを搭載。静止画と動画の切り替えもスムーズに行えます'
           ]
         }
+      ],
+      recommendedFeaturesList: [
+        {
+          herf: '/special/sale-fair/camera/feature/backnumber/',
+          img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
+          alt: '話題の新製品バックナンバー'
+        },
+        {
+          herf: '/special/sale-fair/general/highly_recommended/2020/4722/',
+          img: 'https://shopimg.kitamura.jp/images/banner/7619.png',
+          alt: 'スタッフイチオシ！キヤノン RF70-200mm F2.8 L IS USM'
+        },
+        {
+          herf: '/special/sale-fair/',
+          img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
+          alt: 'セール・特集一覧'
+        },
+        {
+          herf: '/special/sale-fair/sale/shoppingcredit-campaign/',
+          img: 'https://shopimg.kitamura.jp/images/banner/4847.jpg',
+          alt: '60回無金利 ショッピングクレジット'
+        },
+        {
+          herf: '/special/sale-fair/general/tokutokukoukan/',
+          img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
+          alt: 'トクトク交換'
+        },
+        {
+          herf: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
+          img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
+          alt: 'トクトク買取'
+        }
       ]
     };
   },
@@ -366,19 +675,17 @@ export default Vue.extend({
         },
         {
           path: '好評発売中！キヤノンEOS R5 R6',
-          linkUrl: '/ec/special/camera/filmcamera/test',
+          linkUrl: '/ec/special/camera/feature/canon/eosr5r6',
           disabled: false
         }
       ],
-      mainProductJanCode: '4549292157345',
-      mainProduct: {} as ProductDetail,
-
+      mainProductJanCode: ['4549292157345', '4549292157253', '4549292157512'],
+      mainProductList: [] as Array<ProductDetail>,
       // ↓ ---- 比較 ----
-      comparisonJanCodeList: ['4548736130678', '4548736108288', '4549292146851', '4960759903402', '4960759903402'],
+      comparisonJanCodeList: ['4549292157345', '4549292157253', '4549292157512', '4548736108264', '4548736079625'],
       // 結果格納用
       comparisonDetailList: [] as Array<ProductDetail>,
       // ↑ ---- 比較 ----
-
       // ↓ ---- 価格・人気アクセサリー ----
       // 取得するJancode
       productJanCodeList: [
@@ -406,15 +713,14 @@ export default Vue.extend({
       productDetailList: [] as Array<ProductDetail>
       // ↑ ---- 価格・人気アクセサリー ----
     });
-
     /**
      * 商品詳細を取得する
      */
     const fetchProduct = async () => {
       try {
         // メイン商品
-        const mainResult = await ProductService.fetchProducts([state.mainProductJanCode], true);
-        state.mainProduct = mainResult.items[0];
+        const mainResult = await ProductService.fetchProducts(state.mainProductJanCode, true);
+        state.mainProductList = mainResult.items;
         // 比較
         const comparisonResult = await ProductService.fetchProducts(state.comparisonJanCodeList, true);
         state.comparisonDetailList = comparisonResult.items;
@@ -423,12 +729,11 @@ export default Vue.extend({
         state.productDetailList = productListResult.items;
       } catch (error) {
         // メイン商品
-        state.mainProduct = {} as ProductDetail;
+        state.mainProductList = [] as Array<ProductDetail>;
         // 価格・人気アクセサリー
         state.productDetailList = [] as Array<ProductDetail>;
       }
     };
-
     onMounted(() => {
       fetchProduct();
     });
@@ -446,141 +751,6 @@ export default Vue.extend({
   .banner-img {
     max-width: 100%;
   }
-  h2.spec {
-    width: 100%;
-    height: auto;
-    margin: 0px 0 10px 0;
-    padding: 0 10px 5px 55px;
-    font-size: 20px;
-    font-weight: 800;
-    background-image: url(/ec/images2/special/camera/dslr/bg_cameratitle.gif);
-    background-repeat: no-repeat;
-    float: left;
-    color: #46280c;
-    box-sizing: border-box;
-    line-height: 1.2em;
-    border-bottom: 2px solid #ffcc00;
-  }
-  /*背景画像*/
-  .cameratitle {
-    background-image: url(/ec/images2/special/camera/dslr/bg_cameratitle.gif);
-    background-repeat: no-repeat;
-    line-height: 1.3em;
-    padding: 5px 0 0 65px;
-    box-sizing: border-box;
-    color: #46280c;
-    font-weight: bold;
-    font-size: 17px;
-  }
-  .youhintitle {
-    background-image: url(/ec/images2/special/camera/dslr/bg_youhintitle.gif);
-    background-repeat: no-repeat;
-    line-height: 1.3em;
-    padding: 5px 0 5px 65px;
-    box-sizing: border-box;
-    color: #46280c;
-    font-weight: bold;
-    font-size: 16px;
-  }
-
-  .dslr ul {
-    list-style: none;
-  }
-  ul.ssz {
-    padding: 0 !important;
-  }
-  ul.ssz li {
-    width: 50%;
-    list-style: none;
-    float: left;
-    line-height: 1.3em;
-    padding: 3px;
-    box-sizing: border-box;
-    border-bottom: 1px solid #cfcfcf;
-    border-right: 1px solid #cfcfcf;
-  }
-  ul.ssz ol {
-    padding: 0px;
-  }
-  .dslr p {
-    line-height: 1.8em;
-  }
-  .txt-org {
-    color: #dd6717;
-  }
-  .tx-aka {
-    color: #d80b24;
-  }
-  .tx-tya {
-    color: #46280c !important;
-  }
-  .txkg-whi01 {
-    text-shadow: 1px 1px 0 #ffffff;
-  }
-  .tx-18 {
-    font-size: 18px;
-  }
-  .tx-16 {
-    font-size: 16px;
-  }
-  .tx-14 {
-    font-size: 14px;
-  }
-  .tx-12 {
-    font-size: 12px;
-  }
-  .h-1 {
-    height: 1px;
-  }
-  .ba-gr {
-    border: #626262 dashed 1px;
-  }
-  /*●品*/
-  .maru {
-    border-radius: 150px;
-    border: 1px solid #999999;
-  }
-  /*ショックレ*/
-  .w50pr-re {
-    width: 50%;
-    padding: 12px;
-    box-sizing: border-box;
-  }
-  div.s-credit {
-    display: block;
-    width: 100%;
-  }
-  div.s-credit table {
-    text-align: center;
-    width: 100%;
-    border-collapse: collapse;
-  }
-  div.s-credit table th,
-  div.s-credit table td {
-    padding: 2px 0;
-    vertical-align: middle;
-    border: solid 1px #ffffff;
-    box-sizing: border-box;
-  }
-  div.s-credit table th {
-    background: #389c88 none repeat scroll 0 0;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: normal;
-    box-sizing: border-box;
-  }
-  div.s-credit table td {
-    background: #eee none repeat scroll 0 0;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 0em;
-    box-sizing: border-box;
-  }
-  div.s-credit table td span {
-    font-size: 13px;
-    margin-left: 3px;
-  }
-
   @media screen and (min-width: 601px) {
     .pc {
       display: block;
@@ -597,15 +767,13 @@ export default Vue.extend({
       display: block;
     }
   }
-
   .credit_l {
-    width: 100%;
+    width: 35%;
     float: left;
     display: block;
     text-align: center;
     margin: 10px 10px 20px 0;
   }
-
   .credit_r {
     width: 60%;
     float: left;
@@ -614,52 +782,26 @@ export default Vue.extend({
   .mt30 {
     margin-top: 30px;
   }
-
   .bgtypetitle {
     background-color: #ffffcc;
   }
-
   table.spec {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
     font-size: 80%;
-  }
-
-  table.spec tr th {
-    width: 16%;
-    color: #151515;
-    background-color: #eee;
-    border: 1px solid #b9b9b9;
+    float: left;
     box-sizing: border-box;
-    vertical-align: middle;
+    word-break: break-all;
   }
-
-  table.spec tr td {
-    width: 16%;
-    border: 1px solid #b9b9b9;
-    box-sizing: border-box !important;
-    padding: 10px 6px;
-    vertical-align: middle;
-  }
-
   .product-video {
     &-contents {
       height: 520px;
     }
   }
-
-  .product-shasha {
-    &-wrap {
-      background: #f8fbd1;
-    }
-
-    &-link:hover {
-      img {
-        opacity: 0.7;
-      }
-    }
-  }
-  .kg-in {
-    box-shadow: 0px 9px 5px 1px rgb(176 126 164 / 60%) inset;
 }
+.height-20 {
+  height: 4.8em;
 }
 </style>
 

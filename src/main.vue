@@ -6,7 +6,7 @@
 
     <!-- 960px以上 -->
     <div class="outer-header-wide" v-if="$vuetify.breakpoint.mdAndUp">
-      <app-header />
+      <app-header v-if="this.$route.path !== '/ec/guide/tablet/calculate.html'" />
     </div>
     <div class="outer-main-wide">
       <div class="width-wide" v-if="$vuetify.breakpoint.mdAndUp">
@@ -16,16 +16,16 @@
       </div>
     </div>
     <div class="outer-footer-wide" v-if="$vuetify.breakpoint.mdAndUp">
-      <app-footer />
+      <app-footer v-if="this.$route.path !== '/ec/guide/tablet/calculate.html'" />
     </div>
 
     <!-- 960px未満 -->
     <div class="width-narrow" v-if="$vuetify.breakpoint.smAndDown">
-      <app-header />
+      <app-header v-if="this.$route.path !== '/ec/guide/tablet/calculate.html'" />
       <v-main>
         <router-view />
       </v-main>
-      <app-footer />
+      <app-footer v-if="this.$route.path !== '/ec/guide/tablet/calculate.html'" />
       <v-app-bar-nav-icon @click="drawer = true" class="menu-position menu-bar-nav-icon"></v-app-bar-nav-icon>
       <v-navigation-drawer v-model="drawer" fixed temporary class="menu-drawer" v-if="$vuetify.breakpoint.smAndDown">
         <nav-drawer-menu @on-close-menu="closeMenu" />

@@ -13,7 +13,7 @@
     <div class="main-contents-wrap">
       <!-- ↓ 看板：画像の読み込み -->
       <h1>
-        <img class="mb-1 banner-img pc" src="https://shop.kitamura.jp/ec/images2/special/cameraa/dslr/bbn_pc.png" alt="デジタル一眼レフ/ミラーレスカメラ特集" />
+        <img class="mb-1 banner-img pc" src="https://shop.kitamura.jp/ec/images2/special/camera/dslr/bbn_pc.png" alt="デジタル一眼レフ/ミラーレスカメラ特集" />
         <img class="mb-1 banner-img sp" src="https://shop.kitamura.jp/ec/images2/special/camera/dslr/bbn_sp.png" alt="デジタル一眼レフ/ミラーレスカメラ特集" />
         <span class="font-small">デジタル一眼レフ/ミラーレスカメラ特集</span>
       </h1>

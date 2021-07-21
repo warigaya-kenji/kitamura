@@ -40,7 +40,6 @@ export default {
   margin: 0 0 20px 0;
   width: 100%;
 }
-
 .contingency_t th {
   text-align: center;
   vertical-align: top;
@@ -50,7 +49,6 @@ export default {
   padding: 10px 6px;
   vertical-align: middle;
 }
-
 .bg-gray {
   background-color: #d1d1d1;
 }

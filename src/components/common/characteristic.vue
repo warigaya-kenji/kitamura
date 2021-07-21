@@ -29,7 +29,6 @@ export default {
   width: 100%;
   float: left;
   height: auto;
-  margin: 0px 0px 0px 0px;
   padding: 10px;
   box-sizing: border-box;
 }

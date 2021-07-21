@@ -37,18 +37,14 @@ export default {
     display: flex;
     flex-wrap: wrap;
   }
-
   &-item {
     width: calc((100% - (12px * 3)) / 4);
-
     &:not(:nth-child(4n)) {
       margin-right: 12px;
     }
-
     &:not(:nth-last-child(-n + 4)) {
       margin-bottom: 20px;
     }
-
     &-link {
       &:hover {
         img {
@@ -56,7 +52,6 @@ export default {
         }
       }
     }
-
     &-name {
       height: 5em;
       color: $text-blue;
