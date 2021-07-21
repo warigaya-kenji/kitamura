@@ -24,9 +24,8 @@ import Component20210401 from '@/components/special/2021/0401.vue';
 import Componentfeature from '@/components/special/camera/feature.vue';
 import Componentdslr from '@/components/special/camera/dslr.vue';
 import Componentutsurundesu from '@/components/special/camera/filmcamera/utsurundesu.vue';
-import test from '@/components/special/camera/filmcamera/test.vue';
-
-
+import eosr5r6 from '@/components/special/camera/feature/canon/eosr5-r6.vue';
+import ComponentBacknumber from '@/components/special/camera/feature/backnumber.vue';
 
 // 上記で読み込んだコンポーネントのうち、実際に表示させるページを設定してください。
 // 'ページURL': 読み込んだコンポーネント名
@@ -40,7 +39,8 @@ const PAGE_LIST = {
   'camera/feature': Componentfeature,
   'camera/dslr': Componentdslr,
   'camera/filmcamera/utsurundesu': Componentutsurundesu,
-  'camera/filmcamera/test': test
+  'camera/feature/canon/eosr5r6': eosr5r6,
+  'camera/feature/backnumber': ComponentBacknumber
 };
 
 export default Vue.extend({

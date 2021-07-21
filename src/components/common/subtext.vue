@@ -11,7 +11,7 @@ export default {
 .sbtext {
   width: 100%;
   height: auto;
-  margin: 40px 0px 10px 0px;
+  margin: 50px 0px 10px 0px;
   padding: 0px 0px 0px 10px;
   box-sizing: border-box;
   float: left;
