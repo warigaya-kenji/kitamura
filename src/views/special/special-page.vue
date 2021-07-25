@@ -27,6 +27,7 @@ import Componentutsurundesu from '@/components/special/camera/filmcamera/utsurun
 import eosr5r6 from '@/components/special/camera/feature/canon/eosr5-r6.vue';
 import ComponentBacknumber from '@/components/special/camera/feature/backnumber.vue';
 import ComponentRf1435mmf4lisusm from '@/components/special/camera/feature/canon/rf14-35mmf4lisusm.vue';
+import ComponentTripod from '@/components/special/camera/feature/canon/tripod.vue';
 
 // 上記で読み込んだコンポーネントのうち、実際に表示させるページを設定してください。
 // 'ページURL': 読み込んだコンポーネント名
@@ -42,7 +43,9 @@ const PAGE_LIST = {
   'camera/filmcamera/utsurundesu': Componentutsurundesu,
   'camera/feature/canon/eosr5r6': eosr5r6,
   'camera/feature/backnumber/': ComponentBacknumber,
-  'camera/feature/canon/rf1435mmf4lisusm': ComponentRf1435mmf4lisusm
+  'camera/feature/canon/rf1435mmf4lisusm': ComponentRf1435mmf4lisusm,
+  'camera/feature/canon/tripod': ComponentTripod
+
 };
 
 export default Vue.extend({

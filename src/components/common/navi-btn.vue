@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col class="mr-0 pr-0" v-for="navi in naviList" :key="navi">
-        <v-btn elevation="10" block class="black white--text text-h6 ma-0 font-weight-bold" height="55px" :href="navi.herf"
+        <v-btn elevation="10" block class="black white--text ma-0 font-weight-bold" :height="height" :href="navi.herf"
           ><span class="v-btn__content">{{ navi.naviItem }}</span></v-btn
         >
       </v-col>
@@ -13,7 +13,6 @@
 <script>
 export default {
   name: 'naviBtn',
-  props: ['naviList']
+  props: ['naviList', 'height']
 };
 </script>
-

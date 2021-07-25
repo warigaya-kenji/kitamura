@@ -19,7 +19,7 @@
         </div>
 
         <!-- ↓ ナビボタン -->
-        <naviBtn :naviList="naviList" />
+        <naviBtn :naviList="naviList" :height="'55px'" />
         <!-- ↑ ナビボタン -->
 
         <div class="text-right">
@@ -35,7 +35,7 @@
           <v-container>
             <v-row>
               <v-col class="text-center" cols="12" sm="5">
-                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr" /></router-link>
+                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr"/></router-link>
                 <p>
                   <a :href="`/ec/pd/${product.janCode}`">{{ product.itemName }}</a>
                 </p>
@@ -261,11 +261,11 @@
               </tr>
               <tr>
                 <th>手ブレ補正</th>
-                <td>5軸補正　最大8段</td>
-                <td>5軸補正　最大8段</td>
+                <td>5軸補正最大8段</td>
+                <td>5軸補正最大8段</td>
                 <td>レンズ補正のみ</td>
-                <td>5軸補正　最大5.5段</td>
-                <td>5軸補正　最大5.0段</td>
+                <td>5軸補正最大5.5段</td>
+                <td>5軸補正最大5.0段</td>
               </tr>
               <tr>
                 <th>液晶性能</th>
@@ -360,21 +360,7 @@
 
         <!-- ↓ ShaSha -->
         <subText :textItem="'ShaSha:キヤノン EOS R5｜航空写真家がスチル＆ムービーで徹底レビュー'" />
-        <div class="product-shasha mb-5 float-left">
-          <v-card class="product-shasha-wrap pa-4" outlined>
-            <v-card-text class="black--text">
-              キヤノンのミラーレス一眼 EOS R5は人気のデジタル一眼レフカメラ、EOS
-              5Dシリーズの流れを汲んだ高画素機。「5」というと三脚にガッツリとカメラを据え付けじっくりと風景写真を撮る…というイメージもありましたが、今回のEOS
-              R5はシャッターの秒間コマ数や手ブレ補正の段数などの秀逸さを見ても、かなり動きモノに対応してきたなという印象を持ちました。
-              <br />そこで、動きモノである飛行機撮影においてEOS R5を徹底インプレッション。スチルだけでなくムービーについても、その劇的な...<a
-                class="product-shasha-link"
-                href="https://shasha.kitamura.jp/article/478121231.html"
-                target="_blank"
-                >続きを読む <img src="@/assets/special/img/sample1/shashabnr4.jpg" alt="イメージ" class="product-shasha-img mt-4"
-              /></a>
-            </v-card-text>
-          </v-card>
-        </div>
+        <shasha :shashaData="shashaData" />
         <!-- ↑ ShaSha -->
 
         <subText :textItem="'キヤノン EOS R5 / EOS R6 価格・人気アクセサリー'" />
@@ -382,7 +368,7 @@
         <v-container>
           <v-row>
             <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
+              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr"/></a>
               <p class="font-small blue--text mb-2 height-20">
                 <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
               </p>
@@ -536,6 +522,7 @@ import ProductService from '@/logic/product.service';
 import SubText from '@/components/common/subtext.vue';
 import NaviBtn from '@/components/common/navi-btn.vue';
 import Characteristic from '@/components/common/characteristic.vue';
+import ShaSha from '@/components/common/shasha.vue';
 import ComparisonTable from '@/components/common/comparison-table.vue';
 import PriceAndPopular from '@/components/common/price-and-popular.vue';
 import ContingencyTable from '@/components/common/contingency-table.vue';
@@ -547,8 +534,9 @@ export default Vue.extend({
     breadcrumbs: Breadcrumbs,
     subText: SubText,
     characteristic: Characteristic,
-    comparisonTable: ComparisonTable,
-    priceAndPopular: PriceAndPopular,
+    shasha: ShaSha,
+    // comparisonTable: ComparisonTable,
+    // priceAndPopular: PriceAndPopular,
     contingencyTable: ContingencyTable,
     kitamuraService: KitamuraService,
     recommendedFeatures: RecommendedFeatures,
@@ -660,6 +648,14 @@ export default Vue.extend({
           herf: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
+        }
+      ],
+      shashaData: [
+        {
+          text:
+            'キヤノンのミラーレス一眼 EOS R5は人気のデジタル一眼レフカメラ、EOS5Dシリーズの流れを汲んだ高画素機。「5」というと三脚にガッツリとカメラを据え付けじっくりと風景写真を撮る…というイメージもありましたが、今回のEOSR5はシャッターの秒間コマ数や手ブレ補正の段数などの秀逸さを見ても、かなり動きモノに対応してきたなという印象を持ちました。<br />そこで、動きモノである飛行機撮影においてEOS R5を徹底インプレッション。スチルだけでなくムービーについても、その劇的な...',
+          herf: 'https://shasha.kitamura.jp/article/478121231.html',
+          src: '/ec/images2/special/camera/feature/canon/eosr5_r6/shashabnr.jpg'
         }
       ]
     };
