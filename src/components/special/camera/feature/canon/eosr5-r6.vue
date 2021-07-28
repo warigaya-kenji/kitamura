@@ -1,11 +1,11 @@
 <template>
   <v-app>
     <div class="eosr5-r6">
-      <!-- ↓ パンくず -->
-      <breadcrumbs :breadcrumbs="breadcrumbs" />
-      <!-- ↑ パンくず -->
-
       <div class="main-contents-wrap">
+        <!-- ↓ パンくず -->
+        <breadcrumbs :breadcrumbs="breadcrumbs" />
+        <!-- ↑ パンくず -->
+
         <!-- ↓ 画像の読み込み -->
         <img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/bg_top.jpg" @error="noimage" />
         <!-- ↑ 画像の読み込み -->
@@ -19,11 +19,11 @@
         </div>
 
         <!-- ↓ ナビボタン -->
-        <naviBtn :naviList="naviList" :height="'55px'" />
+        <naviBtn :naviList="naviList" />
         <!-- ↑ ナビボタン -->
 
         <div class="text-right">
-          <v-btn href="camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
+          <v-btn href="/ec/special/camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
         </div>
 
         <subText :textItem="'世界最高8.0段の手ブレ補正による快適な撮影を実現した次世代「EOS R」'" />
@@ -31,11 +31,13 @@
 
         <!--====== キヤノン EOS R5 ======-->
         <!--====== キヤノン EOS R6 ======-->
+        <!-- <priceAndPurchase :mainProductList="mainProductList" /> -->
+
         <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in mainProductList" :key="product">
           <v-container>
             <v-row>
               <v-col class="text-center" cols="12" sm="5">
-                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr"/></router-link>
+                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr" /></router-link>
                 <p>
                   <a :href="`/ec/pd/${product.janCode}`">{{ product.itemName }}</a>
                 </p>
@@ -66,14 +68,19 @@
         </v-card>
 
         <div class="col-sm-12 text-center float-left pa-4 mt-10">
-          <v-btn elevation="3" class="black darken-4 white--text text-h7" height="70px" width="50%" :href="`https://cweb.canon.jp/eos/your-eos/product/eosr/`"
+          <v-btn
+            elevation="3"
+            class="black darken-4 white--text text-h7"
+            height="70px"
+            width="50%"
+            @click="linkToOtherWindow('https://cweb.canon.jp/eos/your-eos/product/eosr/')"
             >メーカーサイトで<br />仕様・作例を詳しく見る</v-btn
           >
         </div>
 
         <!--動画で見る-->
         <subText :textItem="'動画で見る キヤノン EOS R5！'" />
-        <div class="product-video-wrap text-center">
+        <div class="product-video-wrap text-center mb-6">
           <div class="">
             <iframe
               width="70%"
@@ -87,14 +94,16 @@
         </div>
 
         <!--特徴-->
-        <subText :textItem="'EOS R5 / EOS R6 共通の特徴'" id="point" />
-        <characteristic :characteristics="commonCharacteristicList" />
+        <div class="contents_inner" id="point">
+          <subText :textItem="'EOS R5 / EOS R6 共通の特徴'" />
+          <characteristic :characteristics="commonCharacteristicList" />
 
-        <subText :textItem="'EOS R5 の特徴'" />
-        <characteristic :characteristics="eosR5CharacteristicList" />
+          <subText :textItem="'EOS R5 の特徴'" />
+          <characteristic :characteristics="eosR5CharacteristicList" />
 
-        <subText :textItem="'EOS R6 の特徴'" />
-        <characteristic :characteristics="eosR6CharacteristicList" />
+          <subText :textItem="'EOS R6 の特徴'" />
+          <characteristic :characteristics="eosR6CharacteristicList" />
+        </div>
 
         <!--特徴-->
 
@@ -261,11 +270,11 @@
               </tr>
               <tr>
                 <th>手ブレ補正</th>
-                <td>5軸補正最大8段</td>
-                <td>5軸補正最大8段</td>
+                <td>5軸補正 最大8段</td>
+                <td>5軸補正 最大8段</td>
                 <td>レンズ補正のみ</td>
-                <td>5軸補正最大5.5段</td>
-                <td>5軸補正最大5.0段</td>
+                <td>5軸補正 最大5.5段</td>
+                <td>5軸補正 最大5.0段</td>
               </tr>
               <tr>
                 <th>液晶性能</th>
@@ -360,7 +369,21 @@
 
         <!-- ↓ ShaSha -->
         <subText :textItem="'ShaSha:キヤノン EOS R5｜航空写真家がスチル＆ムービーで徹底レビュー'" />
-        <shasha :shashaData="shashaData" />
+        <div class="product-shasha mb-5 float-left">
+          <v-card class="product-shasha-wrap pa-4" outlined>
+            <v-card-text class="black--text">
+              キヤノンのミラーレス一眼 EOS R5は人気のデジタル一眼レフカメラ、EOS
+              5Dシリーズの流れを汲んだ高画素機。「5」というと三脚にガッツリとカメラを据え付けじっくりと風景写真を撮る…というイメージもありましたが、今回のEOS
+              R5はシャッターの秒間コマ数や手ブレ補正の段数などの秀逸さを見ても、かなり動きモノに対応してきたなという印象を持ちました。
+              <br />そこで、動きモノである飛行機撮影においてEOS R5を徹底インプレッション。スチルだけでなくムービーについても、その劇的な...<a
+                class="product-shasha-link"
+                href="https://shasha.kitamura.jp/article/478121231.html"
+                target="_blank"
+                >続きを読む <img src="@/assets/special/img/sample1/shashabnr4.jpg" alt="イメージ" class="product-shasha-img mt-4"
+              /></a>
+            </v-card-text>
+          </v-card>
+        </div>
         <!-- ↑ ShaSha -->
 
         <subText :textItem="'キヤノン EOS R5 / EOS R6 価格・人気アクセサリー'" />
@@ -368,7 +391,7 @@
         <v-container>
           <v-row>
             <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr"/></a>
+              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
               <p class="font-small blue--text mb-2 height-20">
                 <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
               </p>
@@ -385,7 +408,8 @@
             <v-col class="text-center" cols="4">
               <a
                 href="https://www.net-chuko.com/sell/item-list.do?axisType=category&axisCond=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%B8%80%E7%9C%BC%E3%83%AC%E3%83%95&goodsname=4549292075748&_ga=2.222765533.714669828.1626591933-721903692.1626267770&pattern=1"
-                ><img src="https://shopimg.kitamura.jp/images/pd/e6a/566/223/13d/322/7d3/e9e/d4c/92d/3ba/b4d/q99/qon/e/L.jpg" width="80%"
+                target="_blank"
+                ><img src="https://shopimg.kitamura.jp/images/pd/e6a/566/223/13d/322/7d3/e9e/d4c/92d/3ba/b4d/q99/qon/e/L.jpg" class="hover" width="80%"
               /></a>
               <br />
               キヤノン EOS 5D Mark IV ボディ
@@ -401,7 +425,7 @@
                   >キヤノン EOS 5D Mark IV ボディ</v-btn
                 >で下取り実施中です
               </p>
-              <img src="/ec/images2/special/camera/feature/canon/eosr5_r6/bnr_shitadori_350-130.jpg" alt="高値下取り実施中" @error="noimage" />
+              <img src="/ec/images2/special/camera/feature/canon/eosr5_r6/bnr_shitadori_350-130.jpg" alt="高値下取り実施中" class="hover" @error="noimage" />
             </v-col>
           </v-row>
         </v-container>
@@ -410,7 +434,7 @@
         <v-row class="mb-10">
           <v-col class="text-center" cols="4">
             <a href="/ec/pd/4549292157345"
-              ><img src="//shopimg.kitamura.jp/images/pd/479/596/d1e/955/5c5/f28/97f/ed8/392/3a7/71f/kto/esd/p/M.jpg" width="80%"
+              ><img src="//shopimg.kitamura.jp/images/pd/479/596/d1e/955/5c5/f28/97f/ed8/392/3a7/71f/kto/esd/p/M.jpg" class="hover" width="80%"
             /></a>
             <br />
             キヤノン EOS R5 ボディ<br /><span class="red--text">455,400</span>円(税込)
@@ -428,7 +452,7 @@
         <v-row class="mb-10">
           <v-col class="text-center" cols="4">
             <a href="ec/pd/4549292157253"
-              ><img src="//shopimg.kitamura.jp/images/pd/731/a75/19f/abf/b41/d16/33c/43a/e3f/44e/b3i/o8z/04r/h/M.jpg" width="80%"
+              ><img src="//shopimg.kitamura.jp/images/pd/731/a75/19f/abf/b41/d16/33c/43a/e3f/44e/b3i/o8z/04r/h/M.jpg" width="80%" class="hover"
             /></a>
             <br />
             キヤノン EOS R6 ボディ<br /><span class="red--text">301,950</span>円(税込)
@@ -437,7 +461,7 @@
             <font size="-1">※2020年7月10日時点の価格です</font>
             <contingencyTable :numberOfTimes="'48'" :amount="'6,291'" :commission="'0'" />
             <div class="text-center">
-              <v-btn width="80%" color="#E53935" class="white--text font-weight-bold" href="sitemap/s_credit_01.html">
+              <v-btn width="80%" color="#E53935" class="white--text font-weight-bold" href="/sitemap/s_credit_01.html">
                 ショッピングクレジットについて詳細はこちら
               </v-btn>
             </div>
@@ -521,8 +545,8 @@ import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import SubText from '@/components/common/subtext.vue';
 import NaviBtn from '@/components/common/navi-btn.vue';
+import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
 import Characteristic from '@/components/common/characteristic.vue';
-import ShaSha from '@/components/common/shasha.vue';
 import ComparisonTable from '@/components/common/comparison-table.vue';
 import PriceAndPopular from '@/components/common/price-and-popular.vue';
 import ContingencyTable from '@/components/common/contingency-table.vue';
@@ -534,13 +558,13 @@ export default Vue.extend({
     breadcrumbs: Breadcrumbs,
     subText: SubText,
     characteristic: Characteristic,
-    shasha: ShaSha,
     // comparisonTable: ComparisonTable,
     // priceAndPopular: PriceAndPopular,
     contingencyTable: ContingencyTable,
     kitamuraService: KitamuraService,
     recommendedFeatures: RecommendedFeatures,
     naviBtn: NaviBtn
+    // priceAndPurchase: PriceAndPurchase
   },
   data() {
     return {
@@ -649,16 +673,13 @@ export default Vue.extend({
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }
-      ],
-      shashaData: [
-        {
-          text:
-            'キヤノンのミラーレス一眼 EOS R5は人気のデジタル一眼レフカメラ、EOS5Dシリーズの流れを汲んだ高画素機。「5」というと三脚にガッツリとカメラを据え付けじっくりと風景写真を撮る…というイメージもありましたが、今回のEOSR5はシャッターの秒間コマ数や手ブレ補正の段数などの秀逸さを見ても、かなり動きモノに対応してきたなという印象を持ちました。<br />そこで、動きモノである飛行機撮影においてEOS R5を徹底インプレッション。スチルだけでなくムービーについても、その劇的な...',
-          herf: 'https://shasha.kitamura.jp/article/478121231.html',
-          src: '/ec/images2/special/camera/feature/canon/eosr5_r6/shashabnr.jpg'
-        }
       ]
     };
+  },
+  methods: {
+    linkToOtherWindow(url: string | undefined) {
+      window.open(url, '_blank');
+    }
   },
   props: {},
   setup: (props, context) => {
@@ -798,6 +819,18 @@ export default Vue.extend({
 }
 .height-20 {
   height: 4.8em;
+}
+// サンプル：ShaSha
+.product-shasha {
+  &-wrap {
+    background: #f8fbd1;
+  }
+
+  &-link:hover {
+    img {
+      opacity: 0.7;
+    }
+  }
 }
 </style>
 

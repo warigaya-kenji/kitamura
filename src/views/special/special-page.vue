@@ -27,7 +27,14 @@ import Componentutsurundesu from '@/components/special/camera/filmcamera/utsurun
 import eosr5r6 from '@/components/special/camera/feature/canon/eosr5-r6.vue';
 import ComponentBacknumber from '@/components/special/camera/feature/backnumber.vue';
 import ComponentRf1435mmf4lisusm from '@/components/special/camera/feature/canon/rf14-35mmf4lisusm.vue';
+import ComponentZfc from '@/components/special/camera/feature/nikon/zfc.vue';
+import ComponentPenEP7 from '@/components/special/camera/feature/olympus/pen-e-p7.vue';
 import ComponentTripod from '@/components/special/camera/feature/canon/tripod.vue';
+import ComponentGh5m2 from '@/components/special/camera/feature/panasonic/gh5m2.vue';
+import ComponentStorage from '@/components/special/camera/storage.vue';
+import ComponentPolarie from '@/components/special/camera/polarie.vue';
+import Component7rm4a7rm3a from '@/components/special/camera/feature/sony/7rm4a-7rm3a.vue';
+import Componentfe14f18gm from '@/components/special/camera/feature/sony/fe14f18gm.vue';
 
 // 上記で読み込んだコンポーネントのうち、実際に表示させるページを設定してください。
 // 'ページURL': 読み込んだコンポーネント名
@@ -40,12 +47,18 @@ const PAGE_LIST = {
   '2021/0401': Component20210401,
   'camera/feature': Componentfeature,
   'camera/dslr': Componentdslr,
+  'camera/storage': ComponentStorage,
+  'camera/polarie': ComponentPolarie,
   'camera/filmcamera/utsurundesu': Componentutsurundesu,
   'camera/feature/canon/eosr5r6': eosr5r6,
   'camera/feature/backnumber/': ComponentBacknumber,
   'camera/feature/canon/rf1435mmf4lisusm': ComponentRf1435mmf4lisusm,
-  'camera/feature/canon/tripod': ComponentTripod
-
+  'camera/feature/canon/tripod': ComponentTripod,
+  'camera/feature/nikon/zfc': ComponentZfc,
+  'camera/feature/olympus/penEP7': ComponentPenEP7,
+  'camera/feature/panasonic/gh5m2': ComponentGh5m2,
+  'camera/feature/sony/7rm4a7rm3a': Component7rm4a7rm3a,
+  'camera/feature/sony/fe14f18gm': Componentfe14f18gm
 };
 
 export default Vue.extend({

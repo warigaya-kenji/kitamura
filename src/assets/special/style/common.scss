@@ -1,4 +1,5 @@
 // 特集ページ 共通style
+
 // h2タイトル
 .title {
   padding-left: 8px;
@@ -11,7 +12,7 @@
   box-shadow: 0px 9px 5px 1px rgb(176 126 164 / 60%) inset;
 }
 
-img:hover {
+.hover:hover {
   opacity: 0.7;
 }
 
@@ -41,3 +42,39 @@ img:hover {
     }
   }
 }
+
+.mx-w100 {
+  max-width: 100%;
+  height: auto;
+}
+
+// .contents_innner {
+//   display: block;
+//    margin-top:-100px;
+//    padding-top:100px;
+// }
+
+// a:link,
+// a:visited,
+// a:active,
+// a:hover {
+//   /* FireFox リンク選択時の点線を消す */
+//   overflow: hidden;
+//   outline: none;
+// }
+
+// a:link {
+//   text-decoration: none;
+//   color: #660099;
+// }
+
+// a:visited {
+//   text-decoration: none;
+//   color: #1122cc;
+// }
+
+// a:hover,
+// a:active {
+//   color: #d80b24;
+//   text-decoration: underline;
+// }

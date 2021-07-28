@@ -18,7 +18,7 @@
         </div>
 
         <!-- ↓ 画像の読み込み -->
-        <img class="mb-5" src="@/assets/special/img/sample.jpg" @error="noimage" />
+        <img class="mb-5" src="/ec/images2/special/camera/tripod/bn_00.gif" @error="noimage" />
         <!-- ↑ 画像の読み込み -->
 
         <p class="text-left">おすすめ三脚の選び方</p>
@@ -28,7 +28,7 @@
         </p>
 
         <!-- ↓ ナビボタン -->
-        <naviBtn :naviList="naviList" :height="'45px'" />
+        <naviBtn :naviList="naviList" :cols="4" :height="'45px'" />
         <!-- ↑ ナビボタン -->
 
         <subText :textItem="'種類で選ぶ♪ おすすめ三脚'" />
@@ -36,41 +36,50 @@
           三脚は種類によって、素材、強度、大きさ、重さが異なります。強度は、各商品ページに「推奨積載質量」を記載していますので参考にしてください。
         </p>
 
+        <!--▼種類で選ぶ-->
         <v-container class="bg-color">
           <v-row>
-            <v-col cols="4" v-for="n in 6" :key="n" class="ma-0">
+            <v-col cols="4" v-for="(tripodType, index) in tripodTypeList" :key="tripodType" class="ma-0">
               <v-card outlined color="#E3E3E3" class="pa-2 ma-0">
-                <img src="@/assets/special/img/sample1/tripod-img.png" @error="noimage" width="100%" />
-                <v-card-text class="caption black--text pa-0 ma-0 font-weight-medium"
-                  >風景写真が好きで作品作りを考えてる方には最適。<br />軽くて丈夫なので大口径レンズも対応！
-                </v-card-text>
+                <img :src="`/ec/images2/special/camera/tripod/type_0${index}.gif`" @error="noimage" width="100%" />
+                <v-card-text class="caption black--text pa-0 ma-0 font-weight-medium">{{ tripodType.maintxt }} </v-card-text>
                 <span class="text-center ma-0"
-                  ><v-btn color="orange" href="ec/special/camera/tripod/type01/" class="pa-4 ma-0 white--text darken-2 font-weight-bold" width="100%"
-                    >カーボン三脚を見る ≫</v-btn
+                  ><v-btn
+                    color="orange"
+                    :href="`/ec/special/camera/tripod/type0${index}/`"
+                    class="pa-4 ma-0 white--text darken-2 font-weight-bold"
+                    width="100%"
+                    >{{ tripodType.btntxt }}</v-btn
                   ></span
                 >
               </v-card>
             </v-col>
           </v-row>
         </v-container>
+        <!--▼種類で選ぶ-->
 
         <subText :textItem="'三脚を選ぶときに必須！ 用途別に必要なパーツ類をご紹介'" />
         <p class="subtitle-2 font-weight-bold">
           三脚を選ぶときには、カメラを三脚に固定する装置「雲台」選びも重要です。雲台は主に「３ウェイ雲台」「自由雲台」があります。
         </p>
 
+        <!--↓パーツ-->
         <v-container class="bg-color mb-12">
           <v-row>
-            <v-col cols="4" v-for="n in 3" :key="n" class="ma-0">
+            <v-col cols="4" v-for="(tripodPart, index) in tripodPartsList" :key="tripodPart" class="ma-0">
               <v-hover>
                 <v-card outlined color="#E3E3E3" class="pa-2 ma-0">
-                  <img src="@/assets/special/img/sample1/tripod-img.png" @error="noimage" width="100%" />
-                  <v-card-text class="caption black--text pa-0 ma-0 font-weight-medium"
-                    >風景写真が好きで作品作りを考えてる方には最適。<br />軽くて丈夫なので大口径レンズも対応！
+                  <img :src="`/ec/images2/special/camera/tripod/un_0${index}.gif`" @error="noimage" width="100%" />
+                  <v-card-text class="caption black--text pa-0 ma-0 font-weight-medium">
+                    {{ tripodPart.maintxt }}
                   </v-card-text>
                   <span class="text-center ma-0"
-                    ><v-btn color="orange" href="ec/special/camera/tripod/type01/" class="pa-4 ma-0 white--text darken-2 font-weight-bold" width="100%"
-                      >カーボン三脚を見る ≫</v-btn
+                    ><v-btn
+                      color="orange"
+                      :href="`/ec/special/camera/tripod/type0${index}/`"
+                      class="pa-4 ma-0 white--text darken-2 font-weight-bold"
+                      width="100%"
+                      >{{ tripodPart.btntxt }}</v-btn
                     ></span
                   >
                 </v-card>
@@ -78,6 +87,7 @@
             </v-col>
           </v-row>
         </v-container>
+        <!--↓パーツ-->
 
         <!-- ↓ 撮影シーンで選ぶ -->
         <div id="v003" class="mb20 h-1 lef w100pr"></div>
@@ -87,14 +97,10 @@
           人気メーカーのベルボン、マンフロット、スリックのおすすめ三脚をピックアップ★撮りたいシーンに合わせてお選びください
         </p>
 
-        <v-container class="text-center mb-4">
-          <v-row class="">
-            <v-col v-for="n in 7" :key="n" class="px-0 mx-0 h2">
-              <v-btn href="#si01" color="black" class="white--text font-weight-bold" width="120px">家族旅行</v-btn>
-            </v-col>
-          </v-row>
-        </v-container>
+        <naviBtn :naviList="shootingSceneNaviList" :cols="1.5" :height="'45px'" />
+        <!-- ↓ 撮影シーンで選ぶ -->
 
+        <!--↓旅行-->
         <div class="my-10">
           <h3 class="">旅行や登山、ファミリーにおすすめ！コンパクト＆軽量三脚</h3>
         </div>
@@ -104,19 +110,28 @@
           <br />
           <h4 class="red white--text darken-2 pa-2">マンフロット MKCOMPACTACN</h4>
           <v-row>
-            <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+            <v-col cols="5" class="mt-1 pa-4">
+              <a
+                href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=MKCOMPACTACN&category=&searchbox=1&sort=number20,Number17,Score&index=all&path=&q=MKCOMPACTACN&x=0&y=0"
+                ><img src="/ec/images2/special/camera/tripod/sir_02.gif" @error="noimage" width="100%"
+              /></a>
             </v-col>
             <v-col>
-              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
-                ジョイスティック型のハンドルで、フォトもムービーも撮影可能です。
-              </p>
+              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">ジョイスティック型のハンドルで、フォトもムービーも撮影可能です。</p>
               <h4>
-                <a href="" class="blue-link">マンフロット MKCOMPACTACN Compact アクション三脚5段 ムービーキット（各色）</a>
+                <a
+                  href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=MKCOMPACTACN&category=&searchbox=1&sort=number20,Number17,Score&index=all&path=&q=MKCOMPACTACN&x=0&y=0"
+                  class="blue-link"
+                  >{{ mainProductList[0].itemName }}</a
+                >
               </h4>
-              <p class="mt-2">価格:<span class="red--text font-weight-bold">&yen;7,480&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[0].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-10">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[0].janCode}`" color="blue darken-2" class="white--text text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
             </v-col>
           </v-row>
@@ -126,6 +141,7 @@
           <a href="#v003">↑撮影シーンを選ぶ</a>
         </p>
 
+        <!--↓ローポジ-->
         <div class="my-10">
           <h3 class="">花や昆虫の撮影におすすめ！ローポジション三脚</h3>
         </div>
@@ -136,18 +152,22 @@
           <h4 class="red white--text darken-2 pa-2">マンフロット MKCOMPACTACN</h4>
           <v-row>
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[1].janCode}`" target="_blank"
+                ><img src="/ec/images2/special/camera/tripod/sir_05.gif" @error="noimage" width="100%"
+              /></a>
             </v-col>
             <v-col>
-              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
-                90度センターポール機構によりローポジション撮影に最適。開脚角度は4段階に調整可能。
-              </p>
+              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">90度センターポール機構によりローポジション撮影に最適。開脚角度は4段階に調整可能。</p>
               <h4>
-                <a href="" target="_blank">マンフロット MK290DUA3-3W 290DUALアルミニウム3段三脚＋3ウェイ雲台キット</a>
+                <a :href="`/ec/pd/${mainProductList[1].janCode}`" target="_blank">{{ mainProductList[1].itemName }}</a>
               </h4>
-              <p class="mt-2">価格:<span class="red--text font-weight-bold">&yen;2,4936&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[1].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[1].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -161,23 +181,25 @@
         <div>
           <span>おすすめ三脚</span>
           <br />
-          <h4 class="grey darken-2 white--text darken-2 pa-2">
-            スリック E53 ライトカーボン
-          </h4>
+          <h4 class="grey darken-2 white--text darken-2 pa-2">スリック E53 ライトカーボン</h4>
           <v-row class="mb-12">
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[2].janCode}`" target="_blank"
+                ><img src="/ec/images2/special/camera/tripod/sir_06.gif" @error="noimage" width="100%"
+              /></a>
             </v-col>
             <v-col>
-              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
-                持ち運び重視の軽量カーボン三脚。ローポジション含め三段階の開脚調整が可能。
-              </p>
+              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">持ち運び重視の軽量カーボン三脚。ローポジション含め三段階の開脚調整が可能。</p>
               <h4>
-                <a href="" target="_blank">マンフロット MKCOMPACTACN Compact アクション三脚5段 ムービーキット（各色）</a>
+                <a :href="`/ec/pd/${mainProductList[2].janCode}`" target="_blank">{{ mainProductList[2].itemName }}</a>
               </h4>
-              <p class="mt-2">価格:<span class="red--text font-weight-bold">&yen;7,480&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[2].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[2].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -192,6 +214,7 @@
           <a href="#v003">↑撮影シーンを選ぶ</a>
         </p>
 
+        <!--↓花火-->
         <div class="my-12">
           <h3 class="">夜景撮影・花火撮影におすすめ！ カーボン三脚</h3>
           <p class="pa-4 text-subtitle-2 font-weight-bold">夜間に撮影する花火には、振動吸収率がいいカーボン三脚が効果バツグン。</p>
@@ -200,23 +223,25 @@
         <div>
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
-          <h4 class="red darken-2 white--text darken-2 pa-2">
-            マンフロット MKBFRTC4-BH befreeアドバンス カーボンT三脚キット
-          </h4>
+          <h4 class="red darken-2 white--text darken-2 pa-2">マンフロット MKBFRTC4-BH befreeアドバンス カーボンT三脚キット</h4>
           <v-row class="mb-12">
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[3].janCode}`" target="_blank"
+                ><img src="/ec/images2/special/camera/tripod/sir_08.gif" @error="noimage" width="100%"
+              /></a>
             </v-col>
             <v-col>
-              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
-                カーボンファイバー100%の脚なので、軽量で高剛性。基本性能に優れたカーボン三脚です。
-              </p>
+              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">カーボンファイバー100%の脚なので、軽量で高剛性。基本性能に優れたカーボン三脚です。</p>
               <h4>
-                <a href="" target="_blank">マンフロット MKBFRTC4-BH befreeアドバンス カーボンT三脚キット</a>
+                <a :href="`/ec/pd/${mainProductList[3].janCode}`" target="_blank">{{ mainProductList[3].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;43,021&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[3].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[3].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -230,6 +255,7 @@
           <a href="#v003">↑撮影シーンを選ぶ</a>
         </p>
 
+        <!--↓風景写真-->
         <div class="my-12">
           <h3 class="">自然、風景写真、ネイチャーフォト撮影におすすめ！ 軽量カーボン三脚</h3>
           <p class="pa-2 text-subtitle-2 font-weight-bold">
@@ -240,23 +266,27 @@
         <div>
           <span class="caption grey--text font-weight-bold">おすすめ三脚＆雲台</span>
           <br />
-          <h4 class="red darken-2 white--text darken-2 pa-2">
-            マンフロット MT190XPRO3 ＋ MHXPRO-3W
-          </h4>
+          <h4 class="red darken-2 white--text darken-2 pa-2">マンフロット MT190XPRO3 ＋ MHXPRO-3W</h4>
           <v-row class="mb-12">
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[5].janCode}`" target="_blank"
+                ><img src="/ec/images2/special/camera/tripod/sir_011.gif" @error="noimage" width="100%"
+              /></a>
             </v-col>
             <v-col>
               <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
                 90°センターポールや片手で簡単に伸縮操作できるクイックパワーロックを採用。撮影の可能性を広げるメインストリートモデルです。
               </p>
               <h4>
-                <a href="" target="_blank">マンフロット MT190XPRO3 190プロアルミニウム三脚 3段</a>
+                <a :href="`/ec/pd/${mainProductList[4].janCode}`" target="_blank">{{ mainProductList[4].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;23,760&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[4].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[4].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -264,11 +294,15 @@
                 >
               </div>
               <h4>
-                <a href="" target="_blank">マンフロット MHXPRO-3W XPRO3ウェイ雲台 クイックプレート付</a>
+                <a :href="`/ec/pd/${mainProductList[5].janCode}`" target="_blank">{{ mainProductList[5].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;15,840&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[5].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[5].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -282,23 +316,27 @@
         <div>
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
-          <h4 class="grey darken-2 white--text darken-2 pa-1">
-            スリック E74 ライトカーボン
-          </h4>
+          <h4 class="grey darken-2 white--text darken-2 pa-1">スリック E74 ライトカーボン</h4>
           <v-row class="mb-12">
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[6].janCode}`" target="_blank"
+                ><img src="/ec/images2/special/camera/tripod/sir_012.gif" @error="noimage" width="100%"
+              /></a>
             </v-col>
             <v-col>
               <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
                 中型25mmパイプ径の軽量デジタル一眼レフ向けカーボン三脚。航空機内持ち込みサイズ60cm未満に対応。コンパクトに持ち運べる4段三脚です
               </p>
               <h4>
-                <a href="" target="_blank">スリック E74 ライトカーボン 4段三脚</a>
+                <a :href="`/ec/pd/${mainProductList[6].janCode}`" target="_blank">{{ mainProductList[6].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;29,520&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[6].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[5].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -313,22 +351,19 @@
           <a href="#v003">↑撮影シーンを選ぶ</a>
         </p>
 
+        <!--↓電車-->
         <div class="my-12">
           <h3>撮り鉄におすすめ！ カーボン三脚</h3>
-          <p class="pa-2 text-subtitle-2 font-weight-bold">
-            複数のカメラを載せるスペックがある三脚がおすすめです。
-          </p>
+          <p class="pa-2 text-subtitle-2 font-weight-bold">複数のカメラを載せるスペックがある三脚がおすすめです。</p>
         </div>
 
         <div>
           <span class="caption grey--text font-weight-bold">おすすめ三脚＆雲台＆プレート</span>
           <br />
-          <h4 class="light-blue lighten-2 white--text darken-2 pa-1">
-            ベルボン プロフェッショナル・ジオ V630 ＋ PHD-61 ＋ スーパーマグプレート II
-          </h4>
+          <h4 class="light-blue lighten-2 white--text darken-2 pa-1">ベルボン プロフェッショナル・ジオ V630 ＋ PHD-61 ＋ スーパーマグプレート II</h4>
           <v-row>
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a href="/ec/pd/4907990441485"><img src="/ec/images2/special/camera/tripod/sir_013.gif" @error="noimage" width="100%" /></a>
             </v-col>
             <v-col>
               <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
@@ -341,23 +376,27 @@
         <div>
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
-          <h4 class="red darken-2 white--text darken-2 pa-1">
-            マンフロット MK055XPRO3-3W
-          </h4>
+          <h4 class="red darken-2 white--text darken-2 pa-1">マンフロット MK055XPRO3-3W</h4>
           <v-row>
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[8].janCode}`" target="_blank"
+                ><img src="/ec/images2/special/camera/tripod/sir_014.gif" @error="noimage" width="100%"
+              /></a>
             </v-col>
             <v-col>
               <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
                 90°センターポール機構により、最低高は9cm、最伸高183cmまでと、鉄道のさまざまな表情の撮影が可能です。
               </p>
               <h4>
-                <a href="" target="_blank">マンフロット MK055XPRO3-3W 055プロアルミニウム三脚 3段＋RC2付3ウェイ雲台キット</a>
+                <a :href="`/ec/pd/${mainProductList[8].janCode}`" target="_blank">{{ mainProductList[8].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;41,857&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[8].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[8].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -371,23 +410,27 @@
         <div>
           <span class="caption grey--text font-weight-bold">おすすめ三脚＆雲台</span>
           <br />
-          <h4 class="grey darken-2 white--text darken-2 pa-1">
-            スリック カーボンマスター 923PRO N ＋ マルチアーム520
-          </h4>
+          <h4 class="grey darken-2 white--text darken-2 pa-1">スリック カーボンマスター 923PRO N ＋ マルチアーム520</h4>
           <v-row class="mb-12">
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[9].janCode}`" target="_blank"
+                ><img src="/ec/images2/special/camera/tripod/sir_015a.gif" @error="noimage" width="100%"
+              /></a>
             </v-col>
             <v-col>
               <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
                 望遠レンズやフルサイズユーザーにおすすめの安定感の高い大型3段カーボン三脚です。また、マルチアーム520（通称「鉄ちゃんバー」）使用でカメラを2台載せティルトパーン操作が可能！
               </p>
               <h4>
-                <a href="" target="_blank">スリック 雲台 2個 マルチアーム 520</a>
+                <a :href="`/ec/pd/${mainProductList[9].janCode}`" target="_blank">{{ mainProductList[9].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;20,350&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[9].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[9].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -411,23 +454,27 @@
         <div>
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
-          <h4 class="light-blue lighten-2 white--text darken-2 pa-1">
-            ベルボン ULTRA STICK R63Q 一脚
-          </h4>
+          <h4 class="light-blue lighten-2 white--text darken-2 pa-1">ベルボン ULTRA STICK R63Q 一脚</h4>
           <v-row class="mb-2">
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[10].janCode}`" target="_blank"
+                ><img src="https://shopimg.kitamura.jp/images/pd/957/60b/82a/9eb/c09/10f/9e9/16f/e34/a64/fcl/4ge/ai5/i/M.jpg" @error="noimage" width="100%"
+              /></a>
             </v-col>
             <v-col>
               <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
                 脚先端を握ってひねる事で全段を一気に固定・解除する事ができるウルトラロック採用。使いやすさを徹底追求しました。
               </p>
               <h4>
-                <a href="" target="_blank">ベルボン ULTRA STICK R63Q 一脚</a>
+                <a :href="`/ec/pd/${mainProductList[10].janCode}`" target="_blank">{{ mainProductList[10].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;13,563&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[10].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[10].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -436,23 +483,27 @@
               </div>
             </v-col>
           </v-row>
-          <h4 class="red lighten-2 white--text darken-2 pa-1">
-            マンフロット MVMXPROC5 XPRO
-          </h4>
+          <h4 class="red lighten-2 white--text darken-2 pa-1">マンフロット MVMXPROC5 XPRO</h4>
           <v-row>
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[11].janCode}`" target="_blank">
+                <img src="https://shopimg.kitamura.jp/images/pd/c8a/82e/80e/e9a/4d3/8cc/e76/908/8cd/047/ecv/kao/323/7/M.jpg" @error="noimage" width="100%" />
+              </a>
             </v-col>
             <v-col>
               <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
                 クイックパワーロックやレッグウォーマー採用。パン以外をロックするFLUIDTECH 機構 搭載でフォト・ムービー撮影の両方で使用が可能です。
               </p>
               <h4>
-                <a href="" target="_blank">マンフロット MVMXPROC5 XPRO フルード ビデオ一脚 カーボンファイバー5段</a>
+                <a :href="`/ec/pd/${mainProductList[11].janCode}`" target="_blank">{{ mainProductList[11].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;35,648&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[11].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[11].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -463,23 +514,27 @@
           </v-row>
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
-          <h4 class="grey darken-2 white--text darken-2 pa-1">
-            スリック 一脚 ザ プロポッドスポーツ
-          </h4>
+          <h4 class="grey darken-2 white--text darken-2 pa-1">スリック 一脚 ザ プロポッドスポーツ</h4>
           <v-row class="mb-4">
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[12].janCode}`" target="_blank">
+                <img src="https://shopimg.kitamura.jp/images/pd/c8a/82e/80e/e9a/4d3/8cc/e76/908/8cd/047/ecv/kao/323/7/M.jpg" @error="noimage" width="100%" />
+              </a>
             </v-col>
             <v-col>
               <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
                 スペースが狭く撮影しにくいシーンに便利な自立一脚。ザ プロポッドより細いパイプを使い、軽量化を図ったプロ用一脚の軽量モデルです。
               </p>
               <h4>
-                <a href="" target="_blank">スリック 一脚 ザ プロポッドスポーツ</a>
+                <a :href="`/ec/pd/${mainProductList[12].janCode}`" target="_blank">{{ mainProductList[12].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;9,909&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[12].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[12].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -492,7 +547,7 @@
             <p>作例 ～飛行機写真～</p>
             <v-row class="ba-gr">
               <v-col cols="4" v-for="(src, index) in imgs" :key="index" class="pic" @click="() => showImg(index)">
-                <img :src="src" />
+                <img :src="src" width="100%" />
                 <p class="text-right mb-0 pb-0">
                   <v-icon>fas fa-search-plus</v-icon>
                 </p>
@@ -513,23 +568,25 @@
         <div>
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
-          <h4 class="grey darken-2 white--text darken-2 pa-1">
-            スリック マスターIII
-          </h4>
+          <h4 class="grey darken-2 white--text darken-2 pa-1">スリック マスターIII</h4>
           <v-row class="mb-12">
             <v-col cols="5" class="mt-1">
-              <img src="@/assets/special/img/sample1/tripod-img2.png" @error="noimage" width="100%" />
+              <a :href="`/ec/pd/${mainProductList[13].janCode}`" target="_blank">
+                <img src="/ec/images2/special/camera/tripod/sir_021.gif" @error="noimage" width="100%" />
+              </a>
             </v-col>
             <v-col>
-              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">
-                一つのハンドルで上下左右を一度にロックができる、フリーターン雲台を採用。日本製。
-              </p>
+              <p class="font-weight-bold mt-2 mb-6 text-subtitle-2">一つのハンドルで上下左右を一度にロックができる、フリーターン雲台を採用。日本製。</p>
               <h4>
-                <a href="" target="_blank">スリック マスターIII</a>
+                <a :href="`/ec/pd/${mainProductList[13].janCode}`" target="_blank">{{ mainProductList[13].itemName }}</a>
               </h4>
-              <p class="mt-2">特別価格:<span class="red--text font-weight-bold">&yen;26,820&nbsp;</span><span class="font-small">(税込)</span></p>
+              <p class="mt-2">
+                特別価格:<span class="red--text font-weight-bold">&yen;{{ mainProductList[13].price }}&nbsp;</span><span class="font-small">(税込)</span>
+              </p>
               <div class="text-right mr-6 mb-2">
-                <v-btn color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px">商品詳細を見る</v-btn>
+                <v-btn :href="`/ec/pd/${mainProductList[13].janCode}`" color="blue darken-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
+                  >商品詳細を見る</v-btn
+                >
               </div>
               <div class="text-right mr-6 mb-10">
                 <v-btn color="orange lighten-2" class="white--text font-weight-bold text-subtitle-1" width="225px"
@@ -656,7 +713,9 @@
 import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
 import { onMounted, reactive, toRefs } from '@vue/composition-api';
+import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
+import ProductService from '@/logic/product.service';
 import SubText from '@/components/common/subtext.vue';
 import NaviBtn from '@/components/common/navi-btn.vue';
 import RecommendedFeatures from '@/components/common/recommended-features.vue';
@@ -676,12 +735,37 @@ export default Vue.extend({
         { naviItem: '必要なパーツ類のご紹介 ▼', herf: '#hikaku' },
         { naviItem: '撮影シーンで選ぶ おすすめ三脚 ▼', herf: '#price' }
       ],
+      tripodTypeList: [
+        { maintxt: '風景写真が好きで作品作りを考えてる方には最適。軽くて丈夫なので大口径レンズも対応！', btntxt: 'カーボン三脚を見る ≫' },
+        { maintxt: '小さく畳める携帯性の高い三脚。\n使用時に標準的な高さになるので旅行におすすめ', btntxt: 'トラベラー三脚を見る ≫' },
+        { maintxt: 'ピントあわせがシビアなマクロレンズと相性バッチリ！ローポジションで花に近づけます', btntxt: 'ローポジション三脚を見る ≫' },
+        { maintxt: '家族の集合写真には三脚が必須。軽くて使いやすい三脚で大切な記録を残しましょう', btntxt: 'ファミリー三脚を見る ≫' },
+        { maintxt: 'ミニサイズの三脚なら、持ち運びラクラク♪ 気軽にどこでも記念撮影', btntxt: 'ミニサイズ三脚を見る ≫' },
+        { maintxt: 'お子様の大切な学校行事や誕生日会。成長の記録の共に', btntxt: 'ビデオ撮影用三脚を見る ≫' }
+      ],
+      tripodPartsList: [
+        { maintxt: '風景の作品作りにはこれ。水平をしっかり確保し構図を決め、チャンスを逃さないようにしましょう', btntxt: '3ウェイ三脚を見る ≫' },
+        { maintxt: '雲台が自由に動くので、スポーツやF1など動きのある被写体の撮影におすすめ。軽量なのもポイント！', btntxt: '自由雲台を見る ≫' },
+        {
+          maintxt: 'クイックシューで三脚へのセットが楽々♪とっさの手持ち撮影にも便利。またカメラのネジ山を傷めないためにもおすすめ！',
+          btntxt: 'クイックシューを見る ≫'
+        }
+      ],
+      shootingSceneNaviList: [
+        { naviItem: '家族旅行', herf: '#si01' },
+        { naviItem: '花や昆虫', herf: '#si02' },
+        { naviItem: '夜景花火', herf: '#si03' },
+        { naviItem: '自然風景', herf: '#si04' },
+        { naviItem: '鉄道電車', herf: '#si05' },
+        { naviItem: '飛行機', herf: '#si06' },
+        { naviItem: '野鳥動物', herf: '#si07' }
+      ],
       visible: false,
       index: 0, // default: 0
       imgs: [
-        require('@/assets/special/img/sample1/airplane1.png'),
-        require('@/assets/special/img/sample1/airplane2.png'),
-        require('@/assets/special/img/sample1/airplane3.png')
+        '/ec/images2/special/camera/tripod/hikouki01.jpg',
+        '/ec/images2/special/camera/tripod/hikouki02.jpg',
+        '/ec/images2/special/camera/tripod/hikouki03.jpg'
       ],
       recommendedFeaturesList: [
         {
@@ -741,7 +825,39 @@ export default Vue.extend({
           path: 'おすすめ三脚の選び方',
           disabled: true
         }
-      ]
+      ],
+      mainProductJanCode: [
+        '8024221631142',
+        '8024221647822',
+        '4906752106969',
+        '8024221668315',
+        '8024221623178',
+        '8024221623314',
+        '4906752108345',
+        '8024221623291',
+        '4906752201688',
+        '4907990407856',
+        '8024221667189',
+        '4906752204238',
+        '4906752100448'
+      ],
+      mainProductList: [] as Array<ProductDetail>
+    });
+    /**
+     * 商品詳細を取得する
+     */
+    const fetchProduct = async () => {
+      try {
+        // メイン商品
+        const mainResult = await ProductService.fetchProducts(state.mainProductJanCode, true);
+        state.mainProductList = mainResult.items;
+      } catch (error) {
+        // メイン商品
+        state.mainProductList = [] as Array<ProductDetail>;
+      }
+    };
+    onMounted(() => {
+      fetchProduct();
     });
     return {
       ...toRefs(state),
@@ -753,31 +869,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-a:link,
-a:visited,
-a:active,
-a:hover {
-  /* FireFox リンク選択時の点線を消す */
-  overflow: hidden;
-  outline: none;
-}
-
-a:link {
-  text-decoration: none;
-  color: #660099;
-}
-
-a:visited {
-  text-decoration: none;
-  color: #1122cc;
-}
-
-a:hover,
-a:active {
-  color: #d80b24;
-  text-decoration: underline;
-}
-
 .bg-momo {
   border: 3px solid #ffffff;
   font-weight: bold;
