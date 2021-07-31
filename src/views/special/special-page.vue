@@ -35,6 +35,7 @@ import ComponentStorage from '@/components/special/camera/storage.vue';
 import ComponentPolarie from '@/components/special/camera/polarie.vue';
 import Component7rm4a7rm3a from '@/components/special/camera/feature/sony/7rm4a-7rm3a.vue';
 import Componentfe14f18gm from '@/components/special/camera/feature/sony/fe14f18gm.vue';
+import Lensfilter from '@/components/special/camera/lensfilter.vue';
 
 // 上記で読み込んだコンポーネントのうち、実際に表示させるページを設定してください。
 // 'ページURL': 読み込んだコンポーネント名
@@ -49,6 +50,7 @@ const PAGE_LIST = {
   'camera/dslr': Componentdslr,
   'camera/storage': ComponentStorage,
   'camera/polarie': ComponentPolarie,
+  'camera/lensfilter': Lensfilter,
   'camera/filmcamera/utsurundesu': Componentutsurundesu,
   'camera/feature/canon/eosr5r6': eosr5r6,
   'camera/feature/backnumber/': ComponentBacknumber,
