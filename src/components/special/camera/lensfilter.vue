@@ -141,15 +141,90 @@
 
                   <v-row class="grey lighten-3 mb-6">
                     <v-col cols="12" sm="6" class="pa-3 mt-6" v-for="LensProtectionFilter in LensProtectionFilterList" :key="LensProtectionFilter">
-                      <router-link :to="LensProtectionFilter.herf" class="routerLink"
-                        >{{ LensProtectionFilter.name }}</router-link
-                      >
+                      <router-link :to="LensProtectionFilter.herf" class="routerLink">{{ LensProtectionFilter.name }}</router-link>
                       <p class="my-4">{{ LensProtectionFilter.txt }}</p>
                       <router-link :to="LensProtectionFilter.herf">
-                      <v-img :src="LensProtectionFilter.img" max-width="100%" height="auto"></v-img>
+                        <v-img :src="LensProtectionFilter.img" max-width="100%" height="auto"></v-img>
+                      </router-link>
+                      <v-btn :href="LensProtectionFilter.herf" elevation="6" block rounded color="orange" class="white--text font-weight-bold"
+                        >≫ 商品一覧を見る</v-btn
+                      >
+                    </v-col>
+                  </v-row>
+                  <v-btn
+                    href="https://shop.kitamura.jp/special/sale-fair/camera/lensfilter/346/?limit=100"
+                    elevation="6"
+                    block
+                    height="50px"
+                    color="orange"
+                    class="white--text font-weight-bold my-4"
+                    >≫ レンズ保護フィルター・プロテクター 一覧</v-btn
+                  >
+                  <p class="mt-8 line-height">
+                    レンズを傷つけてしまった場合、高額な修理費用がかかってしまいます。レンズにしぶきがついた場合、自分でメンテナンスするにも慎重なレンズクリーニングが必要になります。メンテナンスを簡単にするためにも、保護フィルターを装着することをおすすめします。<br />
+                    また、レンズをぶつけてしまっても、保護フィルターをつけていれば、レンズ自体は傷つかずにすむことがあります。雨や水しぶきなどの汚れからもレンズを保護します。<br />
+                    最近では、高性能なレンズをお使いのユーザー様からの声を受け、より付けていない状態と変わらない「低反射率・高透過率・高解像度」の製品も登場し、今まで保護フィルターをつけなかったプロの方も利用されるようになってきました。<br />
+                    高価なレンズを守るために、レンズと同時に買っておくと安心ですね。
+                  </p>
+
+                  <!-- <v-img src="@/assets/special/img/lensfilter3.png" max-width="50%" height="auto"></v-img> -->
+
+                  <v-divider class="my-6"></v-divider>
+                  <p class="pa-2 black darken-2 white--text font-weight-black">
+                    反射をコントロールするフィルターで、風景撮影の必須アイテム！<br />
+                    PLフィルター・偏光フィルター
+                  </p>
+                  <v-row class="mb-6">
+                    <v-col cols="6">
+                      <v-img src="@/assets/special/img/lensfilter10.png" max-width="100%" height="auto"></v-img>
+                    </v-col>
+                    <v-col cols="6">
+                      <v-img src="@/assets/special/img/lensfilter11.png" max-width="100%" height="auto"></v-img>
+                    </v-col>
+                  </v-row>
+                  <p class="text-h5">こんな方におすすめ</p>
+
+                  <div class="konnehito">
+                    <p class="mb-0">
+                      風景写真で空の透き通るような青さや雲の白さを表現したい方<br />
+                      テーマパークなどでガラスケースやショーウィンドーの中の展示物を反射を抑え撮影したい方<br />
+                      紅葉や新緑などを色鮮やかに描写したい方
+                    </p>
+                  </div>
+                  <p class="text-h5 my-6">キタムラがおすすめするPLフィルター</p>
+
+                  <v-row class="grey lighten-3 mb-6">
+                    <v-col cols="12" sm="6" class="pa-3 mt-6">
+                      <router-link to="/pd/list.html?q=%E3%83%90%E3%83%AA%E3%82%A2%E3%83%96%E3%83%ABND%2BC-PL&searchbox=1" class="routerLink"
+                        >K&F Concept NANO-X バリアブルND+C-PL 多機能フィルター</router-link
+                      >
+                      <p class="my-4">ND（光量調整）機能とC-PL（円偏光）機能を1つに凝縮したフィルター</p>
+                      <router-link to="/pd/list.html?q=%E3%83%90%E3%83%AA%E3%82%A2%E3%83%96%E3%83%ABND%2BC-PL&searchbox=1">
+                        <v-img src="@/assets/special/img/lensfilter12.png" max-width="100%" height="auto"></v-img>
                       </router-link>
                       <v-btn
-                        :href="LensProtectionFilter.herf"
+                        href="/pd/list.html?q=%E3%83%90%E3%83%AA%E3%82%A2%E3%83%96%E3%83%ABND%2BC-PL&searchbox=1"
+                        elevation="6"
+                        block
+                        rounded
+                        color="orange"
+                        class="white--text font-weight-bold"
+                        >≫ 商品一覧を見る</v-btn
+                      >
+                    </v-col>
+
+                    <v-col cols="12" sm="6" class="pa-3 mt-6">
+                      <router-link to="/pd/list.html?q=%E3%83%90%E3%83%AA%E3%82%A2%E3%83%96%E3%83%ABND%2BC-PL&searchbox=1" class="routerLink"
+                        >マルミ EXUS サーキュラーPL</router-link
+                      >
+                      <p class="my-4">低反射枠を採用し、最高の性能と機能を備え最高画質を追求したデジタルカメラ用フィルター</p>
+                      <router-link
+                        to="/pd/list.html?limit=40&index=&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&sort=number20%2CScore&searchbox=1&s1[]=%E3%83%9E%E3%83%AB%E3%83%9F&q=EXUS+%E3%82%B5%E3%83%BC%E3%82%AD%E3%83%A5%E3%83%A9%E3%83%BCPL&path="
+                      >
+                        <v-img src="@/assets/special/img/lensfilter13.png" max-width="100%" height="auto"></v-img>
+                      </router-link>
+                      <v-btn
+                        href="/pd/list.html?limit=40&index=&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&sort=number20%2CScore&searchbox=1&s1[]=%E3%83%9E%E3%83%AB%E3%83%9F&q=EXUS+%E3%82%B5%E3%83%BC%E3%82%AD%E3%83%A5%E3%83%A9%E3%83%BCPL&path="
                         elevation="6"
                         block
                         rounded
@@ -160,9 +235,21 @@
                     </v-col>
                   </v-row>
 
+                  <v-btn
+                    href="/special/sale-fair/camera/lensfilter/341/?limit=100"
+                    elevation="6"
+                    block
+                    height="50px"
+                    color="orange"
+                    class="white--text font-weight-bold my-4"
+                    >≫ PLフィルター・偏光フィルター 一覧</v-btn
+                  >
 
-
-                  <!-- <v-img src="@/assets/special/img/lensfilter3.png" max-width="100%" height="auto"></v-img> -->
+                  <p class="my-2 line-height">
+                    アプリを使えば空の青さを加工したり、色を鮮やかにすることは簡単にできるように思いがちですが、実は撮影時から、この「PLフィルター」を使うことで、より自然に、見たままの感動を描写することができます。
+                    青い空を撮影した際、なんだかスッキリしないなぁと感じたことありませんか？
+                    これは空気中のホコリなどに光が乱反射して白っぽく写ってしまうからなんです。白い雲、青い空。見たままのスッキリとした透き通るような青さを表現するには、この「PLフィルター」は必須です。
+                  </p>
                 </v-sheet>
               </v-col>
             </v-row>
