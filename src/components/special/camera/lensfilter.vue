@@ -22,7 +22,7 @@
         <v-main class="">
           <v-container>
             <v-row>
-              <v-col cols="3">
+              <v-col cols="4">
                 <v-sheet rounded="lg">
                   <v-list color="transparent">
                     <v-list-item v-for="n in 5" :key="n" link>
@@ -42,7 +42,7 @@
                 </v-sheet>
               </v-col>
 
-              <v-col>
+              <v-col cols="8">
                 <v-sheet min-height="70vh" rounded="lg" class="pa-2">
                   <p class="text-h5">こんな方におすすめ</p>
 
@@ -250,6 +250,49 @@
                     青い空を撮影した際、なんだかスッキリしないなぁと感じたことありませんか？
                     これは空気中のホコリなどに光が乱反射して白っぽく写ってしまうからなんです。白い雲、青い空。見たままのスッキリとした透き通るような青さを表現するには、この「PLフィルター」は必須です。
                   </p>
+
+                  <v-row class="my-6">
+                    <v-col cols="6">
+                      <v-img src="@/assets/special/img/lensfilter14.png" max-width="100%" height="auto"></v-img>
+                    </v-col>
+                    <v-col cols="6">
+                      <v-img src="@/assets/special/img/lensfilter15.png" max-width="100%" height="auto"></v-img>
+                    </v-col>
+                  </v-row>
+                  <p class="line-height">
+                    また、反射をコントロールするフィルターですので、水面越しの水中や水面に映る風景、水に濡れた葉の透明感も表現できます。反射除去の最大の魅力は、ショーウィンドーの反射を抑え、中にある展示物をスッキリと写せるという点。テーマパークへ行くときには1枚あると満足すること間違いなしです。逆に反射を抑えず、水面に写った風景や、ガラスに写った反射風景を撮影する際にも役に立ちます。<br />
+                    <br />
+                    ちなみに、この「PLフィルター」はつけるだけではなく、先端を回して効果を確認しながら使います。コントラストを高める際のコツとしては、くるくる回して、効果が最大と思った場所から少し戻して使うこと。こうすることで、やり過ぎ感のない鮮やかさを表現できます。反射除去で使う際には、正面からではなく斜めから撮影すると、より反射が除去できますので、お試しください。<br />
+                    <br />
+                    なお、「PLフィルター」のコーティングには寿命があります。フィルターが黒から赤っぽく（場合によっては黄色っぽく）なってきたと感じたら買い替え時です！
+                    （使用頻度にもよりますが、だいたい5年から7年くらい）
+                    ずっと昔に購入した「PLフィルター」をお使いの方は、ぜひ、買い替えを検討してみてください。効果の幅が広がることを実感できると思います。
+                  </p>
+
+                  <v-btn
+                    href="/special/sale-fair/camera/lensfilter/341/?limit=100"
+                    elevation="6"
+                    block
+                    height="50px"
+                    color="orange"
+                    class="white--text font-weight-bold my-4"
+                    >≫ PLフィルター・偏光フィルター 一覧</v-btn
+                  >
+                  <v-divider class="my-10"></v-divider>
+
+                  <!--==================== 季節のフィルター====================-->
+                  <p class="my-4 bg-db pa-2 font-weight-black">季節のおすすめフィルター</p>
+
+                  <div class="mt-4">
+                    <h3 class="mb-4">春★桜や花の風景撮影におすすめフィルター</h3>
+                    <p class="line-height">
+                      やわらかくファンタジックな雰囲気にできる「ソフトフィルター」、もうちょっと寄れる♪「クローズアップレンズ」、風景撮影におすすめの「PL(偏光)フィルター」
+                    </p>
+                    <router-link to="https://shop.kitamura.jp/special/sale-fair/camera/lensfilter/1869/?limit=100" class="routerLink">
+                      <v-img src="@/assets/special/img/lensfilter16.png" max-width="100%" height="auto"></v-img><br />
+                      ≫ 春の写真撮影におすすめフィルターを見る</router-link
+                    ><v-divider class="my-10"></v-divider>
+                  </div>
                 </v-sheet>
               </v-col>
             </v-row>
@@ -394,5 +437,10 @@ export default Vue.extend({
 
 .routerLink {
   color: #1122cc;
+}
+
+.bg-db {
+  background: rgb(131, 214, 171);
+  background: linear-gradient(270deg, rgba(131, 214, 171, 1) 0%, rgba(182, 238, 226, 1) 100%);
 }
 </style>
