@@ -352,7 +352,7 @@ export default Vue.extend({
   height: 290px;
   margin: 0px 0px 15px 0px;
   padding: 0px 0px 0px 0px;
-  background-image: url('/ec/images2/special/camera/feature/panasonic/gh5m2/bg_top.jpg"');
+  background-image: url(/ec/images2/special/camera/feature/panasonic/gh5m2/bg_top.jpg);
   background-repeat: no-repeat;
   background-position: top right;
 }

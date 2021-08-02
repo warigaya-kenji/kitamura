@@ -21,5 +21,7 @@ export default {
   clear: both;
   color: #151515;
   line-height: 1.3em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 </style>

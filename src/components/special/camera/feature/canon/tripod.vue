@@ -869,25 +869,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.bg-momo {
-  border: 3px solid #ffffff;
-  font-weight: bold;
-  box-sizing: border-box;
-  width: 100%;
-  box-shadow: 0px 0px 5px 0 rgb(166 166 166);
-}
-
-.bg-momo a:link,
-.bg-momo a:visited {
-  text-decoration: none;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #ff5b5b), color-stop(0, #ff8383));
-  background: -webkit-linear-gradient(#ff8383, #ff5b5b);
-  background: -moz-linear-gradient(#ff8383, #ff5b5b);
-  background: -o-linear-gradient(#ff8383, #ff5b5b);
-  background: -ms-linear-gradient(#ff8383, #ff5b5b);
-  background: linear-gradient(#ff8383, #ff5b5b);
-}
-
 @media screen and (min-width: 952px) {
   .ba-gr {
     border: #626262 dashed 1px;

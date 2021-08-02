@@ -488,16 +488,6 @@ export default Vue.extend({
   border-right: 1px dashed #cccccc;
 }
 
-.bg-btn {
-  color: #ffffff !important;
-  box-shadow: 0 3px 5px 0px #aeaeae;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  background: rgb(224, 111, 89);
-  background: linear-gradient(90deg, rgba(224, 111, 89, 1) 0%, rgba(250, 185, 84, 1) 100%);
-}
-
 .bd-di {
   border: 1px solid #a8985e;
 }

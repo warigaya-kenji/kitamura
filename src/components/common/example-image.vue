@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col :cols="cols" :sm="sm" class="ma-0 pa-0" v-for="n in count" :key="n">
-        <a :href="`${path}pic_0${n}.jpg`"><img class="mb-5" :src="`${path}pic_0${n}.jpg`" width="90%" /></a>
+        <a :href="`${path}pic_0${n + target}.jpg`"><img class="mb-5" :src="`${path}pic_0${n}.jpg`" width="90%" /></a>
       </v-col>
     </v-row>
   </v-container>
@@ -27,6 +27,10 @@ export default {
     sm: {
       type: Number,
       default: 6
+    },
+    target: {
+      type: Number,
+      default: 0
     }
   }
 };

@@ -35,6 +35,14 @@ import ComponentStorage from '@/components/special/camera/storage.vue';
 import ComponentPolarie from '@/components/special/camera/polarie.vue';
 import Component7rm4a7rm3a from '@/components/special/camera/feature/sony/7rm4a-7rm3a.vue';
 import Componentfe14f18gm from '@/components/special/camera/feature/sony/fe14f18gm.vue';
+import Telescope from '@/components/special/camera/astronomical/telescope.vue';
+import Tamron150500mmf567 from '@/components/special/camera/feature/tamron/150-500mm-f5-6-7.vue';
+import CanonRf100f28l from '@/components/special/camera/feature/canon/rf100-f28l.vue';
+import Lensfilter from '@/components/special/camera/lensfilter.vue';
+import xf18mmf14rlmwr from '@/components/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr.vue';
+import Girlscamera from '@/components/special/camera/girlscamera.vue';
+import Tokutokukoukan from '@/components/special/general/tokutokukoukan.vue';
+import CanonRf400f28l from '@/components/special/camera/feature/canon/rf400-f28l.vue';
 
 // 上記で読み込んだコンポーネントのうち、実際に表示させるページを設定してください。
 // 'ページURL': 読み込んだコンポーネント名
@@ -45,20 +53,40 @@ const PAGE_LIST = {
   sample1: SampleComponent1,
   sample2: SampleComponent2,
   '2021/0401': Component20210401,
+  // general
+  'general/tokutokukoukan/': Tokutokukoukan,
+  // camera
   'camera/feature': Componentfeature,
   'camera/dslr': Componentdslr,
   'camera/storage': ComponentStorage,
   'camera/polarie': ComponentPolarie,
-  'camera/filmcamera/utsurundesu': Componentutsurundesu,
+  'camera/lensfilter': Lensfilter,
+  'camera/girlscamera': Girlscamera,
+  // feature
+  // canon
   'camera/feature/canon/eosr5r6': eosr5r6,
-  'camera/feature/backnumber/': ComponentBacknumber,
   'camera/feature/canon/rf1435mmf4lisusm': ComponentRf1435mmf4lisusm,
   'camera/feature/canon/tripod': ComponentTripod,
+  'camera/feature/cacnon/rf100f28l/': CanonRf100f28l,
+  'camera/feature/cacnon/rf400f28l/': CanonRf400f28l,
+  // nikon
   'camera/feature/nikon/zfc': ComponentZfc,
+  // olympus
   'camera/feature/olympus/penEP7': ComponentPenEP7,
+  // panasonic
   'camera/feature/panasonic/gh5m2': ComponentGh5m2,
+  // sony
   'camera/feature/sony/7rm4a7rm3a': Component7rm4a7rm3a,
-  'camera/feature/sony/fe14f18gm': Componentfe14f18gm
+  'camera/feature/sony/fe14f18gm': Componentfe14f18gm,
+  // tamron
+  'camera/feature/tamron/150500mmf567/': Tamron150500mmf567,
+  // fujifilm
+  'camera/feature/fujifilm/xf18mmf14rlmwr/': xf18mmf14rlmwr,
+
+  // その他
+  'camera/filmcamera/utsurundesu': Componentutsurundesu,
+  'camera/astronomical/telescope/': Telescope,
+  'camera/feature/backnumber/': ComponentBacknumber
 };
 
 export default Vue.extend({

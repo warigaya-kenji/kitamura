@@ -1,24 +1,21 @@
 <template>
-  <!-- ↓ サンプル：価格・人気アクセサリー -->
-  <div class="product-list mb-10">
-    <div class="product-list-wrap">
-      <div class="product-list-item" v-for="product in productDetailList" :key="product.janCode">
-        <div class="product-list-item-img mb-4 text-center">
-          <router-link class="product-list-item-link" :to="`/ec/pd/${product.janCode}`"
-            ><img :src="product.images[0].imagePath" @error="noimage" :alt="product.itemName" width="120" height="120"
-          /></router-link>
-        </div>
-        <div class="product-list-item-name-wrap mb-2">
-          <router-link class="product-list-item-link" :to="`/ec/pd/${product.janCode}`"
-            ><div class="product-list-item-name">{{ product.itemName }}</div></router-link
-          >
-        </div>
-        <div class="product-list-item-price-wrap">
-          特別価格：<span class="product-list-item-price primary--text">¥{{ formatPrice(parseInt(product.price)) }}</span
-          >（税込）
-        </div>
-      </div>
-    </div>
+  <div>
+    <!-- ↓ サンプル：価格・人気アクセサリー -->
+    <v-container class="mb-6">
+      <v-row>
+        <v-col cols="6" sm="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
+          <router-link :to="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></router-link>
+          <p class="font-small blue--text mb-2 height-20">
+            <router-link :to="`/ec/pd/${productDetail.janCode}`" class="routerLink">{{ productDetail.itemName }}</router-link>
+          </p>
+          <p class="mt-2" v-bind:class="{ 'font-weight-bold': productDetail.priceDiv === 3, exclusive: productDetail.priceDiv === 4 }">
+            {{ productDetail.priceDiv === 1 ? '価格' : productDetail.priceDiv === 3 ? '特別価格' : '価格' }}:<span class="red--text font-small"
+              >&yen;{{ productDetail.price }}&nbsp;</span
+            ><span class="font-small">(税込)</span>
+          </p>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
   <!-- ↑ サンプル：価格・人気アクセサリー -->
 </template>
@@ -26,7 +23,12 @@
 <script>
 export default {
   name: 'priceAndPopular',
-  props: ['productDetailList']
+  props: {
+    productDetailList: {
+      type: Object,
+      required: true
+    }
+  }
 };
 </script>
 
@@ -57,5 +59,9 @@ export default {
       color: $text-blue;
     }
   }
+}
+
+.routerLink {
+  color: #1122cc;
 }
 </style>

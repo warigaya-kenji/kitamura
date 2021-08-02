@@ -19,12 +19,14 @@ import './styles/common.scss';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import VueEasyLightbox from 'vue-easy-lightbox';
+import VueClipboard from 'vue-clipboard2'
 
 Vue.use(VueCompositionApi);
 Vue.config.productionTip = false;
 Vue.prototype.$store = globalStore();
 Vue.use(VueMeta);
 Vue.use(VueEasyLightbox);
+Vue.use(VueClipboard)
 
 dayjs.extend(isBetween);
 dayjs.extend(isSameOrBefore);

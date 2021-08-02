@@ -720,40 +720,6 @@ export default Vue.extend({
     padding: 12px;
     box-sizing: border-box;
   }
-  div.s-credit {
-    display: block;
-    width: 100%;
-  }
-  div.s-credit table {
-    text-align: center;
-    width: 100%;
-    border-collapse: collapse;
-  }
-  div.s-credit table th,
-  div.s-credit table td {
-    padding: 2px 0;
-    vertical-align: middle;
-    border: solid 1px #ffffff;
-    box-sizing: border-box;
-  }
-  div.s-credit table th {
-    background: #389c88 none repeat scroll 0 0;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: normal;
-    box-sizing: border-box;
-  }
-  div.s-credit table td {
-    background: #eee none repeat scroll 0 0;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 0em;
-    box-sizing: border-box;
-  }
-  div.s-credit table td span {
-    font-size: 13px;
-    margin-left: 3px;
-  }
 
   @media screen and (min-width: 601px) {
     .pc {
