@@ -1,27 +1,15 @@
 <template>
   <v-app>
-<<<<<<< HEAD
     <div class="lensfilter">
-=======
-    <div class="polarie">
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
       <div class="main-contents-wrap">
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
         <div class="text-right">
           <v-btn
-<<<<<<< HEAD
             color="orange white--text body-2 mb-1"
             v-clipboard:copy="'https://shop.kitamura.jp/ec/special/camera/feature/canon/tripod'"
             v-clipboard:success="onCopy"
-=======
-            color="red darken-2"
-            class="white--text body-2 mb-1"
-            v-clipboard:copy="'https://shop.kitamura.jp/ec/special/camera/feature/canon/tripod'"
-            v-clipboard:success="onCopy"
-            height="30px"
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
             >≫ このページのURLをコピーする</v-btn
           >
           <p class="caption">
@@ -29,7 +17,6 @@
           </p>
         </div>
 
-<<<<<<< HEAD
         <!-- ↓ 画像の読み込み -->
         <img class="mb-5" src="/ec/images2/special/camera/lensfilter/fan-fair_01.jpg" @error="noimage" />
         <!-- ↑ 画像の読み込み -->
@@ -122,33 +109,6 @@
                   <p class="text-subtitle-1 font-weight-bold">NDフィルター・減光フィルターは光の量を少なくするフィルター</p>
                   <v-img src="/ec/images2/special/camera/lensfilter/exnd.jpg" max-width="100%" height="auto"></v-img>
 
-=======
-        <v-main class="">
-          <v-container>
-            <v-row>
-              <v-col cols="4">
-                <v-sheet rounded="lg">
-                  <v-list color="transparent">
-                    <v-list-item v-for="n in 5" :key="n" link>
-                      <v-list-item-content>
-                        <v-list-item-title> List Item {{ n }} </v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-
-                    <v-divider class="my-2"></v-divider>
-
-                    <v-list-item link color="grey lighten-4">
-                      <v-list-item-content>
-                        <v-list-item-title> Refresh </v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list>
-                </v-sheet>
-              </v-col>
-
-              <v-col cols="8">
-                <v-sheet min-height="70vh" rounded="lg" class="pa-2">
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
                   <p class="text-h5">こんな方におすすめ</p>
 
                   <div class="konnehito">
@@ -166,11 +126,7 @@
                         >ケンコー（Kenko）<br />PRO1D プロNDシリーズ</router-link
                       >
                       <p class="my-4">試しに始めたい人におすすめ</p>
-<<<<<<< HEAD
                       <v-img src="/ec/images2/special/camera/lensfilter/item_kenkopro1d.jpg" max-width="100%" height="auto"></v-img>
-=======
-                      <v-img src="@/assets/special/img/lensfilter1.png" max-width="100%" height="auto"></v-img>
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
                       <v-btn
                         href="/special/sale-fair/page/news/2017/07/2956/?limit=40"
                         elevation="6"
@@ -189,11 +145,7 @@
                         >ケンコー（Kenko）<br />PRO1D ロータス NDフィルター</router-link
                       >
                       <p class="my-4">試しに始めたい人におすすめ</p>
-<<<<<<< HEAD
                       <v-img src="/ec/images2/special/camera/lensfilter/item_kenko.jpg" max-width="100%" height="auto"></v-img>
-=======
-                      <v-img src="@/assets/special/img/lensfilter2.png" max-width="100%" height="auto"></v-img>
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
                       <v-btn
                         href="/pd/list.html?limit=100&index=all&searchbox=1&sort=number20%2CScore&q=ケンコー+PRO1D+ロータス+NDフィルター+&path=&y=0&x=0"
                         elevation="6"
@@ -231,16 +183,8 @@
 
                   <v-container>
                     <v-row>
-<<<<<<< HEAD
                       <v-col cols="12">
                         <v-img src="/ec/images2/special/camera/lensfilter/expl-3.jpg" max-width="100%" height="auto"></v-img>
-=======
-                      <v-col cols="6">
-                        <v-img src="@/assets/special/img/lensfilter5.png" max-width="100%" height="auto"></v-img>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-img src="@/assets/special/img/lensfilter4.png" max-width="100%" height="auto"></v-img>
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
                       </v-col>
                     </v-row>
                   </v-container>
@@ -285,11 +229,7 @@
                     高価なレンズを守るために、レンズと同時に買っておくと安心ですね。
                   </p>
 
-<<<<<<< HEAD
                   <v-img src="/ec/images2/special/camera/lensfilter/expro.jpg" max-width="100%" height="auto"></v-img>
-=======
-                  <!-- <v-img src="@/assets/special/img/lensfilter3.png" max-width="50%" height="auto"></v-img> -->
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
 
                   <v-divider class="my-6"></v-divider>
                   <p class="pa-2 black darken-2 white--text font-weight-black">
@@ -297,16 +237,8 @@
                     PLフィルター・偏光フィルター
                   </p>
                   <v-row class="mb-6">
-<<<<<<< HEAD
                     <v-col cols="12">
                       <v-img src="/ec/images2/special/camera/lensfilter/expl.webp" max-width="100%" height="auto"></v-img>
-=======
-                    <v-col cols="6">
-                      <v-img src="@/assets/special/img/lensfilter10.png" max-width="100%" height="auto"></v-img>
-                    </v-col>
-                    <v-col cols="6">
-                      <v-img src="@/assets/special/img/lensfilter11.png" max-width="100%" height="auto"></v-img>
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
                     </v-col>
                   </v-row>
                   <p class="text-h5">こんな方におすすめ</p>
@@ -327,15 +259,11 @@
                       >
                       <p class="my-4">ND（光量調整）機能とC-PL（円偏光）機能を1つに凝縮したフィルター</p>
                       <router-link to="/pd/list.html?q=%E3%83%90%E3%83%AA%E3%82%A2%E3%83%96%E3%83%ABND%2BC-PL&searchbox=1">
-<<<<<<< HEAD
                         <v-img
                           src="https://shopimg.kitamura.jp/images/pd/80b/a7d/5d8/f7e/6c5/daa/baf/377/092/99e/327/apt/d12/u/L.jpg"
                           max-width="100%"
                           height="auto"
                         ></v-img>
-=======
-                        <v-img src="@/assets/special/img/lensfilter12.png" max-width="100%" height="auto"></v-img>
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
                       </router-link>
                       <v-btn
                         href="/pd/list.html?q=%E3%83%90%E3%83%AA%E3%82%A2%E3%83%96%E3%83%ABND%2BC-PL&searchbox=1"
@@ -356,15 +284,11 @@
                       <router-link
                         to="/pd/list.html?limit=40&index=&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&sort=number20%2CScore&searchbox=1&s1[]=%E3%83%9E%E3%83%AB%E3%83%9F&q=EXUS+%E3%82%B5%E3%83%BC%E3%82%AD%E3%83%A5%E3%83%A9%E3%83%BCPL&path="
                       >
-<<<<<<< HEAD
                         <v-img
                           src="https://shopimg.kitamura.jp/images/pd/cc6/6b9/d84/3af/bae/e24/ee6/f7b/15f/38e/052/tp9/1un/2/L.jpg"
                           max-width="100%"
                           height="auto"
                         ></v-img>
-=======
-                        <v-img src="@/assets/special/img/lensfilter13.png" max-width="100%" height="auto"></v-img>
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
                       </router-link>
                       <v-btn
                         href="/pd/list.html?limit=40&index=&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&sort=number20%2CScore&searchbox=1&s1[]=%E3%83%9E%E3%83%AB%E3%83%9F&q=EXUS+%E3%82%B5%E3%83%BC%E3%82%AD%E3%83%A5%E3%83%A9%E3%83%BCPL&path="
@@ -395,16 +319,8 @@
                   </p>
 
                   <v-row class="my-6">
-<<<<<<< HEAD
                     <v-col cols="12">
                       <v-img src="/ec/images2/special/camera/lensfilter/expl-2.webp" max-width="100%" height="auto"></v-img>
-=======
-                    <v-col cols="6">
-                      <v-img src="@/assets/special/img/lensfilter14.png" max-width="100%" height="auto"></v-img>
-                    </v-col>
-                    <v-col cols="6">
-                      <v-img src="@/assets/special/img/lensfilter15.png" max-width="100%" height="auto"></v-img>
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
                     </v-col>
                   </v-row>
                   <p class="line-height">
@@ -431,7 +347,6 @@
                   <!--==================== 季節のフィルター====================-->
                   <p class="my-4 bg-db pa-2 font-weight-black">季節のおすすめフィルター</p>
 
-<<<<<<< HEAD
                   <div class="mt-4" v-for="recommendedSeasonalFilter in recommendedSeasonalFilterList" :key="recommendedSeasonalFilter">
                     <h3 class="mb-4">{{ recommendedSeasonalFilter.subtitle }}</h3>
                     <p class="line-height">
@@ -476,23 +391,6 @@
             <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
           </v-main>
         </v-container>
-=======
-                  <div class="mt-4">
-                    <h3 class="mb-4">春★桜や花の風景撮影におすすめフィルター</h3>
-                    <p class="line-height">
-                      やわらかくファンタジックな雰囲気にできる「ソフトフィルター」、もうちょっと寄れる♪「クローズアップレンズ」、風景撮影におすすめの「PL(偏光)フィルター」
-                    </p>
-                    <router-link to="https://shop.kitamura.jp/special/sale-fair/camera/lensfilter/1869/?limit=100" class="routerLink">
-                      <v-img src="@/assets/special/img/lensfilter16.png" max-width="100%" height="auto"></v-img><br />
-                      ≫ 春の写真撮影におすすめフィルターを見る</router-link
-                    ><v-divider class="my-10"></v-divider>
-                  </div>
-                </v-sheet>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-main>
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
       </div>
     </div>
   </v-app>
@@ -505,7 +403,6 @@ import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
-<<<<<<< HEAD
 import RecommendedFeatures from '@/components/common/recommended-features.vue';
 
 export default Vue.extend({
@@ -671,64 +568,11 @@ export default Vue.extend({
           alt: 'メンテナンス'
         }
       ]
-=======
-import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
-import RecommendedFeatures from '@/components/common/recommended-features.vue';
-
-export default Vue.extend({
-  name: 'polarie',
-  components: {
-    breadcrumbs: Breadcrumbs
-    // facebookAndTwitter: FacebookAndTwitter,
-    // recommendedFeatures: RecommendedFeatures
-  },
-  data() {
-    return {
-      LensProtectionFilterList: [
-        {
-          name: "マルミ EXUS レンズプロテクト SOLID",
-          txt: "従来品の7倍の強度の強化ガラス使用！無色透明なレンズ保護フィルター",
-          herf: "/ec/list?keyword=マルミ EXUS SOLID LensProtect SOLID&narrow18=0&sort=price_desc&limit=40",
-          img: require("@/assets/special/img/lensfilter6.png")
-        },
-        {
-          name: "マルミ DHG スーパーレンズプロテクト 「My Color Filter」",
-          txt: "カラーバリエーションが豊富！ 12種類。おしゃれなカラーで人気！",
-          herf: "/pd/list.html?limit=100&index=all&searchbox=1&sort=number20%2CScore&q=My+Color+Filter&path=&y=0&x=0",
-          img: require("@/assets/special/img/lensfilter7.png")
-        },
-        {
-          name: "ケンコー PRO1D ロータス プロテクター 保護フィルター",
-          txt: "水や油を強力に弾く撥水・撥油機能",
-          herf: "https://shop.kitamura.jp/pd/list_dtl.html?n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&index=&searchbox=1&q=PRO1D+%E3%83%AD%E3%83%BC%E3%82%BF%E3%82%B9+%E3%83%97%E3%83%AD%E3%83%86%E3%82%AF%E3%82%BF%E3%83%BC&path=",
-          img: require("@/assets/special/img/lensfilter8.png")
-        },
-        {
-          name: "ニコン ARCREST(アルクレスト)<br /> PROTECTION FILTER",
-          txt: "つけていない！ を実感できる最高品質",
-          herf: "/pd/list.html?index=&searchbox=1&sort=number20%2CNumber17%2CScore&q=%E3%83%8B%E3%82%B3%E3%83%B3+ARCREST+PROTECTION+FILTER&path=&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F",
-          img: require("@/assets/special/img/lensfilter9.png")
-        },
-
-      ],
-      visible: false,
-      index: 0 // default: 0
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
     };
   },
   methods: {
     onCopy() {
       alert('URLをコピーしました♪お気に入り・ブックマーク登録やメール・ブログでお友達と共有してください♪');
-<<<<<<< HEAD
-=======
-    },
-    showImg(index: number) {
-      this.index = index;
-      this.visible = true;
-    },
-    handleHide() {
-      this.visible = false;
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
     }
   },
   setup: (props, context) => {
@@ -740,7 +584,6 @@ export default Vue.extend({
           disabled: false
         },
         {
-<<<<<<< HEAD
           path: 'カメラレンズフィルターで写真がもっと楽しくなる！種類・選び方・効果',
           disabled: true
         }
@@ -759,54 +602,17 @@ export default Vue.extend({
       ],
       // 結果格納用
       productDetailList: [] as Array<ProductDetail>
-=======
-          path: '星空総合ページ',
-          linkUrl: 'https://shop.kitamura.jp/special/sale-fair/camera/hosizora/',
-          disabled: false
-        },
-        {
-          path: '星空を撮影しよう！ 星空撮影入門特集',
-          linkUrl: 'https://shop.kitamura.jp/ec/special/camera/polarie/',
-          disabled: false
-        }
-      ],
-      mainProductJanCode: [
-        '8024221631142',
-        '8024221647822',
-        '4906752106969',
-        '8024221668315',
-        '8024221623178',
-        '8024221623314',
-        '4906752108345',
-        '8024221623291',
-        '4906752201688',
-        '4907990407856',
-        '8024221667189',
-        '4906752204238',
-        '4906752100448'
-      ],
-      mainProductList: [] as Array<ProductDetail>
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
     });
     /**
      * 商品詳細を取得する
      */
     const fetchProduct = async () => {
       try {
-<<<<<<< HEAD
         const productListResult = await ProductService.fetchProducts(state.productJanCodeList, true);
         console.log(productListResult);
         state.productDetailList = productListResult.items;
       } catch (error) {
         state.productDetailList = [] as Array<ProductDetail>;
-=======
-        // メイン商品
-        const mainResult = await ProductService.fetchProducts(state.mainProductJanCode, true);
-        state.mainProductList = mainResult.items;
-      } catch (error) {
-        // メイン商品
-        state.mainProductList = [] as Array<ProductDetail>;
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
       }
     };
     onMounted(() => {
@@ -822,7 +628,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
 .bg-db {
   background: rgb(131, 214, 171);
   background: linear-gradient(270deg, rgba(131, 214, 171, 1) 0%, rgba(182, 238, 226, 1) 100%);
@@ -836,8 +641,6 @@ export default Vue.extend({
   border-right: 1px solid #ffffff;
 }
 
-=======
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
 .konnehito {
   color: #668ad8;
   border: double 5px #668ad8;
@@ -845,15 +648,10 @@ export default Vue.extend({
   padding: 1em;
   box-sizing: border-box;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
 .routerLink {
   color: #1122cc;
 }
 
-<<<<<<< HEAD
 .bg-color {
   background-color: #f2eedd;
 }
@@ -867,10 +665,5 @@ export default Vue.extend({
     box-sizing: border-box;
     margin: 0 0 10px 0 !important;
   }
-=======
-.bg-db {
-  background: rgb(131, 214, 171);
-  background: linear-gradient(270deg, rgba(131, 214, 171, 1) 0%, rgba(182, 238, 226, 1) 100%);
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
 }
 </style>

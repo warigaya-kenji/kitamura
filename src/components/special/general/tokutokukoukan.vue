@@ -15,15 +15,19 @@
         </p>
 
         <v-row justify="center" align-content="center">
-          <v-col cols="8" class="text-center">
+          <v-col cols="10" class="text-center">
             <router-link
               to="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E3%83%88%E3%82%AF%E3%83%88%E3%82%AF%E4%BA%A4%E6%8F%9B&category=&index=all&sort=number20,Number17,Score&searchbox=1&q=%E3%83%88%E3%82%AF%E3%83%88%E3%82%AF%E4%BA%A4%E6%8F%9B&path=&y=0&x=0"
             >
-              <div class="white--text pa-4 green rounded-lg">
-                <v-icon color="white">fas fa-search</v-icon><span class="text-h6">トクトク交換対象品を見る</span>
+              <div class="white--text pa-6 light-green rounded-lg">
+                <v-icon color="white">fas fa-search</v-icon><span class="text-h6 font-weight-bold">トクトク交換対象品を見る</span>
               </div></router-link
             >
           </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col> </v-col>
         </v-row>
       </div>
     </div>

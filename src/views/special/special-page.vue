@@ -35,7 +35,6 @@ import ComponentStorage from '@/components/special/camera/storage.vue';
 import ComponentPolarie from '@/components/special/camera/polarie.vue';
 import Component7rm4a7rm3a from '@/components/special/camera/feature/sony/7rm4a-7rm3a.vue';
 import Componentfe14f18gm from '@/components/special/camera/feature/sony/fe14f18gm.vue';
-<<<<<<< HEAD
 import Telescope from '@/components/special/camera/astronomical/telescope.vue';
 import Tamron150500mmf567 from '@/components/special/camera/feature/tamron/150-500mm-f5-6-7.vue';
 import CanonRf100f28l from '@/components/special/camera/feature/canon/rf100-f28l.vue';
@@ -44,9 +43,6 @@ import xf18mmf14rlmwr from '@/components/special/camera/feature/fujifilm/xf18mmf
 import Girlscamera from '@/components/special/camera/girlscamera.vue';
 import Tokutokukoukan from '@/components/special/general/tokutokukoukan.vue';
 import CanonRf400f28l from '@/components/special/camera/feature/canon/rf400-f28l.vue';
-=======
-import Lensfilter from '@/components/special/camera/lensfilter.vue';
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
 
 // 上記で読み込んだコンポーネントのうち、実際に表示させるページを設定してください。
 // 'ページURL': 読み込んだコンポーネント名
@@ -65,13 +61,9 @@ const PAGE_LIST = {
   'camera/storage': ComponentStorage,
   'camera/polarie': ComponentPolarie,
   'camera/lensfilter': Lensfilter,
-<<<<<<< HEAD
   'camera/girlscamera': Girlscamera,
   // feature
   // canon
-=======
-  'camera/filmcamera/utsurundesu': Componentutsurundesu,
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
   'camera/feature/canon/eosr5r6': eosr5r6,
   'camera/feature/canon/rf1435mmf4lisusm': ComponentRf1435mmf4lisusm,
   'camera/feature/canon/tripod': ComponentTripod,
