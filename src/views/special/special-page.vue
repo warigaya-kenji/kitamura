@@ -43,6 +43,8 @@ import xf18mmf14rlmwr from '@/components/special/camera/feature/fujifilm/xf18mmf
 import Girlscamera from '@/components/special/camera/girlscamera.vue';
 import Tokutokukoukan from '@/components/special/general/tokutokukoukan.vue';
 import CanonRf400f28l from '@/components/special/camera/feature/canon/rf400-f28l.vue';
+import Deliver from '@/components/special/page/deliver.vue';
+
 
 // 上記で読み込んだコンポーネントのうち、実際に表示させるページを設定してください。
 // 'ページURL': 読み込んだコンポーネント名
@@ -53,6 +55,8 @@ const PAGE_LIST = {
   sample1: SampleComponent1,
   sample2: SampleComponent2,
   '2021/0401': Component20210401,
+  // page
+  'page/deliver/': Deliver,
   // general
   'general/tokutokukoukan/': Tokutokukoukan,
   // camera
