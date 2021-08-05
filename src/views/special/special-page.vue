@@ -43,10 +43,15 @@ import xf18mmf14rlmwr from '@/components/special/camera/feature/fujifilm/xf18mmf
 import Girlscamera from '@/components/special/camera/girlscamera.vue';
 import Tokutokukoukan from '@/components/special/general/tokutokukoukan.vue';
 import CanonRf400f28l from '@/components/special/camera/feature/canon/rf400-f28l.vue';
+<<<<<<< HEAD
 import Pentaxk3mk3 from '@/components/special/camera/feature/pentax/k-3mk3.vue';
 import SonySel24f28g from '@/components/special/camera/feature/sony/sel24f28g.vue';
 import Deliver from '@/components/special/page/deliver.vue';
 import Leica from '@/components/special/camera/feature/leica.vue';
+=======
+import Deliver from '@/components/special/page/deliver.vue';
+
+>>>>>>> 21cdcc048840e78e226e9a91b14f0576941d1e00
 
 // 上記で読み込んだコンポーネントのうち、実際に表示させるページを設定してください。
 // 'ページURL': 読み込んだコンポーネント名
