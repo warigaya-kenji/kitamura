@@ -239,7 +239,7 @@ import RecommendedFeatures from '@/components/common/recommended-features.vue';
 import WatchInVideo from '@/components/common/special/watch-in-video.vue';
 
 export default Vue.extend({
-  name: '150500mmf567',
+  name: 'tamron-150500mmf567',
   components: {
     breadcrumbs: Breadcrumbs,
     naviBtn: NaviBtn,

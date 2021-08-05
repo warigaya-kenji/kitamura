@@ -43,12 +43,20 @@
   }
 }
 
+.newproduct {
+  width: 100%;
+  height: 290px;
+  margin: 0px 0px 15px 0px;
+  padding: 0px 0px 0px 0px;
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
 .mx-w100 {
   max-width: 100%;
   height: auto;
 }
 
-<<<<<<< HEAD
 .bg-btn {
   color: #ffffff !important;
   box-shadow: 0 3px 5px 0px #aeaeae;
@@ -65,6 +73,7 @@
 
 .routerLink {
   color: #1122cc;
+  text-decoration: underline;
 }
 
 div.s-credit {
@@ -124,39 +133,3 @@ div.s-credit table td span {
   background: -ms-linear-gradient(#ff8383, #ff5b5b);
   background: linear-gradient(#ff8383, #ff5b5b);
 }
-
-=======
-.line-height {
-  line-height: 1.8em;
-}
->>>>>>> b2af181527079ed19416c987cbed15f69bca5f85
-// .contents_innner {
-//   display: block;
-//    margin-top:-100px;
-//    padding-top:100px;
-// }
-
-// a:link,
-// a:visited,
-// a:active,
-// a:hover {
-//   /* FireFox リンク選択時の点線を消す */
-//   overflow: hidden;
-//   outline: none;
-// }
-
-// a:link {
-//   text-decoration: none;
-//   color: #660099;
-// }
-
-// a:visited {
-//   text-decoration: none;
-//   color: #1122cc;
-// }
-
-// a:hover,
-// a:active {
-//   color: #d80b24;
-//   text-decoration: underline;
-// }

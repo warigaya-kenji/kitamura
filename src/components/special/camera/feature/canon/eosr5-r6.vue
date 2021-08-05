@@ -6,17 +6,33 @@
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
 
-        <!-- ↓ 画像の読み込み -->
-        <img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/bg_top.jpg" @error="noimage" />
-        <!-- ↑ 画像の読み込み -->
+        <!-- ↓url copy -->
+        <urlcopy :url="'https://shop.kitamura.jp/special/sale-fair/camera/feature/fujifilm/xf18mmf14-r-lm-wr/'" />
 
-        <div class="red darken-4 text-center mb-2">
+        <!-- 960px以上 -->
+        <div class="newproduct pc" v-if="$vuetify.breakpoint.mdAndUp">
+          <h1 class="top-title">
+            キヤノン
+            <p>EOS初のボディー内5軸手ブレ補正搭載<br />新CMOSセンサーと新映像エンジンを採用したフルサイズミラーレス</p>
+          </h1>
+        </div>
+        <!-- 960px未満 -->
+        <v-img
+          v-if="$vuetify.breakpoint.smAndDown"
+          class="mb-5"
+          src="https://shop.kitamura.jp/ec/images2/special/camera/feature/canon/eosr5_r6/sp_img_top.jpg"
+          width="100%"
+          height="auto"
+          @error="noimage"
+        />
+
+        <p class="red darken-4 text-center mb-2">
           <span class="white--text text-h6 font-weight-bold">キャノン EOS R5 キャノン EOS R6 好評発売中</span>
-        </div>
+        </p>
 
-        <div class="darken-2 text-left">
+        <p class="text-left ma-0 pa-0 text-subtitle-2">
           <span>キャノン EOS R5 / キャノン EOS R6</span>
-        </div>
+        </p>
 
         <!-- ↓ ナビボタン -->
         <naviBtn :naviList="naviList" />
@@ -31,34 +47,35 @@
 
         <!--====== キヤノン EOS R5 ======-->
         <!--====== キヤノン EOS R6 ======-->
-        <!-- <priceAndPurchase :mainProductList="mainProductList" /> -->
-
-        <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in mainProductList" :key="product">
+        <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(mainProduct, index) in mainProductList" :key="`first-${index}`">
           <v-container>
             <v-row>
               <v-col class="text-center" cols="12" sm="5">
-                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr" /></router-link>
-                <p>
-                  <a :href="`/ec/pd/${product.janCode}`">{{ product.itemName }}</a>
-                </p>
+                <router-link :to="`/ec/pd/${mainProduct.janCode}`"
+                  ><v-img :src="mainProduct.images[0].imagePath" max-width="100%" height="auto"></v-img><br />
+                  {{ mainProduct.itemName }}
+                </router-link>
               </v-col>
-              <v-col class="text-center mt-4" cols="12" sm="6">
-                <p class="text-h6">
-                  価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
-                </p>
-                <v-btn
-                  elevation="3"
-                  x-large
-                  dark
-                  color="red"
-                  class="text-h5 font-weight-bold accent-4"
-                  height="55px"
-                  width="65%"
-                  :href="`/ec/pd/${product.janCode}`"
-                >
-                  <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
-                  ご購入はこちら
-                </v-btn>
+              <v-col class="text-center mt-4 px-10" cols="12" sm="6">
+                <div class="main-product-area-right">
+                  <p class="main-product-price text-center">
+                    <span class="d-inline-block">価格</span><span class="text-h4 primary--text">¥{{ formatPrice(parseInt(mainProduct.price)) }}&nbsp;</span
+                    ><span class="d-inline-block">(税込)</span>
+                  </p>
+                  <v-btn
+                    class="main-product-btn text-h5 font-weight-bold"
+                    dark
+                    block
+                    color="red darken-2"
+                    width="100px"
+                    height="60px"
+                    :href="`/ec/pd/${mainProduct.janCode}`"
+                  >
+                    <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
+                    ご購入はこちら
+                  </v-btn>
+                </div>
+
                 <div class="mt-4" v-if="index === 0">
                   <p><img src="https://shop.kitamura.jp/images/banner/6931.jpg" alt="電話で相談・ご注文できます" /></p>
                 </div>
@@ -70,7 +87,7 @@
         <div class="col-sm-12 text-center float-left pa-4 mt-10">
           <v-btn
             elevation="3"
-            class="black darken-4 white--text text-h7"
+            class="black darken-4 white--text text-subtitle-1 main-product-btn"
             height="70px"
             width="50%"
             @click="linkToOtherWindow('https://cweb.canon.jp/eos/your-eos/product/eosr/')"
@@ -104,14 +121,9 @@
           <subText :textItem="'EOS R6 の特徴'" />
           <characteristic :characteristics="eosR6CharacteristicList" />
         </div>
-
         <!--特徴-->
 
         <!--比較-->
-        <!-- <div>
-          <subText :textItem="'キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較'" id="hikaku" />
-          <comparisonTable :comparisonDetailList="comparisonDetailList" />
-        </div> -->
         <subText :textItem="'キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較'" id="hikaku" />
         <div class="product-comparison mb-5">
           <p class="mb-2">キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較しました。</p>
@@ -119,7 +131,7 @@
             <tbody>
               <tr>
                 <th>商品名</th>
-                <td v-for="product in comparisonDetailList" :key="product">{{ product.itemName }}</td>
+                <td v-for="(product, index) in comparisonDetailList" :key="`second-${index}`">{{ product.itemName }}</td>
               </tr>
               <tr>
                 <th>発売日</th>
@@ -131,7 +143,7 @@
               </tr>
               <tr>
                 <th>価格</th>
-                <td v-for="product in comparisonDetailList" :key="product">
+                <td v-for="(product, index) in comparisonDetailList" :key="`third-${index}`">
                   <span class="primary--text font-weight-bold">¥{{ formatPrice(parseInt(product.price)) }}</span
                   >（税込）
                 </td>
@@ -370,7 +382,7 @@
         <!-- ↓ ShaSha -->
         <subText :textItem="'ShaSha:キヤノン EOS R5｜航空写真家がスチル＆ムービーで徹底レビュー'" />
         <div class="product-shasha mb-5 float-left">
-          <v-card class="product-shasha-wrap pa-4" outlined>
+          <v-card color="#f8fbd1" class="pa-4 sen-gl">
             <v-card-text class="black--text">
               キヤノンのミラーレス一眼 EOS R5は人気のデジタル一眼レフカメラ、EOS
               5Dシリーズの流れを汲んだ高画素機。「5」というと三脚にガッツリとカメラを据え付けじっくりと風景写真を撮る…というイメージもありましたが、今回のEOS
@@ -379,28 +391,17 @@
                 class="product-shasha-link"
                 href="https://shasha.kitamura.jp/article/478121231.html"
                 target="_blank"
-                >続きを読む <img src="@/assets/special/img/sample1/shashabnr4.jpg" alt="イメージ" class="product-shasha-img mt-4"
+                >続きを読む
+                <v-img src="@/assets/special/img/sample1/shashabnr4.jpg" max-width="100%" height="auto" alt="イメージ" class="product-shasha-img mt-4"
               /></a>
             </v-card-text>
           </v-card>
         </div>
         <!-- ↑ ShaSha -->
 
+        <!-- ↓ 価格・人気アクセサリー -->
         <subText :textItem="'キヤノン EOS R5 / EOS R6 価格・人気アクセサリー'" />
-        <!-- <priceAndPopular :productDetailList="productDetailList" /> -->
-        <v-container>
-          <v-row>
-            <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
-              <p class="font-small blue--text mb-2 height-20">
-                <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
-              </p>
-              <p class="mt-2">
-                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
-              </p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <priceAndPopular :productDetailList="productDetailList" />
 
         <subText :textItem="'キヤノン EOS R5 / EOS R6 ご購入時、高値下取り実施中！'" id="price" />
         <v-container class="mb-5">
@@ -461,71 +462,19 @@
             <font size="-1">※2020年7月10日時点の価格です</font>
             <contingencyTable :numberOfTimes="'48'" :amount="'6,291'" :commission="'0'" />
             <div class="text-center">
-              <v-btn width="80%" color="#E53935" class="white--text font-weight-bold" href="/sitemap/s_credit_01.html">
+              <v-btn color="#D73500" class="white--text" href="https://shop.kitamura.jp/sitemap/s_credit_01.html">
                 ショッピングクレジットについて詳細はこちら
               </v-btn>
             </div>
           </v-col>
         </v-row>
 
+        <!-- ↓ 作例画像 -->
         <subText :textItem="'EOS R5 / EOS R6 作例画像'" id="images" />
-        <v-container>
-          <v-row>
-            <v-col cols="12" sm="6" class="ma-0 pa-0"
-              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_01.jpg" @error="noimage" width="90%"
-            /></v-col>
-            <v-col cols="12" sm="6" class="ma-0 pa-0"
-              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_02.jpg" @error="noimage" width="90%"
-            /></v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="6" class="ma-0 pa-0"
-              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_03.jpg" @error="noimage" width="90%"
-            /></v-col>
-            <v-col cols="12" sm="6" class="ma-0 pa-0"
-              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_04.jpg" @error="noimage" width="90%"
-            /></v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="6" class="ma-0 pa-0"
-              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_05.jpg" @error="noimage" width="90%"
-            /></v-col>
-            <v-col cols="12" sm="6" class="ma-0 pa-0"
-              ><img class="mb-5" src="/ec/images2/special/camera/feature/canon/eosr5_r6/pic_06.jpg" @error="noimage" width="90%"
-            /></v-col>
-          </v-row>
-        </v-container>
+        <exampleImages :path="'/ec/images2/special/camera/feature/canon/eosr5_r6/'" :count="6" />
 
-        <div>
-          <v-container>
-            <v-row class="mt-30">
-              <v-col cols="2">
-                <v-btn color="#4267b2" height="25px" class="white--text ma-5"><v-icon small>fas fa-thumbs-up</v-icon> いいね! 42 </v-btn></v-col
-              >
-              <v-col cols="2">
-                <v-btn
-                  color="#4267b2"
-                  height="25px"
-                  class="white--text ma-5"
-                  href="https://www.facebook.com/login.php?skip_api_login=1&api_key=966242223397117&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3Dhttps%253A%252F%252Fshop.kitamura.jp%252Fspecial%252Fsale-fair%252Fcamera%252Ffeature%252Fcanon%252Feosr5_r6%252F%26display%3Dpopup%26ref%3Dplugin%26src%3Dlike%26kid_directed_site%3D0&cancel_url=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fclose_window%2F%3Fapp_id%3D966242223397117%26connect%3D0%23_%3D_&display=popup&locale=ja_JP&kid_directed_site=0"
-                  >シェア</v-btn
-                ></v-col
-              >
-              <v-col cols="2">
-                <v-btn
-                  color="#1b95e0"
-                  height="25px"
-                  class="white--text mt-5"
-                  href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fshop.kitamura.jp%2F&ref_src=twsrc%5Etfw&text=%E5%A5%BD%E8%A9%95%E7%99%BA%E5%A3%B2%E4%B8%AD%EF%BC%81%E3%82%AD%E3%83%A4%E3%83%8E%E3%83%B3EOS%20R5%20R6%20%7C%20%E3%82%AB%E3%83%A1%E3%83%A9%E3%81%AE%E3%82%AD%E3%82%BF%E3%83%A0%E3%83%A9%E3%83%8D%E3%83%83%E3%83%88%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97&tw_p=tweetbutton&url=https%3A%2F%2Fshop.kitamura.jp%2Fspecial%2Fsale-fair%2Fcamera%2Ffeature%2Fcanon%2Feosr5_r6%2F"
-                  ><v-icon small>fab fa-twitter</v-icon>ツイート</v-btn
-                ></v-col
-              >
-              <v-col>
-                <v-icon large color="green darken-2"> mdi-domain </v-icon>
-              </v-col>
-            </v-row>
-          </v-container>
-        </div>
+        <!-- ↓ SNS -->
+        <facebookAndTwitter />
 
         <kitamuraService />
 
@@ -539,32 +488,36 @@
 <script lang="ts">
 import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
 import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import SubText from '@/components/common/subtext.vue';
 import NaviBtn from '@/components/common/navi-btn.vue';
-import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
 import Characteristic from '@/components/common/characteristic.vue';
 import ComparisonTable from '@/components/common/comparison-table.vue';
 import PriceAndPopular from '@/components/common/price-and-popular.vue';
 import ContingencyTable from '@/components/common/contingency-table.vue';
 import KitamuraService from '@/components/common/kitamura-service.vue';
+import ExampleImages from '@/components/common/example-image.vue';
+import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/recommended-features.vue';
 export default Vue.extend({
-  name: 'eosr5-r6',
+  name: 'canon-eosr5-r6',
   components: {
     breadcrumbs: Breadcrumbs,
+    urlcopy: Urlcopy,
     subText: SubText,
     characteristic: Characteristic,
     // comparisonTable: ComparisonTable,
-    // priceAndPopular: PriceAndPopular,
+    priceAndPopular: PriceAndPopular,
     contingencyTable: ContingencyTable,
     kitamuraService: KitamuraService,
+    exampleImages: ExampleImages,
+    facebookAndTwitter: FacebookAndTwitter,
     recommendedFeatures: RecommendedFeatures,
     naviBtn: NaviBtn
-    // priceAndPurchase: PriceAndPurchase
   },
   data() {
     return {
@@ -691,9 +644,13 @@ export default Vue.extend({
           disabled: false
         },
         {
-          path: '好評発売中！キヤノンEOS R5 R6',
-          linkUrl: '/ec/special/camera/feature/canon/eosr5r6',
+          path: '最新デジカメ新製品',
+          linkUrl: '/ec/special/sale-fair/camera/feature/',
           disabled: false
+        },
+        {
+          path: 'キヤノン EOS R5 / EOS R6',
+          disabled: true
         }
       ],
       mainProductJanCode: ['4549292157345', '4549292157253', '4549292157512'],
@@ -763,7 +720,39 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.newproduct {
+  width: 100%;
+  height: 290px;
+  margin: 0px 0px 15px 0px;
+  padding: 0px 0px 0px 0px;
+  background-image: url(/ec/images2/special/camera/feature/canon/eosr5_r6/bg_top.jpg);
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+h1.top-title {
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  margin: 0px 0px 0px 0px;
+  padding: 145px 0px 15px 30px;
+  color: #000000;
+  font-size: 115%;
+  font-weight: bold;
+}
+
+h1.top-title p {
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  margin: 0px 0px 0px 0px;
+  padding: 30px 0px 0px 0px;
+  color: #000000;
+  font-size: 100%;
+  font-weight: 400;
+}
+
 .main-contents-wrap {
   .banner-img {
     max-width: 100%;
@@ -832,13 +821,9 @@ export default Vue.extend({
     }
   }
 }
-</style>
 
-<style lang="scss" scoped>
-/* template内のDomへの適用 */
-.test {
-  &-info {
-    color: $text-primary;
-  }
+.sen-gl {
+  border: #b8b8b8 1px solid;
+  box-sizing: border-box;
 }
 </style>

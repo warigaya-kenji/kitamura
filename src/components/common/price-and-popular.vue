@@ -3,16 +3,23 @@
     <!-- ↓ サンプル：価格・人気アクセサリー -->
     <v-container class="mb-6">
       <v-row>
-        <v-col cols="6" sm="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-          <router-link :to="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></router-link>
+        <v-col cols="6" sm="3" v-for="(productDetail, index) in productDetailList" :key="`productDetail-${index}`" class="text-left">
+          <router-link :to="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" @error="noimage" /></router-link>
           <p class="font-small blue--text mb-2 height-20">
             <router-link :to="`/ec/pd/${productDetail.janCode}`" class="routerLink">{{ productDetail.itemName }}</router-link>
           </p>
-          <p class="mt-2" v-bind:class="{ 'font-weight-bold': productDetail.priceDiv === 3, exclusive: productDetail.priceDiv === 4 }">
+          <p class="mt-2 mb-0" v-bind:class="{ 'font-weight-bold': productDetail.priceDiv === 3, exclusive: productDetail.priceDiv === 4 }">
             {{ productDetail.priceDiv === 1 ? '価格' : productDetail.priceDiv === 3 ? '特別価格' : '価格' }}:<span class="red--text font-small"
               >&yen;{{ productDetail.price }}&nbsp;</span
-            ><span class="font-small">(税込)</span>
+            ><span class="font-small">(税込)</span><br />
           </p>
+          <p v-if="productDetail.isTrade" class="green--text darken-2 caption">下取りあればさらにお得</p>
+          <v-img
+            v-if="productDetail.ratingTotal > 0"
+            :src="`https://shop.kitamura.jp/common/images/star${productDetail.ratingTotal}.gif`"
+            width="50%"
+            height="auto"
+          ></v-img>
         </v-col>
       </v-row>
     </v-container>
@@ -21,13 +28,19 @@
 </template>
 
 <script>
+import { noimage } from '@/logic/utils';
 export default {
   name: 'priceAndPopular',
   props: {
     productDetailList: {
-      type: Object,
+      type: Array,
       required: true
     }
+  },
+  setup: (props, context) => {
+    return {
+      noimage
+    };
   }
 };
 </script>

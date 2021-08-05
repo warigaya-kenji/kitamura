@@ -219,6 +219,7 @@
 import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
 import Urlcopy from '@/components/common/special/url-copy.vue';
+import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
 import PriceAndPopular from '@/components/common/price-and-popular.vue';
 import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
@@ -243,7 +244,8 @@ export default Vue.extend({
     characteristic: Characteristic,
     contingencyTable: ContingencyTable,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
+    recommendedFeatures: RecommendedFeatures,
+    priceAndPurchase: PriceAndPurchase
   },
   data() {
     return {

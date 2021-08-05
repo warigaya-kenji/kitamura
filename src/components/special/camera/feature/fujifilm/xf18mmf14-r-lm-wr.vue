@@ -112,7 +112,7 @@ import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/recommended-features.vue';
 
 export default Vue.extend({
-  name: '150500mmf567',
+  name: 'fujifilm-xf18mmf14-r-lm-wr',
   components: {
     breadcrumbs: Breadcrumbs,
     subText: SubText,

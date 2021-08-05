@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="characteristic in characteristics" :key="characteristic">
+    <div v-for="(characteristic, index) in characteristics" :key="`characteristic-${index}`">
       <ul class="point">
         <p class="pttex">
           <span class="bgtypetitle">{{ characteristic.subtitle }}</span>

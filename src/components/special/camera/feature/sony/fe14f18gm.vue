@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="7rm4a-7rm3a">
+    <div class="fe14f18gm">
       <div class="main-contents-wrap">
         <!-- ↓パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
@@ -152,7 +152,7 @@ import RecommendedFeatures from '@/components/common/recommended-features.vue';
 import WatchInVideo from '@/components/common/special/watch-in-video.vue';
 
 export default Vue.extend({
-  name: '7rm4a-7rm3a',
+  name: 'sony-fe14f18gm',
   components: {
     breadcrumbs: Breadcrumbs,
     naviBtn: NaviBtn,

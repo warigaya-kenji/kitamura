@@ -89,7 +89,7 @@ import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/recommended-features.vue';
 
 export default Vue.extend({
-  name: '7rm4a-7rm3a',
+  name: 'sony-7rm4a-7rm3a',
   components: {
     breadcrumbs: Breadcrumbs,
     subText: SubText,

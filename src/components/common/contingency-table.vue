@@ -3,20 +3,20 @@
     <table class="contingency_t">
       <tbody>
         <tr class="bg-gray">
-          <th>分割回数</th>
-          <th>月々のお支払額</th>
-          <th>分割金利手数料</th>
+          <th class="text-subtitle-1">分割回数</th>
+          <th class="text-subtitle-1">月々のお支払額</th>
+          <th class="text-subtitle-1">分割金利手数料</th>
         </tr>
         <tr>
-          <th>
+          <th class="text-subtitle-1">
             <span class="red--text">{{ numberOfTimes }}</span
             >回
           </th>
-          <th>
+          <th class="text-subtitle-1">
             約<span class="red--text">{{ amount }}</span
             >円
           </th>
-          <th>
+          <th class="text-subtitle-1">
             <span class="red--text">{{ commission }}</span
             >円
           </th>
