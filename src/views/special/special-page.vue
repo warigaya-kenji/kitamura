@@ -43,15 +43,13 @@ import xf18mmf14rlmwr from '@/components/special/camera/feature/fujifilm/xf18mmf
 import Girlscamera from '@/components/special/camera/girlscamera.vue';
 import Tokutokukoukan from '@/components/special/general/tokutokukoukan.vue';
 import CanonRf400f28l from '@/components/special/camera/feature/canon/rf400-f28l.vue';
-<<<<<<< HEAD
 import Pentaxk3mk3 from '@/components/special/camera/feature/pentax/k-3mk3.vue';
 import SonySel24f28g from '@/components/special/camera/feature/sony/sel24f28g.vue';
 import Deliver from '@/components/special/page/deliver.vue';
 import Leica from '@/components/special/camera/feature/leica.vue';
-=======
-import Deliver from '@/components/special/page/deliver.vue';
-
->>>>>>> 21cdcc048840e78e226e9a91b14f0576941d1e00
+import Campaign from '@/components/special/general/campaign.vue';
+import Moonlook from '@/components/special/camera/astronomical/moonlook.vue';
+import SigmaFpl from '@/components/special/camera/feature/sigma/fp_l.vue';
 
 // 上記で読み込んだコンポーネントのうち、実際に表示させるページを設定してください。
 // 'ページURL': 読み込んだコンポーネント名
@@ -66,6 +64,8 @@ const PAGE_LIST = {
   'page/deliver/': Deliver,
   // general
   'general/tokutokukoukan/': Tokutokukoukan,
+  'general/campaign/': Campaign,
+
   // camera
   'camera/feature': Componentfeature,
   'camera/dslr': Componentdslr,
@@ -73,11 +73,17 @@ const PAGE_LIST = {
   'camera/polarie': ComponentPolarie,
   'camera/lensfilter': Lensfilter,
   'camera/girlscamera': Girlscamera,
+  // leica
+  'camera/feature/leica/': Leica,
+  // astronomical
+  'camera/astronomical/telescope/': Telescope,
+  'camera/astronomical/moonlook/': Moonlook,
+
   // feature
   // canon
   'camera/feature/canon/eosr5r6': eosr5r6,
   'camera/feature/canon/rf1435mmf4lisusm': ComponentRf1435mmf4lisusm,
-  'camera/feature/canon/tripod': ComponentTripod,
+  'camera/feature/canon/tripod/': ComponentTripod,
   'camera/feature/cacnon/rf100f28l/': CanonRf100f28l,
   'camera/feature/cacnon/rf400f28l/': CanonRf400f28l,
   // nikon
@@ -96,12 +102,11 @@ const PAGE_LIST = {
   'camera/feature/fujifilm/xf18mmf14rlmwr/': xf18mmf14rlmwr,
   // pentax
   'camera/feature/pentax/k3mk3/': Pentaxk3mk3,
-  // leica
-  'camera/feature/leica/': Leica,
+  // sigma
+  'camera/feature/sigma/fpl/': SigmaFpl,
 
   // その他
   'camera/filmcamera/utsurundesu': Componentutsurundesu,
-  'camera/astronomical/telescope/': Telescope,
   'camera/feature/backnumber/': ComponentBacknumber
 };
 

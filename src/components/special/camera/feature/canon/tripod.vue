@@ -5,20 +5,12 @@
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
-        <div class="text-right">
-          <v-btn
-            color="orange white--text body-2 mb-1"
-            v-clipboard:copy="'https://shop.kitamura.jp/ec/special/camera/feature/canon/tripod'"
-            v-clipboard:success="onCopy"
-            >≫ このページのURLをコピーする</v-btn
-          >
-          <p class="caption">
-            <a href="/special/sale-fair/page/bookmark/" target="_blank"> (?)ブラウザ別 お気に入り・ブックマーク登録方法</a>
-          </p>
-        </div>
+
+        <!-- ↓url copy -->
+        <urlcopy :url="'https://shop.kitamura.jp/ec/special/camera/astronomical/moonlook/'" :color="'#ed7f22'" />
 
         <!-- ↓ 画像の読み込み -->
-        <img class="mb-5" src="/ec/images2/special/camera/tripod/bn_00.gif" @error="noimage" />
+        <v-img class="mb-5" src="/ec/images2/special/camera/tripod/bn_00.gif" max-width="100%" height="auto" />
         <!-- ↑ 画像の読み込み -->
 
         <p class="text-left">おすすめ三脚の選び方</p>
@@ -39,7 +31,7 @@
         <!--▼種類で選ぶ-->
         <v-container class="bg-color">
           <v-row>
-            <v-col cols="4" v-for="(tripodType, index) in tripodTypeList" :key="tripodType" class="ma-0">
+            <v-col cols="4" v-for="(tripodType, index) in tripodTypeList" :key="`tripodType-${index}`" class="ma-0">
               <v-card outlined color="#E3E3E3" class="pa-2 ma-0">
                 <img :src="`/ec/images2/special/camera/tripod/type_0${index}.gif`" @error="noimage" width="100%" />
                 <v-card-text class="caption black--text pa-0 ma-0 font-weight-medium">{{ tripodType.maintxt }} </v-card-text>
@@ -66,7 +58,7 @@
         <!--↓パーツ-->
         <v-container class="bg-color mb-12">
           <v-row>
-            <v-col cols="4" v-for="(tripodPart, index) in tripodPartsList" :key="tripodPart" class="ma-0">
+            <v-col cols="4" v-for="(tripodPart, index) in tripodPartsList" :key="`tripodPart-${index}`" class="ma-0">
               <v-hover>
                 <v-card outlined color="#E3E3E3" class="pa-2 ma-0">
                   <img :src="`/ec/images2/special/camera/tripod/un_0${index}.gif`" @error="noimage" width="100%" />
@@ -105,7 +97,7 @@
           <h3 class="">旅行や登山、ファミリーにおすすめ！コンパクト＆軽量三脚</h3>
         </div>
 
-        <div class="mb-10">
+        <div class="mb-10" v-if="Object.keys(mainProductList).length !== 0">
           <span>おすすめ三脚</span>
           <br />
           <h4 class="red white--text darken-2 pa-2">マンフロット MKCOMPACTACN</h4>
@@ -146,7 +138,7 @@
           <h3 class="">花や昆虫の撮影におすすめ！ローポジション三脚</h3>
         </div>
 
-        <div class="mb-2">
+        <div class="mb-2" v-if="Object.keys(mainProductList).length !== 0">
           <span>おすすめ三脚</span>
           <br />
           <h4 class="red white--text darken-2 pa-2">マンフロット MKCOMPACTACN</h4>
@@ -178,7 +170,7 @@
           </v-row>
         </div>
 
-        <div>
+        <div v-if="Object.keys(mainProductList).length !== 0">
           <span>おすすめ三脚</span>
           <br />
           <h4 class="grey darken-2 white--text darken-2 pa-2">スリック E53 ライトカーボン</h4>
@@ -220,7 +212,7 @@
           <p class="pa-4 text-subtitle-2 font-weight-bold">夜間に撮影する花火には、振動吸収率がいいカーボン三脚が効果バツグン。</p>
         </div>
 
-        <div>
+        <div v-if="Object.keys(mainProductList).length !== 0">
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
           <h4 class="red darken-2 white--text darken-2 pa-2">マンフロット MKBFRTC4-BH befreeアドバンス カーボンT三脚キット</h4>
@@ -263,7 +255,7 @@
           </p>
         </div>
 
-        <div>
+        <div v-if="Object.keys(mainProductList).length !== 0">
           <span class="caption grey--text font-weight-bold">おすすめ三脚＆雲台</span>
           <br />
           <h4 class="red darken-2 white--text darken-2 pa-2">マンフロット MT190XPRO3 ＋ MHXPRO-3W</h4>
@@ -313,7 +305,7 @@
           </v-row>
         </div>
 
-        <div>
+        <div v-if="Object.keys(mainProductList).length !== 0">
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
           <h4 class="grey darken-2 white--text darken-2 pa-1">スリック E74 ライトカーボン</h4>
@@ -373,7 +365,7 @@
           </v-row>
         </div>
 
-        <div>
+        <div v-if="Object.keys(mainProductList).length !== 0">
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
           <h4 class="red darken-2 white--text darken-2 pa-1">マンフロット MK055XPRO3-3W</h4>
@@ -407,7 +399,7 @@
           </v-row>
         </div>
 
-        <div>
+        <div v-if="Object.keys(mainProductList).length !== 0">
           <span class="caption grey--text font-weight-bold">おすすめ三脚＆雲台</span>
           <br />
           <h4 class="grey darken-2 white--text darken-2 pa-1">スリック カーボンマスター 923PRO N ＋ マルチアーム520</h4>
@@ -451,7 +443,7 @@
             時速300キロで離着陸をする航空機を狙うには、大口径レンズを振り回しても問題がないスペックが必要です。
           </p>
         </div>
-        <div>
+        <div v-if="Object.keys(mainProductList).length !== 0">
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
           <h4 class="light-blue lighten-2 white--text darken-2 pa-1">ベルボン ULTRA STICK R63Q 一脚</h4>
@@ -565,7 +557,7 @@
           <h3>野鳥撮影や超望遠撮影用におすすめ！ 大型三脚</h3>
         </div>
 
-        <div>
+        <div v-if="Object.keys(mainProductList).length !== 0">
           <span class="caption grey--text font-weight-bold">おすすめ三脚</span>
           <br />
           <h4 class="grey darken-2 white--text darken-2 pa-1">スリック マスターIII</h4>
@@ -712,6 +704,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
 import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
@@ -724,6 +717,7 @@ export default Vue.extend({
   name: 'tripod',
   components: {
     breadcrumbs: Breadcrumbs,
+    urlcopy: Urlcopy,
     subText: SubText,
     naviBtn: NaviBtn,
     recommendedFeatures: RecommendedFeatures

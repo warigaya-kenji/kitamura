@@ -496,7 +496,6 @@ import ProductService from '@/logic/product.service';
 import SubText from '@/components/common/subtext.vue';
 import NaviBtn from '@/components/common/navi-btn.vue';
 import Characteristic from '@/components/common/characteristic.vue';
-import ComparisonTable from '@/components/common/comparison-table.vue';
 import PriceAndPopular from '@/components/common/price-and-popular.vue';
 import ContingencyTable from '@/components/common/contingency-table.vue';
 import KitamuraService from '@/components/common/kitamura-service.vue';
@@ -510,7 +509,6 @@ export default Vue.extend({
     urlcopy: Urlcopy,
     subText: SubText,
     characteristic: Characteristic,
-    // comparisonTable: ComparisonTable,
     priceAndPopular: PriceAndPopular,
     contingencyTable: ContingencyTable,
     kitamuraService: KitamuraService,
