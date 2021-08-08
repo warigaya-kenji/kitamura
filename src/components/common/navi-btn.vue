@@ -1,16 +1,19 @@
 <template>
-  <v-container>
+  <v-container class="v-container">
     <v-row>
       <v-col :cols="cols" v-for="(navi, index) in naviList" :key="`navi-${index}`">
-        <v-btn elevation="6" block :color="color" class="white--text ma-0" :height="height" :href="navi.herf"
-          ><span class="text-h6">{{ navi.naviItem }}</span></v-btn
-        >
+        <v-hover v-slot="{ hover }">
+          <v-btn block :height="height" :href="navi.herf" :elevation="hover ? 12 : 2" :color="hover ? backgroundColor : 'black'"
+            ><span class="v-btn-text-color text-h6">{{ navi.naviItem }}</span></v-btn
+          >
+        </v-hover>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
+import { reactive, toRefs } from '@vue/composition-api';
 export default {
   name: 'naviBtn',
   props: {
@@ -20,21 +23,41 @@ export default {
     },
     cols: {
       type: Number,
+      required: false,
       default: 3
     },
     height: {
       type: Number,
+      required: false,
       default: 55
     },
-    color: {
+    backgroundColor: {
       type: String,
-      default: 'black'
-    }
-    // style: {
-    //   type: String,
-    //   default: 'text-h6'
-    // }
+      required: false,
+      default: 'red darken-4'
+    },
+  },
+  setup: () => {
+    const state = reactive({
+      activeItem: "",
+    });
+
+    return {
+      ...toRefs(state)
+    };
   }
+
 };
 </script>
 
+ <style lang="scss" scoped>
+.v-container {
+  a:hover .v-btn-text-color {
+    color: $text-white;
+  }
+
+  a .v-btn-text-color {
+    color: $text-white;
+  }
+}
+</style>

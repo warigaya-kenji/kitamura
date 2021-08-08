@@ -250,15 +250,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style>
-.newproduct {
-  width: 100%;
-  height: 290px;
-  margin: 0px 0px 15px 0px;
-  padding: 0px 0px 0px 0px;
-  background-image: url(/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr/bg_top.png);
-  background-repeat: no-repeat;
-  background-position: top right;
-}
-</style>

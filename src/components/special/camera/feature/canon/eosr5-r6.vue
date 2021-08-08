@@ -9,21 +9,12 @@
         <!-- ↓url copy -->
         <urlcopy :url="'https://shop.kitamura.jp/special/sale-fair/camera/feature/fujifilm/xf18mmf14-r-lm-wr/'" />
 
-        <!-- 960px以上 -->
-        <div class="newproduct pc" v-if="$vuetify.breakpoint.mdAndUp">
-          <h1 class="top-title">
-            キヤノン
-            <p>EOS初のボディー内5軸手ブレ補正搭載<br />新CMOSセンサーと新映像エンジンを採用したフルサイズミラーレス</p>
-          </h1>
-        </div>
-        <!-- 960px未満 -->
-        <v-img
-          v-if="$vuetify.breakpoint.smAndDown"
-          class="mb-5"
-          src="https://shop.kitamura.jp/ec/images2/special/camera/feature/canon/eosr5_r6/sp_img_top.jpg"
-          width="100%"
-          height="auto"
-          @error="noimage"
+        <!-- ↓top image -->
+        <topTitleImg
+          :pcBackgroundImg="'/ec/images2/special/camera/feature/canon/eosr5_r6/bg_top.jpg'"
+          :spBackgroundImg="'/ec/images2/special/camera/feature/canon/eosr5_r6/sp_img_top.jpg'"
+          :topTitle="'キヤノン'"
+          :topTitleText="'EOS初のボディー内5軸手ブレ補正搭載\n新CMOSセンサーと新映像エンジンを採用したフルサイズミラーレス'"
         />
 
         <p class="red darken-4 text-center mb-2">
@@ -488,6 +479,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
+import TopTitleImg from '@/components/common/special/top-title-img.vue';
 import Urlcopy from '@/components/common/special/url-copy.vue';
 import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
@@ -506,6 +498,7 @@ export default Vue.extend({
   name: 'canon-eosr5-r6',
   components: {
     breadcrumbs: Breadcrumbs,
+    topTitleImg: TopTitleImg,
     urlcopy: Urlcopy,
     subText: SubText,
     characteristic: Characteristic,
@@ -719,38 +712,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.newproduct {
-  width: 100%;
-  height: 290px;
-  margin: 0px 0px 15px 0px;
-  padding: 0px 0px 0px 0px;
-  background-image: url(/ec/images2/special/camera/feature/canon/eosr5_r6/bg_top.jpg);
-  background-repeat: no-repeat;
-  background-position: top right;
-}
-
-h1.top-title {
-  width: 100%;
-  box-sizing: border-box;
-  height: auto;
-  margin: 0px 0px 0px 0px;
-  padding: 145px 0px 15px 30px;
-  color: #000000;
-  font-size: 115%;
-  font-weight: bold;
-}
-
-h1.top-title p {
-  width: 100%;
-  box-sizing: border-box;
-  height: auto;
-  margin: 0px 0px 0px 0px;
-  padding: 30px 0px 0px 0px;
-  color: #000000;
-  font-size: 100%;
-  font-weight: 400;
-}
-
 .main-contents-wrap {
   .banner-img {
     max-width: 100%;

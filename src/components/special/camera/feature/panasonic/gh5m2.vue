@@ -347,38 +347,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.newproduct {
-  width: 100%;
-  height: 290px;
-  margin: 0px 0px 15px 0px;
-  padding: 0px 0px 0px 0px;
-  background-image: url(/ec/images2/special/camera/feature/panasonic/gh5m2/bg_top.jpg);
-  background-repeat: no-repeat;
-  background-position: top right;
-}
-
-h1.top-title {
-  width: 100%;
-  box-sizing: border-box;
-  height: auto;
-  margin: 0px 0px 0px 0px;
-  padding: 145px 0px 15px 30px;
-  color: #000000;
-  font-size: 115%;
-  font-weight: bold;
-}
-
-h1.top-title p {
-  width: 100%;
-  box-sizing: border-box;
-  height: auto;
-  margin: 0px 0px 0px 0px;
-  padding: 30px 0px 0px 0px;
-  color: #000000;
-  font-size: 100%;
-  font-weight: 400;
-}
-
 @media screen and (min-width: 952px) {
   .pc {
     display: block;
