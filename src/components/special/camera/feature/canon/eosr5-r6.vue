@@ -440,18 +440,18 @@ import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
-import SubText from '@/components/common/subtext.vue';
-import NaviBtn from '@/components/common/navi-btn.vue';
+import SubText from '@/components/common/special/subtext.vue';
+import NaviBtn from '@/components/common/special/navi-btn.vue';
 import WatchInVideo from '@/components/common/special/watch-in-video.vue';
-import Characteristic from '@/components/common/characteristic.vue';
-import ShaSha from '@/components/common/shasha.vue';
+import Characteristic from '@/components/common/special/characteristic.vue';
+import ShaSha from '@/components/common/special/shasha.vue';
 import ExpensiveTradeIn from '@/components/common/special/expensive-trade-in.vue';
-import PriceAndPopular from '@/components/common/price-and-popular.vue';
-import ContingencyTable from '@/components/common/contingency-table.vue';
-import KitamuraService from '@/components/common/kitamura-service.vue';
-import ExampleImages from '@/components/common/example-image.vue';
-import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
-import RecommendedFeatures from '@/components/common/recommended-features.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
+import ContingencyTable from '@/components/common/special/contingency-table.vue';
+import KitamuraService from '@/components/common/special/kitamura-service.vue';
+import ExampleImages from '@/components/common/special/example-image.vue';
+import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
+import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 export default Vue.extend({
   name: 'canon-eosr5-r6',
   components: {
@@ -558,7 +558,7 @@ export default Vue.extend({
         href: 'https://www.net-chuko.com/sell/item-list.do?axisType=category&axisCond=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%B8%80%E7%9C%BC%E3%83%AC%E3%83%95&goodsname=4549292075748&_ga=2.222765533.714669828.1626591933-721903692.1626267770&pattern=1',
         nameImg: 'https://shopimg.kitamura.jp/images/pd/e6a/566/223/13d/322/7d3/e9e/d4c/92d/3ba/b4d/q99/qon/e/L.jpg',
         txt: 'キヤノン EOS R5 / EOS R6',
-        tradeInImg: 'https://shop.kitamura.jp/ts_rsc/1354/images/bnr_shitadori_350-130.jpg',
+        tradeInImg: '/ec/images2/special/camera/feature/canon/eosr5_r6/bnr_shitadori_350-130.jpg',
       },
       recommendedFeaturesList: [
         {

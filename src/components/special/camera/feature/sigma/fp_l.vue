@@ -314,11 +314,11 @@ import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
-import NaviBtn from '@/components/common/navi-btn.vue';
-import SubText from '@/components/common/subtext.vue';
-import Characteristic from '@/components/common/characteristic.vue';
-import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
-import RecommendedFeatures from '@/components/common/recommended-features.vue';
+import NaviBtn from '@/components/common/special/navi-btn.vue';
+import SubText from '@/components/common/special/subtext.vue';
+import Characteristic from '@/components/common/special/characteristic.vue';
+import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
+import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 
 export default Vue.extend({
   name: 'sigma-fp_l',

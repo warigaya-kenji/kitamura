@@ -171,7 +171,7 @@ import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import Urlcopy from '@/components/common/special/url-copy.vue';
 import WatchInVideo from '@/components/common/special/watch-in-video.vue';
-import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
+import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 
 export default Vue.extend({
   name: 'tokutokukoukan',

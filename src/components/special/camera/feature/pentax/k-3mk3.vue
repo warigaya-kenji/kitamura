@@ -283,17 +283,17 @@
 import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
 import Urlcopy from '@/components/common/special/url-copy.vue';
-import PriceAndPopular from '@/components/common/price-and-popular.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
 import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
-import SubText from '@/components/common/subtext.vue';
-import NaviBtn from '@/components/common/navi-btn.vue';
-import Characteristic from '@/components/common/characteristic.vue';
-import ContingencyTable from '@/components/common/contingency-table.vue';
-import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
-import RecommendedFeatures from '@/components/common/recommended-features.vue';
+import SubText from '@/components/common/special/subtext.vue';
+import NaviBtn from '@/components/common/special/navi-btn.vue';
+import Characteristic from '@/components/common/special/characteristic.vue';
+import ContingencyTable from '@/components/common/special/contingency-table.vue';
+import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
+import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
 import WatchInVideo from '@/components/common/special/watch-in-video.vue';
 export default Vue.extend({

@@ -164,10 +164,10 @@ import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import Urlcopy from '@/components/common/special/url-copy.vue';
-import PriceAndPopular from '@/components/common/price-and-popular.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
 import InstallmentPaymentExample from '@/components/common/special/installmentPaymentExample.vue';
-import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
-import RecommendedFeatures from '@/components/common/recommended-features.vue';
+import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
+import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 
 export default Vue.extend({
   name: 'girlscamera',

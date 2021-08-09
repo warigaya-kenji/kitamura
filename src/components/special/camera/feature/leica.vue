@@ -126,8 +126,8 @@ import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
-import FacebookAndTwitter from '@/components/common/facebook-twitter.vue';
-import RecommendedFeatures from '@/components/common/recommended-features.vue';
+import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
+import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 
 export default Vue.extend({
   name: 'leica',
