@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col :cols="cols" :sm="sm" class="ma-0 pa-0" v-for="n in count" :key="n">
-        <a :href="`${path}pic_0${n + target}.jpg`"><img class="mb-5 hover" :src="`${path}pic_0${n}.jpg`" width="90%" /></a>
+    <v-row dense>
+      <v-col :cols="cols" :sm="sm" v-for="n in count" :key="n">
+        <a :href="`${path}pic_0${n + target}.jpg`"><v-img class="mb-1 hover" :src="`${path}pic_0${n + target}`" max-width="100%" height="auto" /></a>
       </v-col>
     </v-row>
   </v-container>

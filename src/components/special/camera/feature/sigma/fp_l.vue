@@ -102,7 +102,7 @@
                 ショッピングクレジットの分割払いなら、最大24回分割払いまで分割金利手数料を当店が負担致します。
               </p>
               <font size="-1">※2021年3月26日時点の価格です</font>
-              <contingencyTable :numberOfTimes="'48'" :amount="'5,157'" :commission="'0'" />
+              <splitContent :numberOfTimes="'48'" :amount="'5,157'" :commission="'0'" />
             </v-col>
           </v-row>
           <v-row class="mb-10">
@@ -116,7 +116,7 @@
               >円(税込)
             </v-col>
             <v-col col="6">
-              <contingencyTable :numberOfTimes="'48'" :amount="'6,188'" :commission="'0'" />
+              <splitContent :numberOfTimes="'48'" :amount="'6,188'" :commission="'0'" />
               <div class="text-center">
                 <v-btn color="#D73500" class="white--text" href="https://shop.kitamura.jp/sitemap/s_credit_01.html">
                   ショッピングクレジットについて詳細はこちら

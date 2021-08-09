@@ -124,3 +124,14 @@ div.s-credit table td span {
   background: -ms-linear-gradient(#ff8383, #ff5b5b);
   background: linear-gradient(#ff8383, #ff5b5b);
 }
+
+.main-contents-wrap {
+  &-btn {
+    &:hover {
+      .v-btn__content {
+        color: $text-white;
+        text-decoration: underline;
+      }
+    }
+  }
+}

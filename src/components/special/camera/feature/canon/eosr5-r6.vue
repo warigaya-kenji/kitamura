@@ -7,7 +7,7 @@
         <!-- ↑ パンくず -->
 
         <!-- ↓url copy -->
-        <urlcopy :url="'https://shop.kitamura.jp/special/sale-fair/camera/feature/fujifilm/xf18mmf14-r-lm-wr/'" />
+        <urlcopy :url="'https://shop.kitamura.jp/ec/special/camera/feature/canon/eosr5_r6/'" />
         <!-- ↑url copy -->
 
         <!-- ↓top image -->
@@ -377,6 +377,7 @@
         <subText :textItem="'キヤノン EOS R5 / EOS R6 ご購入時、高値下取り実施中！'" id="price" />
         <expensiveTradeIn :expensiveTradeInList="expensiveTradeInList" />
 
+        <!-- ↓ 48回まで分割ー -->
         <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
         <splitContent v-if="mainProductList.length !== 0" :ProductList="mainProductList[0]" :amount="'9,488'" :targetDate="'2020年7月10日'" />
         <splitContent

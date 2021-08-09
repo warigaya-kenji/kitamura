@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in mainProductList" :key="product">
-      <v-container>
+      <v-container v-if="mainProductList.length !== 0">
         <v-row>
           <v-col class="text-center" cols="12" sm="5">
             <router-link :to="`/ec/pd/${product.janCode}`"><v-img :src="product.images[0].imagePath" max-width="80%" height="auto"></v-img></router-link><br />
@@ -22,9 +22,8 @@
               :href="`/ec/pd/${product.janCode}`"
             >
               <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
-              ご購入はこちら
+              ご予約はこちら
             </v-btn>
-            <p v-if="isConsultationOrder"><v-img src="https://shop.kitamura.jp/images/banner/6931.jpg" alt="電話で相談・ご注文できます"></v-img></p>
           </v-col>
         </v-row>
       </v-container>
@@ -33,23 +32,20 @@
 </template>
 
 <script>
-import { computed } from '@vue/composition-api';
+import Vue from 'vue';
+import { formatPrice } from '@/logic/utils';
 
-export default {
+export default Vue.extend({
   props: {
     mainProductList: {
       type: Array,
       required: true
     },
-    isConsultationOrder: {
-      type: Boolean,
-      default: false
-    }
   },
-  setup(props) {
-    const mainProductList = computed(() => props.mainProductList);
-
-    return { mainProductList };
+  setup: () => {
+    return {
+      formatPrice
+    };
   }
-};
+});
 </script>

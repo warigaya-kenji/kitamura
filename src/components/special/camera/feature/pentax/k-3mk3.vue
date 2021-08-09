@@ -61,7 +61,7 @@
               ショッピングクレジットの分割払いなら、最大48回分割払いまで分割金利手数料を当店が負担致します。
             </p>
             <font size="-1">※2021年4月23日時点の価格です</font>
-            <contingencyTable :numberOfTimes="'48'" :amount="'5,247'" :commission="'0'" />
+            <splitContent :numberOfTimes="'48'" :amount="'5,247'" :commission="'0'" />
           </v-col>
         </v-row>
 
@@ -81,7 +81,7 @@
           </v-col>
           <v-col col="6">
             <font size="-1">※2021年4月23日時点の価格です</font>
-            <contingencyTable :numberOfTimes="'48'" :amount="'5,997'" :commission="'0'" />
+            <splitContent :numberOfTimes="'48'" :amount="'5,997'" :commission="'0'" />
             <div class="text-center">
               <v-btn width="80%" color="#E53935" class="white--text font-weight-bold" href="/sitemap/s_credit_01.html">
                 ショッピングクレジットについて詳細はこちら
@@ -291,7 +291,7 @@ import ProductService from '@/logic/product.service';
 import SubText from '@/components/common/special/subtext.vue';
 import NaviBtn from '@/components/common/special/navi-btn.vue';
 import Characteristic from '@/components/common/special/characteristic.vue';
-import ContingencyTable from '@/components/common/special/split-content.vue';
+import SplitContent from '@/components/common/special/split-content.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
@@ -305,7 +305,7 @@ export default Vue.extend({
     naviBtn: NaviBtn,
     subText: SubText,
     characteristic: Characteristic,
-    contingencyTable: ContingencyTable,
+    splitContent: SplitContent,
     facebookAndTwitter: FacebookAndTwitter,
     recommendedFeatures: RecommendedFeatures,
     priceAndPurchase: PriceAndPurchase,

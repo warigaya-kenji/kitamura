@@ -133,7 +133,7 @@
                 ショッピングクレジットの分割払いなら、最大24回分割払いまで分割金利手数料を当店が負担致します。
               </p>
               <font size="-1">※2021年6月25日時点の価格です</font>
-              <contingencyTable :numberOfTimes="'48'" :amount="'4,061'" :commission="'0'" />
+              <splitContent :numberOfTimes="'48'" :amount="'4,061'" :commission="'0'" />
             </v-col>
           </v-row>
         </v-container>

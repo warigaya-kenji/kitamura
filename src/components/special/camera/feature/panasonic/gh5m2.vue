@@ -90,7 +90,7 @@
                 ショッピングクレジットの分割払いなら、最大24回分割払いまで分割金利手数料を当店が負担致します。
               </p>
               <font size="-1">※2021年6月25日時点の価格です</font>
-              <contingencyTable :numberOfTimes="'48'" :amount="'4,061'" :commission="'0'" />
+              <splitContent :numberOfTimes="'48'" :amount="'4,061'" :commission="'0'" />
             </v-col>
           </v-row>
         </v-container> -->
@@ -107,7 +107,7 @@
           </v-col>
           <v-col col="6">
             <font size="-1">※2021年6月25日時点の価格です</font>
-            <contingencyTable :numberOfTimes="'48'" :amount="'4,579'" :commission="'0'" />
+            <splitContent :numberOfTimes="'48'" :amount="'4,579'" :commission="'0'" />
           </v-col>
         </v-row> -->
         <!--↑ショッピングクレジット -->
@@ -170,7 +170,7 @@ import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import NaviBtn from '@/components/common/special/navi-btn.vue';
 import SubText from '@/components/common/special/subtext.vue';
-import ContingencyTable from '@/components/common/special/split-content.vue';
+import SplitContent from '@/components/common/special/split-content.vue';
 import Characteristic from '@/components/common/special/characteristic.vue';
 import ShaSha from '@/components/common/special/shasha.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
@@ -182,7 +182,7 @@ export default Vue.extend({
     breadcrumbs: Breadcrumbs,
     naviBtn: NaviBtn,
     subText: SubText,
-    // contingencyTable: ContingencyTable,
+    // splitContent: SplitContent,
     characteristic: Characteristic,
     shasha: ShaSha,
     facebookAndTwitter: FacebookAndTwitter,
