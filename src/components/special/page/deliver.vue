@@ -19,7 +19,7 @@
 
                       <v-list-item v-for="(serviceGuide, index) in serviceGuideList" :key="`first-${index}`" link class="sidebar-border px-0">
                         <v-list-item-content class="ma-0 pa-0">
-                          <router-link :to="serviceGuide.herf"
+                          <router-link :to="serviceGuide.href"
                             ><v-img :src="serviceGuide.src" max-width="100%" aspect-ratio: auto height="auto"></v-img>
                           </router-link>
                         </v-list-item-content>
@@ -54,7 +54,7 @@
                     <h1>カメラのキタムラ 商品お届けまでの流れ</h1>
                     <v-row class="my-4">
                       <v-col cols="4" v-for="(navi, index) in naviBtn" :key="`second-${index}`">
-                        <a :href="navi.herf">
+                        <a :href="navi.href">
                           <v-img :src="navi.src" @mouseover="changeImg(index)" @mouseleave="returnImg(index)"></v-img>
                         </a>
                       </v-col>
@@ -138,21 +138,21 @@ export default Vue.extend({
   data() {
     return {
       serviceGuideList: [
-        { src: '/ec/images2/special/page/deliver/pc/btn_service_payment_off.gif', herf: '/sitemap/riyou_shiharai_index.html' },
-        { src: '/ec/images2/special/page/deliver/pc/btn_service_guarantee_off.gif', herf: '/sitemap/riyou_hoshou_index.html' },
-        { src: '/ec/images2/special/page/deliver/pc/btn_purchase_trade-in_off.gif', herf: '/special/sale-fair/page/sell/' },
-        { src: '/ec/images2/special/page/deliver/pc/btn_service_setup_off.gif', herf: '/files/setup/01.html' },
-        { src: '/ec/images2/special/page/deliver/pc/btn_service_recycling_off.gif', herf: '/files/recycle/index.html' },
-        { src: '/ec/images2/special/page/deliver/pc/btn_service_maker_off.gif', herf: '/files/m_support/index.html' },
-        { src: '/ec/images2/special/page/deliver/pc/btn_service_faq_off.gif', herf: 'https://ecfaq.kitamura.jp/s/' },
-        { src: '/ec/images2/special/page/deliver/pc/btn_service_shop_off.gif', herf: 'http://sss.kitamura.jp/' },
-        { src: '/ec/images2/special/page/deliver/pc/btn_shuri_off.gif', herf: '/files/syuuri/index.html' },
-        { src: '/ec/images2/special/page/deliver/pc/btn_toiawase_off.gif', herf: '/sitemap/otoiawase_index.html' }
+        { src: '/ec/images2/special/page/deliver/pc/btn_service_payment_off.gif', href: '/sitemap/riyou_shiharai_index.html' },
+        { src: '/ec/images2/special/page/deliver/pc/btn_service_guarantee_off.gif', href: '/sitemap/riyou_hoshou_index.html' },
+        { src: '/ec/images2/special/page/deliver/pc/btn_purchase_trade-in_off.gif', href: '/special/sale-fair/page/sell/' },
+        { src: '/ec/images2/special/page/deliver/pc/btn_service_setup_off.gif', href: '/files/setup/01.html' },
+        { src: '/ec/images2/special/page/deliver/pc/btn_service_recycling_off.gif', href: '/files/recycle/index.html' },
+        { src: '/ec/images2/special/page/deliver/pc/btn_service_maker_off.gif', href: '/files/m_support/index.html' },
+        { src: '/ec/images2/special/page/deliver/pc/btn_service_faq_off.gif', href: 'https://ecfaq.kitamura.jp/s/' },
+        { src: '/ec/images2/special/page/deliver/pc/btn_service_shop_off.gif', href: 'http://sss.kitamura.jp/' },
+        { src: '/ec/images2/special/page/deliver/pc/btn_shuri_off.gif', href: '/files/syuuri/index.html' },
+        { src: '/ec/images2/special/page/deliver/pc/btn_toiawase_off.gif', href: '/sitemap/otoiawase_index.html' }
       ],
       naviBtn: [
-        { src: 'https://shop.kitamura.jp/ts_rsc/666/images/btn01_off.png', herf: '#a01' },
-        { src: 'https://shop.kitamura.jp/ts_rsc/666/images/btn02_off.png', herf: '#a02' },
-        { src: 'https://shop.kitamura.jp/ts_rsc/666/images/btn03_off.png', herf: '#a03' }
+        { src: 'https://shop.kitamura.jp/ts_rsc/666/images/btn01_off.png', href: '#a01' },
+        { src: 'https://shop.kitamura.jp/ts_rsc/666/images/btn02_off.png', href: '#a02' },
+        { src: 'https://shop.kitamura.jp/ts_rsc/666/images/btn03_off.png', href: '#a03' }
       ]
     };
   },

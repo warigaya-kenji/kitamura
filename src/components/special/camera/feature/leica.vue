@@ -140,17 +140,17 @@ export default Vue.extend({
     return {
       recommendedFeaturesList: [
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/feature/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/feature/',
           img: 'https://shop.kitamura.jp/images/banner/1341.jpg',
           alt: '話題の新製品'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://shop.kitamura.jp/sitemap/s_credit_01.html',
+          href: 'https://shop.kitamura.jp/sitemap/s_credit_01.html',
           img: 'https://shopimg.kitamura.jp/images/banner/1486.gif',
           alt: 'ショッピングクレジット'
         }

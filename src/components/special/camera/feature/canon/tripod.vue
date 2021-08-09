@@ -725,9 +725,9 @@ export default Vue.extend({
   data() {
     return {
       naviList: [
-        { naviItem: '種類で選ぶ おすすめ三脚 ▼', herf: '#point' },
-        { naviItem: '必要なパーツ類のご紹介 ▼', herf: '#hikaku' },
-        { naviItem: '撮影シーンで選ぶ おすすめ三脚 ▼', herf: '#price' }
+        { naviItem: '種類で選ぶ おすすめ三脚 ▼', href: '#point' },
+        { naviItem: '必要なパーツ類のご紹介 ▼', href: '#hikaku' },
+        { naviItem: '撮影シーンで選ぶ おすすめ三脚 ▼', href: '#price' }
       ],
       tripodTypeList: [
         { maintxt: '風景写真が好きで作品作りを考えてる方には最適。軽くて丈夫なので大口径レンズも対応！', btntxt: 'カーボン三脚を見る ≫' },
@@ -746,13 +746,13 @@ export default Vue.extend({
         }
       ],
       shootingSceneNaviList: [
-        { naviItem: '家族旅行', herf: '#si01' },
-        { naviItem: '花や昆虫', herf: '#si02' },
-        { naviItem: '夜景花火', herf: '#si03' },
-        { naviItem: '自然風景', herf: '#si04' },
-        { naviItem: '鉄道電車', herf: '#si05' },
-        { naviItem: '飛行機', herf: '#si06' },
-        { naviItem: '野鳥動物', herf: '#si07' }
+        { naviItem: '家族旅行', href: '#si01' },
+        { naviItem: '花や昆虫', href: '#si02' },
+        { naviItem: '夜景花火', href: '#si03' },
+        { naviItem: '自然風景', href: '#si04' },
+        { naviItem: '鉄道電車', href: '#si05' },
+        { naviItem: '飛行機', href: '#si06' },
+        { naviItem: '野鳥動物', href: '#si07' }
       ],
       visible: false,
       index: 0, // default: 0
@@ -763,32 +763,32 @@ export default Vue.extend({
       ],
       recommendedFeaturesList: [
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/okamoto-yutaka/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/okamoto-yutaka/',
           img: 'https://shopimg.kitamura.jp/images/banner/7678.jpg',
           alt: '空写真家 岡本豊先生のレオフォト三脚講座'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/bag/trial/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/bag/trial/',
           img: 'https://shop.kitamura.jp/images/banner/1437.jpg',
           alt: 'カメラバッグトライアルサービス'
         },
         {
-          herf: '/special/sale-fair/camera/lensfilter/',
+          href: '/special/sale-fair/camera/lensfilter/',
           img: 'https://shopimg.kitamura.jp/images/banner/1342.jpg',
           alt: 'カメラレンズフィルター'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/general/how-to/hanabi/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/general/how-to/hanabi/',
           img: 'https://shopimg.kitamura.jp/images/banner/3043.jpg',
           alt: '花火特集'
         },
         {
-          herf: '/special/sale-fair/',
+          href: '/special/sale-fair/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://www.kitamura-print.com/',
+          href: 'https://www.kitamura-print.com/',
           img: 'https://shopimg.kitamura.jp/images/banner/341.jpg',
           alt: '超高画質プリント'
         }

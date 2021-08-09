@@ -90,7 +90,7 @@ export default {
           index: 1,
           category: ['all', 'canon', 'new'],
           releaseDate: '2021年9月下旬発売予定',
-          herf: '/special/sale-fair/camera/feature/canon/rf14-35mmf4lisusm/',
+          href: '/special/sale-fair/camera/feature/canon/rf14-35mmf4lisusm/',
           src: 'https://shopimg.kitamura.jp/images/banner/8510.jpg',
           productName: 'キヤノン RF14-35mm F4 L IS USM'
         },
@@ -98,7 +98,7 @@ export default {
           index: 2,
           category: ['all', 'nikon', 'new'],
           releaseDate: '2021年7月23日発売予定',
-          herf: '/special/sale-fair/camera/feature/nikon/zfc/',
+          href: '/special/sale-fair/camera/feature/nikon/zfc/',
           src: 'https://shopimg.kitamura.jp/images/banner/8494.jpg',
           productName: 'ニコン Z fc'
         },
@@ -106,7 +106,7 @@ export default {
           index: 3,
           category: ['all', 'olympus', 'new'],
           releaseDate: '発売日 2021.6.25',
-          herf: '/special/sale-fair/camera/feature/olympus/pen_e-p7/',
+          href: '/special/sale-fair/camera/feature/olympus/pen_e-p7/',
           src: 'https://shopimg.kitamura.jp/images/banner/8466.jpg',
           productName: 'オリンパス PEN E-P7'
         },
@@ -114,7 +114,7 @@ export default {
           index: 4,
           category: ['all', 'nikon', 'new'],
           releaseDate: '発売日 2021.6.25',
-          herf: '/special/sale-fair/camera/feature/nikon/z_mc_105mm_f28_vr_s/',
+          href: '/special/sale-fair/camera/feature/nikon/z_mc_105mm_f28_vr_s/',
           src: 'https://shopimg.kitamura.jp/images/banner/8458.jpg',
           productName: 'ニコン NIKKOR Z MC 105mm f/2.8 VR S'
         },
@@ -122,7 +122,7 @@ export default {
           index: 5,
           category: ['all', 'panasonic', 'new'],
           releaseDate: '発売日 2021.6.25',
-          herf: '/special/sale-fair/camera/feature/panasonic/gh5m2/',
+          href: '/special/sale-fair/camera/feature/panasonic/gh5m2/',
           src: 'https://shopimg.kitamura.jp/images/banner/8439.jpg',
           productName: 'パナソニック LUMIX DC-GH5M2'
         },
@@ -130,7 +130,7 @@ export default {
           index: 6,
           category: ['all', 'sony', 'new'],
           releaseDate: '発売日 2021.6.4',
-          herf: '/special/sale-fair/camera/feature/sony/7rm4a-7rm3a/',
+          href: '/special/sale-fair/camera/feature/sony/7rm4a-7rm3a/',
           src: 'https://shopimg.kitamura.jp/images/banner/8456.jpg',
           productName: 'ソニー α7R IV A & α7R III A'
         },
@@ -138,7 +138,7 @@ export default {
           index: 7,
           category: ['all', 'sony', 'new'],
           releaseDate: '発売日 2021.5.28',
-          herf: '/special/sale-fair/camera/feature/sony/fe14f18gm/',
+          href: '/special/sale-fair/camera/feature/sony/fe14f18gm/',
           src: 'https://shopimg.kitamura.jp/images/banner/8405.png',
           productName: 'ソニー FE 14mm F1.8 GM [SEL14F18GM]'
         },
@@ -146,7 +146,7 @@ export default {
           index: 8,
           category: ['all', 'general', 'new'],
           releaseDate: '発売日 2021.6.24',
-          herf: '/special/sale-fair/camera/feature/tamron/150-500mm-f5-6.7/',
+          href: '/special/sale-fair/camera/feature/tamron/150-500mm-f5-6.7/',
           src: 'https://shopimg.kitamura.jp/images/banner/8403.png',
           productName: 'タムロン 150-500mm F/5-6.7 Di III VC VXD、タムロン 11-20mm F/2.8 Di III-A RXD'
         },
@@ -154,7 +154,7 @@ export default {
           index: 9,
           category: ['all', 'fujifilm', 'new'],
           releaseDate: '発売日 2021.5.27',
-          herf: '/special/sale-fair/camera/feature/fujifilm/xf18mmf14-r-lm-wr/',
+          href: '/special/sale-fair/camera/feature/fujifilm/xf18mmf14-r-lm-wr/',
           src: 'https://shopimg.kitamura.jp/images/banner/8398.png',
           productName: 'フジフイルム XF18mm F1.4 R LM WR'
         },
@@ -162,7 +162,7 @@ export default {
           index: 10,
           category: ['all', 'canon', 'new'],
           releaseDate: '2021.7.15 発売予定',
-          herf: '/special/sale-fair/camera/feature/canon/rf100-f28l/',
+          href: '/special/sale-fair/camera/feature/canon/rf100-f28l/',
           src: 'https://shopimg.kitamura.jp/images/banner/8394.png',
           productName: 'キヤノン RF100mm F2.8 L MACRO IS USM'
         },
@@ -170,7 +170,7 @@ export default {
           index: 11,
           category: ['all', 'canon', 'new'],
           releaseDate: '2021.7.15 発売予定',
-          herf: '/special/sale-fair/camera/feature/canon/rf400-f28l/',
+          href: '/special/sale-fair/camera/feature/canon/rf400-f28l/',
           src: 'https://shopimg.kitamura.jp/images/banner/8396.png',
           productName: 'キヤノン RF400mm F2.8 L IS USM / RF600mm F4 L IS USM'
         },
@@ -178,7 +178,7 @@ export default {
           index: 13,
           category: ['all', 'sony'],
           releaseDate: '発売日 2021.4.23',
-          herf: '/special/sale-fair/camera/feature/sony/sel24f28g/',
+          href: '/special/sale-fair/camera/feature/sony/sel24f28g/',
           src: 'https://shopimg.kitamura.jp/images/banner/8380.jpg',
           productName: 'ソニー FE 24mm F2.8 G / FE 40mm F2.5 G / FE 50mm F2.5 G'
         },
@@ -186,7 +186,7 @@ export default {
           index: 14,
           category: ['all', 'general'],
           releaseDate: '発売日 2021.4.16',
-          herf: '/special/sale-fair/camera/feature/sigma/fp_l/',
+          href: '/special/sale-fair/camera/feature/sigma/fp_l/',
           src: 'https://shopimg.kitamura.jp/images/banner/8368.jpg',
           productName: 'シグマ fp L'
         },
@@ -194,7 +194,7 @@ export default {
           index: 15,
           category: ['all', 'sony'],
           releaseDate: '発売日 2021.4.23',
-          herf: '/special/sale-fair/camera/feature/sony/sel50f12gm/',
+          href: '/special/sale-fair/camera/feature/sony/sel50f12gm/',
           src: 'https://shopimg.kitamura.jp/images/banner/8354.jpg',
           productName: 'ソニー Cinema Line FX3'
         },
@@ -202,7 +202,7 @@ export default {
           index: 16,
           category: ['all', 'sony'],
           releaseDate: '発売日 2021.3.21',
-          herf: '/special/sale-fair/camera/feature/sony/cinemaline-fx3/',
+          href: '/special/sale-fair/camera/feature/sony/cinemaline-fx3/',
           src: 'https://shopimg.kitamura.jp/images/banner/8330.jpg',
           productName: 'ソニー Cinema Line FX3'
         }

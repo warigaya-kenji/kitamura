@@ -37,7 +37,7 @@ import { computed } from '@vue/composition-api';
 export default {
   props: {
     mainProductList: {
-      type: Object,
+      type: Array,
       required: true
     }
   },

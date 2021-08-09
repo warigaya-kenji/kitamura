@@ -126,10 +126,10 @@ export default Vue.extend({
   data() {
     return {
       naviList: [
-        { naviItem: '価格', herf: '#price' },
-        { naviItem: '特徴スペック', herf: '#spec' },
-        { naviItem: '外観', herf: '#images2' },
-        { naviItem: '作例画像', herf: '#images' }
+        { naviItem: '価格', href: '#price' },
+        { naviItem: '特徴スペック', href: '#spec' },
+        { naviItem: '外観', href: '#images2' },
+        { naviItem: '作例画像', href: '#images' }
       ],
       characteristicList: [
         {
@@ -158,34 +158,34 @@ export default Vue.extend({
       shashaData: [
         {
           text: '富士フイルムから新たな交換レンズ「XF18mmF1.4 R LM WR」が発表されました。Xマウントを採用しているAPS-Cフォーマットのミラーレス一眼カメラ、Xシリーズ向けの大口径広角単焦点レンズであり、徹底的に追求された解像性能が大きな特徴です。\n今回は先行して製品に触れる機会を特別に設けていただきましたので、開発担当者への取材内容も交えつつ製品をご紹介して...',
-          herf: 'https://shasha.kitamura.jp/article/481083487.html',
+          href: 'https://shasha.kitamura.jp/article/481083487.html',
           src: '/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr/shashabnr.jpg'
         }
       ],
       recommendedFeaturesList: [
         {
-          herf: '/special/sale-fair/camera/feature/backnumber/',
+          href: '/special/sale-fair/camera/feature/backnumber/',
           img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
           alt: '話題の新製品バックナンバー'
         },
         {
-          herf: '/special/sale-fair/',
+          href: '/special/sale-fair/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://shop.kitamura.jp/sitemap/s_credit_01.html',
+          href: 'https://shop.kitamura.jp/sitemap/s_credit_01.html',
           img: 'https://shopimg.kitamura.jp/images/banner/1486.gif',
           alt: 'ショッピングクレジット'
         },
 
         {
-          herf: '/special/sale-fair/general/tokutokukoukan/',
+          href: '/special/sale-fair/general/tokutokukoukan/',
           img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
           alt: 'トクトク交換'
         },
         {
-          herf: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
+          href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }

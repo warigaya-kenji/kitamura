@@ -28,7 +28,7 @@
           <v-row class="">
             <v-col cols="4" v-for="navi in naviList" :key="navi">
               <p class="lin pa-2">
-                <a :href="navi.herf" class="white--text">{{ navi.naviItem }}<v-icon color="white">fas fa-arrow-circle-right</v-icon></a>
+                <a :href="navi.href" class="white--text">{{ navi.naviItem }}<v-icon color="white">fas fa-arrow-circle-right</v-icon></a>
               </p>
             </v-col>
           </v-row>
@@ -169,7 +169,7 @@
               <p>{{ porarier.itemName }}</p>
               <v-img :src="porarier.img"></v-img>
               <p style="white-space: pre-wrap; word-wrap: break-word">{{ porarier.text }}</p>
-              <v-btn block class="bg-btn py-6 text-subtitle-1" :href="porarier.herf">
+              <v-btn block class="bg-btn py-6 text-subtitle-1" :href="porarier.href">
                 商品ページへ <v-icon small class="ml-2">fas fa-angle-right</v-icon>
               </v-btn>
             </v-col>
@@ -246,7 +246,7 @@
               <div class="pa-8">
                 <v-img :src="starrySkyShoot.img" width="100%"></v-img>
               </div>
-              <v-btn block class="bg-btn py-6 text-subtitle-1" :href="starrySkyShoot.herf">
+              <v-btn block class="bg-btn py-6 text-subtitle-1" :href="starrySkyShoot.href">
                 {{ starrySkyShoot.btntxt }} <v-icon small class="ml-2">fas fa-angle-right</v-icon>
               </v-btn>
             </v-col>
@@ -503,30 +503,30 @@ export default Vue.extend({
   data() {
     return {
       naviList: [
-        { naviItem: '星空撮影に最低限必要なもの ', herf: '#no1' },
-        { naviItem: 'ポラリエで星空撮影 ', herf: '#no3' },
-        { naviItem: '星空撮影おすすめカメラ ', herf: '#no4' },
-        { naviItem: '星空撮影おすすめレンズ ', herf: '#no5' },
-        { naviItem: '星空撮影おすすめカメラ用品 ', herf: '#no6' },
-        { naviItem: '星空写真ギャラリー ', herf: '#no7' }
+        { naviItem: '星空撮影に最低限必要なもの ', href: '#no1' },
+        { naviItem: 'ポラリエで星空撮影 ', href: '#no3' },
+        { naviItem: '星空撮影おすすめカメラ ', href: '#no4' },
+        { naviItem: '星空撮影おすすめレンズ ', href: '#no5' },
+        { naviItem: '星空撮影おすすめカメラ用品 ', href: '#no6' },
+        { naviItem: '星空写真ギャラリー ', href: '#no7' }
       ],
       toyoMoistureProofList: [
-        { text: '東洋リビング ED-55CAT(BW) 防湿庫 ブラック＆ホワイト', herf: '/ec/pd/4945931015050' },
-        { text: '東洋リビング ED-80CATP2(B) オートクリーンドライ防湿庫', herf: '/ec/pd/4945931019010' },
-        { text: '東洋リビング ED-120CATP2(B) オートクリーンドライ防湿庫', herf: '/ec/pd/4945931019027' },
-        { text: '東洋リビング ED-165CATP2（B） オートクリーンドライ防湿庫', herf: '/ec/pd/4945931019041' }
+        { text: '東洋リビング ED-55CAT(BW) 防湿庫 ブラック＆ホワイト', href: '/ec/pd/4945931015050' },
+        { text: '東洋リビング ED-80CATP2(B) オートクリーンドライ防湿庫', href: '/ec/pd/4945931019010' },
+        { text: '東洋リビング ED-120CATP2(B) オートクリーンドライ防湿庫', href: '/ec/pd/4945931019027' },
+        { text: '東洋リビング ED-165CATP2（B） オートクリーンドライ防湿庫', href: '/ec/pd/4945931019041' }
       ],
       toriMoistureProofList: [
-        { text: 'トーリ・ハン NT-33-MIII ドライ・キャビ', herf: '/ec/pd/4930381440088' },
-        { text: 'トーリ・ハン NT-83-MIII ドライ・キャビ', herf: '/ec/pd/4930381440095' },
-        { text: 'トーリ・ハン NT-103-MIII ドライ・キャビ', herf: '/ec/pd/4930381440101' },
-        { text: 'トーリ・ハン PH-110 ドライ・キャビ', herf: '/ec/pd/4930381440033' }
+        { text: 'トーリ・ハン NT-33-MIII ドライ・キャビ', href: '/ec/pd/4930381440088' },
+        { text: 'トーリ・ハン NT-83-MIII ドライ・キャビ', href: '/ec/pd/4930381440095' },
+        { text: 'トーリ・ハン NT-103-MIII ドライ・キャビ', href: '/ec/pd/4930381440101' },
+        { text: 'トーリ・ハン PH-110 ドライ・キャビ', href: '/ec/pd/4930381440033' }
       ],
       hakubaMoistureProofList: [
-        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 25L', herf: '/ec/pd/4977187403503' },
-        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 40L', herf: '/ec/pd/4977187403510' },
-        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 60L', herf: '/ec/pd/4977187403527' },
-        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 100L', herf: '/ec/pd/4977187403534' }
+        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 25L', href: '/ec/pd/4977187403503' },
+        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 40L', href: '/ec/pd/4977187403510' },
+        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 60L', href: '/ec/pd/4977187403527' },
+        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 100L', href: '/ec/pd/4977187403534' }
       ],
       storageCapacityList: [
         { amount: '50L以下', type: '（小型）', criterion: '一眼カメラが4～5台、レンズ数本が目安。\nギナーさん向け' },
@@ -535,57 +535,57 @@ export default Vue.extend({
       ],
       recommendedFeaturesList: [
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/hosizora/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/hosizora/',
           img: 'https://shopimg.kitamura.jp/images/banner/5032.png',
           alt: '星空総合ページ'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/astronomical/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/astronomical/',
           img: 'https://shopimg.kitamura.jp/images/banner/1327.gif',
           alt: '天体イベントスケジュール'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/polarie/acc/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/polarie/acc/',
           img: 'https://shop.kitamura.jp/images/banner/3588.gif',
           alt: 'ポラリエとカメラ用望遠レンズで星空・天体撮影'
         },
         {
-          herf: 'https://www.vixen.co.jp/app/nebulabook/',
+          href: 'https://www.vixen.co.jp/app/nebulabook/',
           img: 'https://shopimg.kitamura.jp/images/banner/3439.gif',
           alt: '星雲・星団・銀河等の天体撮影を支援するアプリ「Nebula Book」'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/astronomical/telescope/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/astronomical/telescope/',
           img: 'https://shopimg.kitamura.jp/images/banner/1698.jpg',
           alt: '初心者におすすめ 天体望遠鏡の選び方'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/astronomical/telescope-feature/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/astronomical/telescope-feature/',
           img: 'https://shopimg.kitamura.jp/images/banner/2381.jpg',
           alt: '本格的な天体観測・天体撮影に 天体望遠鏡特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/astronomical/moonlook/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/astronomical/moonlook/',
           img: 'https://shopimg.kitamura.jp/images/banner/1306.jpg',
           alt: '天体観測 入門！月を見よう'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/general/summerhomework/moon/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/general/summerhomework/moon/',
           img: 'https://shopimg.kitamura.jp/images/banner/1309.gif',
           alt: '夏休み自由研究特集 【理科】天体観測 ~ 月の写真を撮ってみよう '
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/general/photocon-learn/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/general/photocon-learn/',
           img: 'https://shopimg.kitamura.jp/images/banner/2180.gif',
           alt: 'フォトコンテスト受賞作品から学ぶ'
         },
         {
-          herf: '/special/sale-fair/',
+          href: '/special/sale-fair/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://www.kitamura-print.com/',
+          href: 'https://www.kitamura-print.com/',
           img: 'https://shopimg.kitamura.jp/images/banner/341.jpg',
           alt: '"超高画質プリント'
         }
@@ -630,32 +630,32 @@ export default Vue.extend({
         {
           name: 'オリンパス\nコンパクトカメラ',
           img: 'https://shopimg.kitamura.jp/images/pd/168/80b/fba/c3d/4b0/c3a/4e2/d34/975/ece/99e/eqb/kym/m/TN.jpg',
-          herf: 'https://shop.kitamura.jp/pd/list.html?path=%E3%82%B3%E3%83%B3%E3%83%91%E3%82%AF%E3%83%88%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%AB%E3%83%A1%E3%83%A9%3A%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%A7%E9%81%B8%E3%81%B6%3A%E3%82%AA%E3%83%AA%E3%83%B3%E3%83%91%E3%82%B9&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F'
+          href: 'https://shop.kitamura.jp/pd/list.html?path=%E3%82%B3%E3%83%B3%E3%83%91%E3%82%AF%E3%83%88%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%AB%E3%83%A1%E3%83%A9%3A%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%A7%E9%81%B8%E3%81%B6%3A%E3%82%AA%E3%83%AA%E3%83%B3%E3%83%91%E3%82%B9&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F'
         },
         {
           name: 'オリンパス\nミラーレス一眼',
           img: 'https://shopimg.kitamura.jp/images/pd/227/6c7/30d/011/e11/71e/e74/0ff/509/05d/d6s/9f6/3yz/m/TN.jpg',
-          herf: 'https://shop.kitamura.jp/pd/list.html?path=%E3%83%9F%E3%83%A9%E3%83%BC%E3%83%AC%E3%82%B9%E4%B8%80%E7%9C%BC%3A%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%A7%E9%81%B8%E3%81%B6%3A%E3%82%AA%E3%83%AA%E3%83%B3%E3%83%91%E3%82%B9&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F'
+          href: 'https://shop.kitamura.jp/pd/list.html?path=%E3%83%9F%E3%83%A9%E3%83%BC%E3%83%AC%E3%82%B9%E4%B8%80%E7%9C%BC%3A%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%A7%E9%81%B8%E3%81%B6%3A%E3%82%AA%E3%83%AA%E3%83%B3%E3%83%91%E3%82%B9&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F'
         },
         {
           name: 'ペンタックス\n一眼レフ',
           img: 'https://shopimg.kitamura.jp/images/pd/a6f/e12/d9b/c41/929/ab7/9c0/2b5/34c/a6b/29u/j8k/rdj/x/TN.jpg',
-          herf: 'https://shop.kitamura.jp/pd/list.html?path=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%B8%80%E7%9C%BC%E3%83%AC%E3%83%95%3A%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%A7%E9%81%B8%E3%81%B6%3A%E3%83%9A%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F'
+          href: 'https://shop.kitamura.jp/pd/list.html?path=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%B8%80%E7%9C%BC%E3%83%AC%E3%83%95%3A%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%A7%E9%81%B8%E3%81%B6%3A%E3%83%9A%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F'
         },
         {
           name: 'ソニー アプリ\n対応デジカメ',
           img: 'https://shopimg.kitamura.jp/images/pd/639/964/8bd/3c8/69a/d84/149/47a/f71/50f/d33/e12/f2g/7/TN.jpg',
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/polarie/startrail/'
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/polarie/startrail/'
         },
         {
           name: 'リコー GR III ',
           img: 'https://shopimg.kitamura.jp/images/pd/ed8/0f4/5f1/a63/11b/eea/2b5/46f/d9b/0c6/c60/mzr/7fl/q/TN.jpg',
-          herf: '/ec/pd/4549212300202/'
+          href: '/ec/pd/4549212300202/'
         },
         {
           name: 'リコー RICOH\nTHETA SC2',
           img: 'https://shopimg.kitamura.jp/images/pd/115/f52/39c/aa6/5ea/b53/84d/85c/926/c42/a9v/gvs/a4t/7/TN.jpg',
-          herf: '/ec/pd/4961311947308/'
+          href: '/ec/pd/4961311947308/'
         }
       ],
       starTrailImages: [

@@ -191,10 +191,10 @@ export default Vue.extend({
   data() {
     return {
       naviList: [
-        { naviItem: 'お得情報', herf: '#price' },
-        { naviItem: '機種比較', herf: '#hikaku' },
-        { naviItem: '外観画像', herf: '#images2' },
-        { naviItem: '作例画像', herf: '#images' }
+        { naviItem: 'お得情報', href: '#price' },
+        { naviItem: '機種比較', href: '#hikaku' },
+        { naviItem: '外観画像', href: '#images2' },
+        { naviItem: '作例画像', href: '#images' }
       ],
       characteristicList: [
         {
@@ -221,45 +221,45 @@ export default Vue.extend({
       shashaData: [
         {
           text: 'ハイエンド、ハイブリッド、ハイパフォーマンスの意味を込めた「GH」を冠する同シリーズのカメラは動画撮影に強い「ハイブリット」としての側面が特に注目されているかと思います。今回のGH5IIでも注目すべきは動画性能かと思いますので、動画機として如何に進化しているかについて...',
-          herf: 'https://shasha.kitamura.jp/article/482045857.html',
+          href: 'https://shasha.kitamura.jp/article/482045857.html',
           src: '/ec/images2/special/camera/feature/panasonic/gh5m2/shashabnr2.jpg'
         }
       ],
       shashaData2: [
         {
           text: '前機種のLUMIX GH5の登場から約4年の歳月が流れ、本機では基本性能やプロユースに応える性能の向上に加え、5G環境下のスマホと連携して屋内外さまざまなシーンで無線LIVE配信を可能にするカメラになっているようです。今回はそのLUMIX GH5IIの進化や魅力について、パナソニック株式会社 商品企画担当の中西智紀（なかにしともき）氏にインタビューしました.',
-          herf: 'https://shasha.kitamura.jp/article/481686135.html',
+          href: 'https://shasha.kitamura.jp/article/481686135.html',
           src: '/ec/images2/special/camera/feature/panasonic/gh5m2/shashabnr.jpg'
         }
       ],
       recommendedFeaturesList: [
         {
-          herf: '/special/sale-fair/camera/feature/backnumber/',
+          href: '/special/sale-fair/camera/feature/backnumber/',
           img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
           alt: '話題の新製品バックナンバー'
         },
         {
-          herf: 'https://www.kitamura.jp/service/maintenance/',
+          href: 'https://www.kitamura.jp/service/maintenance/',
           img: 'http://shopimg.kitamura.jp/images/banner/8422.png',
           alt: 'カメラ・レンズ メンテナンスサービス'
         },
         {
-          herf: '/special/sale-fair/',
+          href: '/special/sale-fair/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: '/sitemap/s_credit_01.html',
+          href: '/sitemap/s_credit_01.html',
           img: 'http://shopimg.kitamura.jp/images/banner/1486.gif',
           alt: 'ショッピングクレジット'
         },
         {
-          herf: '/special/sale-fair/general/tokutokukoukan/',
+          href: '/special/sale-fair/general/tokutokukoukan/',
           img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
           alt: 'トクトク交換'
         },
         {
-          herf: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
+          href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }

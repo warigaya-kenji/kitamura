@@ -335,10 +335,10 @@ export default Vue.extend({
   data() {
     return {
       naviList: [
-        { naviItem: 'お得情報', herf: '#price' },
-        { naviItem: '機種比較', herf: '#hikaku' },
-        { naviItem: '特徴スペック', herf: '#spec' },
-        { naviItem: 'fp L 外観', herf: '#images' }
+        { naviItem: 'お得情報', href: '#price' },
+        { naviItem: '機種比較', href: '#hikaku' },
+        { naviItem: '特徴スペック', href: '#spec' },
+        { naviItem: 'fp L 外観', href: '#images' }
       ],
       CharacteristicList: [
         {
@@ -366,28 +366,28 @@ export default Vue.extend({
       ],
       recommendedFeaturesList: [
         {
-          herf: '/special/sale-fair/camera/feature/backnumber/',
+          href: '/special/sale-fair/camera/feature/backnumber/',
           img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
           alt: '話題の新製品バックナンバー'
         },
         {
-          herf: '/special/sale-fair/',
+          href: '/special/sale-fair/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://shop.kitamura.jp/sitemap/s_credit_01.html',
+          href: 'https://shop.kitamura.jp/sitemap/s_credit_01.html',
           img: 'https://shopimg.kitamura.jp/images/banner/1486.gif',
           alt: 'ショッピングクレジット'
         },
 
         {
-          herf: '/special/sale-fair/general/tokutokukoukan/',
+          href: '/special/sale-fair/general/tokutokukoukan/',
           img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
           alt: 'トクトク交換'
         },
         {
-          herf: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
+          href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }

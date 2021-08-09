@@ -15,7 +15,7 @@
           <p class="py-4">女子におすすめミラーレス一眼カメラ</p>
           <v-row class="mb-6">
             <v-col cols="12" sm="4" v-for="(navi, index) in navibtn" :key="navi">
-              <router-link :to="navi.herf">
+              <router-link :to="navi.href">
                 <div class="bk-pnk white--text text-center rounded-lg">
                   <v-img :src="`/ec/images2/special/camera/lensfilter/ic0${index + 1}.png`" max-width="100%" height="auto"></v-img><br />
                   {{ navi.txt }}
@@ -183,55 +183,55 @@ export default Vue.extend({
     return {
       recommendedFeaturesList: [
         {
-          herf: 'https://shop.kitamura.jp/ec/special/camera/bag/',
+          href: 'https://shop.kitamura.jp/ec/special/camera/bag/',
           img: 'https://shopimg.kitamura.jp/images/banner/1155.gif',
           alt: '収納力で選べる！カメラバッグ特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/camera/strap/',
+          href: 'https://shop.kitamura.jp/ec/special/camera/strap/',
           img: 'https://shopimg.kitamura.jp/images/banner/1392.gif',
           alt: 'カメラストラップ特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/camera/dslr/',
+          href: 'https://shop.kitamura.jp/ec/special/camera/dslr/',
           img: 'https://shop.kitamura.jp/images/banner/1350.gif',
           alt: '今人気の一眼レフ＆ミラーレス特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/general/pet/',
+          href: 'https://shop.kitamura.jp/ec/special/general/pet/',
           img: 'https://shopimg.kitamura.jp/images/banner/1878.jpg',
           alt: 'ペット写真のステキな残し方'
         },
         {
-          herf: '/ec/special/general/highly_recommended/2020/4867/',
+          href: '/ec/special/general/highly_recommended/2020/4867/',
           img: 'https://shopimg.kitamura.jp/images/banner/7803.png',
           alt: 'イチオシinstax mini LiPlay'
         },
         {
-          herf: 'https://www.net-chuko.com/static/contents/page/tell_me_chuuban.html',
+          href: 'https://www.net-chuko.com/static/contents/page/tell_me_chuuban.html',
           img: 'https://shopimg.kitamura.jp/images/banner/3498.jpg',
           alt: 'インスタなどSNSで人気！今こそ使いたいフィルムカメラ'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/',
+          href: 'https://shop.kitamura.jp/ec/special/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://shasha.kitamura.jp/',
+          href: 'https://shasha.kitamura.jp/',
           img: 'https://shop.kitamura.jp/images/banner/8235.png',
           alt: 'ShaSha'
         },
         {
-          herf: 'http://www.kitamura-print.com/',
+          href: 'http://www.kitamura-print.com/',
           img: 'https://shopimg.kitamura.jp/images/banner/341.jpg',
           alt: '超高画質プリント'
         }
       ],
       navibtn: [
-        { txt: 'パナソニック LUMIX GF10W ≫', herf: '#caa' },
-        { txt: 'オリンパス PEN E-PL10 ≫', herf: '#cab' },
-        { txt: 'vニコン Nikon1 J5 ≫', herf: '#cac' }
+        { txt: 'パナソニック LUMIX GF10W ≫', href: '#caa' },
+        { txt: 'オリンパス PEN E-PL10 ≫', href: '#cab' },
+        { txt: 'vニコン Nikon1 J5 ≫', href: '#cac' }
       ]
     };
   },

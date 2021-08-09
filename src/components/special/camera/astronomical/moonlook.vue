@@ -134,7 +134,7 @@
             <h3 class="text-h6 font-weight-bold brown--text"><v-icon color="brown">far fa-thumbs-up</v-icon>おすすめの双眼鏡</h3>
             <v-row dense>
               <v-col cols="12" sm="3" v-for="(Binoculars, index) in recommendedBinoculars" :key="`Binoculars-${index}`" class="pa-4">
-                <router-link :to="Binoculars.herf"
+                <router-link :to="Binoculars.href"
                   >{{ Binoculars.name }}<br />
                   <v-img :src="Binoculars.img" max-width="80%" height="auto"></v-img>
                 </router-link>
@@ -144,7 +144,7 @@
                   color="rgba(255,89,0,1)"
                   class="white--text font-weight-bold my-4"
                   height="45"
-                  @click="linkToOtherWindow(Binoculars.herf)"
+                  @click="linkToOtherWindow(Binoculars.href)"
                   >商品を見る<v-icon small class="mx-2">fas fa-chevron-right</v-icon></v-btn
                 >
               </v-col>
@@ -185,53 +185,53 @@ export default Vue.extend({
     return {
       seeNext: false,
       navibtn: [
-        { txt: 'トクトク交換とは', herf: '#caa' },
-        { txt: '5つの特徴', herf: '#cab' },
-        { txt: 'お申し込みの流れ', herf: '#cac' }
+        { txt: 'トクトク交換とは', href: '#caa' },
+        { txt: '5つの特徴', href: '#cab' },
+        { txt: 'お申し込みの流れ', href: '#cac' }
       ],
       recommendedFeaturesList: [
         {
-          herf: 'https://shop.kitamura.jp/ec/special/camera/bag/',
+          href: 'https://shop.kitamura.jp/ec/special/camera/bag/',
           img: 'https://shopimg.kitamura.jp/images/banner/1155.gif',
           alt: '収納力で選べる！カメラバッグ特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/camera/strap/',
+          href: 'https://shop.kitamura.jp/ec/special/camera/strap/',
           img: 'https://shopimg.kitamura.jp/images/banner/1392.gif',
           alt: 'カメラストラップ特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/camera/dslr/',
+          href: 'https://shop.kitamura.jp/ec/special/camera/dslr/',
           img: 'https://shop.kitamura.jp/images/banner/1350.gif',
           alt: '今人気の一眼レフ＆ミラーレス特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/general/pet/',
+          href: 'https://shop.kitamura.jp/ec/special/general/pet/',
           img: 'https://shopimg.kitamura.jp/images/banner/1878.jpg',
           alt: 'ペット写真のステキな残し方'
         },
         {
-          herf: '/ec/special/general/highly_recommended/2020/4867/',
+          href: '/ec/special/general/highly_recommended/2020/4867/',
           img: 'https://shopimg.kitamura.jp/images/banner/7803.png',
           alt: 'イチオシinstax mini LiPlay'
         },
         {
-          herf: 'https://www.net-chuko.com/static/contents/page/tell_me_chuuban.html',
+          href: 'https://www.net-chuko.com/static/contents/page/tell_me_chuuban.html',
           img: 'https://shopimg.kitamura.jp/images/banner/3498.jpg',
           alt: 'インスタなどSNSで人気！今こそ使いたいフィルムカメラ'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/',
+          href: 'https://shop.kitamura.jp/ec/special/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://shasha.kitamura.jp/',
+          href: 'https://shasha.kitamura.jp/',
           img: 'https://shop.kitamura.jp/images/banner/8235.png',
           alt: 'ShaSha'
         },
         {
-          herf: 'http://www.kitamura-print.com/',
+          href: 'http://www.kitamura-print.com/',
           img: 'https://shopimg.kitamura.jp/images/banner/341.jpg',
           alt: '超高画質プリント'
         }
@@ -239,22 +239,22 @@ export default Vue.extend({
       recommendedBinoculars: [
         {
           name: 'ビクセン 19172-7 星座観察用双眼鏡 SG 2.1×42',
-          herf: '/ec/pd/4955295191727',
+          href: '/ec/pd/4955295191727',
           img: 'https://shopimg.kitamura.jp/images/pd/b46/762/e90/3bb/d56/d9f/880/5f1/b4d/bb6/21i/0oe/4ub/q/TN.jpg'
         },
         {
           name: 'ひとみ径 5mm ビクセン双眼鏡',
-          herf: '/ec/list?narrow18=0&keyword=ひとみ径：5&category=%2F&n20c=完了商品は除く&index=&sort=number20,number19,Score&searchbox=1&s1%5B%5D=ビクセン&q=ひとみ径：5&path=%2F',
+          href: '/ec/list?narrow18=0&keyword=ひとみ径：5&category=%2F&n20c=完了商品は除く&index=&sort=number20,number19,Score&searchbox=1&s1%5B%5D=ビクセン&q=ひとみ径：5&path=%2F',
           img: 'https://shopimg.kitamura.jp/images/pd/f69/b7c/265/c94/042/b34/01b/456/f58/5ca/b2b/3ds/nhh/1/TN.jpg'
         },
         {
           name: 'ひとみ径 6mm ビクセン双眼鏡',
-          herf: '/ec/pd/4955295156504',
+          href: '/ec/pd/4955295156504',
           img: 'https://shopimg.kitamura.jp/images/pd/c10/482/306/edb/293/d2a/287/25a/4c9/6af/4bs/u9n/0ru/i/TN.jpg'
         },
         {
           name: 'ひとみ径 7mm ビクセン双眼鏡',
-          herf: '/ec/pd/4955295156207',
+          href: '/ec/pd/4955295156207',
           img: 'https://shopimg.kitamura.jp/images/pd/5fe/1c3/92b/048/45f/213/ff1/e94/583/752/88f/p9d/hch/l/TN.jpg'
         }
       ]

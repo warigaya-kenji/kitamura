@@ -34,7 +34,7 @@
 
         <v-row>
           <v-col cols="4" v-for="navi in navibtn" :key="navi">
-            <v-btn :href="navi.herf" block color="green darken-2" class="white--text pa-2 text-center" height="45px"
+            <v-btn :href="navi.href" block color="green darken-2" class="white--text pa-2 text-center" height="45px"
               ><span class="mx-8">{{ navi.txt }}</span
               ><v-icon small>fas fa-chevron-down</v-icon></v-btn
             >
@@ -219,53 +219,53 @@ export default Vue.extend({
     return {
       seeNext: false,
       navibtn: [
-        { txt: 'トクトク交換とは', herf: '#caa' },
-        { txt: '5つの特徴', herf: '#cab' },
-        { txt: 'お申し込みの流れ', herf: '#cac' }
+        { txt: 'トクトク交換とは', href: '#caa' },
+        { txt: '5つの特徴', href: '#cab' },
+        { txt: 'お申し込みの流れ', href: '#cac' }
       ],
       recommendedFeaturesList: [
         {
-          herf: 'https://shop.kitamura.jp/ec/special/camera/bag/',
+          href: 'https://shop.kitamura.jp/ec/special/camera/bag/',
           img: 'https://shopimg.kitamura.jp/images/banner/1155.gif',
           alt: '収納力で選べる！カメラバッグ特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/camera/strap/',
+          href: 'https://shop.kitamura.jp/ec/special/camera/strap/',
           img: 'https://shopimg.kitamura.jp/images/banner/1392.gif',
           alt: 'カメラストラップ特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/camera/dslr/',
+          href: 'https://shop.kitamura.jp/ec/special/camera/dslr/',
           img: 'https://shop.kitamura.jp/images/banner/1350.gif',
           alt: '今人気の一眼レフ＆ミラーレス特集'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/general/pet/',
+          href: 'https://shop.kitamura.jp/ec/special/general/pet/',
           img: 'https://shopimg.kitamura.jp/images/banner/1878.jpg',
           alt: 'ペット写真のステキな残し方'
         },
         {
-          herf: '/ec/special/general/highly_recommended/2020/4867/',
+          href: '/ec/special/general/highly_recommended/2020/4867/',
           img: 'https://shopimg.kitamura.jp/images/banner/7803.png',
           alt: 'イチオシinstax mini LiPlay'
         },
         {
-          herf: 'https://www.net-chuko.com/static/contents/page/tell_me_chuuban.html',
+          href: 'https://www.net-chuko.com/static/contents/page/tell_me_chuuban.html',
           img: 'https://shopimg.kitamura.jp/images/banner/3498.jpg',
           alt: 'インスタなどSNSで人気！今こそ使いたいフィルムカメラ'
         },
         {
-          herf: 'https://shop.kitamura.jp/ec/special/',
+          href: 'https://shop.kitamura.jp/ec/special/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://shasha.kitamura.jp/',
+          href: 'https://shasha.kitamura.jp/',
           img: 'https://shop.kitamura.jp/images/banner/8235.png',
           alt: 'ShaSha'
         },
         {
-          herf: 'http://www.kitamura-print.com/',
+          href: 'http://www.kitamura-print.com/',
           img: 'https://shopimg.kitamura.jp/images/banner/341.jpg',
           alt: '超高画質プリント'
         }

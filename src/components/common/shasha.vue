@@ -1,20 +1,27 @@
 <template>
-  <div class="product-shasha mb-5 float-left">
-    <v-card class="product-shasha-wrap pa-4" outlined>
-      <v-card-text class="black--text">
-        {{ shashaData.text
-        }}<a class="product-shasha-link" :href="shashaData.herf" target="_blank"
-          >続きを読む <img :src="shashaData.src" alt="イメージ" class="product-shasha-img mt-4"
-        /></a>
-      </v-card-text>
-    </v-card>
+  <div>
+    <div class="product-shasha mb-5">
+      <v-card class="product-shasha-wrap pa-4 float-left line-height" outlined>
+        {{ txt }}<a class="product-shasha-link" :href="href" target="_blank">続きを読む <img :src="src" alt="イメージ" class="product-shasha-img mt-4" /></a>
+      </v-card>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'shasha',
-  props: ['shashaData']
+  props: {
+    txt: {
+      type: String,
+    },
+    href: {
+      type: String,
+    },
+    src: {
+      type: String
+    }
+  }
 };
 </script>
 
@@ -22,6 +29,8 @@ export default {
 .product-shasha {
   &-wrap {
     background: #f8fbd1;
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
   &-link:hover {
     img {

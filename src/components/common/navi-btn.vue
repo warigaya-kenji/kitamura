@@ -3,7 +3,7 @@
     <v-row>
       <v-col :cols="cols" v-for="(navi, index) in naviList" :key="`navi-${index}`">
         <v-hover v-slot="{ hover }">
-          <v-btn block :height="height" :href="navi.herf" :elevation="hover ? 12 : 2" :color="hover ? backgroundColor : 'black'"
+          <v-btn block :height="height" :href="navi.href" :elevation="hover ? 12 : 2" :color="hover ? backgroundColor : 'black'"
             ><span class="v-btn-text-color text-h6">{{ navi.naviItem }}</span></v-btn
           >
         </v-hover>

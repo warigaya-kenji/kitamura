@@ -330,10 +330,10 @@ export default Vue.extend({
     return {
       test: '',
       naviList: [
-        { naviItem: 'お得情報', herf: '#price' },
-        { naviItem: '機種比較', herf: '#hikaku' },
-        { naviItem: '外観画像', herf: '#images2' },
-        { naviItem: '作例画像', herf: '#images' }
+        { naviItem: 'お得情報', href: '#price' },
+        { naviItem: '機種比較', href: '#hikaku' },
+        { naviItem: '外観画像', href: '#images2' },
+        { naviItem: '作例画像', href: '#images' }
       ],
       characteristicList: [
         {
@@ -362,33 +362,33 @@ export default Vue.extend({
       shashaData: [
         {
           text: '2013年に発売されたPENのフラグシップ機E-P5の後継なのかと思われるが、デザインやサイズ感を見るとE-PLシリーズに近い。そして、PEN-Fに搭載されていたモノクロプロファイル、カラープロファイルを搭載している。まさに、E-Pシリーズの高級感と、E-PLシリーズの手軽さと、PEN-Fの表現力を...',
-          herf: 'https://shasha.kitamura.jp/article/482049434.html',
+          href: 'https://shasha.kitamura.jp/article/482049434.html',
           src: '/ec/images2/special/camera/feature/olympus/pen-e-p7/shashabnr.jpg'
         }
       ],
       recommendedFeaturesList: [
         {
-          herf: '/special/sale-fair/camera/feature/backnumber/',
+          href: '/special/sale-fair/camera/feature/backnumber/',
           img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
           alt: '話題の新製品バックナンバー'
         },
         {
-          herf: '/special/sale-fair/',
+          href: '/special/sale-fair/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://www.kitamura.jp/service/maintenance/',
+          href: 'https://www.kitamura.jp/service/maintenance/',
           img: 'http://shopimg.kitamura.jp/images/banner/8422.png',
           alt: 'カメラメンテナンスサービス'
         },
         {
-          herf: '/special/sale-fair/general/tokutokukoukan/',
+          href: '/special/sale-fair/general/tokutokukoukan/',
           img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
           alt: 'トクトク交換'
         },
         {
-          herf: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
+          href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }

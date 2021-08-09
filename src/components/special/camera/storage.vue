@@ -35,7 +35,7 @@
         <v-container>
           <v-row class="mb-8">
             <v-col v-for="(moistureProof, index) in toyoMoistureProofList" :key="moistureProof" cols="3" class="bd-r01">
-              <a :href="moistureProof.herf">
+              <a :href="moistureProof.href">
                 {{ moistureProof.text }}<br />
                 <img :src="`/ec/images2/special/camera/storage/toyo-0${index + 1}.png`" />
               </a>
@@ -58,7 +58,7 @@
         <v-container>
           <v-row class="mb-8">
             <v-col v-for="(moistureProof, index) in toriMoistureProofList" :key="moistureProof" cols="3" class="bd-r01">
-              <a :href="moistureProof.herf">
+              <a :href="moistureProof.href">
                 {{ moistureProof.text }}<br />
                 <img :src="`/ec/images2/special/camera/storage/tori-0${index + 1}.png`" />
               </a>
@@ -81,7 +81,7 @@
         <v-container class="mb-8">
           <v-row class="mb-8">
             <v-col v-for="(moistureProof, index) in hakubaMoistureProofList" :key="moistureProof" cols="3" class="bd-r01">
-              <a :href="moistureProof.herf">
+              <a :href="moistureProof.href">
                 {{ moistureProof.text }}<br />
                 <img :src="`/ec/images2/special/camera/storage/haku-0${index + 1}.png`" />
               </a>
@@ -340,29 +340,29 @@ export default Vue.extend({
   data() {
     return {
       naviList: [
-        { naviItem: 'おすすめ\n防湿庫', herf: '#04' },
-        { naviItem: '防湿庫の\n選び方', herf: '#02' },
-        { naviItem: '防湿庫の\n収納目安', herf: '#03' },
-        { naviItem: 'おすすめ\nお手入れ用品', herf: '#05' },
-        { naviItem: '防湿庫の\n必要性', herf: '#01' }
+        { naviItem: 'おすすめ\n防湿庫', href: '#04' },
+        { naviItem: '防湿庫の\n選び方', href: '#02' },
+        { naviItem: '防湿庫の\n収納目安', href: '#03' },
+        { naviItem: 'おすすめ\nお手入れ用品', href: '#05' },
+        { naviItem: '防湿庫の\n必要性', href: '#01' }
       ],
       toyoMoistureProofList: [
-        { text: '東洋リビング ED-55CAT(BW) 防湿庫 ブラック＆ホワイト', herf: '/ec/pd/4945931015050' },
-        { text: '東洋リビング ED-80CATP2(B) オートクリーンドライ防湿庫', herf: '/ec/pd/4945931019010' },
-        { text: '東洋リビング ED-120CATP2(B) オートクリーンドライ防湿庫', herf: '/ec/pd/4945931019027' },
-        { text: '東洋リビング ED-165CATP2（B） オートクリーンドライ防湿庫', herf: '/ec/pd/4945931019041' }
+        { text: '東洋リビング ED-55CAT(BW) 防湿庫 ブラック＆ホワイト', href: '/ec/pd/4945931015050' },
+        { text: '東洋リビング ED-80CATP2(B) オートクリーンドライ防湿庫', href: '/ec/pd/4945931019010' },
+        { text: '東洋リビング ED-120CATP2(B) オートクリーンドライ防湿庫', href: '/ec/pd/4945931019027' },
+        { text: '東洋リビング ED-165CATP2（B） オートクリーンドライ防湿庫', href: '/ec/pd/4945931019041' }
       ],
       toriMoistureProofList: [
-        { text: 'トーリ・ハン NT-33-MIII ドライ・キャビ', herf: '/ec/pd/4930381440088' },
-        { text: 'トーリ・ハン NT-83-MIII ドライ・キャビ', herf: '/ec/pd/4930381440095' },
-        { text: 'トーリ・ハン NT-103-MIII ドライ・キャビ', herf: '/ec/pd/4930381440101' },
-        { text: 'トーリ・ハン PH-110 ドライ・キャビ', herf: '/ec/pd/4930381440033' }
+        { text: 'トーリ・ハン NT-33-MIII ドライ・キャビ', href: '/ec/pd/4930381440088' },
+        { text: 'トーリ・ハン NT-83-MIII ドライ・キャビ', href: '/ec/pd/4930381440095' },
+        { text: 'トーリ・ハン NT-103-MIII ドライ・キャビ', href: '/ec/pd/4930381440101' },
+        { text: 'トーリ・ハン PH-110 ドライ・キャビ', href: '/ec/pd/4930381440033' }
       ],
       hakubaMoistureProofList: [
-        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 25L', herf: '/ec/pd/4977187403503' },
-        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 40L', herf: '/ec/pd/4977187403510' },
-        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 60L', herf: '/ec/pd/4977187403527' },
-        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 100L', herf: '/ec/pd/4977187403534' }
+        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 25L', href: '/ec/pd/4977187403503' },
+        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 40L', href: '/ec/pd/4977187403510' },
+        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 60L', href: '/ec/pd/4977187403527' },
+        { text: 'ハクバ KED-25 電子制御式防湿庫 E-ドライボックス 100L', href: '/ec/pd/4977187403534' }
       ],
       storageCapacityList: [
         { amount: '50L以下', type: '（小型）', criterion: '一眼カメラが4～5台、レンズ数本が目安。\nギナーさん向け' },
@@ -371,32 +371,32 @@ export default Vue.extend({
       ],
       recommendedFeaturesList: [
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/general/tuyutaisaku/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/general/tuyutaisaku/',
           img: 'https://shopimg.kitamura.jp/images/banner/5422.png',
           alt: '梅雨対策特集'
         },
         {
-          herf: '/special/sale-fair/camera/bag/trial/',
+          href: '/special/sale-fair/camera/bag/trial/',
           img: 'https://shopimg.kitamura.jp/images/banner/1437.jpg',
           alt: 'カメラバッグトライアルサービス'
         },
         {
-          herf: '/special/sale-fair/camera/bag/',
+          href: '/special/sale-fair/camera/bag/',
           img: 'https://shopimg.kitamura.jp/images/banner/1155.gif',
           alt: 'カメラバッグ・カメラケース特集'
         },
         {
-          herf: '/special/sale-fair/sale/lotbuying/',
+          href: '/special/sale-fair/sale/lotbuying/',
           img: 'https://shopimg.kitamura.jp/images/banner/3773.gif',
           alt: 'まとめ買いコーナー'
         },
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: 'https://www.kitamura-print.com/',
+          href: 'https://www.kitamura-print.com/',
           img: 'https://shopimg.kitamura.jp/images/banner/341.jpg',
           alt: '超高画質プリント'
         }

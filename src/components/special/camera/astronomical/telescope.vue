@@ -392,25 +392,25 @@ export default Vue.extend({
   data() {
     return {
       naviList: [
-        { naviItem: '天体望遠鏡の\n種類 ', herf: '#select' },
-        { naviItem: 'おすすめの\n天体望遠鏡 ', herf: '#pickup' },
-        { naviItem: '月や惑星の\n見え方', herf: '#magnification' },
-        { naviItem: '天体望遠鏡\n価格一覧 ', herf: '#list' },
-        { naviItem: '関連おすすめ\n特集一覧', herf: '#tokusyu' }
+        { naviItem: '天体望遠鏡の\n種類 ', href: '#select' },
+        { naviItem: 'おすすめの\n天体望遠鏡 ', href: '#pickup' },
+        { naviItem: '月や惑星の\n見え方', href: '#magnification' },
+        { naviItem: '天体望遠鏡\n価格一覧 ', href: '#list' },
+        { naviItem: '関連おすすめ\n特集一覧', href: '#tokusyu' }
       ],
       recommendedFeaturesList: [
         {
-          herf: 'https://shop.kitamura.jp/special/sale-fair/camera/hosizora/',
+          href: 'https://shop.kitamura.jp/special/sale-fair/camera/hosizora/',
           img: 'https://shopimg.kitamura.jp/images/banner/5032.png',
           alt: '星空総合ページ'
         },
         {
-          herf: 'https://www.vixen.co.jp/app/nebulabook/',
+          href: 'https://www.vixen.co.jp/app/nebulabook/',
           img: 'https://shopimg.kitamura.jp/images/banner/3439.gif',
           alt: '星雲・星団・銀河等の天体撮影を支援するアプリ「Nebula Book」'
         },
         {
-          herf: 'https://www.vixen.co.jp/app/planet-book/',
+          href: 'https://www.vixen.co.jp/app/planet-book/',
           img: '/ec/images2/special/camera/astronomical/telescope/bnr_planetbook350-130.jpg',
           alt: '惑星の方角を調べるアプリ「Planet Book」'
         }

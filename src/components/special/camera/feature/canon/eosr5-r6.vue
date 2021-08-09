@@ -8,6 +8,7 @@
 
         <!-- ↓url copy -->
         <urlcopy :url="'https://shop.kitamura.jp/special/sale-fair/camera/feature/fujifilm/xf18mmf14-r-lm-wr/'" />
+        <!-- ↑url copy -->
 
         <!-- ↓top image -->
         <topTitleImg
@@ -16,6 +17,7 @@
           :topTitle="'キヤノン'"
           :topTitleText="'EOS初のボディー内5軸手ブレ補正搭載\n新CMOSセンサーと新映像エンジンを採用したフルサイズミラーレス'"
         />
+        <!-- ↑top image -->
 
         <p class="red darken-4 text-center mb-2">
           <span class="white--text text-h6 font-weight-bold">キャノン EOS R5 キャノン EOS R6 好評発売中</span>
@@ -36,8 +38,7 @@
         <subText :textItem="'世界最高8.0段の手ブレ補正による快適な撮影を実現した次世代「EOS R」'" />
         <subText :textItem="'キヤノン EOS R5 / EOS R6 / EOS R6レンズキット 価格・ご購入'" />
 
-        <!--====== キヤノン EOS R5 ======-->
-        <!--====== キヤノン EOS R6 ======-->
+        <!--====== 価格・ご購入 ======-->
         <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(mainProduct, index) in mainProductList" :key="`first-${index}`">
           <v-container>
             <v-row>
@@ -88,18 +89,7 @@
 
         <!--動画で見る-->
         <subText :textItem="'動画で見る キヤノン EOS R5！'" />
-        <div class="product-video-wrap text-center mb-6">
-          <div class="">
-            <iframe
-              width="70%"
-              height="315"
-              src="https://www.youtube.com/embed/AxJYDPGlcvw?rel=0"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
+        <watchInVideo :src="'https://www.youtube.com/embed/AxJYDPGlcvw?rel=0'" :width="'70%'" :height="315" />
 
         <!--特徴-->
         <div class="contents_inner" id="point">
@@ -372,55 +362,20 @@
 
         <!-- ↓ ShaSha -->
         <subText :textItem="'ShaSha:キヤノン EOS R5｜航空写真家がスチル＆ムービーで徹底レビュー'" />
-        <div class="product-shasha mb-5 float-left">
-          <v-card color="#f8fbd1" class="pa-4 sen-gl">
-            <v-card-text class="black--text">
-              キヤノンのミラーレス一眼 EOS R5は人気のデジタル一眼レフカメラ、EOS
-              5Dシリーズの流れを汲んだ高画素機。「5」というと三脚にガッツリとカメラを据え付けじっくりと風景写真を撮る…というイメージもありましたが、今回のEOS
-              R5はシャッターの秒間コマ数や手ブレ補正の段数などの秀逸さを見ても、かなり動きモノに対応してきたなという印象を持ちました。
-              <br />そこで、動きモノである飛行機撮影においてEOS R5を徹底インプレッション。スチルだけでなくムービーについても、その劇的な...<a
-                class="product-shasha-link"
-                href="https://shasha.kitamura.jp/article/478121231.html"
-                target="_blank"
-                >続きを読む
-                <v-img src="@/assets/special/img/sample1/shashabnr4.jpg" max-width="100%" height="auto" alt="イメージ" class="product-shasha-img mt-4"
-              /></a>
-            </v-card-text>
-          </v-card>
-        </div>
+        <shasha
+          :txt="'キヤノンのミラーレス一眼 EOS R5は人気のデジタル一眼レフカメラ、EOS 5Dシリーズの流れを汲んだ高画素機。「5」というと三脚にガッツリとカメラを据え付けじっくりと風景写真を撮る…というイメージもありましたが、今回のEOS R5はシャッターの秒間コマ数や手ブレ補正の段数などの秀逸さを見ても、かなり動きモノに対応してきたなという印象を持ちました。そこで、動きモノである飛行機撮影においてEOS R5を徹底インプレッション。スチルだけでなくムービーについても、その劇的な...'"
+          :href="'https://shasha.kitamura.jp/article/478121231.html'"
+          :src="'/ec/images2/special/camera/feature/canon/eosr5_r6/shashabnr.jpg'"
+        />
         <!-- ↑ ShaSha -->
 
         <!-- ↓ 価格・人気アクセサリー -->
         <subText :textItem="'キヤノン EOS R5 / EOS R6 価格・人気アクセサリー'" />
         <priceAndPopular :productDetailList="productDetailList" />
 
+        <!-- ↓ 高値下取りー -->
         <subText :textItem="'キヤノン EOS R5 / EOS R6 ご購入時、高値下取り実施中！'" id="price" />
-        <v-container class="mb-5">
-          <v-row>
-            <v-col class="text-center" cols="4">
-              <a
-                href="https://www.net-chuko.com/sell/item-list.do?axisType=category&axisCond=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%B8%80%E7%9C%BC%E3%83%AC%E3%83%95&goodsname=4549292075748&_ga=2.222765533.714669828.1626591933-721903692.1626267770&pattern=1"
-                target="_blank"
-                ><img src="https://shopimg.kitamura.jp/images/pd/e6a/566/223/13d/322/7d3/e9e/d4c/92d/3ba/b4d/q99/qon/e/L.jpg" class="hover" width="80%"
-              /></a>
-              <br />
-              キヤノン EOS 5D Mark IV ボディ
-            </v-col>
-            <v-col col="6" class="mt-2">
-              <p>
-                今なら、キヤノン EOS R5 / EOS R6をご購入時、 <br />・<v-btn
-                  href="https://www.net-chuko.com/sell/item-list.do?axisType=category&axisCond=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%B8%80%E7%9C%BC%E3%83%AC%E3%83%95&goodsname=4549292075748&_ga=2.195977450.714669828.1626591933-721903692.1626267770&pattern=1"
-                  text
-                  color="#1122cc"
-                  min-height="20"
-                  class="x-small align-center py-1 px-2"
-                  >キヤノン EOS 5D Mark IV ボディ</v-btn
-                >で下取り実施中です
-              </p>
-              <img src="/ec/images2/special/camera/feature/canon/eosr5_r6/bnr_shitadori_350-130.jpg" alt="高値下取り実施中" class="hover" @error="noimage" />
-            </v-col>
-          </v-row>
-        </v-container>
+        <expensiveTradeIn :expensiveTradeInList="expensiveTradeInList" />
 
         <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
         <v-row class="mb-10">
@@ -487,7 +442,10 @@ import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import SubText from '@/components/common/subtext.vue';
 import NaviBtn from '@/components/common/navi-btn.vue';
+import WatchInVideo from '@/components/common/special/watch-in-video.vue';
 import Characteristic from '@/components/common/characteristic.vue';
+import ShaSha from '@/components/common/shasha.vue';
+import ExpensiveTradeIn from '@/components/common/special/expensive-trade-in.vue';
 import PriceAndPopular from '@/components/common/price-and-popular.vue';
 import ContingencyTable from '@/components/common/contingency-table.vue';
 import KitamuraService from '@/components/common/kitamura-service.vue';
@@ -501,7 +459,10 @@ export default Vue.extend({
     topTitleImg: TopTitleImg,
     urlcopy: Urlcopy,
     subText: SubText,
+    watchInVideo: WatchInVideo,
     characteristic: Characteristic,
+    shasha: ShaSha,
+    expensiveTradeIn: ExpensiveTradeIn,
     priceAndPopular: PriceAndPopular,
     contingencyTable: ContingencyTable,
     kitamuraService: KitamuraService,
@@ -510,13 +471,19 @@ export default Vue.extend({
     recommendedFeatures: RecommendedFeatures,
     naviBtn: NaviBtn
   },
-  data() {
-    return {
+  methods: {
+    linkToOtherWindow(url: string | undefined) {
+      window.open(url, '_blank');
+    }
+  },
+  props: {},
+  setup: (props, context) => {
+    const state = reactive({
       naviList: [
-        { naviItem: '特徴スペック', herf: '#point' },
-        { naviItem: '機種比較', herf: '#hikaku' },
-        { naviItem: 'お得情報', herf: '#price' },
-        { naviItem: '作例', herf: '#images' }
+        { naviItem: '特徴スペック', href: '#point' },
+        { naviItem: '機種比較', href: '#hikaku' },
+        { naviItem: 'お得情報', href: '#price' },
+        { naviItem: '作例', href: '#images' }
       ],
       commonCharacteristicList: [
         {
@@ -586,48 +553,45 @@ export default Vue.extend({
           ]
         }
       ],
+      expensiveTradeInList: {
+        name: 'キヤノン EOS 5D Mark IV ボディ',
+        href: 'https://www.net-chuko.com/sell/item-list.do?axisType=category&axisCond=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%B8%80%E7%9C%BC%E3%83%AC%E3%83%95&goodsname=4549292075748&_ga=2.222765533.714669828.1626591933-721903692.1626267770&pattern=1',
+        nameImg: 'https://shopimg.kitamura.jp/images/pd/e6a/566/223/13d/322/7d3/e9e/d4c/92d/3ba/b4d/q99/qon/e/L.jpg',
+        txt: 'キヤノン EOS R5 / EOS R6',
+        tradeInImg: 'https://shop.kitamura.jp/ts_rsc/1354/images/bnr_shitadori_350-130.jpg',
+      },
       recommendedFeaturesList: [
         {
-          herf: '/special/sale-fair/camera/feature/backnumber/',
+          href: '/special/sale-fair/camera/feature/backnumber/',
           img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
           alt: '話題の新製品バックナンバー'
         },
         {
-          herf: '/special/sale-fair/general/highly_recommended/2020/4722/',
+          href: '/special/sale-fair/general/highly_recommended/2020/4722/',
           img: 'https://shopimg.kitamura.jp/images/banner/7619.png',
           alt: 'スタッフイチオシ！キヤノン RF70-200mm F2.8 L IS USM'
         },
         {
-          herf: '/special/sale-fair/',
+          href: '/special/sale-fair/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          herf: '/special/sale-fair/sale/shoppingcredit-campaign/',
+          href: '/special/sale-fair/sale/shoppingcredit-campaign/',
           img: 'https://shopimg.kitamura.jp/images/banner/4847.jpg',
           alt: '60回無金利 ショッピングクレジット'
         },
         {
-          herf: '/special/sale-fair/general/tokutokukoukan/',
+          href: '/special/sale-fair/general/tokutokukoukan/',
           img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
           alt: 'トクトク交換'
         },
         {
-          herf: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
+          href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }
-      ]
-    };
-  },
-  methods: {
-    linkToOtherWindow(url: string | undefined) {
-      window.open(url, '_blank');
-    }
-  },
-  props: {},
-  setup: (props, context) => {
-    const state = reactive({
+      ],
       breadcrumbs: [
         {
           path: 'ネットショップ',
