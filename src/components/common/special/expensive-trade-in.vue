@@ -31,7 +31,9 @@
           を買取査定額より<span class="text-h4 red--text">20％UP</span>で下取り実施中です<br />
           ※店頭買取のみが対象です
         </div>
-        <img :src="expensiveTradeInList.tradeInImg" alt="高値下取り実施中" class="hover" />
+        <a :href="expensiveTradeInList.href" target="_blank">
+          <img :src="expensiveTradeInList.tradeInImg" alt="高値下取り実施中" class="hover" />
+        </a>
       </v-col>
     </v-row>
   </v-container>

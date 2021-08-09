@@ -5,8 +5,18 @@
         <!-- ↓パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
 
-        <!-- ↓ サンプル：画像の読み込み -->
-        <img class="mb-5" src="/ec/images2/special/camera/feature/nikon/zfc/bg_top.jpg" @error="noimage" />
+        <!-- ↓url copy -->
+        <urlcopy :url="'https://shop.kitamura.jp/ec/special/camera/feature/canon/eosr5_r6/'" />
+        <!-- ↑url copy -->
+
+        <!-- ↓top image -->
+        <topTitleImg
+          :pcBackgroundImg="'/ec/images2/special/camera/feature/nikon/zfc/bg_top.jpg'"
+          :spBackgroundImg="'/ec/images2/special/camera/feature/nikon/zfc/sp_img_top.jpg'"
+          :topTitle="'ニコン Z fc'"
+          :topTitleText="'ニコンの伝統的なデザインを身にまとったクラシックデザインミラーレス一眼'"
+        />
+        <!-- ↑top image -->
 
         <div class="red darken-4 text-center mb-2">
           <span class="white--text text-h5 font-weight-bold"
@@ -14,153 +24,67 @@
           >
         </div>
 
-        <div class="darken-2 text-left">
-          <span>ニコン Z fc</span>
-        </div>
-
         <!-- ↓ ナビボタン -->
-        <naviBtn :naviList="naviList" />
+        <p class="darken-2 text-left mb-0">ニコン Z fc</p>
+        <naviBtn :naviList="naviList" :backgroundColor="'yellow'" />
         <!-- ↑ ナビボタン -->
 
         <div class="text-right">
-          <v-btn href="camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
+          <v-btn href="camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in main-contents-wrap-btn mb-8"
+            >≫ 話題の新製品バックナンバー</v-btn
+          >
         </div>
 
         <subText :textItem="'撮っている時間も持っている時間も楽しくなるクラシックデザインミラーレスカメラ「Z fc」'" />
-        <p class="caption">多くの人々に愛されたニコンFM2にインスパイアされた、精緻に作り込まれた外観デザインを身にまとったDXフォーマットミラーレスカメラ</p>
+        <p class="text-subtitle-2">
+          多くの人々に愛されたニコンFM2にインスパイアされた、精緻に作り込まれた外観デザインを身にまとったDXフォーマットミラーレスカメラ
+        </p>
 
+        <!--====== 価格・ご購入 ======-->
         <subText :textItem="'ニコン Z fc 価格・ご購入'" />
+        <priceAndPurchase :mainProductList="mainProductList" />
 
-        <!--====== ニコン Z fc ボディ ======-->
-        <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in mainProductList" :key="product">
-          <v-container>
-            <v-row>
-              <v-col class="text-center" cols="12" sm="5">
-                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr" /></router-link>
-                <p>
-                  <a :href="`/ec/pd/${product.janCode}`">{{ product.itemName }}</a>
-                </p>
-              </v-col>
-              <v-col class="text-center mt-4" cols="12" sm="6">
-                <p class="text-h6">
-                  価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
-                </p>
-                <v-btn
-                  elevation="3"
-                  x-large
-                  dark
-                  color="orange lighten-1"
-                  class="text-h5 font-weight-bold accent-4"
-                  height="55px"
-                  width="65%"
-                  :href="`/ec/pd/${product.janCode}`"
-                >
-                  <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
-                  ご購入はこちら
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
-        <a href="https://www.nikon-image.com/event/campaign/zfc_premiumexterior/">
-          <img src="https://shopimg.kitamura.jp/images/banner/8504.jpg" />
-        </a>
+        <v-row>
+          <v-col cols="12">
+            <a href="https://www.nikon-image.com/event/campaign/zfc_premiumexterior/">
+              <v-img src="https://shopimg.kitamura.jp/images/banner/8504.jpg" max-width="100%" height="auto" class="hover" alt="キャンペーン" />
+            </a>
+          </v-col>
+        </v-row>
 
         <!--====== 高価下取り ======-->
         <subText :textItem="'ニコン Z fc 28mm f/2.8 Special Edition キット ご購入時、高価下取り実施中！'" />
-
-        <v-container class="credit mt-2 mb-4 float-left">
-          <v-row>
-            <v-col class="text-center" cols="12" sm="5">
-              <a href="https://www.net-chuko.com/sell/item-list.do?goodsname=4960759141002&pattern=1">
-                <img src="https://shopimg.kitamura.jp/images/pd/bb7/625/a35/d8f/953/5c6/1a5/27e/9b7/e04/f9e/7wu/vmp/d/M.jpg" width="70%"
-              /></a>
-              <p>
-                <a href="https://www.net-chuko.com/sell/item-list.do?goodsname=4960759141002&pattern=1">ニコン Df ボディ</a>
-              </p>
-            </v-col>
-            <v-col class="text-center mt-4" cols="12" sm="7">
-              <p class="ma-0 pa-0 text-left font-small">
-                ニコン Z fc 28mm f/2.8 Special Edition キット をご購入時、<br />
-                <a href="https://www.net-chuko.com/sell/item-list.do?goodsname=4960759141002&pattern=1" target="_blank">・ニコン Df ボディ</a><br />
-                <a href="https://www.net-chuko.com/sell/item-list.do?goodsname=4960759903617&pattern=1" target="_blank">・ニコン Z 50 ボディD</a><br />
-                <a href="https://www.net-chuko.com/sell/item-list.do?goodsname=4960759146441&pattern=1" target="_blank">・ニコン D500 ボディ</a><br />
-                <a href="https://www.net-chuko.com/sell/item-list.do?goodsname=4960759149084&pattern=1" target="_blank">・ニコン D7500 ボディ</a><br />
-                <a href="https://www.net-chuko.com/sell/item-list.do?goodsname=4960759145604&pattern=1" target="_blank">・ニコン D7200 ボディ</a><br />
-                を買取査定額より<b
-                  ><font color="#bf1a20"><font size="+2">20％UP</font></font></b
-                >で下取り実施中です<br />
-                ※店頭買取のみが対象です
-              </p>
-              <a href="https://www.net-chuko.com/sell/item-list.do?goodsname=4960759141002&pattern=1">
-                <img src="/ec/images2/special/camera/feature/nikon/zfc/bnr_shitadori_350-130" alt="高値下取り実施中" @error="noimage" />
-              </a>
-              <p></p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <expensiveTradeIn :expensiveTradeInList="expensiveTradeInList" />
         <!--====== 高価下取り ======-->
 
-        <subText :textItem="'キタムラなら48回まで分割金利手数料0円！'" />
-        <v-row class="mb-10">
-          <v-col class="text-center" cols="4">
-            <a href="ec/pd/4960759906311"
-              ><img src="//shopimg.kitamura.jp/images/pd/a7b/80f/e63/346/a73/53a/3a7/2e5/cb0/55c/e95/g52/57m/2/M.jpg" width="80%"
-            /></a>
-            <br />
-            <a href="ec/pd/4960759906311">ニコン Z fc ボディ</a><br /><span class="red--text">{{}}</span>円(税込)
-          </v-col>
-          <v-col col="6">
-            <p>
-              分割払いなら一度にかかるご負担を軽減する事ができます。<br />
-              ショッピングクレジットの分割払いなら、最大48回分割払いまで分割金利手数料を当店が負担致します。
-            </p>
-            <font size="-1">※2021年7月1日時点の価格です</font>
-            <splitContent :numberOfTimes="'36'" :amount="'3,245'" :commission="'0'" />
-          </v-col>
-        </v-row>
+        <!-- ↓ 42回まで分割ー -->
+        <subText :textItem="'キタムラなら42回まで分割金利手数料0円！'" />
+        <splitContent
+          v-if="productDetailList.length !== 0"
+          :ProductList="mainProductList[0]"
+          :numberOfTimes="'36'"
+          :amount="'3,245'"
+          :targetDate="'2021年7月1日'"
+        />
 
-        <v-row class="mb-10">
-          <v-col class="text-center" cols="4">
-            <a href="ec/pd/4960759906335"
-              ><img src="//shopimg.kitamura.jp/images/pd/ef5/034/215/d4e/e54/ad6/c8d/fbf/065/9ff/c88/9qe/7n1/l/M.jpg" width="80%"
-            /></a>
-            <br />
-            <a href="ec/pd/4960759906335">ニコン Z fc 16-50 VR SLレンズキット</a><br /><span class="red--text">{{}}</span>円(税込)
-          </v-col>
-          <v-col col="6">
-            <font size="-1">※2021年7月1日時点の価格です</font>
-            <splitContent :numberOfTimes="'42'" :amount="'3,206'" :commission="'0'" />
-          </v-col>
-        </v-row>
+        <splitContent
+          v-if="productDetailList.length !== 0"
+          :ProductList="mainProductList[1]"
+          :numberOfTimes="'42'"
+          :amount="'3,206'"
+          :targetDate="'2021年7月1日'"
+          :isText="false"
+        />
 
-        <v-row class="mb-10">
-          <v-col class="text-center" cols="4">
-            <a href="ec/pd/4960759906328"
-              ><img src="//shopimg.kitamura.jp/images/pd/618/afd/c16/e2f/37c/450/60b/b22/0f3/058/d00/1ft/31q/r/M.jpg" width="80%"
-            /></a>
-            <br />
-            <a href="ec/pd/4960759906328">ニコン Z fc 28mm f/2.8 Special Edition キット</a><br /><span class="red--text">{{}}</span>円(税込)
-          </v-col>
-          <v-col col="6">
-            <font size="-1">※2021年7月1日時点の価格です</font>
-            <splitContent :numberOfTimes="'42'" :amount="'3,418'" :commission="'0'" />
-            <div class="text-center">
-              <v-btn
-                elevation="3"
-                x-large
-                dark
-                color="red"
-                class="accent-4"
-                height="40px"
-                width="85%"
-                :href="`https://shop.kitamura.jp/sitemap/s_credit_01.html`"
-              >
-                ショッピングクレジットについて詳細はこちら
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row>
+        <splitContent
+          v-if="productDetailList.length !== 0"
+          :ProductList="mainProductList[2]"
+          :numberOfTimes="'42'"
+          :amount="'3,418'"
+          :targetDate="'2021年7月1日'"
+          :isText="false"
+          :isCreditBtn="true"
+        />
 
         <!--比較-->
         <subText :textItem="'ニコン Z fc/ Z 50 / オリンパス PEN E-P7 / フジフイルム X-S10'" id="hikaku" />
@@ -170,10 +94,7 @@
             <tbody>
               <tr>
                 <th>商品名</th>
-                <td>ニコン Z fc</td>
-                <td>ニコン Z 50</td>
-                <td>オリンパス PEN E-P7</td>
-                <td>フジフイルム X-S10</td>
+                <td v-for="(product, index) in comparisonDetailList" :key="`second-${index}`">{{ product.itemName }}</td>
               </tr>
               <tr>
                 <th>発売日</th>
@@ -184,10 +105,10 @@
               </tr>
               <tr>
                 <th>価格</th>
-                <td class="price red--text">&yen;116,820<span class="tx-10p">（税込）</span></td>
-                <td class="price red--text">&yen;104,670<span class="tx-10p">（税込）</span></td>
-                <td class="price red--text">&yen;84,150<span class="tx-10p">（税込）</span></td>
-                <td class="price red--text">&yen;117,594<span class="tx-10p">（税込）</span></td>
+                <td v-for="(product, index) in comparisonDetailList" :key="`third-${index}`">
+                  <span class="primary--text font-weight-bold">¥{{ formatPrice(parseInt(product.price)) }}</span
+                  >（税込）
+                </td>
               </tr>
               <tr>
                 <th>有効画素数</th>
@@ -286,9 +207,16 @@
         <!--比較-->
 
         <div class="col-sm-12 text-center float-left pa-4 mt-10">
-          <v-btn elevation="3" class="black darken-4 white--text" height="70px" width="50%" :href="`https://www.nikon-image.com/sp/zfc/`"
-            >ニコン Z fc<br />メーカーサイトで詳しく見る</v-btn
-          >
+          <v-hover v-slot="{ hover }">
+            <v-btn
+              :elevation="hover ? 12 : 2"
+              class="black darken-4 text-h6 white--text main-contents-wrap-btn"
+              height="70px"
+              width="50%"
+              :href="`https://www.nikon-image.com/sp/zfc/`"
+              >ニコン Z fc<br />メーカーサイトで詳しく見る</v-btn
+            >
+          </v-hover>
         </div>
 
         <!--特徴-->
@@ -298,46 +226,20 @@
 
         <!--価格・人気アクセサリー-->
         <subText :textItem="'ニコン Z fc 価格/人気アクセサリー'" />
-        <v-container>
-          <v-row>
-            <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
-              <p class="font-small blue--text mb-2 height-20">
-                <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
-              </p>
-              <p class="mt-2">
-                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
-              </p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <priceAndPopular :productDetailList="productDetailList" />
         <!--価格・人気アクセサリー-->
 
         <!--外観画像ー-->
         <subText :textItem="'ニコン Z fc 外観画像'" />
         <p class="text-subtitle-1">ニコン Z fc の外観画像</p>
-        <v-container>
-          <v-row>
-            <v-col v-for="n in 4" :key="n" cols="12">
-              <v-img :src="`/ec/images2/special/camera/feature/nikon/zfc/img_${n}.jpg`"> </v-img>
-            </v-col>
-          </v-row>
-        </v-container>
+        <appearanceImage :src="'/ec/images2/special/camera/feature/nikon/zfc'" />
 
         <!-- ↓ 作例画像 -->
         <subText :textItem="'ニコン Z fc 作例画像'" />
         <p class="text-subtitle-1">▼ニコン Z fc 作例</p>
-        <!-- <exampleImages :imagesData="exampleImageList" /> -->
-        <v-container>
-          <v-row>
-            <v-col cols="12" sm="6" class="ma-0 pa-0" v-for="n in 10" :key="n">
-              <a :href="`/ec/images2/special/camera/feature/nikon/zfc/pic_${n}.jpg`"
-                ><img class="mb-5" :src="`/ec/images2/special/camera/feature/nikon/zfc/pic_${n}.jpg`" width="90%"
-              /></a>
-            </v-col>
-          </v-row>
-        </v-container>
+        <exampleImages :path="'/ec/images2/special/camera/feature/nikon/zfc/'" :count="10" />
 
+        <!-- ↓ SNS -->
         <facebookAndTwitter />
 
         <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
@@ -350,6 +252,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
+import TopTitleImg from '@/components/common/special/top-title-img.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
+import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
 import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
@@ -358,6 +263,8 @@ import NaviBtn from '@/components/common/special/navi-btn.vue';
 import SubText from '@/components/common/special/subtext.vue';
 import SplitContent from '@/components/common/special/split-content.vue';
 import Characteristic from '@/components/common/special/characteristic.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
+import AppearanceImage from '@/components/common/special/appearance-image.vue';
 import ExampleImages from '@/components/common/special/example-image.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
@@ -366,22 +273,41 @@ export default Vue.extend({
   name: 'zfc',
   components: {
     breadcrumbs: Breadcrumbs,
+    topTitleImg: TopTitleImg,
+    urlcopy: Urlcopy,
     naviBtn: NaviBtn,
     subText: SubText,
+    priceAndPurchase: PriceAndPurchase,
     splitContent: SplitContent,
     characteristic: Characteristic,
-    // exampleImages: ExampleImages
+    priceAndPopular: PriceAndPopular,
+    appearanceImage: AppearanceImage,
+    exampleImages: ExampleImages,
     facebookAndTwitter: FacebookAndTwitter,
     recommendedFeatures: RecommendedFeatures
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    const state = reactive({
       naviList: [
         { naviItem: 'お得情報', href: '#price' },
         { naviItem: '機種比較', href: '#hikaku' },
         { naviItem: '外観画像', href: '#images2' },
         { naviItem: '作例画像', href: '#images' }
       ],
+      expensiveTradeInList: {
+        name: 'ニコン Df ボディ',
+        href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4960759141002&pattern=1',
+        nameImg: 'https://shopimg.kitamura.jp/images/pd/bb7/625/a35/d8f/953/5c6/1a5/27e/9b7/e04/f9e/7wu/vmp/d/M.jpg',
+        txt: 'ニコン Z fc 28mm f/2.8 Special Edition キット',
+        tradeInProducts: [
+          { name: 'ニコン Df ボディ', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4960759141002&pattern=1' },
+          { name: 'ニコン Z 50 ボディD', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4960759903617&pattern=1' },
+          { name: 'ニコン D500 ボディ', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4960759146441&pattern=1' },
+          { name: 'ニコン D7500 ボディ', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4960759149084&pattern=1' },
+          { name: 'ニコン D7200 ボディ', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4960759145604&pattern=1' },
+        ],
+        tradeInImg: '/ec/images2/special/camera/feature/nikon/zfc/bnr_shitadori_350-130.jpg',
+      },
       characteristicList: [
         {
           subtitle: 'ミラーレスとニコンの伝統的なデザインの融合',
@@ -407,10 +333,6 @@ export default Vue.extend({
           ]
         }
       ],
-      exampleImageList: {
-        path: '/ec/images2/special/camera/feature/nikon/zfc/',
-        numberOfTimes: 10
-      },
       recommendedFeaturesList: [
         {
           href: '/special/sale-fair/camera/feature/backnumber/',
@@ -437,12 +359,7 @@ export default Vue.extend({
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }
-      ]
-    };
-  },
-  props: {},
-  setup: (props, context) => {
-    const state = reactive({
+      ],
       breadcrumbs: [
         {
           path: 'ネットショップ',
@@ -461,6 +378,10 @@ export default Vue.extend({
       ],
       mainProductJanCode: ['4960759906311', '4960759906335', '4960759906328'],
       mainProductList: [] as Array<ProductDetail>,
+      // ↓ ---- 比較 ----
+      comparisonJanCodeList: ['4960759906311', '4960759906335', '4545350053598', '4547410440362'],
+      // 結果格納用
+      comparisonDetailList: [] as Array<ProductDetail>,
       // ↓ ---- 価格・人気アクセサリー ----
       // 取得するJancode
       productJanCodeList: [
@@ -489,6 +410,9 @@ export default Vue.extend({
         // メイン商品
         const mainResult = await ProductService.fetchProducts(state.mainProductJanCode, true);
         state.mainProductList = mainResult.items;
+        // 比較
+        const comparisonResult = await ProductService.fetchProducts(state.comparisonJanCodeList, true);
+        state.comparisonDetailList = comparisonResult.items;
         // 価格・人気アクセサリー
         const productListResult = await ProductService.fetchProducts(state.productJanCodeList, true);
         console.log(productListResult);

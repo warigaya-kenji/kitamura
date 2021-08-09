@@ -6,7 +6,7 @@
         <breadcrumbs :breadcrumbs="breadcrumbs" />
 
         <!-- ↓url copy -->
-        <urlcopy :url="'https://shop.kitamura.jp/special/sale-fair/camera/feature/canon/rf14-35mmf4lisusm/'" />
+        <urlcopy :url="'https://shop.kitamura.jp/ec/special/sale-fair/camera/feature/nikon/zfc/'" />
         <!-- ↑url copy -->
 
         <!-- ↓top image -->
@@ -211,6 +211,7 @@ import SubText from '@/components/common/special/subtext.vue';
 import SplitContent from '@/components/common/special/split-content.vue';
 import Characteristic from '@/components/common/special/characteristic.vue';
 import ShaSha from '@/components/common/special/shasha.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
 import ExampleImages from '@/components/common/special/example-image.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
@@ -228,89 +229,10 @@ export default Vue.extend({
     splitContent: SplitContent,
     characteristic: Characteristic,
     shasha: ShaSha,
+    priceAndPopular: PriceAndPopular,
     exampleImages: ExampleImages,
     facebookAndTwitter: FacebookAndTwitter,
     recommendedFeatures: RecommendedFeatures
-  },
-  data() {
-    return {
-      naviList: [
-        { naviItem: 'お得情報', href: '#price' },
-        { naviItem: '機種比較', href: '#hikaku' },
-        { naviItem: '特徴', href: '#spec' },
-        { naviItem: '作例画像', href: '#images' }
-      ],
-      characteristicList: [
-        {
-          subtitle: '超広角14mmから35mmの幅広いズーム域',
-          contents: [
-            'EF16-35mm F4L IS USMに比べて広角2mmのワイド化を実現。従来以上に広がりのある表現が可能',
-            'Lレンズにふさわしい高画質を実現。ズーム全域で画面中心から周辺まで解像感の高いクリアな画像が撮影可能'
-          ]
-        },
-        {
-          subtitle: 'ズーム全域での高画質と小型・軽量を両立',
-          contents: [
-            'RFマウントの大口径・ショートバックフォーカスを生かした小型・軽量設計',
-            '高性能レンズを含む12群16枚の光学設計と特殊コーティングSWC/ASC採用で高画質を実現'
-          ]
-        },
-        {
-          subtitle: 'レンズ単体で5.5段分、協調補正で7段の強力な手ブレ補正機構',
-          contents: [
-            '14mmの超広角域をカバーするレンズとして初めてCIPA基準約5.5段の光学手ブレ補正機構を搭載',
-            'EOS R5との組み合わせでは、ボディ・レンズISの協調制御により約7段の手ブレ補正効果'
-          ]
-        }
-      ],
-      exampleImageList: [
-        '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/pic_01.jpg',
-        '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/pic_02.jpg',
-        '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/pic_03.jpg',
-        '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/pic_04.jpg'
-      ],
-      expensiveTradeInList: {
-        name: 'EF16-35mm F4L IS USM',
-        href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292009903&pattern=1',
-        nameImg: 'https://shopimg.kitamura.jp/images/pd/2aa/33d/db1/b48/c71/a79/7db/feb/71d/d78/fat/j14/t87/s/L.jpg',
-        txt: 'RF14-35mm F4 L IS USM',
-        tradeInProducts: [
-          { name: 'EF16-35mm F4L IS USM', href: '"https://www.net-chuko.com/sell/item-list.do?goodsname=4549292009903&pattern=1' },
-          { name: 'EF11-24mm F4L USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292010169&pattern=1' },
-          { name: 'EF16-35mm F2.8L III USM', href: '"https://www.net-chuko.com/sell/item-list.do?goodsname=4549292037722&pattern=1' },
-          { name: 'EF17-40mm F4L USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4960999189949&pattern=1' },
-          { name: 'RF15-35mm F2.8 L IS USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292152272&pattern=1' },
-        ],
-        tradeInImg: '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/bnr_shitadori_350-130.jpg',
-      },
-      recommendedFeaturesList: [
-        {
-          href: '/special/sale-fair/camera/feature/backnumber/',
-          img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
-          alt: '話題の新製品バックナンバー'
-        },
-        {
-          href: '/special/sale-fair/',
-          img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
-          alt: 'セール・特集一覧'
-        },
-        {
-          href: '/sitemap/s_credit_01.htm',
-          img: 'https://shopimg.kitamura.jp/images/banner/1486.gif',
-          alt: 'ショッピングクレジット'
-        },
-        {
-          href: '/special/sale-fair/general/tokutokukoukan/',
-          img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
-          alt: 'トクトク交換'
-        },
-        {
-          href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
-          img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
-        }
-      ]
-    };
   },
   setup: (props, context) => {
     const state = reactive({
@@ -382,6 +304,20 @@ export default Vue.extend({
         '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/pic_03.jpg',
         '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/pic_04.jpg'
       ],
+      expensiveTradeInList: {
+        name: 'EF16-35mm F4L IS USM',
+        href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292009903&pattern=1',
+        nameImg: 'https://shopimg.kitamura.jp/images/pd/2aa/33d/db1/b48/c71/a79/7db/feb/71d/d78/fat/j14/t87/s/L.jpg',
+        txt: 'RF14-35mm F4 L IS USM',
+        tradeInProducts: [
+          { name: 'EF16-35mm F4L IS USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292009903&pattern=1' },
+          { name: 'EF11-24mm F4L USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292010169&pattern=1' },
+          { name: 'EF16-35mm F2.8L III USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292037722&pattern=1' },
+          { name: 'EF17-40mm F4L USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4960999189949&pattern=1' },
+          { name: 'RF15-35mm F2.8 L IS USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292152272&pattern=1' },
+        ],
+        tradeInImg: '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/bnr_shitadori_350-130.jpg',
+      },
       recommendedFeaturesList: [
         {
           href: '/special/sale-fair/camera/feature/backnumber/',
