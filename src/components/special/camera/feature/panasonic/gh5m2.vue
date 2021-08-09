@@ -170,7 +170,7 @@ import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import NaviBtn from '@/components/common/special/navi-btn.vue';
 import SubText from '@/components/common/special/subtext.vue';
-import ContingencyTable from '@/components/common/special/contingency-table.vue';
+import ContingencyTable from '@/components/common/special/split-content.vue';
 import Characteristic from '@/components/common/special/characteristic.vue';
 import ShaSha from '@/components/common/special/shasha.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';

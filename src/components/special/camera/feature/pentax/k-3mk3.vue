@@ -291,7 +291,7 @@ import ProductService from '@/logic/product.service';
 import SubText from '@/components/common/special/subtext.vue';
 import NaviBtn from '@/components/common/special/navi-btn.vue';
 import Characteristic from '@/components/common/special/characteristic.vue';
-import ContingencyTable from '@/components/common/special/contingency-table.vue';
+import ContingencyTable from '@/components/common/special/split-content.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 import PriceAndPurchase from '@/components/common/special/price-purchase.vue';

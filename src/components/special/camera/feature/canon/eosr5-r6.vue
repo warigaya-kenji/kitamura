@@ -378,42 +378,14 @@
         <expensiveTradeIn :expensiveTradeInList="expensiveTradeInList" />
 
         <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
-        <v-row class="mb-10">
-          <v-col class="text-center" cols="4">
-            <a href="/ec/pd/4549292157345"
-              ><img src="//shopimg.kitamura.jp/images/pd/479/596/d1e/955/5c5/f28/97f/ed8/392/3a7/71f/kto/esd/p/M.jpg" class="hover" width="80%"
-            /></a>
-            <br />
-            キヤノン EOS R5 ボディ<br /><span class="red--text">455,400</span>円(税込)
-          </v-col>
-          <v-col col="6">
-            <p>
-              分割払いなら一度にかかるご負担を軽減する事ができます。<br />
-              ショッピングクレジットの分割払いなら、最大48回分割払いまで分割金利手数料を当店が負担致します。
-            </p>
-            <font size="-1">※2020年7月10日時点の価格です</font>
-            <contingencyTable :numberOfTimes="'48'" :amount="'9,488'" :commission="'0'" />
-          </v-col>
-        </v-row>
-
-        <v-row class="mb-10">
-          <v-col class="text-center" cols="4">
-            <a href="ec/pd/4549292157253"
-              ><img src="//shopimg.kitamura.jp/images/pd/731/a75/19f/abf/b41/d16/33c/43a/e3f/44e/b3i/o8z/04r/h/M.jpg" width="80%" class="hover"
-            /></a>
-            <br />
-            キヤノン EOS R6 ボディ<br /><span class="red--text">301,950</span>円(税込)
-          </v-col>
-          <v-col col="6">
-            <font size="-1">※2020年7月10日時点の価格です</font>
-            <contingencyTable :numberOfTimes="'48'" :amount="'6,291'" :commission="'0'" />
-            <div class="text-center">
-              <v-btn color="#D73500" class="white--text" href="https://shop.kitamura.jp/sitemap/s_credit_01.html">
-                ショッピングクレジットについて詳細はこちら
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row>
+        <splitContent v-if="mainProductList.length !== 0" :ProductList="mainProductList[0]" :amount="'9,488'" :targetDate="'2020年7月10日'" />
+        <splitContent
+          v-if="mainProductList.length !== 0"
+          :ProductList="mainProductList[1]"
+          :amount="'6,291'"
+          :targetDate="'2020年7月10日'"
+          :isCreditBtn="true"
+        />
 
         <!-- ↓ 作例画像 -->
         <subText :textItem="'EOS R5 / EOS R6 作例画像'" id="images" />
@@ -447,11 +419,12 @@ import Characteristic from '@/components/common/special/characteristic.vue';
 import ShaSha from '@/components/common/special/shasha.vue';
 import ExpensiveTradeIn from '@/components/common/special/expensive-trade-in.vue';
 import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
-import ContingencyTable from '@/components/common/special/contingency-table.vue';
+import SplitContent from '@/components/common/special/split-content.vue';
 import KitamuraService from '@/components/common/special/kitamura-service.vue';
 import ExampleImages from '@/components/common/special/example-image.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
+
 export default Vue.extend({
   name: 'canon-eosr5-r6',
   components: {
@@ -464,12 +437,12 @@ export default Vue.extend({
     shasha: ShaSha,
     expensiveTradeIn: ExpensiveTradeIn,
     priceAndPopular: PriceAndPopular,
-    contingencyTable: ContingencyTable,
+    splitContent: SplitContent,
     kitamuraService: KitamuraService,
     exampleImages: ExampleImages,
     facebookAndTwitter: FacebookAndTwitter,
     recommendedFeatures: RecommendedFeatures,
-    naviBtn: NaviBtn
+    naviBtn: NaviBtn,
   },
   methods: {
     linkToOtherWindow(url: string | undefined) {
@@ -562,27 +535,27 @@ export default Vue.extend({
       },
       recommendedFeaturesList: [
         {
-          href: '/special/sale-fair/camera/feature/backnumber/',
+          href: '/ec/special/camera/feature/backnumber/',
           img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
           alt: '話題の新製品バックナンバー'
         },
         {
-          href: '/special/sale-fair/general/highly_recommended/2020/4722/',
+          href: '/ec/special/general/highly_recommended/2020/4722/',
           img: 'https://shopimg.kitamura.jp/images/banner/7619.png',
           alt: 'スタッフイチオシ！キヤノン RF70-200mm F2.8 L IS USM'
         },
         {
-          href: '/special/sale-fair/',
+          href: '/ec/special/',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          href: '/special/sale-fair/sale/shoppingcredit-campaign/',
+          href: '/ec/special/sale/shoppingcredit-campaign/',
           img: 'https://shopimg.kitamura.jp/images/banner/4847.jpg',
           alt: '60回無金利 ショッピングクレジット'
         },
         {
-          href: '/special/sale-fair/general/tokutokukoukan/',
+          href: '/ec/special/general/tokutokukoukan/',
           img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
           alt: 'トクトク交換'
         },
@@ -696,57 +669,5 @@ export default Vue.extend({
       display: block;
     }
   }
-  .credit_l {
-    width: 35%;
-    float: left;
-    display: block;
-    text-align: center;
-    margin: 10px 10px 20px 0;
-  }
-  .credit_r {
-    width: 60%;
-    float: left;
-    font-size: 14px;
-  }
-  .mt30 {
-    margin-top: 30px;
-  }
-  .bgtypetitle {
-    background-color: #ffffcc;
-  }
-  table.spec {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-    font-size: 80%;
-    float: left;
-    box-sizing: border-box;
-    word-break: break-all;
-  }
-  .product-video {
-    &-contents {
-      height: 520px;
-    }
-  }
-}
-.height-20 {
-  height: 4.8em;
-}
-// サンプル：ShaSha
-.product-shasha {
-  &-wrap {
-    background: #f8fbd1;
-  }
-
-  &-link:hover {
-    img {
-      opacity: 0.7;
-    }
-  }
-}
-
-.sen-gl {
-  border: #b8b8b8 1px solid;
-  box-sizing: border-box;
 }
 </style>
