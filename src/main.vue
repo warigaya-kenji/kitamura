@@ -3,10 +3,11 @@
     <!-- 共通 -->
     <overlay-loading v-if="!rendered" />
     <error-dialog />
+    <confirm-dialog />
 
     <!-- 960px以上 -->
     <div class="outer-header-wide" v-if="$vuetify.breakpoint.mdAndUp">
-      <app-header v-if="this.$route.path !== '/ec/guide/tablet/calculate.html'" />
+      <app-header v-if="this.$route.path.indexOf('tablet') === -1" />
     </div>
     <div class="outer-main-wide">
       <div class="width-wide" v-if="$vuetify.breakpoint.mdAndUp">
@@ -16,16 +17,16 @@
       </div>
     </div>
     <div class="outer-footer-wide" v-if="$vuetify.breakpoint.mdAndUp">
-      <app-footer v-if="this.$route.path !== '/ec/guide/tablet/calculate.html'" />
+      <app-footer v-if="this.$route.path.indexOf('tablet') === -1" />
     </div>
 
     <!-- 960px未満 -->
     <div class="width-narrow" v-if="$vuetify.breakpoint.smAndDown">
-      <app-header v-if="this.$route.path !== '/ec/guide/tablet/calculate.html'" />
+      <app-header v-if="this.$route.path.indexOf('tablet') === -1" />
       <v-main>
         <router-view />
       </v-main>
-      <app-footer v-if="this.$route.path !== '/ec/guide/tablet/calculate.html'" />
+      <app-footer v-if="this.$route.path.indexOf('tablet') === -1" />
       <v-app-bar-nav-icon @click="drawer = true" class="menu-position menu-bar-nav-icon"></v-app-bar-nav-icon>
       <v-navigation-drawer v-model="drawer" fixed temporary class="menu-drawer" v-if="$vuetify.breakpoint.smAndDown">
         <nav-drawer-menu @on-close-menu="closeMenu" />
@@ -41,7 +42,8 @@ import AppHeader from '@/components/header/app-header.vue';
 import AppFooter from '@/components/footer/app-footer.vue';
 import NavDrawerMenu from '@/components/header/nav-drawer-menu/nav-drawer-menu.vue';
 import OverlayLoading from '@/components/common/overlay-loading.vue';
-import errorDialog from './components/common/error-dialog.vue';
+import ErrorDialog from './components/common/error-dialog.vue';
+import ConfirmDialog from './components/common/confirm-dialog.vue';
 
 export default Vue.extend({
   name: 'app',
@@ -50,7 +52,8 @@ export default Vue.extend({
     'app-footer': AppFooter,
     'nav-drawer-menu': NavDrawerMenu,
     'overlay-loading': OverlayLoading,
-    'error-dialog': errorDialog
+    'error-dialog': ErrorDialog,
+    'confirm-dialog': ConfirmDialog
   },
   setup: (props, context) => {
     const state = reactive({

@@ -5,31 +5,32 @@
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
-        <urlcopy :url="'https://shop.kitamura.jp/ec/special/camera/feature/pentax/k3mk3/'" />
+        <urlcopy />
 
-        <!-- ↓ 画像の読み込み -->
-        <div class="newproduct top-bg-img">
-          <h1 class="top-title">
-            ペンタックス K-3 Mark III
-            <p>最高ISO感度160万の超高感度性能を実現した<br />ボディ内手ぶれ補正機構搭載一眼レフ</p>
-          </h1>
-        </div>
-        <!-- ↑ 画像の読み込み -->
+        <!-- ↓top image -->
+        <topTitleImg
+          :pcBackgroundImg="'/ec/images2/special/camera/feature/pentax/k-3mk3/bg_top.jpg'"
+          :spBackgroundImg="'/ec/images2/special/camera/feature/pentax/k-3mk3/sp_img_top.jpg'"
+          :topTitle="'ペンタックス K-3 Mark III'"
+          :topTitleText="'最高ISO感度160万の超高感度性能を実現した\nボディ内手ぶれ補正機構搭載一眼レフ'"
+          :titleColor="'#ffffff'"
+          :textColor="'#ffffff'"
+        />
+        <!-- ↑top image -->
 
         <div class="red darken-4 text-center mb-2">
           <span class="white--text text-h6 font-weight-bold">好評発売中!</span>
         </div>
 
-        <div class="darken-2 text-left">
-          <span>ペンタックス K-3 Mark III</span>
-        </div>
-
         <!-- ↓ ナビボタン -->
-        <naviBtn :naviList="naviList" />
+        <p>ペンタックス K-3 Mark III</p>
+        <naviBtn :naviList="naviList" :hoverColor="'#4080C0'" />
         <!-- ↑ ナビボタン -->
 
         <div class="text-right">
-          <v-btn href="/ec/special/camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
+          <v-btn tile href="/ec/special/camera/feature/backnumber" color="black" class="kg-in main-product-btn"
+            ><span class="white--text">≫ 話題の新製品バックナンバー</span></v-btn
+          >
         </div>
 
         <subText :textItem="'APS-Cフラッグシップデジタル一眼レフカメラ「PENTAX K-3 MarkIII」'" />
@@ -40,239 +41,190 @@
         <priceAndPurchase :mainProductList="mainProductList" />
 
         <!-- ↓ キタムラなら最大48回 -->
-        <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
-        <v-row class="mb-10" v-if="mainProductList.length !== 0">
-          <v-col class="text-center" cols="4">
-            <router-link :to="`/ec/pd/${mainProductList[0].janCode}`"
-              ><v-img
-                src="//shopimg.kitamura.jp/images/pd/023/337/b9e/0e4/c06/996/cb6/43d/afe/a53/ffh/2fb/9fd/2/M.jpg"
-                class="hover"
-                width="80%"
-                height="auto"
-              ></v-img
-            ></router-link>
-            <br />
-            ペンタックス K-3 MarkIII ボディキット ブラック<br /><span class="red--text">{{ mainProductList[0].price }}</span
-            >円(税込)
-          </v-col>
-          <v-col col="6">
-            <p>
-              分割払いなら一度にかかるご負担を軽減する事ができます。<br />
-              ショッピングクレジットの分割払いなら、最大48回分割払いまで分割金利手数料を当店が負担致します。
-            </p>
-            <font size="-1">※2021年4月23日時点の価格です</font>
-            <splitContent :numberOfTimes="'48'" :amount="'5,247'" :commission="'0'" />
-          </v-col>
-        </v-row>
-
-        <v-row class="mb-10" v-if="mainProductList.length !== 0">
-          <v-col class="text-center" cols="4">
-            <router-link :to="`/ec/pd/${mainProductList[2].janCode}`"
-              ><v-img
-                src="//shopimg.kitamura.jp/images/pd/afa/8a8/731/90f/bf1/9d4/180/f98/078/4f4/f29/7lw/dus/w/M.jpg"
-                class="hover"
-                width="80%"
-                height="auto"
-              ></v-img
-            ></router-link>
-            <br />
-            ペンタックス K-3 MarkIII ブラックプレミアムキット<br /><span class="red--text">{{ mainProductList[2].price }}</span
-            >円(税込)
-          </v-col>
-          <v-col col="6">
-            <font size="-1">※2021年4月23日時点の価格です</font>
-            <splitContent :numberOfTimes="'48'" :amount="'5,997'" :commission="'0'" />
-            <div class="text-center">
-              <v-btn width="80%" color="#E53935" class="white--text font-weight-bold" href="/sitemap/s_credit_01.html">
-                ショッピングクレジットについて詳細はこちら
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row>
+        <div id="price">
+          <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
+          <splitContent v-if="mainProductList.length !== 0" :ProductList="mainProductList[0]" :amount="'5,247'" :targetDate="'2021年4月23日'" />
+          <splitContent
+            v-if="mainProductList.length !== 0"
+            :ProductList="mainProductList[1]"
+            :amount="'2021年4月23日'"
+            :targetDate="'2021年4月23日'"
+            :isText="false"
+          />
+        </div>
 
         <!-- ↓ 動画で見る -->
+        <subText :textItem="'動画で見る ペンタックス K-3 Mark III'" />
         <watchInVideo :src="'https://www.youtube.com/embed/dopCJI1fptc?rel=0'" />
 
         <!--比較-->
-        <subText :textItem="'ペンタックス K-3 MarkIII / K-1 MarkII / ニコン D500 / キヤノン EOS 90D 比較'" id="hikaku" />
-        <div class="product-comparison mb-5">
-          <p class="mb-2">ペンタックス K-3 MarkIII / K-1 MarkII / ニコン D500 / キヤノン EOS 90D を比較しました</p>
-          <table class="product-comparison-table">
-            <tbody>
-              <tr>
-                <th>商品名</th>
-                <td v-for="product in comparisonDetailList" :key="product.janCode">{{ product.itemName }}</td>
-              </tr>
-              <tr>
-                <th>発売日</th>
-                <td>2021年4月23日発売</td>
-                <td>2018年4月20日</td>
-                <td>2016年4月28日</td>
-                <td>2019年9月20日</td>
-              </tr>
-              <tr>
-                <th>価格</th>
-                <td v-for="product in comparisonDetailList" :key="product.janCode">
-                  <span class="primary--text font-weight-bold">¥{{ formatPrice(parseInt(product.price)) }}</span
-                  >（税込）
-                </td>
-              </tr>
-              <tr>
-                <th>有効画素数</th>
-                <td>約2573万画素</td>
-                <td>約3640万画素</td>
-                <td>約2088万画素</td>
-                <td>約3250万画素</td>
-              </tr>
-              <tr>
-                <th>撮像素子</th>
-                <td>APS-CサイズCMOSセンサー</td>
-                <td>35mmフルサイズCMOSセンサー</td>
-                <td>APS-CサイズCMOSセンサー<br />（ニコンDXフォーマット）</td>
-                <td>APS-CサイズCMOSセンサー</td>
-              </tr>
-              <tr>
-                <th>連続撮影速度</th>
-                <td>最高約12コマ/秒</td>
-                <td>フルサイズ時：最高約4.4コマ/秒<br />APS-Cサイズ時：最高約6.4コマ/秒</td>
-                <td>最高約10コマ/秒</td>
-                <td>最高約10コマ/秒<br />※ライブビュー撮影時 最高約11コマ/秒</td>
-              </tr>
-              <tr>
-                <th>シャッタースピード</th>
-                <td>1/8000秒～30秒、バルブ</td>
-                <td>1/8000秒～30秒、バルブ</td>
-                <td>1/8000秒～30秒、バルブ、Time</td>
-                <td>1/8000秒～30秒、バルブ</td>
-              </tr>
-              <tr>
-                <th>ISO感度</th>
-                <td>ISO 100～1600000</td>
-                <td>ISO 100～819200</td>
-                <td>ISO 100～51200<br />（拡張時：50～1640000相当）</td>
-                <td>ISO 100～25600<br />（ISO51200相当の感度拡張が可能）</td>
-              </tr>
-              <tr>
-                <th>ファインダー</th>
-                <td>約100％</td>
-                <td>約100％</td>
-                <td>約100％</td>
-                <td>約100％</td>
-              </tr>
-              <tr>
-                <th>視野率/倍率</th>
-                <td>約1.05倍</td>
-                <td>約0.70倍</td>
-                <td>約1.0倍</td>
-                <td>約0.95倍</td>
-              </tr>
-              <tr>
-                <th>液晶モニター</th>
-                <td>3.2型/約162万ドット<br />TFTカラーLCD</td>
-                <td>3.2型/約103.7万ドット<br />フレキシブルチルト式TFTカラーLCD</td>
-                <td>3.2型/約236万ドット<br />チルト式TFT</td>
-                <td>ワイド3.0型/約104万ドット<br />バリアングル式TFT</td>
-              </tr>
-              <tr>
-                <th>静止画撮影可能枚数/時間<br />(CIPA規格基準)</th>
-                <td>約800枚</td>
-                <td>約670枚</td>
-                <td>約1240枚</td>
-                <td>約1860枚</td>
-              </tr>
-              <tr>
-                <th>手ブレ補正</th>
-                <td>5軸・5.5段</td>
-                <td>5軸・5段</td>
-                <td>レンズ式手振れ補正のみ</td>
-                <td>レンズ式手振れ補正のみ</td>
-              </tr>
-              <tr>
-                <th>外形寸法</th>
-                <td>約134.5×103.5×73.5 mm</td>
-                <td>約136.5×110×85.5 mm</td>
-                <td>約147×115×81 mm</td>
-                <td>約140.7×104.8×76.8 mm</td>
-              </tr>
-              <tr>
-                <th>質量（本体のみ）</th>
-                <td>約735g</td>
-                <td>約925g</td>
-                <td>約760g</td>
-                <td>約619g</td>
-              </tr>
-              <tr>
-                <th>カードスロット</th>
-                <td>デュアルスロット<br />SDメモリーカード（スロット1：UHS-II規格対応）</td>
-                <td>デュアルスロット<br />SDメモリーカード（UHS-I規格対応）</td>
-                <td>ダブルスロット<br />XQDカード、SDメモリーカード（UHS-II規格対応）</td>
-                <td>シングルスロット<br />SDメモリーカード（UHS-II規格対応）</td>
-              </tr>
-              <tr>
-                <th>動画記録方式</th>
-                <td>4K/フルHD</td>
-                <td>フルHD/HD</td>
-                <td>4K/フルHD/HD</td>
-                <td>4K/フルHD/HD</td>
-              </tr>
-            </tbody>
-          </table>
+        <div id="hikaku">
+          <subText :textItem="'ペンタックス K-3 MarkIII / K-1 MarkII / ニコン D500 / キヤノン EOS 90D 比較'" />
+          <div class="product-comparison mb-5">
+            <p class="mb-2">ペンタックス K-3 MarkIII / K-1 MarkII / ニコン D500 / キヤノン EOS 90D を比較しました</p>
+            <table class="product-comparison-table">
+              <tbody>
+                <tr>
+                  <th>商品名</th>
+                  <td v-for="product in comparisonDetailList" :key="product.janCode">{{ product.itemName }}</td>
+                </tr>
+                <tr>
+                  <th>発売日</th>
+                  <td>2021年4月23日発売</td>
+                  <td>2018年4月20日</td>
+                  <td>2016年4月28日</td>
+                  <td>2019年9月20日</td>
+                </tr>
+                <tr>
+                  <th>価格</th>
+                  <td v-for="product in comparisonDetailList" :key="product.janCode">
+                    <span class="primary--text font-weight-bold">{{ formatPrice(parseInt(product.price)) }}</span
+                    >（円）
+                  </td>
+                </tr>
+                <tr>
+                  <th>有効画素数</th>
+                  <td>約2573万画素</td>
+                  <td>約3640万画素</td>
+                  <td>約2088万画素</td>
+                  <td>約3250万画素</td>
+                </tr>
+                <tr>
+                  <th>撮像素子</th>
+                  <td>APS-CサイズCMOSセンサー</td>
+                  <td>35mmフルサイズCMOSセンサー</td>
+                  <td>APS-CサイズCMOSセンサー<br />（ニコンDXフォーマット）</td>
+                  <td>APS-CサイズCMOSセンサー</td>
+                </tr>
+                <tr>
+                  <th>連続撮影速度</th>
+                  <td>最高約12コマ/秒</td>
+                  <td>フルサイズ時：最高約4.4コマ/秒<br />APS-Cサイズ時：最高約6.4コマ/秒</td>
+                  <td>最高約10コマ/秒</td>
+                  <td>最高約10コマ/秒<br />※ライブビュー撮影時 最高約11コマ/秒</td>
+                </tr>
+                <tr>
+                  <th>シャッタースピード</th>
+                  <td>1/8000秒～30秒、バルブ</td>
+                  <td>1/8000秒～30秒、バルブ</td>
+                  <td>1/8000秒～30秒、バルブ、Time</td>
+                  <td>1/8000秒～30秒、バルブ</td>
+                </tr>
+                <tr>
+                  <th>ISO感度</th>
+                  <td>ISO 100～1600000</td>
+                  <td>ISO 100～819200</td>
+                  <td>ISO 100～51200<br />（拡張時：50～1640000相当）</td>
+                  <td>ISO 100～25600<br />（ISO51200相当の感度拡張が可能）</td>
+                </tr>
+                <tr>
+                  <th>ファインダー</th>
+                  <td>約100％</td>
+                  <td>約100％</td>
+                  <td>約100％</td>
+                  <td>約100％</td>
+                </tr>
+                <tr>
+                  <th>視野率/倍率</th>
+                  <td>約1.05倍</td>
+                  <td>約0.70倍</td>
+                  <td>約1.0倍</td>
+                  <td>約0.95倍</td>
+                </tr>
+                <tr>
+                  <th>液晶モニター</th>
+                  <td>3.2型/約162万ドット<br />TFTカラーLCD</td>
+                  <td>3.2型/約103.7万ドット<br />フレキシブルチルト式TFTカラーLCD</td>
+                  <td>3.2型/約236万ドット<br />チルト式TFT</td>
+                  <td>ワイド3.0型/約104万ドット<br />バリアングル式TFT</td>
+                </tr>
+                <tr>
+                  <th>静止画撮影可能枚数/時間<br />(CIPA規格基準)</th>
+                  <td>約800枚</td>
+                  <td>約670枚</td>
+                  <td>約1240枚</td>
+                  <td>約1860枚</td>
+                </tr>
+                <tr>
+                  <th>手ブレ補正</th>
+                  <td>5軸・5.5段</td>
+                  <td>5軸・5段</td>
+                  <td>レンズ式手振れ補正のみ</td>
+                  <td>レンズ式手振れ補正のみ</td>
+                </tr>
+                <tr>
+                  <th>外形寸法</th>
+                  <td>約134.5×103.5×73.5 mm</td>
+                  <td>約136.5×110×85.5 mm</td>
+                  <td>約147×115×81 mm</td>
+                  <td>約140.7×104.8×76.8 mm</td>
+                </tr>
+                <tr>
+                  <th>質量（本体のみ）</th>
+                  <td>約735g</td>
+                  <td>約925g</td>
+                  <td>約760g</td>
+                  <td>約619g</td>
+                </tr>
+                <tr>
+                  <th>カードスロット</th>
+                  <td>デュアルスロット<br />SDメモリーカード（スロット1：UHS-II規格対応）</td>
+                  <td>デュアルスロット<br />SDメモリーカード（UHS-I規格対応）</td>
+                  <td>ダブルスロット<br />XQDカード、SDメモリーカード（UHS-II規格対応）</td>
+                  <td>シングルスロット<br />SDメモリーカード（UHS-II規格対応）</td>
+                </tr>
+                <tr>
+                  <th>動画記録方式</th>
+                  <td>4K/フルHD</td>
+                  <td>フルHD/HD</td>
+                  <td>4K/フルHD/HD</td>
+                  <td>4K/フルHD/HD</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="clear: both"></div>
         </div>
         <!--比較-->
 
         <!--特徴-->
-        <div class="contents_inner" id="point">
+        <div class="contents_inner" id="spec">
           <subText :textItem="'PENTAX K-3Mark III の特徴'" />
           <characteristic :characteristics="commonCharacteristicList" />
         </div>
         <!--特徴-->
 
-        <div class="col-sm-12 text-center pa-4 mt-10">
-          <v-btn
-            elevation="3"
-            class="black darken-4 white--text text-h7 my-10"
-            height="70px"
-            width="50%"
-            @click="linkToOtherWindow('http://www.ricoh-imaging.co.jp/japan/products/new_aps-c_dslr/')"
-            >メーカーサイトで<br />仕様・作例を詳しく見る</v-btn
-          >
-        </div>
+        <!-- ↓ 仕様・作例ボタンー -->
+        <specificationsExamplesBtn
+          :btntxt="'メーカーサイトで\n仕様・作例を詳しく見る'"
+          :url="'http://www.ricoh-imaging.co.jp/japan/products/new_aps-c_dslr/'"
+          :height="'70px'"
+        />
 
-        <!-- ↓ サンプル：ShaSha -->
-        <div class="product-shasha mb-5">
-          <h2 class="title mb-2 font-weight-bold">ShaSha:ペンタックス K-3 Mark III レビュー</h2>
-          <v-card class="product-shasha-wrap pa-4" outlined>
-            PENTAX（ペンタックス）ブランドのAPS-C一眼レフ フラッグシップ機K-3 Mark IIIがいよいよ登場します。
-            CP+2021もオンライン開催であったため実際に機材に触れることができなかったこともあり、「待ちに待った！」と私も声をあげて喜びたいほど期待度の高いK-3
-            Mark III。多機能、高性能な本機で撮影した感触をいち早く皆さんにお届けしたいと...<a
-              class="product-shasha-link"
-              href="https://shasha.kitamura.jp/article/480653303.html "
-              target="_blank"
-              >続きを読む <img src="/ec/images2/special/camera/feature/pentax/shashabnr.jpg" alt="イメージ" class="product-shasha-img mt-4"
-            /></a>
-          </v-card>
-        </div>
-        <!-- ↑ サンプル：ShaSha -->
+        <!-- ↓ ShaSha -->
+        <subText :textItem="'ShaSha:ペンタックス K-3 Mark III レビュー'" />
+        <shasha
+          :txt="'PENTAX（ペンタックス）ブランドのAPS-C一眼レフ フラッグシップ機K-3 Mark IIIがいよいよ登場します。\nCP+2021もオンライン開催であったため実際に機材に触れることができなかったこともあり、「待ちに待った！」と私も声をあげて喜びたいほど期待度の高いK-3 Mark III。多機能、高性能な本機で撮影した感触をいち早く皆さんにお届けしたいと...'"
+          :href="'https://shasha.kitamura.jp/article/480766272.html'"
+          :src="'/ec/images2/special/camera/feature/pentax/k-3mk3/shashabnr.jpg'"
+        />
+        <!-- ↑ ShaSha -->
 
         <!--↓ 価格・人気アクセサリー-->
-        <subText :textItem="'キヤノン RF400mm F2.8 L IS USM / RF600mm F4 L IS USM 価格・人気アクセサリー'" />
+        <subText :textItem="'ペンタックス K-3 Mark III 価格・人気アクセサリー'" />
         <priceAndPopular :productDetailList="productDetailList" />
 
         <!--↓ 外観画像ー-->
-        <subText :textItem="'ペンタックス K-3 Mark III 外観画像'" />
-        <p class="text-subtitle-1">ペンタックス K-3 Mark III の外観画像</p>
-        <v-container>
-          <v-row>
-            <v-col v-for="n in 5" :key="n" cols="12">
-              <v-img :src="`/ec/images2/special/camera/feature/pentax/k-3mk3/img_${n}.jpg`" max-width="100%" height="auto"> </v-img>
-            </v-col>
-          </v-row>
-        </v-container>
+        <div id="images">
+          <subText :textItem="'ペンタックス K-3 Mark III 外観画像'" />
+          <p class="text-subtitle-2">ペンタックス K-3 Mark III の外観画像</p>
+          <appearanceImage :src="'/ec/images2/special/camera/feature/pentax/k-3mk3'" :count="5" />
+        </div>
 
         <!--↓ SNSー-->
         <facebookAndTwitter />
 
-        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
+        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" />
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
@@ -296,6 +248,10 @@ import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
 import WatchInVideo from '@/components/common/special/watch-in-video.vue';
+import TopTitleImg from '@/components/common/special/top-title-img.vue';
+import SpecificationsExamplesBtn from '@/components/common/special/specifications-examples-btn.vue';
+import ShaSha from '@/components/common/special/shasha.vue';
+import AppearanceImage from '@/components/common/special/appearance-image.vue';
 export default Vue.extend({
   name: 'k-3mk3',
   components: {
@@ -309,13 +265,20 @@ export default Vue.extend({
     facebookAndTwitter: FacebookAndTwitter,
     recommendedFeatures: RecommendedFeatures,
     priceAndPurchase: PriceAndPurchase,
-    watchInVideo: WatchInVideo
+    watchInVideo: WatchInVideo,
+    topTitleImg: TopTitleImg,
+    specificationsExamplesBtn: SpecificationsExamplesBtn,
+    shasha: ShaSha,
+    appearanceImage: AppearanceImage
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    document.title = 'ペンタックス K-3 Mark III | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'ペンタックス K-3 Mark III 好評発売中！！比較や、価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
+
+    const state = reactive({
       naviList: [
         { naviItem: 'お得情報', href: '#price' },
-        { naviItem: '特徴スペック', href: '#point' },
+        { naviItem: '特徴スペック', href: '#spec' },
         { naviItem: '機種比較', href: '#hikaku' },
         { naviItem: '外観', href: '#images' }
       ],
@@ -366,17 +329,7 @@ export default Vue.extend({
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }
-      ]
-    };
-  },
-  methods: {
-    linkToOtherWindow(url: string | undefined) {
-      window.open(url, '_blank');
-    }
-  },
-  props: {},
-  setup: (props, context) => {
-    const state = reactive({
+      ],
       breadcrumbs: [
         {
           path: 'ネットショップ',
@@ -460,44 +413,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style lang="scss" scoped>
-.top-bg-img {
-  background-image: url(https://shop.kitamura.jp/ec/images2/special/camera/feature/pentax/k-3mk3/bg_top.jpg);
-}
-
-h1.top-title {
-  width: 100%;
-  box-sizing: border-box;
-  height: auto;
-  margin: 0px 0px 0px 0px;
-  padding: 190px 0px 15px 30px;
-  color: #ffffff;
-  font-size: 115%;
-  font-weight: bold;
-}
-
-h1.top-title p {
-  width: 100%;
-  box-sizing: border-box;
-  height: auto;
-  margin: 0px 0px 0px 0px;
-  padding: 10px 0px 0px 0px;
-  color: #ffffff;
-  font-size: 100%;
-  font-weight: 400;
-}
-
-// サンプル：ShaSha
-.product-shasha {
-  &-wrap {
-    background: #f8fbd1;
-  }
-
-  &-link:hover {
-    img {
-      opacity: 0.7;
-    }
-  }
-}
-</style>

@@ -1,10 +1,25 @@
 <template>
-  <h2 class="title sbtext">{{ textItem }}</h2>
+  <div>
+    <h2 class="title sbtext">
+      {{ textItem }}<span v-if="smallTxt !== ''" class="text-subtitle-2 font-weight-bold">{{ smallTxt }}</span>
+    </h2>
+    <div style="clear: both"></div>
+  </div>
 </template>
 <script>
 export default {
-  name: 'subtitle',
-  props: ['textItem']
+  name: 'subtext',
+  props: {
+    textItem: {
+      type: String,
+      required: true
+    },
+    smallTxt: {
+      type: String,
+      required: false,
+      default: ''
+    },
+  }
 };
 </script>
 <style scoped>

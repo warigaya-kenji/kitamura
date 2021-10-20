@@ -2,19 +2,54 @@ import Vue from 'vue';
 import VueRouter, { Route, RouteConfig } from 'vue-router';
 import VueMeta from 'vue-meta';
 import VueGtm from 'vue-gtm';
+import { equalsHostname, getLocationRemovedQuery, isDebugMode, isLocalHost, isBot } from '@/logic/utils';
+import MyPageRoutes from './mypage-routes';
+import AuthService from '@/logic/auth.service';
+import GtmService from '@/logic/gtm.service';
+import CanonicalService from '@/logic/canonical.service';
+
+// ページ
+import NotFoundPage from '../views/not-found-page.vue';
 import TopPage from '../views/top-page.vue';
+import HtmlPage from '../views/static/html-page.vue';
 import ProductListPage from '../views/product/product-list-page.vue';
 import ProductDetailPage from '../views/product/product-detail-page.vue';
+import ProductComparePage from '../views/product/product-compare-page.vue';
 import SpecialSalePage from '../views/special/special-sale-page.vue';
 import SpecialNewsPage from '../views/special/special-news-page.vue';
 import SpecialPage from '../views/special/special-page.vue';
+import SpecialCameraFramePage from '../views/special/camera/frame.vue';
 import NewsListPage from '../views/news/news-list-page.vue';
 import NewsDetailPage from '../views/news/news-detail-page.vue';
-import HtmlPage from '../views/static/html-page.vue';
-import NotFoundPage from '../views/not-found-page.vue';
-import AuthService from '@/logic/auth.service';
-import { equalsHostname, getLocationRemovedQuery, isDebugMode, isLocalHost, isBot } from '@/logic/utils';
-import GtmService from '@/logic/gtm.service';
+import MyPage from '../views/my-page.vue';
+import ReviewListPage from '../views/review/review-list-page.vue';
+import ReviewDetailPage from '../views/review/review-detail-page.vue';
+import UsedProductCategoryListPage from '../views/product/used-category-list-page.vue';
+import GuideMsupportPage from '../views/guide/m-support.vue';
+import GuideServiceGuidePage from '../views/guide/service-guide.vue';
+import GuideFirstGuidePage from '../views/guide/firstguide.vue';
+import GuideRecyclePage from '../views/guide/recycle.vue';
+import GuideSetupTelevisionPage from '../views/guide/setup/television.vue';
+import GuideSetupRefrigeratorPage from '../views/guide/setup/refrigerator.vue';
+import GuideSetupWasherPage from '../views/guide/setup/washer.vue';
+import GuideSetupAirConditionerPage from '../views/guide/setup/air-conditioner.vue';
+import GuideSetupAirConditionerFaqPage from '../views/guide/setup/air-conditioner-faq.vue';
+import GuideSetupAirConditionerOptionPage from '../views/guide/setup/air-conditioner-option.vue';
+import GuideSyuuriPage from '../views/guide/syuuri.vue';
+import GuideSyuuriOnlinePage from '../views/guide/syuuri/online.vue';
+import GuideSyuuriTenpoPage from '../views/guide/syuuri/tenpo.vue';
+import GuideCreditCardPage from '../views/guide/credit_card.vue';
+import GuideFaqTokutokukoukanPage from '../views/guide/faq_tokutokukoukan.vue';
+import GuideHoshouPage from '../views/guide/hoshou.vue';
+import GuideShiharaiPage from '../views/guide/shiharai.vue';
+import GuideShitadoriPage from '../views/guide/shitadori.vue';
+import GuideScredit01Page from '../views/guide/s_credit_01.vue';
+import GuideSyuuriOnlineQandAPage from '../views/guide/syuuri/online/syuuriQ&A.vue';
+import GuideSyuuriTenpoQandAPage from '../views/guide/syuuri/tenpo/syuuriQ&A.vue';
+import GuideSyuuriSyouhinQandAPage from '../views/guide/syuuri/syouhinQ&A.vue';
+import GuideRiyouKaiinPage from '../views/guide/riyou_kaiin.vue';
+import GuideRiyouKaiinkakakuPage from '../views/guide/riyou_kaiinkakaku.vue';
+import Guide3DsecurePage from '../views/guide/3Dsecure.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueMeta);
@@ -25,6 +60,12 @@ const routes: Array<RouteConfig> = [
     name: 'top-page',
     meta: { gtm: 'TopPage' },
     component: TopPage
+  },
+  {
+    path: '/ec/ct/used/list',
+    name: 'used-category-list-page',
+    meta: { gtm: 'UsedProductCategoryListPage' },
+    component: UsedProductCategoryListPage
   },
   {
     path: '/ec/list',
@@ -39,6 +80,12 @@ const routes: Array<RouteConfig> = [
     component: ProductListPage
   },
   {
+    path: '/ec/pd/compareproducts',
+    name: 'product-compare-page',
+    meta: { gtm: 'ProductComparePage' },
+    component: ProductComparePage
+  },
+  {
     path: '/ec/pd/:id',
     name: 'product-detail-page',
     meta: { gtm: 'ProductDetailPage' },
@@ -51,8 +98,171 @@ const routes: Array<RouteConfig> = [
     component: ProductDetailPage
   },
   {
+    path: '/ec/review/:janCode',
+    name: 'review-list-page',
+    meta: { gtm: 'ReviewListPage' },
+    component: ReviewListPage
+  },
+  {
+    path: '/ec/review/:janCode/:reviewId',
+    name: 'review-detail-page',
+    meta: { gtm: 'ReviewDetailPage' },
+    component: ReviewDetailPage
+  },
+  {
+    path: '/ec/guide/recycle',
+    name: 'guide-recycle-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideRecyclePage
+  },
+  {
+    path: '/ec/guide/firstguide',
+    name: 'guide-first-guide-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideFirstGuidePage
+  },
+  {
+    path: '/ec/guide/service-guide',
+    name: 'guide-service-guide-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideServiceGuidePage
+  },
+  {
+    path: '/ec/guide/m_support',
+    name: 'guide-m-support-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideMsupportPage
+  },
+  {
+    path: '/ec/guide/setup/television',
+    name: 'guide-setup-television-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSetupTelevisionPage
+  },
+  {
+    path: '/ec/guide/setup/refrigerator',
+    name: 'guide-setup-refrigerator-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSetupRefrigeratorPage
+  },
+  {
+    path: '/ec/guide/setup/washer',
+    name: 'guide-setup-washer-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSetupWasherPage
+  },
+  {
+    path: '/ec/guide/setup/air-conditioner',
+    name: 'guide-setup-air-conditioner-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSetupAirConditionerPage
+  },
+  {
+    path: '/ec/guide/setup/air-conditioner-faq',
+    name: 'guide-setup-air-conditioner-faq-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSetupAirConditionerFaqPage
+  },
+  {
+    path: '/ec/guide/setup/air-conditioner-option',
+    name: 'guide-setup-air-conditioner-option-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSetupAirConditionerOptionPage
+  },
+  {
+    path: '/ec/guide/syuuri',
+    name: 'guide-syuuri-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSyuuriPage
+  },
+  {
+    path: '/ec/guide/syuuri/online',
+    name: 'guide-syuuri-online-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSyuuriOnlinePage
+  },
+  {
+    path: '/ec/guide/syuuri/tenpo',
+    name: 'guide-syuuri-tenpo-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSyuuriTenpoPage
+  },
+  {
+    path: '/ec/guide/credit_card',
+    name: 'guide-credit-card-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideCreditCardPage
+  },
+  {
+    path: '/ec/guide/faq_tokutokukoukan',
+    name: 'guide-faq-tokutokukoukan-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideFaqTokutokukoukanPage
+  },
+  {
+    path: '/ec/guide/hoshou',
+    name: 'guide-hoshou-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideHoshouPage
+  },
+  {
+    path: '/ec/guide/shiharai',
+    name: 'guide-shiharai-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideShiharaiPage
+  },
+  {
+    path: '/ec/guide/shitadori',
+    name: 'guide-shitadori-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideShitadoriPage
+  },
+  {
+    path: '/ec/guide/s_credit_01',
+    name: 'guide-s-credit-01-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideScredit01Page
+  },
+  {
+    path: '/ec/guide/syuuri/online/syuuriQ&A',
+    name: 'guide-syuuri-online-syuuriQ&A-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSyuuriOnlineQandAPage
+  },
+  {
+    path: '/ec/guide/syuuri/tenpo/syuuriQ&A',
+    name: 'guide-syuuri-tenpo-syuuriQ&A-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSyuuriTenpoQandAPage
+  },
+  {
+    path: '/ec/guide/syuuri/syouhinQ&A',
+    name: 'guide-syuuri-syouhinQ&A-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideSyuuriSyouhinQandAPage
+  },
+  {
+    path: '/ec/guide/riyou_kaiin',
+    name: 'guide-riyou-kaiin-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideRiyouKaiinPage
+  },
+  {
+    path: '/ec/guide/riyou_kaiinkakaku',
+    name: 'guide-riyou_kaiinkakaku-page',
+    meta: { gtm: 'GuidePage' },
+    component: GuideRiyouKaiinkakakuPage
+  },
+  {
+    path: '/ec/guide/3Dsecure',
+    name: 'guide-3Dsecure-page',
+    meta: { gtm: 'GuidePage' },
+    component: Guide3DsecurePage
+  },
+  {
     path: '/ec/guide/:page',
     name: 'guide-html-page',
+    meta: { gtm: 'GuidePage' },
     component: HtmlPage
   },
   {
@@ -67,8 +277,14 @@ const routes: Array<RouteConfig> = [
     meta: { gtm: 'SpecialNewsPage' },
     component: SpecialNewsPage
   },
+  // {
+  //   path: '/ec/special/camera/frame/:id',
+  //   name: 'camera-frame-page',
+  //   meta: { gtm: 'SpecialCameraFramePage' },
+  //   component: SpecialCameraFramePage
+  // },
   {
-    path: '/ec/special/:page([0-9a-zA-Z/]+)',
+    path: '/ec/special/*',
     name: 'special-page',
     meta: { gtm: 'SpecialPage' },
     component: SpecialPage
@@ -92,15 +308,21 @@ const routes: Array<RouteConfig> = [
     component: NewsDetailPage
   },
   {
+    path: '/ec/mypage',
+    component: MyPage,
+    children: [...MyPageRoutes]
+  },
+  {
     path: '*',
     name: 'not-found-page',
     component: NotFoundPage
   },
   {
     path: '/ec/guide/tablet/:page',
-    name: 'guide-html-page',
+    name: 'guide-tablet-html-page',
+    meta: { gtm: 'GuidePage' },
     component: HtmlPage
-  },
+  }
 ];
 
 const router = new VueRouter({
@@ -146,9 +368,27 @@ const _trackEvent = async (route: Route): Promise<void> => {
 };
 
 // ルーティング前
-router.beforeEach(async (to, _, next) => {
+router.beforeEach(async (to, from, next) => {
   // 全体ローディングを表示にする
   Vue.prototype.$store.loader.routeUnset();
+
+  // headタグを初期化する
+  CanonicalService.clear();
+
+  // 比較ページ用
+  if (to.name === 'product-compare-page' && to.query.prd) {
+    // JanCodeソート
+    const janCodes = to.query.prd as string;
+    const sortJancodes = janCodes
+      .split('-')
+      .sort()
+      .join('-');
+
+    if (janCodes !== sortJancodes) {
+      next({ name: 'product-compare-page', query: { prd: sortJancodes } });
+      return;
+    }
+  }
 
   if (isLocalHost() || equalsHostname(process.env.VUE_APP_SSO_SKIP_HOSTNAME)) {
     /**
@@ -176,9 +416,18 @@ router.beforeEach(async (to, _, next) => {
     isExecutedSession = true;
   }
 
-  // ハッシュ付きURLの場合、Tokenがto.queryで取得できないため、フルパスから取得する
   let nextTo = to;
-  let { token } = to.query;
+  let token: string | null = null;
+  const queryToken = to.query.token;
+
+  // クエリパラメータにTokenが複数ある場合、一番最後の値を取得する
+  if (queryToken && Array.isArray(queryToken)) {
+    token = queryToken.length ? queryToken[queryToken.length - 1] : null;
+  } else {
+    token = queryToken;
+  }
+
+  // ハッシュ付きURLの場合、Tokenがto.queryで取得できないため、フルパスから取得する
   if (to.hash && to.hash.search('token') !== -1) {
     token = to.hash.split('token')[1].replace('=', '');
     nextTo = {
@@ -208,7 +457,7 @@ router.beforeEach(async (to, _, next) => {
     next();
   } else if (token) {
     // 引継ぎトークンが渡ってきた場合、セッション情報を取得する
-    await AuthService.requestSession(token as string, toUrl);
+    await AuthService.requestSession(token, toUrl);
 
     // 引継ぎトークン情報を削除する
     // お気に入り登録の際にtokenパラメータを入れた状態にしないため

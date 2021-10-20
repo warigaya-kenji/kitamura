@@ -18,6 +18,8 @@ import ApiService from './logic/api.service';
 import './styles/common.scss';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import { formatPrice, formatDate } from './logic/utils';
+import VueScrollTo from 'vue-scrollto';
 import VueEasyLightbox from 'vue-easy-lightbox';
 import VueClipboard from 'vue-clipboard2'
 
@@ -25,14 +27,21 @@ Vue.use(VueCompositionApi);
 Vue.config.productionTip = false;
 Vue.prototype.$store = globalStore();
 Vue.use(VueMeta);
+Vue.use(VueScrollTo, {
+  offset: -170, 
+  duration: 300
+});
 Vue.use(VueEasyLightbox);
-Vue.use(VueClipboard)
+Vue.use(VueClipboard);
 
 dayjs.extend(isBetween);
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
 
 ApiService.init();
+
+Vue.filter('date', formatDate);
+Vue.filter('price', formatPrice);
 
 new Vue({
   router,

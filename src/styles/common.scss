@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: "Meiryo", "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック", "Osaka", sans-serif;
+  font-family: 'Meiryo', 'ヒラギノ角ゴ Pro W3', 'ＭＳ Ｐゴシック', 'Osaka', sans-serif;
 }
 
 /* ---- link ----- */
@@ -19,6 +19,15 @@ a,
 
     * {
       color: $text-primary;
+    }
+  }
+}
+
+.ec-link-btn {
+  &:hover {
+    .v-btn__content,
+    .v-btn__content * {
+      color: inherit;
     }
   }
 }
@@ -139,14 +148,14 @@ a.ec-link-image {
 
 /* ヘッダー固定によるアンカーリンクの位置ずらし */
 .ec-goto-link::before {
-  content: "";
+  content: '';
   display: block;
   height: 0;
   margin: -180px 0 0 0;
   padding: 180px 0 0 0;
 }
 .ec-goto-link-narrow::before {
-  content: "";
+  content: '';
   display: block;
   height: 0;
   margin: -180px 0 0 0;

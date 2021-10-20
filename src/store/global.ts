@@ -7,6 +7,8 @@ import authStore from '@/store/auth';
 import loadStore from '@/store/load';
 import headerStore from '@/store/header';
 import errorStore from '@/store/error';
+import confirmDialogStore from '@/store/confirm-dialog';
+import mypageMenuStore from '@/store/mypage-menu';
 
 export default function globalStore() {
   return {
@@ -18,7 +20,9 @@ export default function globalStore() {
     authorizer: authStore(),
     loader: loadStore(),
     header: headerStore(),
-    errorStore: errorStore()
+    errorStore: errorStore(),
+    confirmDialogStore: confirmDialogStore(),
+    mypageMenuStore: mypageMenuStore()
   };
 }
 

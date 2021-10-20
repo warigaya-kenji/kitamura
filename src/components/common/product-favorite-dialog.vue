@@ -43,25 +43,42 @@ export default Vue.extend({
     isFavorite: {
       required: true,
       type: Boolean
+    },
+    isNoticePriceSetting: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
+    isNoticeUsedSetting: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   setup(props: any, context) {
-    const { errorStore } = context.root.$store;
+    const { errorStore, confirmDialogStore } = context.root.$store;
 
     const state = reactive({
-      noticePrice: false,
-      noticeUsed: false
+      noticePrice: props.isNoticePriceSetting,
+      noticeUsed: props.isNoticeUsedSetting
     });
 
     const registerFavorite = async (isDelete?: boolean) => {
       if (typeof isDelete === 'undefined') {
         isDelete = false;
+      } else if (isDelete) {
+        // 削除確認
+        const confirm = await confirmDialogStore.open('削除してよろしいですか？', '削除');
+        if (!confirm) {
+          return;
+        }
       }
 
       try {
         await ProductService.registerFavorite(props.janCode, state.noticePrice, state.noticeUsed, isDelete);
         context.emit('onRegisterd');
       } catch (error) {
+        console.error(error);
         errorStore.errorMessage =
           'ただいまシステムが混みあっている可能性があります。しばらくお待ちいただきますようお願い申し上げます。ご迷惑をおかけして申し訳ございません。';
       }

@@ -7,7 +7,7 @@
           <img class="product-img" contain :src="stateProduct.image" @error="noimage" :alt="stateProduct.title" />
           <div
             class="product-img-cover"
-            :class="{ 'comming-soon': stateProduct.n7c === '2', 'sold-out': stateProduct.n7c === '3' }"
+            :class="{ 'coming-soon': stateProduct.n7c === '2', 'sold-out': stateProduct.n7c === '3' }"
             v-if="stateProduct.n7c === '2' || stateProduct.n7c === '3'"
           >
             <span class="product-img-cover-text">{{ convertToStatusText(stateProduct.n7c) }}</span>
@@ -28,7 +28,7 @@
       <div class="product-r-area">
         <div class="product-state">
           <span class="product-state-label">状態:</span>
-          <span class="product-state-val">{{ USED_STATES.filter((item) => item.value === stateProduct.number1)[0].text }}</span>
+          <span class="product-state-val">{{ convertToUsedStatesText(stateProduct.number1) }}</span>
         </div>
         <div class="product-note">
           <span class="product-note-label">備考:</span>
@@ -51,7 +51,7 @@
             <img class="product-img" contain :src="stateProduct.image" @error="noimage" :alt="stateProduct.title" />
             <div
               class="product-img-cover"
-              :class="{ 'comming-soon': stateProduct.n7c === '2', 'sold-out': stateProduct.n7c === '3' }"
+              :class="{ 'coming-soon': stateProduct.n7c === '2', 'sold-out': stateProduct.n7c === '3' }"
               v-if="stateProduct.n7c === '2' || stateProduct.n7c === '3'"
             >
               <span class="product-img-cover-text">{{ convertToStatusText(stateProduct.n7c) }}</span>
@@ -71,7 +71,7 @@
       <div class="product-b-area">
         <div class="product-state">
           <span class="product-state-label">状態:</span>
-          <span class="product-state-val">{{ USED_STATES.filter((item) => item.value === stateProduct.number1)[0].text }}</span>
+          <span class="product-state-val">{{ convertToUsedStatesText(stateProduct.number1) }}</span>
         </div>
         <div class="product-note">
           <span class="product-note-label">備考:</span>
@@ -92,9 +92,8 @@
 import Vue from 'vue';
 import { reactive, toRefs } from '@vue/composition-api';
 import { ProductItem } from '@/types/product-list';
-import { USED_STATES } from '@/constants/used-states';
 import { USED_SALES_STATUS } from '@/constants/used-sales-status';
-import { noimage, formatPrice } from '@/logic/utils';
+import { noimage, formatPrice, convertToUsedStatesText } from '@/logic/utils';
 
 export default Vue.extend({
   name: 'product',
@@ -122,9 +121,9 @@ export default Vue.extend({
 
     return {
       ...toRefs(state),
-      USED_STATES,
       noimage,
       formatPrice,
+      convertToUsedStatesText,
       convertToStatusText
     };
   }
@@ -212,7 +211,7 @@ $r-flex: 0 0 auto;
       text-align: center;
     }
 
-    &.comming-soon {
+    &.coming-soon {
       background: $bg-black-transparent-3;
     }
 

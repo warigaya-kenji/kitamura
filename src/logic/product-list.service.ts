@@ -33,6 +33,7 @@ const ProductListService = {
     query['sort'] = sort;
     query['ipg'] = ipg;
     query['page'] = page;
+    query['narrow19'] = 1;
 
     response = await ApiService.get(url, {
       params: query
@@ -86,6 +87,7 @@ const ProductListService = {
     let response = {} as ProductListCount;
 
     const query = _convertCategoryConditions(searchCondition, false);
+    query['narrow19'] = 1;
 
     response = await ApiService.get(url, {
       params: query

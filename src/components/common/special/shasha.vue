@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div class="product-shasha mb-5">
-      <v-card class="product-shasha-wrap pa-4 float-left line-height" outlined>
-        {{ txt }}<a class="product-shasha-link" :href="href" target="_blank">続きを読む <img :src="src" alt="イメージ" class="product-shasha-img mt-4" /></a>
+    <div class="product-shasha">
+      <v-card class="product-shasha-wrap pa-4 line-height my-2" outlined>
+        <span class="text-body-2">{{ txt }}</span>
+        <a class="product-shasha-link" :href="href" target="_blank"
+          >続きを読む <v-img contain :src="src" alt="イメージ" class="product-shasha-img mt-4 hover"
+        /></a>
+        <p v-if="txt2 !== ''">{{ txt2 }}</p>
       </v-card>
     </div>
   </div>
@@ -13,13 +17,18 @@ export default {
   name: 'shasha',
   props: {
     txt: {
-      type: String,
+      type: String
     },
     href: {
-      type: String,
+      type: String
     },
     src: {
       type: String
+    },
+    txt2: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
 };
@@ -31,11 +40,6 @@ export default {
     background: #f8fbd1;
     white-space: pre-wrap;
     word-wrap: break-word;
-  }
-  &-link:hover {
-    img {
-      opacity: 0.7;
-    }
   }
 }
 </style>

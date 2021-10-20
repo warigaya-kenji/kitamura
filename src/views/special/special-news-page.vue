@@ -106,6 +106,7 @@ import { DISPLAY_COUNT_LIST } from '@/constants/display-conut-list';
 import SpecialProductService from '@/logic/special-product.service';
 import { ProductItem } from '@/types/product-list';
 import NewsService from '@/logic/news.service';
+import { sortByRowNo } from '@/logic/utils';
 
 type BreadcrumbItem = {
   path: string;
@@ -181,6 +182,7 @@ export default Vue.extend({
         state.totalCount = state.results.length;
         setDispalySpecialproduct();
       } catch (error) {
+        console.error(error);
         state.results = [] as Array<ProductItem>;
       } finally {
         state.loaded.results = true;
@@ -221,10 +223,13 @@ export default Vue.extend({
         state.bodyText = newsResult[0].newsContent;
 
         // 表示商品取得
-        if (newsResult[0].janCodes) {
-          await getSpecialProduct(newsResult[0].janCodes);
+        if (newsResult[0].items) {
+          const sortedItems = sortByRowNo(newsResult[0].items);
+          const janCodes = sortedItems.map((items) => items.janCode);
+          await getSpecialProduct(janCodes);
         }
       } catch (error) {
+        console.error(error);
         // 取得できない場合は、NotFoundPageに遷移させる
         context.root.$router.push({ name: 'not-found-page' });
       }

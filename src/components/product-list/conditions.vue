@@ -128,7 +128,7 @@ import { NewerCategory } from '@/types/tsv-config';
 import { ProductListCount } from '@/types/product-list';
 import { Condition, ConditionItem } from '@/types/conditions';
 import { SEARCH_STATE } from '@/constants/search-state';
-import { USED_STATES } from '@/constants/used-states';
+import { convertToUsedStatesText } from '@/logic/utils';
 
 type conditionsItem = {
   code: string;
@@ -144,6 +144,8 @@ type OptionItem = {
   count: number;
   selected: boolean;
 };
+
+const USED_CATEGORY_LIST = ['カメラ用品', 'フィルムカメラ', '交換レンズ'];
 
 export default Vue.extend({
   name: 'conditions',
@@ -272,11 +274,38 @@ export default Vue.extend({
             // 選択肢が存在しないものは表示しない
             if (cateOptionList.length !== 0) {
               // 件数順にソート
-              cateOptionList.sort((a, b) => {
-                if (a.count > b.count) return -1;
-                if (a.count < b.count) return 1;
-                return 0;
+              cateOptionList.sort((a, b) => b.count - a.count);
+              const condCate = condition.searchConditionByCode('category', false);
+              displayCond.push({
+                code: 'category',
+                text: condCate.name ? condCate.name : 'カテゴリー',
+                selectType: 'list',
+                fullOption: cateOptionList,
+                isDisplayFullOption: cateOptionList.length > 5 ? false : true
               });
+            }
+          }
+        } else {
+          // 中古在庫一覧で、特定のカテゴリが指定されていた場合、検索条件を追加する
+          if (USED_CATEGORY_LIST.includes(currentCate.parentCategoryName)) {
+            const cateOptionList = [] as Array<OptionItem>;
+            const parentCategoryName = currentCate.parentCategoryName;
+            for (const categoryName in opCount.category) {
+              if (categoryName.startsWith(parentCategoryName) && categoryName !== parentCategoryName) {
+                const optionText = categoryName.replace(`${parentCategoryName}:`, '');
+                cateOptionList.push({
+                  text: optionText,
+                  value: categoryName,
+                  count: opCount.category[categoryName],
+                  selected: false
+                });
+              }
+            }
+
+            // 選択肢が存在しないものは表示しない
+            if (cateOptionList.length !== 0) {
+              // 件数順にソート
+              cateOptionList.sort((a, b) => b.count - a.count);
               const condCate = condition.searchConditionByCode('category', false);
               displayCond.push({
                 code: 'category',
@@ -324,8 +353,8 @@ export default Vue.extend({
                   break;
                 }
                 case 'n1c': {
-                  const targetState = USED_STATES.filter((item) => item.value === option)[0];
-                  displayName = targetState && targetState.text ? targetState.text : '';
+                  const targetStateText = convertToUsedStatesText(option);
+                  displayName = targetStateText;
                   break;
                 }
                 case 'narrow2': {
@@ -365,19 +394,11 @@ export default Vue.extend({
 
           // 件数順に並び替え
           if (cond.isSortWithCount) {
-            fullOptionList.sort((a, b) => {
-              if (a.count > b.count) return -1;
-              if (a.count < b.count) return 1;
-              return 0;
-            });
+            fullOptionList.sort((a, b) => b.count - a.count);
           }
           // 「中古在庫:商品の状態」のみ表示順を降順に
           if (cond.paramCode === 'n1c') {
-            fullOptionList.sort((a, b) => {
-              if (a.value > b.value) return -1;
-              if (a.value < b.value) return 1;
-              return 0;
-            });
+            fullOptionList.sort((a, b) => b.count - a.count);
           }
           // 条件項目の追加
           displayCond.push({

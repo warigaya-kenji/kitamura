@@ -315,7 +315,7 @@ export default Vue.extend({
         },
         {
           path: '最新デジカメ新製品',
-          linkUrl: '/ec/special/sale-fair/camera/feature/',
+          linkUrl: '/ec/special/camera/feature',
           disabled: false
         },
         {
@@ -412,6 +412,7 @@ export default Vue.extend({
         const productListResult = await ProductService.fetchProducts(state.productJanCodeList, true);
         state.productDetailList = productListResult.items;
       } catch (error) {
+        console.error(error);
         // メイン商品
         state.mainProduct = {} as ProductDetail;
         // 比較
@@ -438,7 +439,8 @@ export default Vue.extend({
       try {
         searchResult = await ProductListService.searchNewItem(state.searchCondition, state.sort, state.displayCount, state.page);
         state.results = searchResult.items;
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         searchResult = {
           items: [] as Array<ProductItem>,
           wordItems: [] as Array<{
@@ -460,7 +462,8 @@ export default Vue.extend({
         try {
           const usedProductsResult = await ProductService.searchUsedProductsSummary(itemIds);
           state.usedProductsSummary = usedProductsResult.itemInfo;
-        } catch (err) {
+        } catch (error) {
+          console.error(error);
           state.usedProductsSummary = [];
         }
       }

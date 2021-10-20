@@ -5,24 +5,30 @@
         <!-- ↓パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
 
+        <!-- ↓url copy -->
+        <urlcopy />
+        <!-- ↑url copy -->
+
         <!-- ↓ サンプル：画像の読み込み -->
-        <div class="newproduct pc">
-          <h1 class="top-title">
-            パナソニック LUMIX DC-GH5M2
-            <p>5G対応端末と連携し手軽に無線ライブ配信が行える<br />次世代ミラーレス</p>
-          </h1>
-        </div>
+        <!-- ↓top image -->
+        <topTitleImg
+          :pcBackgroundImg="'/ec/images2/special/camera/feature/panasonic/gh5m2/bg_top.jpg'"
+          :spBackgroundImg="'/ec/images2/special/camera/feature/panasonic/gh5m2/sp_img_top.jpg'"
+          :topTitle="'パナソニック LUMIX DC-GH5M2'"
+          :topTitleText="'5G対応端末と連携し手軽に無線ライブ配信が行える\n次世代ミラーレス'"
+        />
+        <!-- ↑top image -->
 
         <div class="red darken-4 text-center mb-2">
           <span class="white--text text-h5 font-weight-bold">好評発売中！</span>
         </div>
 
         <div class="darken-2 text-left">
-          <span>オリンパス PEN E-P7</span>
+          <span>パナソニック LUMIX DC-GH5M2</span>
         </div>
 
         <!-- ↓ ナビボタン -->
-        <naviBtn :naviList="naviList" />
+        <naviBtn :naviList="naviList" :hoverColor="'#1122cc'" />
         <!-- ↑ ナビボタン -->
 
         <div class="text-right mb-2">
@@ -31,130 +37,62 @@
 
         <subText :textItem="'5G対応端末などと連携し、無線ライブ配信を実現したプロフェッショナル動画性能搭載ミラーレス'" />
 
-        <subText :textItem="'パナソニック LUMIX DC-GH5M2 価格・ご購入'" />
-
         <!--====== 価格・ご購入 ======-->
-        <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in mainProductList" :key="product">
-          <v-container>
-            <v-row>
-              <v-col class="text-center" cols="12" sm="5">
-                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr" /></router-link>
-                <p>
-                  <a :href="`/ec/pd/${product.janCode}`">{{ product.itemName }}</a>
-                </p>
-              </v-col>
-              <v-col class="text-center mt-4" cols="12" sm="6">
-                <p class="text-h6">
-                  価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
-                </p>
-                <v-btn
-                  elevation="3"
-                  x-large
-                  dark
-                  color="orange lighten-1"
-                  class="text-h5 font-weight-bold accent-4"
-                  height="55px"
-                  width="65%"
-                  :href="`/ec/pd/${product.janCode}`"
-                >
-                  <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
-                  ご購入はこちら
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
+        <div id="price">
+          <subText :textItem="'パナソニック LUMIX DC-GH5M2 価格・ご購入'" />
+          <priceAndPurchase :mainProductList="mainProductList" />
+        </div>
 
         <div>
           <a href="https://panasonic.jp/dc/products/g_series/gh5m2/campaign_cashback.html" target="_blank"
-            ><img src="/ec/images2/special/camera/feature/panasonic/gh5m2/camp.jpg"
+            ><v-img src="/ec/images2/special/camera/feature/panasonic/gh5m2/camp.jpg" max-width="100%" height="auto"
           /></a>
         </div>
 
-        <!--↓ショッピングクレジット -->
-        <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
-        <!-- <v-container>
-          <v-row class="mb-10">
-            <v-col class="text-center" cols="4">
-              <a :href="`/ec/pd/${mainProductList[0].janCode}`"
-                ><img src="//shopimg.kitamura.jp/images/pd/a14/e5a/3b5/8c5/715/c61/596/1ee/140/2a4/653/nrh/iwd/r/M.jpg" width="80%"
-              /></a>
-              <br />
-              <a :href="`/ec/pd/${mainProductList[0].janCode}`">{{ mainProductList[0].itemName }}</a
-              ><br /><span class="red--text">{{ mainProductList[0].price }}</span
-              >円(税込)
-            </v-col>
-            <v-col col="6">
-              <p>
-                分割払いなら一度にかかるご負担を軽減する事ができます。<br />
-                ショッピングクレジットの分割払いなら、最大24回分割払いまで分割金利手数料を当店が負担致します。
-              </p>
-              <font size="-1">※2021年6月25日時点の価格です</font>
-              <splitContent :numberOfTimes="'48'" :amount="'4,061'" :commission="'0'" />
-            </v-col>
-          </v-row>
-        </v-container> -->
-
-        <!-- <v-row class="mb-10" v-if="Object.keys(mainProduct).length">
-          <v-col class="text-center" cols="4">
-            <a :href="`/ec/pd/${mainProductList[1].janCode}`"
-              ><img src="//shopimg.kitamura.jp/images/pd/559/5f2/be3/62a/788/b47/3cc/17b/db5/5ee/32t/10f/ql2/w/M.jpg" width="80%"
-            /></a>
-            <br />
-            <a :href="`/ec/pd/${mainProductList[1].janCode}`">{{ mainProductList[1].itemName }}</a
-            ><br /><span class="red--text">{{ mainProductList[1].price }}</span
-            >円(税込)
-          </v-col>
-          <v-col col="6">
-            <font size="-1">※2021年6月25日時点の価格です</font>
-            <splitContent :numberOfTimes="'48'" :amount="'4,579'" :commission="'0'" />
-          </v-col>
-        </v-row> -->
-        <!--↑ショッピングクレジット -->
+        <!--↓キタムラなら最大48回まで分割金利手数料0円！ -->
+        <div id="price2">
+          <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
+          <splitContent v-if="mainProductList.length !== 0" :ProductList="mainProductList[0]" :amount="'4,061'" :targetDate="'2021年6月25日'" />
+          <splitContent v-if="mainProductList.length !== 0" :ProductList="mainProductList[1]" :amount="'4,579'" :targetDate="'2021年6月25日'" :isText="false" />
+        </div>
 
         <!--特徴-->
-        <subText :textItem="'パナソニック LUMIX GH5M2 の特徴'" id="point" />
-        <characteristic :characteristics="characteristicList" />
+        <div id="spec">
+          <subText :textItem="'パナソニック LUMIX GH5M2 の特徴'" />
+          <characteristic :characteristics="characteristicList" />
+        </div>
         <!--特徴-->
 
         <!-- ↓ ShaSha -->
         <subText :textItem="'ShaSha:パナソニック LUMIX DC-GH5M2 レビュー'" />
-        <shasha :shashaData="shashaData" />
+        <shasha
+          :txt="'ハイエンド、ハイブリッド、ハイパフォーマンスの意味を込めた「GH」を冠する同シリーズのカメラは動画撮影に強い「ハイブリット」としての側面が特に注目されているかと思います。\n今回のGH5IIでも注目すべきは動画性能かと思いますので、動画機として如何に進化しているかについて...'"
+          :href="'https://shasha.kitamura.jp/article/482045857.html'"
+          :src="'/ec/images2/special/camera/feature/panasonic/gh5m2/shashabnr2.jpg'"
+        />
 
         <subText :textItem="'ShaSha:パナソニック LUMIX DC-GH5M2 紹介記事'" />
-        <shasha :shashaData="shashaData" />
+        <shasha
+          :txt="'前機種のLUMIX GH5の登場から約4年の歳月が流れ、本機では基本性能やプロユースに応える性能の向上に加え、5G環境下のスマホと連携して屋内外さまざまなシーンで無線LIVE配信を可能にするカメラになっているようです。\n今回はそのLUMIX GH5IIの進化や魅力について、パナソニック株式会社 商品企画担当の中西智紀（なかにしともき）氏にインタビューしました...'"
+          :href="'https://shasha.kitamura.jp/article/481686135.html'"
+          :src="'/ec/images2/special/camera/feature/panasonic/gh5m2/shashabnr.jpg'"
+        />
 
         <!--↓ 価格・人気アクセサリー-->
         <subText :textItem="'パナソニック LUMIX DC-GH5M2 価格/人気アクセサリー'" />
-        <v-container>
-          <v-row>
-            <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
-              <p class="font-small blue--text mb-2 height-20">
-                <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
-              </p>
-              <p class="mt-2">
-                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
-              </p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <priceAndPopular :productDetailList="productDetailList" />
 
         <!--↓ 外観画像ー-->
-        <subText :textItem="'パナソニック LUMIX DC-GH5M2 外観画像'" />
-        <p class="text-subtitle-1">パナソニック LUMIX DC-GH5M2 の外観画像</p>
-        <v-container>
-          <v-row>
-            <v-col v-for="n in 4" :key="n" cols="12">
-              <v-img :src="`/ec/images2/special/camera/feature/panasonic/gh5m2/img_${n}.jpg`"> </v-img>
-            </v-col>
-          </v-row>
-        </v-container>
+        <div id="images">
+          <subText :textItem="'パナソニック LUMIX DC-GH5M2 外観画像'" />
+          <p class="text-subtitle-1">パナソニック LUMIX DC-GH5M2 の外観画像</p>
+          <appearanceImage :src="'/ec/images2/special/camera/feature/panasonic/gh5m2'" />
+        </div>
 
         <!--↓ SNSー-->
         <facebookAndTwitter />
 
-        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
+        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" />
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
@@ -175,6 +113,11 @@ import Characteristic from '@/components/common/special/characteristic.vue';
 import ShaSha from '@/components/common/special/shasha.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
+import TopTitleImg from '@/components/common/special/top-title-img.vue';
+import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
+import AppearanceImage from '@/components/common/special/appearance-image.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
 
 export default Vue.extend({
   name: 'gh5m2',
@@ -182,92 +125,21 @@ export default Vue.extend({
     breadcrumbs: Breadcrumbs,
     naviBtn: NaviBtn,
     subText: SubText,
-    // splitContent: SplitContent,
+    splitContent: SplitContent,
     characteristic: Characteristic,
     shasha: ShaSha,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
+    recommendedFeatures: RecommendedFeatures,
+    topTitleImg: TopTitleImg,
+    priceAndPurchase: PriceAndPurchase,
+    appearanceImage: AppearanceImage,
+    priceAndPopular: PriceAndPopular,
+    urlcopy: Urlcopy
   },
-  data() {
-    return {
-      naviList: [
-        { naviItem: 'お得情報', href: '#price' },
-        { naviItem: '機種比較', href: '#hikaku' },
-        { naviItem: '外観画像', href: '#images2' },
-        { naviItem: '作例画像', href: '#images' }
-      ],
-      characteristicList: [
-        {
-          subtitle: '5G対応端末などと連携して、手軽に高品位な無線ライブ配信を実現',
-          contents: ['専用アプリを使ってスマートデバイスからかんたん操作でライブ配信が可能']
-        },
-        {
-          subtitle: 'クリエイターの表現の幅を広げる進化した基本性能',
-          contents: [
-            '高精細でリアルな解像力を実現する20.3MLiveMOSセンサー＆最新のヴィーナスエンジン搭載',
-            '追従精度が向上したリアルタイム認識AF、6.5段の手ブレ補正システムDualI.S.2を搭載',
-            'オーバーヒートを抑制する放熱システムにより、収録やライブ配信で動画撮影時間無制限を実現'
-          ]
-        },
-        {
-          subtitle: 'プロフェッショナルユースに応える動画撮影性能',
-          contents: [
-            'Cinema4K60p10bit、高解像アナモフィックモード（6K-A）記録などの多彩な動画記録モード',
-            'スローモーションやクイックモーション撮影が可能なVFR（バリアブルフレームレート）',
-            '自由度の高いカラーグレーディングを実現する10bitのV-Log L'
-          ]
-        }
-      ],
-      shashaData: [
-        {
-          text: 'ハイエンド、ハイブリッド、ハイパフォーマンスの意味を込めた「GH」を冠する同シリーズのカメラは動画撮影に強い「ハイブリット」としての側面が特に注目されているかと思います。今回のGH5IIでも注目すべきは動画性能かと思いますので、動画機として如何に進化しているかについて...',
-          href: 'https://shasha.kitamura.jp/article/482045857.html',
-          src: '/ec/images2/special/camera/feature/panasonic/gh5m2/shashabnr2.jpg'
-        }
-      ],
-      shashaData2: [
-        {
-          text: '前機種のLUMIX GH5の登場から約4年の歳月が流れ、本機では基本性能やプロユースに応える性能の向上に加え、5G環境下のスマホと連携して屋内外さまざまなシーンで無線LIVE配信を可能にするカメラになっているようです。今回はそのLUMIX GH5IIの進化や魅力について、パナソニック株式会社 商品企画担当の中西智紀（なかにしともき）氏にインタビューしました.',
-          href: 'https://shasha.kitamura.jp/article/481686135.html',
-          src: '/ec/images2/special/camera/feature/panasonic/gh5m2/shashabnr.jpg'
-        }
-      ],
-      recommendedFeaturesList: [
-        {
-          href: '/special/sale-fair/camera/feature/backnumber/',
-          img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
-          alt: '話題の新製品バックナンバー'
-        },
-        {
-          href: 'https://www.kitamura.jp/service/maintenance/',
-          img: 'http://shopimg.kitamura.jp/images/banner/8422.png',
-          alt: 'カメラ・レンズ メンテナンスサービス'
-        },
-        {
-          href: '/special/sale-fair/',
-          img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
-          alt: 'セール・特集一覧'
-        },
-        {
-          href: '/sitemap/s_credit_01.html',
-          img: 'http://shopimg.kitamura.jp/images/banner/1486.gif',
-          alt: 'ショッピングクレジット'
-        },
-        {
-          href: '/special/sale-fair/general/tokutokukoukan/',
-          img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
-          alt: 'トクトク交換'
-        },
-        {
-          href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
-          img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
-        }
-      ]
-    };
-  },
-  props: {},
   setup: (props, context) => {
+    document.title = 'パナソニック LUMIX DC-GH5M2 | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'パナソニック LUMIX DC-GH5M2 好評発売中！！比較や、価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
+
     const state = reactive({
       breadcrumbs: [
         {
@@ -277,7 +149,7 @@ export default Vue.extend({
         },
         {
           path: '最新デジカメ新製品',
-          linkUrl: '/ec/special/camera/feature/',
+          linkUrl: '/ec/special/camera/feature',
           disabled: false
         },
         {
@@ -309,8 +181,68 @@ export default Vue.extend({
         '4523052024108'
       ],
       // 結果格納用
-      productDetailList: [] as Array<ProductDetail>
+      productDetailList: [] as Array<ProductDetail>,
       // ↑ ---- 価格・人気アクセサリー ----
+      naviList: [
+        { naviItem: '価格', href: '#price' },
+        { naviItem: 'お得情報', href: '#price2' },
+        { naviItem: '特徴', href: '#spec' },
+        { naviItem: '外観画像', href: '#images' }
+      ],
+      characteristicList: [
+        {
+          subtitle: '5G対応端末などと連携して、手軽に高品位な無線ライブ配信を実現',
+          contents: ['専用アプリを使ってスマートデバイスからかんたん操作でライブ配信が可能']
+        },
+        {
+          subtitle: 'クリエイターの表現の幅を広げる進化した基本性能',
+          contents: [
+            '高精細でリアルな解像力を実現する20.3MLiveMOSセンサー＆最新のヴィーナスエンジン搭載',
+            '追従精度が向上したリアルタイム認識AF、6.5段の手ブレ補正システムDualI.S.2を搭載',
+            'オーバーヒートを抑制する放熱システムにより、収録やライブ配信で動画撮影時間無制限を実現'
+          ]
+        },
+        {
+          subtitle: 'プロフェッショナルユースに応える動画撮影性能',
+          contents: [
+            'Cinema4K60p10bit、高解像アナモフィックモード（6K-A）記録などの多彩な動画記録モード',
+            'スローモーションやクイックモーション撮影が可能なVFR（バリアブルフレームレート）',
+            '自由度の高いカラーグレーディングを実現する10bitのV-Log L'
+          ]
+        }
+      ],
+      recommendedFeaturesList: [
+        {
+          href: '/special/sale-fair/camera/feature/backnumber/',
+          img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
+          alt: '話題の新製品バックナンバー'
+        },
+        {
+          href: 'https://www.kitamura.jp/service/maintenance/',
+          img: 'http://shopimg.kitamura.jp/images/banner/8422.png',
+          alt: 'カメラ・レンズ メンテナンスサービス'
+        },
+        {
+          href: '/special/sale-fair/',
+          img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
+          alt: 'セール・特集一覧'
+        },
+        {
+          href: '/ec/guide/s_credit_01l',
+          img: 'http://shopimg.kitamura.jp/images/banner/1486.gif',
+          alt: 'ショッピングクレジット'
+        },
+        {
+          href: '/special/sale-fair/general/tokutokukoukan/',
+          img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
+          alt: 'トクトク交換'
+        },
+        {
+          href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
+          img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
+          alt: 'トクトク買取'
+        }
+      ]
     });
     /**
      * 商品詳細を取得する
@@ -345,11 +277,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style lang="scss" scoped>
-@media screen and (min-width: 952px) {
-  .pc {
-    display: block;
-  }
-}
-</style>

@@ -4,21 +4,23 @@
       <v-container v-if="mainProductList.length !== 0">
         <v-row>
           <v-col class="text-center" cols="12" sm="5">
-            <router-link :to="`/ec/pd/${product.janCode}`"><v-img :src="product.images[0].imagePath" max-width="80%" height="auto"></v-img></router-link><br />
+            <router-link :to="`/ec/pd/${product.janCode}`"
+              ><v-img :src="product.images[0].imagePath.replace(/TN/g, 'M')" max-width="80%" height="auto"></v-img></router-link
+            ><br />
             <a :href="`/ec/pd/${product.janCode}`" class="indigo--text">{{ product.itemName }}</a>
           </v-col>
           <v-col class="text-center mt-4" cols="12" sm="6">
             <p class="text-h6">
-              価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
+              価格<span class="text-h4 red--text">{{ product.price }}&nbsp;</span><span class="font-small">円</span>
             </p>
             <v-btn
               elevation="3"
               x-large
               dark
-              color="orange"
-              class="text-h5 font-weight-bold accent-4"
+              :color="btnColor"
+              class="main-product-btn text-h5 font-weight-bold"
               height="55px"
-              width="65%"
+              width="300px"
               :href="`/ec/pd/${product.janCode}`"
             >
               <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
@@ -41,6 +43,10 @@ export default Vue.extend({
       type: Array,
       required: true
     },
+    btnColor: {
+      type: String,
+      default: 'rgba(255, 132, 0, 1)'
+    }
   },
   setup: () => {
     return {

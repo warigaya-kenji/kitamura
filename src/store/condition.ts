@@ -1,5 +1,5 @@
 import { reactive } from '@vue/composition-api';
-import { Condition, ConditionOption } from '@/types/conditions';
+import { Condition, ConditionItem, ConditionOption } from '@/types/conditions';
 import { DisplayPrice } from '@/types/tsv-config';
 import ProductListSysConfigsService from '@/logic/tsv/product-list-sys-configs.service';
 import ConditionsService from '@/logic/conditions.service';
@@ -12,6 +12,9 @@ export default function conditionStore() {
   const USED_OP_KEY = 'UsedConditionOptions';
   const NEWER_PRICE_KEY = 'NewerPrice';
   const USED_PRICE_KEY = 'UsedPrice';
+  const RECENT_CONDITION_KEY = 'recentNsCondition';
+  const RECENT_SORT_KEY = 'recentNsSort';
+  const RECENT_DISPLAY_COUNT_KEY = 'recentNsDisplayCount';
 
   const state = reactive({
     // 検索条件
@@ -22,7 +25,11 @@ export default function conditionStore() {
     usedConditionOptions: {} as ConditionOption,
     // 価格の表示用情報
     newerPrice: [] as Array<DisplayPrice>,
-    usedPrice: [] as Array<DisplayPrice>
+    usedPrice: [] as Array<DisplayPrice>,
+    // 直近の検索条件（比較ページ用）
+    recentCondition: {} as { [key: string]: string },
+    recentSort: '',
+    recentDisplayCount: 0
   });
 
   return {
@@ -44,6 +51,7 @@ export default function conditionStore() {
         state.newerConditions = await ProductListSysConfigsService.fetchNewerConditions();
         WebStorage.setSessionStorage(NEWER_COND_KEY, state.newerConditions);
       } catch (error) {
+        console.error(error);
         state.newerConditions = [];
       }
     },
@@ -53,6 +61,7 @@ export default function conditionStore() {
         state.usedConditions = await ProductListSysConfigsService.fetchUsedConditions();
         WebStorage.setSessionStorage(USED_COND_KEY, state.usedConditions);
       } catch (error) {
+        console.error(error);
         state.usedConditions = [];
       }
     },
@@ -87,6 +96,7 @@ export default function conditionStore() {
         state.newerConditionOptions = await ConditionsService.fetchNewerConditionOption();
         WebStorage.setSessionStorage(NEWER_OP_KEY, state.newerConditionOptions);
       } catch (error) {
+        console.error(error);
         state.newerConditionOptions = {};
       }
     },
@@ -96,6 +106,7 @@ export default function conditionStore() {
         state.usedConditionOptions = await ConditionsService.fetchUsedConditionOption();
         WebStorage.setSessionStorage(USED_OP_KEY, state.usedConditionOptions);
       } catch (error) {
+        console.error(error);
         state.usedConditionOptions = {};
       }
     },
@@ -134,6 +145,7 @@ export default function conditionStore() {
         state.newerPrice = await ProductListSysConfigsService.fetchNewerDisplayPrice();
         WebStorage.setSessionStorage(NEWER_PRICE_KEY, state.newerPrice);
       } catch (error) {
+        console.error(error);
         state.newerPrice = [];
       }
     },
@@ -143,6 +155,7 @@ export default function conditionStore() {
         state.usedPrice = await ProductListSysConfigsService.fetchUsedDisplayPrice();
         WebStorage.setSessionStorage(USED_PRICE_KEY, state.usedPrice);
       } catch (error) {
+        console.error(error);
         state.usedPrice = [];
       }
     },
@@ -155,6 +168,40 @@ export default function conditionStore() {
         if (state.usedPrice) price = state.usedPrice.filter((item) => item.value === val)[0];
       }
       return price ? price.text : '';
+    },
+
+    /**
+     * 直近の条件（詳細画面からのページネーション用）
+     */
+    get recentCondition(): { [key: string]: string } {
+      const storageRecentCondition = WebStorage.getSessionStorage(RECENT_CONDITION_KEY);
+      state.recentCondition = storageRecentCondition ? storageRecentCondition : {};
+      return state.recentCondition;
+    },
+
+    get recentSort(): string {
+      const storageRecentSort = WebStorage.getSessionStorage(RECENT_SORT_KEY);
+      state.recentSort = storageRecentSort ? storageRecentSort : '';
+      return state.recentSort;
+    },
+
+    get recentDisplayCount(): number {
+      const storageRecentDisplayCount = WebStorage.getSessionStorage(RECENT_DISPLAY_COUNT_KEY);
+      state.recentDisplayCount = storageRecentDisplayCount ? storageRecentDisplayCount : 0;
+      return state.recentDisplayCount;
+    },
+
+    saveRecentCondtion(condtions: Array<ConditionItem>, sort: string, displayCount: number) {
+      const convertConditions = {} as { [key: string]: string };
+      condtions.forEach((cond) => {
+        convertConditions[cond.paramCode] = cond.paramCode === 'category' ? cond.valueText : cond.value;
+      });
+      state.recentCondition = convertConditions;
+      WebStorage.setSessionStorage(RECENT_CONDITION_KEY, state.recentCondition);
+      state.recentSort = sort;
+      WebStorage.setSessionStorage(RECENT_SORT_KEY, state.recentSort);
+      state.recentDisplayCount = displayCount;
+      WebStorage.setSessionStorage(RECENT_DISPLAY_COUNT_KEY, state.recentDisplayCount);
     }
   };
 }

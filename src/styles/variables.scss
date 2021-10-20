@@ -18,6 +18,7 @@ $ec-contents-max-width: 1460px;
 $ec-primary: rgba(216, 11, 36, 1);
 $ec-secondary: rgba(25, 118, 210, 1);
 
+$ec-white: rgba(255, 255, 255, 1);
 $ec-black: rgba(0, 0, 0, 1);
 $ec-light-grey: rgba(221, 221, 221, 1);
 $ec-light-grey2: rgba(187, 187, 187, 1);
@@ -31,20 +32,42 @@ $text-secondary: rgba(25, 118, 210, 1);
 
 $text-white: rgba(255, 255, 255, 1);
 $text-black: rgba(0, 0, 0, 1);
+$text-light-grey: rgba(187, 187, 187, 1);
 $text-grey: rgba(112, 112, 112, 1);
 $text-red: rgba(216, 11, 36, 1);
 $text-blue: rgba(76, 89, 216, 1);
 $text-green: rgba(0, 113, 133, 1);
 
 // バックカラー
+$bg-primary: rgba(216, 11, 36, 1);
 $bg-white: rgba(255, 255, 255, 1);
+$bg-black: rgba(0, 0, 0, 1);
 $bg-black-transparent-3: rgba(0, 0, 0, 0.3);
 $bg-black-transparent-6: rgba(0, 0, 0, 0.6);
 $bg-light-grey: rgba(235, 235, 235, 1);
 $bg-light-grey2: rgba(249, 248, 248, 1);
 $bg-grey: rgba(221, 221, 221, 1);
+$bg-grey2: rgba(122, 118, 118, 1);
+$bg-grey3: rgba(179, 179, 179, 1);
 $bg-light-red: rgba(246, 206, 206, 1);
+$bg-light-red2: rgba(252, 237, 235, 1);
+$bg-light-green: rgba(0, 159, 81, 1);
 $bg-green: rgba(0, 113, 133, 1);
+$bg-orange: rgba(255, 132, 0, 1);
+
+// 比較バリデーションタイプ
+$compare-color-yellow: #fff33f;
+$compare-color-orange: #f6ad3c;
+$compare-color-green: #00a95f;
+$compare-color-gold: #f0dc70;
+$compare-color-silver: #bfc5ca;
+$compare-color-purple: #a64a97;
+$compare-color-pink: #e85298;
+$compare-color-brown: #955629;
+$compare-color-black: #000000;
+$compare-color-blue: #187fc4;
+$compare-color-white: #ffffff;
+$compare-color-red: #ea5532;
 
 // お知らせ系のタイプ
 $video-color: rgba(0, 187, 133, 1);
@@ -54,7 +77,6 @@ $new-prod-color: rgba(255, 149, 0, 1);
 $special-color: rgba(143, 118, 214, 1);
 $sale-color: rgba(246, 46, 54, 1);
 $news-color: rgb(119, 119, 119, 1);
-
 
 /** -------------------------------
   mixin

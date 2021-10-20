@@ -8,17 +8,17 @@
         <h1 class="text-h6 grey--text">ライカ特集</h1>
 
         <!-- 960px以上 -->
-        <div class="main pc">
+        <div class="main pc" v-if="$vuetify.breakpoint.mdAndUp">
           <p class="tx-siroi txpo white--text">憧れのカメラ、ライカ特集</p>
         </div>
-        <v-img v-if="$vuetify.breakpoint.mdAndUp" src="/ec/images2/special/camera/feature/leica/main.jpg" max-width="95%" height="auto"></v-img>
+
         <!-- 960px未満 -->
-        <v-img v-if="$vuetify.breakpoint.smAndDown" src="/ec/images2/special/camera/feature/leica/sp_main.jpg" max-width="95%" height="auto"></v-img>
+        <v-img v-if="$vuetify.breakpoint.smAndDown" src="/ec/images2/special/camera/feature/leica/sp_main.jpg" max-width="100%" height="auto"></v-img>
 
         <v-main>
-          <v-container>
+          <v-container class="pa-0">
             <!-- ドイツ最高の工学技術と、独特な写真文化の代名詞 『ライカ』 -->
-            <p class="white--text grey darken-4 text-h6 py-2 px-6 my-6">ドイツ最高の工学技術と、独特な写真文化の代名詞 『ライカ』</p>
+            <p class="white--text grey darken-4 text-h6 py-2 px-4 my-6">ドイツ最高の工学技術と、独特な写真文化の代名詞 『ライカ』</p>
             <p class="line-height mb-10">
               ～写真にかける情熱～<br />
               ライカは約100年間にわたり、手作業で丁寧につくり上げた確かな品質と信頼を備えたカメラを世に送り出してきました。<br />
@@ -49,7 +49,9 @@
             </v-row>
             <v-row>
               <v-col cols="12" sm="4" class="pa-4">
-                <v-img src="/ec/images2/special/camera/feature/leica/q.jpg" max-width="100%" height="auto"></v-img>
+                <router-link to="/ec/pd/4548182190509">
+                  <v-img src="/ec/images2/special/camera/feature/leica/q.jpg" max-width="100%" height="auto"></v-img>
+                </router-link>
               </v-col>
               <v-col cols="12" sm="8">
                 <p class="white--text grey darken-4 text-subtitle-1 py-2 px-6 my-6">最新技術を取り入れた新時代のライカ『ライカQ』</p>
@@ -75,7 +77,7 @@
                       <p>
                         ライカ Q2<br />
                         <span v-if="Object.keys(mainProduct).length" class="red-t text-h4">{{ formatPrice(parseInt(mainProduct.price)) }}&nbsp;</span
-                        ><span class="d-inline-block">円（税込）</span><br />
+                        ><span class="d-inline-block">円</span><br />
                         <router-link class="main-product-link" :to="`/ec/pd/${mainProduct.janCode}`">
                           <img class="main-product-img" :src="mainProduct.images[0].imagePath" @error="noimage" />
                         </router-link>
@@ -136,8 +138,11 @@ export default Vue.extend({
     facebookAndTwitter: FacebookAndTwitter,
     recommendedFeatures: RecommendedFeatures
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    document.title = 'ライカ特集 | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'カメラのキタムラ ライカ特集 独特な写真文化の代名詞ライカの特徴やおすすめ商品などを紹介。カメラ専門店カメラのキタムラのショッピングサイトにおまかせください。')
+
+    const state = reactive({
       recommendedFeaturesList: [
         {
           href: 'https://shop.kitamura.jp/special/sale-fair/camera/feature/',
@@ -150,15 +155,11 @@ export default Vue.extend({
           alt: 'セール・特集一覧'
         },
         {
-          href: 'https://shop.kitamura.jp/sitemap/s_credit_01.html',
+          href: '/ec/guide/s_credit_01',
           img: 'https://shopimg.kitamura.jp/images/banner/1486.gif',
           alt: 'ショッピングクレジット'
         }
-      ]
-    };
-  },
-  setup: (props, context) => {
-    const state = reactive({
+      ],
       breadcrumbs: [
         {
           path: 'ネットショップトップ',

@@ -5,12 +5,17 @@
         <!-- ↓パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↓url copy -->
-        <urlcopy :url="'https://shop.kitamura.jp/special/sale-fair/camera/feature/fujifilm/xf18mmf14-r-lm-wr/'" />
+        <urlcopy />
 
-        <!-- ↓ サンプル：画像の読み込み -->
-        <div class="newproduct pc">
-          <p class="top-title">フジフイルム XF18mm F1.4 R LM WR</p>
-        </div>
+        <!-- ↓top image -->
+        <topTitleImg
+          :pcBackgroundImg="'/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr/bg_top.png'"
+          :spBackgroundImg="'/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr/sp_img_top.png'"
+          :topTitle="'フジフイルム XF18mm F1.4 R LM WR'"
+          :titleColor="'#ffffff'"
+          :padding="'200px 0px 15px 40px'"
+        />
+        <!-- ↑top image -->
 
         <div class="red darken-4 text-center mb-2">
           <span class="white--text text-h5 font-weight-bold">好評発売中！</span>
@@ -18,78 +23,69 @@
         <p class="text-left">フジフイルム XF18mm F1.4 R LM WR</p>
 
         <!-- ↓ ナビボタン -->
-        <naviBtn :naviList="naviList" />
+        <naviBtn :naviList="naviList" :hoverColor="'#00A080'" />
         <!-- ↑ ナビボタン -->
 
-        <div class="text-right mb-2">
-          <v-btn href="camera/feature/backnumber/" text class="black white--text kg-in" height="40px">≫ 話題の新製品バックナンバー</v-btn>
+        <div class="text-right">
+          <v-btn tile href="/ec/special/camera/feature/backnumber" color="black" class="kg-in main-product-btn"
+            ><span class="white--text">≫ 話題の新製品バックナンバー</span></v-btn
+          >
         </div>
 
         <subText :textItem="'「XFレンズ」最高クラスの解像性能を備えながらも携帯性に優れた大口径レンズ'" />
         <p>静音かつ高速・高精度なAFで決定的瞬間を逃さない</p>
 
         <!-- ↓ 価格・ご購入 -->
-        <subText :textItem="'フジフイルム XF18mm F1.4 R LM WR 価格・ご購入'" />
-        <priceAndPurchase :mainProductList="mainProductList" />
+        <div id="price">
+          <subText :textItem="'フジフイルム XF18mm F1.4 R LM WR 価格・ご購入'" />
+          <priceAndPurchase :mainProductList="mainProductList" />
+        </div>
 
         <!--特徴-->
-        <div class="contents_inner" id="point">
+        <div class="contents_inner" id="spec">
           <subText :textItem="'フジフイルム XF18mm F1.4 R LM WRの特徴'" />
           <characteristic :characteristics="characteristicList" />
         </div>
 
-        <div class="col-sm-12 text-center float-left pa-4 mt-10">
-          <v-btn
-            elevation="3"
-            class="black darken-4 white--text text-h7"
-            height="70px"
-            width="50%"
-            @click="linkToOtherWindow('https://cweb.canon.jp/eos/your-eos/product/eosr/')"
-            >メーカーサイトで<br />仕様・作例を詳しく見る</v-btn
-          >
-        </div>
+        <!-- ↓ 仕様・作例ボタンー -->
+        <specificationsExamplesBtn
+          :btntxt="'メーカーサイトで\n仕様・作例を詳しく見る'"
+          :url="'https://fujifilm-x.com/ja-jp/products/lenses/xf18mmf14-r-lm-wr/'"
+          :height="'70px'"
+        />
 
         <!-- ↓ ShaSha -->
         <subText :textItem="'ShaSha:フジフイルム XF18mm F1.4 R LM WR｜開発担当者インタビューから新レンズを紐解く'" />
-        <shasha :shashaData="shashaData" />
+        <shasha
+          :txt="'富士フイルムから新たな交換レンズ「XF18mmF1.4 R LM WR」が発表されました。Xマウントを採用しているAPS-Cフォーマットのミラーレス一眼カメラ、Xシリーズ向けの大口径広角単焦点レンズであり、徹底的に追求された解像性能が大きな特徴です。\n今回は先行して製品に触れる機会を特別に設けていただきましたので、開発担当者への取材内容も交えつつ製品をご紹介して...'"
+          :href="'https://shasha.kitamura.jp/article/481083487.html'"
+          :src="'/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr/shashabnr.png'"
+        />
 
         <!--↓ 価格・人気アクセサリー-->
-        <subText :textItem="'パナソニック LUMIX DC-GH5M2 価格/人気アクセサリー'" />
-        <v-container>
-          <v-row>
-            <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
-              <p class="font-small blue--text mb-2 height-20">
-                <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
-              </p>
-              <p class="mt-2">
-                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
-              </p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <subText :textItem="'フジフイルム XF18mm F1.4 R LM WR 価格・人気アクセサリー'" />
+        <priceAndPopular :productDetailList="productDetailList" />
 
         <!--↓ 外観画像ー-->
-        <subText :textItem="'パナソニック LUMIX DC-GH5M2 外観画像'" />
-        <p class="text-subtitle-1">パナソニック LUMIX DC-GH5M2 の外観画像</p>
-        <p>フジフイルム XF18mm F1.4 R LM WRの外観画像</p>
-        <v-container>
-          <v-row>
-            <v-col v-for="n in 3" :key="n" cols="12">
-              <v-img :src="`/ec/images2/special/camera/feature/panasonic/gh5m2/img_${n}.jpg`"> </v-img>
-              <p v-if="n === 1">フジフイルム XF18mm F1.4 R LM WR / X-Pro3 装着外観画像</p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <div id="images">
+          <subText :textItem="'フジフイルム XF18mm F1.4 R LM WR 外観画像'" />
+          <p class="text-subtitle-1">フジフイルム XF18mm F1.4 R LM WRの外観画像</p>
+          <p>フジフイルム XF18mm F1.4 R LM WRの外観画像</p>
+          <appearanceImage :src="'/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr'" :count="1" />
+          <p>フジフイルム XF18mm F1.4 R LM WR / X-Pro3 装着外観画像</p>
+          <appearanceImage :src="'/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr'" :count="2" :target="1" />
+        </div>
 
         <!-- ↓ 作例画像 -->
-        <subText :textItem="'フジフイルム XF18mm F1.4 R LM WR 作例画像'" />
-        <exampleImages :path="'/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr/'" :count="5" />
+        <div id="images2">
+          <subText :textItem="'フジフイルム XF18mm F1.4 R LM WR 作例画像'" />
+          <exampleImages :path="'/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr/'" :count="5" />
+        </div>
 
         <!--↓ SNSー-->
         <facebookAndTwitter />
 
-        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
+        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" />
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
@@ -108,8 +104,14 @@ import SubText from '@/components/common/special/subtext.vue';
 import NaviBtn from '@/components/common/special/navi-btn.vue';
 import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
 import Characteristic from '@/components/common/special/characteristic.vue';
+import ExampleImages from '@/components/common/special/example-image.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
+import TopTitleImg from '@/components/common/special/top-title-img.vue';
+import SpecificationsExamplesBtn from '@/components/common/special/specifications-examples-btn.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
+import AppearanceImage from '@/components/common/special/appearance-image.vue';
+import ShaSha from '@/components/common/special/shasha.vue';
 
 export default Vue.extend({
   name: 'fujifilm-xf18mmf14-r-lm-wr',
@@ -119,17 +121,26 @@ export default Vue.extend({
     naviBtn: NaviBtn,
     priceAndPurchase: PriceAndPurchase,
     characteristic: Characteristic,
+    exampleImages: ExampleImages,
     facebookAndTwitter: FacebookAndTwitter,
     recommendedFeatures: RecommendedFeatures,
-    urlcopy: Urlcopy
+    urlcopy: Urlcopy,
+    topTitleImg: TopTitleImg,
+    specificationsExamplesBtn: SpecificationsExamplesBtn,
+    priceAndPopular: PriceAndPopular,
+    appearanceImage: AppearanceImage,
+    shasha: ShaSha
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    document.title = 'フジフイルム XF18mm F1.4 R LM WR | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'フジフイルム XF18mm F1.4 R LM WR 好評発売中！比較や、価格・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
+
+    const state = reactive({
       naviList: [
         { naviItem: '価格', href: '#price' },
         { naviItem: '特徴スペック', href: '#spec' },
-        { naviItem: '外観', href: '#images2' },
-        { naviItem: '作例画像', href: '#images' }
+        { naviItem: '外観', href: '#images' },
+        { naviItem: '作例画像', href: '#images2' }
       ],
       characteristicList: [
         {
@@ -155,13 +166,6 @@ export default Vue.extend({
           ]
         }
       ],
-      shashaData: [
-        {
-          text: '富士フイルムから新たな交換レンズ「XF18mmF1.4 R LM WR」が発表されました。Xマウントを採用しているAPS-Cフォーマットのミラーレス一眼カメラ、Xシリーズ向けの大口径広角単焦点レンズであり、徹底的に追求された解像性能が大きな特徴です。\n今回は先行して製品に触れる機会を特別に設けていただきましたので、開発担当者への取材内容も交えつつ製品をご紹介して...',
-          href: 'https://shasha.kitamura.jp/article/481083487.html',
-          src: '/ec/images2/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr/shashabnr.jpg'
-        }
-      ],
       recommendedFeaturesList: [
         {
           href: '/special/sale-fair/camera/feature/backnumber/',
@@ -174,7 +178,7 @@ export default Vue.extend({
           alt: 'セール・特集一覧'
         },
         {
-          href: 'https://shop.kitamura.jp/sitemap/s_credit_01.html',
+          href: '/ec/guide/s_credit_01',
           img: 'https://shopimg.kitamura.jp/images/banner/1486.gif',
           alt: 'ショッピングクレジット'
         },
@@ -189,12 +193,7 @@ export default Vue.extend({
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }
-      ]
-    };
-  },
-  props: {},
-  setup: (props, context) => {
-    const state = reactive({
+      ],
       breadcrumbs: [
         {
           path: 'ネットショップ',
@@ -203,7 +202,7 @@ export default Vue.extend({
         },
         {
           path: '最新デジカメ新製品',
-          linkUrl: '/ec/special/camera/feature/',
+          linkUrl: '/ec/special/camera/feature',
           disabled: false
         },
         {
@@ -230,7 +229,6 @@ export default Vue.extend({
         state.mainProductList = mainResult.items;
         // 価格・人気アクセサリー
         const productListResult = await ProductService.fetchProducts(state.productJanCodeList, true);
-        console.log(productListResult);
         state.productDetailList = productListResult.items;
       } catch (error) {
         // メイン商品

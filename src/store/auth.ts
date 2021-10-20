@@ -1,5 +1,6 @@
 import { reactive, ref } from '@vue/composition-api';
 import { User } from '@/types/auth';
+import AuthService from '@/logic/auth.service';
 
 /**
  * 認証関連のStore
@@ -44,7 +45,9 @@ export default function authStore() {
     },
 
     openLoginMenu(): void {
-      state.loginMenuOpenState = true;
+      AuthService.checkLoginStatus().then((isLoggedIn) => {
+        state.loginMenuOpenState = !isLoggedIn;
+      });
     }
   };
 }

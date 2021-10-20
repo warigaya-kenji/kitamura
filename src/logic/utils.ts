@@ -1,6 +1,7 @@
 import { News } from '@/types/news';
 import { Location, Route } from 'vue-router';
 import dayjs from 'dayjs';
+import { USED_STATUS } from '@/constants/used-status';
 import { BOT_USER_AGENTS } from '@/constants/bot-user-agents';
 
 /**
@@ -148,12 +149,18 @@ export function isDebugMode(): boolean {
  * @param price 価格数値
  * @returns フォーマットされた価格文字列
  */
-export function formatPrice(price: number): string {
+export function formatPrice(price: number, permitMinus = false): string {
   if (price == null) {
     return '-';
   }
 
-  const formattedPrice = price < 0 ? '-' : price.toLocaleString();
+  let formattedPrice = '';
+
+  if (permitMinus) {
+    formattedPrice = price === 0 ? '-' : price.toLocaleString();
+  } else {
+    formattedPrice = price < 0 ? '-' : price.toLocaleString();
+  }
   return formattedPrice;
 }
 
@@ -180,6 +187,26 @@ export function validationPeriod(targetDate: string, validFrom?: string, validTo
   const from = dayjs(validFrom);
   const to = dayjs(validTo);
   return today.isBetween(from, to, 'minutes', '[]');
+}
+
+/**
+ * 配列の要素にある「rowNo」を昇順にソートする
+ * @param list ソートする配列
+ */
+type RowNoListItem = { rowNo: number };
+export function sortByRowNo<T extends RowNoListItem>(list: Array<T>): Array<T> {
+  const sortedList = list.sort((a, b) => a.rowNo - b.rowNo);
+  return sortedList;
+}
+
+/**
+ * 中古商品の状態値をテキストに変換
+ * @param val 状態値
+ * @returns 状態名
+ */
+export function convertToUsedStatesText(val: string): string {
+  const target = USED_STATUS.filter((item) => item.value === val);
+  return target.length ? target[0].text : '';
 }
 
 /**

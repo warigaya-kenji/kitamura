@@ -5,7 +5,7 @@ export const USED_SALES_STATUS = [
     value: '1'
   },
   {
-    text: 'Comming Soon',
+    text: 'Coming Soon',
     value: '2'
   },
   {

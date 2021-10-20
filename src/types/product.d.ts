@@ -171,6 +171,18 @@ export type Review = {
   comment: number;
 };
 
+// 投稿するレビュー内容
+export type PostReview = {
+  totalRating: number;
+  designRating: number;
+  priceRating: number;
+  operationRating: number;
+  imageRating: number;
+  title: string;
+  pros: string;
+  cons: string;
+};
+
 /** 新品の商品詳細APIで受け取れる値 */
 export type UsedProductDetail = {
   itemCode: string;

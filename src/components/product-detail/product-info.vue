@@ -133,7 +133,7 @@
       <!-- アイコン -->
       <div class="product-image-icon-area">
         <!-- レビュー点数 -->
-        <v-btn class="product-image-icon" v-if="product.reviewNum" :href="'/pd/review/list.html?jan_cd=' + product.janCode" large icon outlined>
+        <v-btn class="product-image-icon" v-if="product.reviewNum" :to="'/ec/review/' + product.janCode" large icon outlined>
           <v-rating half-increments readonly large length="1" :value="product.ratingTotal / 5" color="rgba(229, 130, 35, 1)"></v-rating>
         </v-btn>
 
@@ -310,9 +310,9 @@
         <div class="d-flex" v-if="product.reviewNum">
           <v-rating :value="product.ratingTotal" background-color="warning" color="warning accent-4" dense readonly half-increments size="18"></v-rating>
           <span class="secondary-link">
-            <a :href="'/pd/review/list.html?jan_cd=' + product.janCode" class="ml-5">
+            <router-link :to="`/ec/review/${product.janCode}`" class="ml-5">
               <span class="secondary-link-text">{{ product.reviewNum }}件のレビュー</span>
-            </a>
+            </router-link>
           </span>
         </div>
         <!-- 商品アイコン（数量限定など） -->
@@ -473,8 +473,8 @@
         <v-row
           v-if="
             (!isUsed && includeFlag(PRODUCT_FLAG.DELIVERY_ONLY)) ||
-              (!isUsed && includeFlag(PRODUCT_FLAG.STORE_DELIVERY_ONLY)) ||
-              (isUsed && !usedProduct.isDirect)
+            (!isUsed && includeFlag(PRODUCT_FLAG.STORE_DELIVERY_ONLY)) ||
+            (isUsed && !usedProduct.isDirect)
           "
         >
           <v-col cols="4"> 受け取り方法 </v-col>
@@ -569,8 +569,8 @@
         <v-row
           v-if="
             !isUsed &&
-              ((product.delivStockUrl && !includeFlag(PRODUCT_FLAG.STORE_DELIVERY_ONLY)) ||
-                (!includeFlag(PRODUCT_FLAG.DELIVERY_ONLY) && !includeFlag(PRODUCT_FLAG.DIRECT_SHIPMENT)))
+            ((product.delivStockUrl && !includeFlag(PRODUCT_FLAG.STORE_DELIVERY_ONLY)) ||
+              (!includeFlag(PRODUCT_FLAG.DELIVERY_ONLY) && !includeFlag(PRODUCT_FLAG.DIRECT_SHIPMENT)))
           "
         >
           <v-col cols="4">在庫状況</v-col>
@@ -645,8 +645,8 @@
             tile
             :disabled="
               isUsed &&
-                (!variationUsedProducts.filter((item) => item.janCode === variation.janCode).length ||
-                  !variationUsedProducts.filter((item) => item.janCode === variation.janCode)[0].itemCount)
+              (!variationUsedProducts.filter((item) => item.janCode === variation.janCode).length ||
+                !variationUsedProducts.filter((item) => item.janCode === variation.janCode)[0].itemCount)
             "
           >
             <router-link :to="isUsed ? '/ec/list?keyword3=' + variation.janCode + '&type=u' : '/ec/pd/' + variation.janCode">
@@ -688,7 +688,7 @@
           <span class="font-weight-bold red-font">おひとり様{{ quantityParUnit }}点限り</span>
         </div>
 
-        <!-- Comming Soon / Sold Out -->
+        <!-- Coming Soon / Sold Out -->
         <div class="not-sales" v-if="cartOption.text === CART_STATUS.NOTIFY_ARRIVAL || cartOption.text === CART_STATUS.SOLD_OUT">
           <tamplate v-if="cartOption.text === CART_STATUS.NOTIFY_ARRIVAL">
             <span class="not-sales-text" v-if="cartOption.text === CART_STATUS.NOTIFY_ARRIVAL">{{ USED_SALES_STATUS[1].text }}</span>
@@ -929,20 +929,20 @@
                 @onClosed="onFavoriteDialogClosed()"
               ></product-favorite-dialog>
             </v-dialog>
-            <a class="product-operation-fav-have-link" href="/mypage/favorite_list.html">
+            <router-link class="product-operation-fav-have-link" to="/ec/mypage/favorite/list">
               一覧を見る
               <v-icon x-small>fas fa-chevron-right</v-icon>
-            </a>
+            </router-link>
           </div>
           <div class="product-operation-have">
             <v-card class="product-operation-fav-have-btn" :class="{ active: memberProduct.isHave }" @click="registerHaving" outlined>
               <v-icon large class="ma-1">far fa-hand-paper</v-icon>
               <div>持っている</div>
             </v-card>
-            <a class="product-operation-fav-have-link" href="/mypage/owned_list.html">
+            <router-link class="product-operation-fav-have-link" to="/ec/mypage/owned/list">
               一覧を見る
               <v-icon x-small>fas fa-chevron-right</v-icon>
-            </a>
+            </router-link>
           </div>
         </div>
 
@@ -1373,7 +1373,7 @@ export default Vue.extend({
           case 4:
             return '限定価格';
           default:
-            return '新品価格';
+            return '価格';
         }
       }
     });
@@ -1473,6 +1473,7 @@ export default Vue.extend({
           const memberProduct = await ProductService.fetchMemberProduct(janCode);
           state.memberProduct = memberProduct;
         } catch (error) {
+          console.error(error);
           errorStore.errorMessage =
             'ただいまシステムが混みあっている可能性があります。しばらくお待ちいただきますようお願い申し上げます。ご迷惑をおかけして申し訳ございません。';
         }
@@ -1556,9 +1557,14 @@ export default Vue.extend({
     /**
      * 中古商品の際の同型商品へのリンクを取得する
      */
-    const getSameTypeProductsLink = computed(function(): string {
-      const itemName = props.usedProduct.itemName.replace('【中古】', '');
-      return '/ec/list?type=u&category=' + props.usedProduct.prdType + '&keyword=' + itemName;
+    const getSameTypeProductsLink = computed(function (): string {
+      const janCode = props.usedProduct.janCode;
+      if (janCode) {
+        return `/ec/list?type=u&keyword3=${janCode}`;
+      } else {
+        const itemName = props.usedProduct.itemName.replace('【中古】', '');
+        return `/ec/list?type=u&category=${props.usedProduct.prdType}&keyword=${itemName}`;
+      }
     });
 
     /**
@@ -2042,7 +2048,7 @@ $used-grade-table-border: solid 1px $ec-light-grey2;
     }
   }
 
-  // Comming Soon / Sold Out
+  // Coming Soon / Sold Out
   .not-sales {
     position: relative;
     margin-bottom: 16px;

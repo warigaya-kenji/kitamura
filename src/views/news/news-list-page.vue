@@ -60,31 +60,7 @@
             </template>
 
             <!-- リスト表示 -->
-            <template v-for="item in news.list">
-              <v-list-item :key="item.newsNo" class="news-item">
-                <a
-                  class="news-item-link"
-                  :href="item.linkType === 1 ? `${item.linkUrl}` : `/ec/news/detail/${item.newsNo}`"
-                  :target="getLinkTarget(item.linkTab)"
-                >
-                  <span class="news-item-date">
-                    {{ formatDate(item.newsDate) }}
-                    <span
-                      class="news-item-type"
-                      :class="{
-                        'new-prod-color': item.newsType === 1,
-                        'recommended-color': item.newsType === 2,
-                        'sale-color': item.newsType === 3,
-                        'news-color': [4, 5].includes(item.newsType)
-                      }"
-                    >
-                      {{ convertNewsTypetoText(item.newsType) }}
-                    </span>
-                  </span>
-                  <span class="news-item-title">{{ item.newsTitle }}</span>
-                </a>
-              </v-list-item>
-            </template>
+            <news-list :newsList="news.list" />
           </v-list-group>
         </template>
 
@@ -125,7 +101,8 @@ import SectionLoading from '@/components/common/section-loading.vue';
 import { News } from '@/types/news';
 import { formatDate } from '@/logic/utils';
 import NewsService from '@/logic/news.service';
-import { NEWS_TYPE_LIST, NEWS_YEARS } from '@/constants/news';
+import { NEWS_YEARS } from '@/constants/news';
+import NewsList from '@/components/news/news-list.vue';
 
 type BreadcrumbItem = {
   path: string;
@@ -141,7 +118,8 @@ export default Vue.extend({
   name: 'news-list-page',
   components: {
     breadcrumbs: Breadcrumbs,
-    'section-loading': SectionLoading
+    'section-loading': SectionLoading,
+    'news-list': NewsList
   },
   setup: (_, context) => {
     const today = dayjs(new Date());
@@ -205,6 +183,7 @@ export default Vue.extend({
           if (index >= 0) state.newsList[index].list.push(news);
         });
       } catch (error) {
+        console.error(error);
         state.newsList = [] as Array<NewsListItem>;
       } finally {
         state.loaded.newsList = true;
@@ -259,29 +238,15 @@ export default Vue.extend({
       window.history.pushState(null, document.title, `/ec/news/${year}`);
     };
 
-    const convertNewsTypetoText = (type: number) => {
-      return NEWS_TYPE_LIST[type - 1] ? NEWS_TYPE_LIST[type - 1] : '';
-    };
-
     const goAnotherLink = (url: string) => {
       window.open(url, '_blank');
     };
-
-    /**
-     * リンクを開く際のタブの挙動方法を取得する
-     * 1：別タブにする 2：同一タブ内
-     */
-    function getLinkTarget(linkTab: 1 | 2) {
-      return linkTab === 2 ? '_self' : '_blank';
-    }
 
     return {
       ...toRefs(state),
       formatDate,
       changeYear,
-      convertNewsTypetoText,
-      goAnotherLink,
-      getLinkTarget
+      goAnotherLink
     };
   }
 });
@@ -416,7 +381,7 @@ $search-condition-mr: 20px;
 
 // タイトル
 .page-title {
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   padding-left: 12px;
   border-left: 12px solid $ec-red;
   font-size: 36px;
@@ -446,29 +411,6 @@ $search-condition-mr: 20px;
   }
   &-month {
     font-weight: bold;
-  }
-  &-item {
-    padding: 0 32px !important;
-
-    &-link {
-      display: flex;
-    }
-
-    &-date {
-      display: inline-block;
-      margin-right: 12px;
-      flex: 0 0 auto;
-    }
-
-    &-type {
-      @extend %news-type;
-      margin-left: 12px;
-    }
-
-    &-title {
-      @include ellipsis-lines(1);
-      flex: 1 1 auto;
-    }
   }
 }
 
@@ -505,30 +447,6 @@ $search-condition-mr: 20px;
     font-size: 24px;
     line-height: 1.5;
     border-left-width: 0;
-  }
-
-  // お知らせ一覧
-  .news {
-    &-item {
-      padding: 12px !important;
-      border-bottom: dashed 1px $ec-grey;
-
-      &-link {
-        flex-wrap: wrap;
-      }
-
-      &-date {
-        display: block;
-        margin-right: 0;
-        margin-bottom: 12px;
-        flex: 0 0 100%;
-      }
-
-      &-title {
-        @include ellipsis-lines(2);
-        flex: 1 1 100%;
-      }
-    }
   }
 
   // その他のリンク

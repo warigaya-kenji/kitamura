@@ -7,13 +7,13 @@
         <!-- ↑ パンくず -->
         <h1 class="text-subtitle-2 grey--text">メーカーキャンペーン特集</h1>
 
-        <v-img src="/ec/images2/special/camera/general/campaign/main-banner.jpg" max-width="95%" height="auto"></v-img>
+        <v-img src="/ec/images2/special/general/campaign/main-banner.jpg" max-width="100%" height="auto"></v-img>
 
         <p class="text-subtitle-1 text-center mb-4 font-weight-bold">現在開催中のメーカー主催のキャッシュバック/プレゼントキャンペーンを集めました</p>
 
         <v-main>
           <v-container fluid>
-            <v-row dense>
+            <v-row dense class="mb-6">
               <v-col cols="12" md="4" sm="6" v-for="(campaign, index) in campaignList" :key="`campaign-${index}`">
                 <v-card tile color="#fffff0" class="c-contents pa-2 mb-2" height="400px">
                   <v-card-text class="black--text font-weight-bold border-l-red pl-2 pt-0 pb-0 pr-0 mb-2 name-height">{{ campaign.campaignName }}</v-card-text>
@@ -22,13 +22,7 @@
                   ></router-link>
                   <v-card-text class="black--text pa-0 content-height">{{ campaign.Contents }} </v-card-text>
                   <v-card-text class="black--text pa-0 caption my-4 period-height">【対象期間】<br />{{ campaign.TargetPeriod }} </v-card-text>
-                  <v-btn
-                    elevation="10"
-                    block
-                    color="rgba(255,89,0,1)"
-                    class="white--text font-weight-bold my-4"
-                    height="45"
-                    @click="linkToOtherWindow(campaign.href)"
+                  <v-btn elevation="10" block class="orange-btn white--text font-weight-bold my-4" height="45" @click="linkToOtherWindow(campaign.href)"
                     >キャンペーン詳細情報はこちら</v-btn
                   >
                 </v-card>
@@ -47,20 +41,37 @@
 <script lang="ts">
 import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
-import { onMounted, reactive, toRefs } from '@vue/composition-api';
-import { ProductDetail } from '@/types/product';
+import { reactive, toRefs } from '@vue/composition-api';
 import { noimage, formatPrice } from '@/logic/utils';
-import ProductService from '@/logic/product.service';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 
 export default Vue.extend({
-  name: 'leica',
+  name: 'campaign',
   components: {
     breadcrumbs: Breadcrumbs,
     facebookAndTwitter: FacebookAndTwitter
   },
-  data() {
-    return {
+  methods: {
+    linkToOtherWindow(url: string | undefined) {
+      window.open(url, '_blank');
+    }
+  },
+  setup: (props, context) => {
+    document.title = 'メーカーキャンペーン | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', '今が買い時！メーカーキャンペーン！キャッシュバックやプレゼントなど、お得なメーカーキャンペーンをご紹介♪ | カメラのキタムラ')
+
+    const state = reactive({
+      breadcrumbs: [
+        {
+          path: 'ネットショップトップ',
+          linkUrl: '/',
+          disabled: false
+        },
+        {
+          path: 'メーカーキャンペーン',
+          disabled: true
+        }
+      ],
       campaignList: [
         {
           campaignName: 'ソニー 新VLOGCAM発売記念キャンペーン',
@@ -139,13 +150,13 @@ export default Vue.extend({
           Contents: '期間中、対象製品をご購入&製品登録し、ご応募されたお客様全員に、最大20万円をキャッシュバック！',
           TargetPeriod: '2021年7月9日(金)～2021年9月20日(月)'
         },
-        {
-          campaignName: 'GoPro サマーキャンペーン 2021',
-          href: 'https://www.tajima-motor.com/gopro/campaign/210722cam/',
-          img: 'https://shopimg.kitamura.jp/images/banner/8548.jpg',
-          Contents: '期間中、対象商品をご購入&WEB応募で、お得なセットをもれなくプレゼント！',
-          TargetPeriod: '2021年7月22日(木)～2021年8月8日(日)'
-        },
+        // {
+        //   campaignName: 'GoPro サマーキャンペーン 2021',
+        //   href: 'https://www.tajima-motor.com/gopro/campaign/210722cam/',
+        //   img: 'https://shopimg.kitamura.jp/images/banner/8548.jpg',
+        //   Contents: '期間中、対象商品をご購入&WEB応募で、お得なセットをもれなくプレゼント！',
+        //   TargetPeriod: '2021年7月22日(木)～2021年8月8日(日)'
+        // },
         {
           campaignName: 'HD DA★16-50mm レンズアップグレードキャンペーン',
           href: 'http://www.ricoh-imaging.co.jp/japan/event/2021/16-50_upgrade/',
@@ -167,6 +178,14 @@ export default Vue.extend({
           Contents: '期間中、対象商品をご購入&応募された方全員に、フジフイルムモールで使用できる「miniフィルム10枚入1パック無料クーポン」をプレゼント！',
           TargetPeriod: '2021年7月16日(金)～2021年9月26日(日)'
         },
+        {
+          campaignName: 'パナソニック 炊飯器&レンジ アプリ接続でクラパナコイン2,000円分プレゼント',
+          href: 'https://panasonic.jp/range/campaign/cncp2108.html',
+          img: '	https://shopimg.kitamura.jp/images/banner/8565.jpg',
+          Contents: '期間中、対象商品をご購入&アプリとつないで家電登録後、アンケートにご回答いただいた方全員に2,000円分のクラパナコインをプレゼント！',
+          TargetPeriod: '2021年8月18日(水)～2022年1月10日(月)'
+        },
+
         {
           campaignName: 'ソニー ワイヤレスポータブルスピーカー Summerキャンペーン2021',
           href: 'https://www.sony.jp/active-speaker/campaign/SRS_2021summer/',
@@ -208,33 +227,6 @@ export default Vue.extend({
           img: 'https://shopimg.kitamura.jp/images/banner/8391.jpg',
           Contents: '期間中、対象商品をお持ちで製品のサポート登録&応募された方全員に、音楽配信サービス3か月無料クーポンプレゼント！<br>※過去購入者も対象',
           TargetPeriod: '2021年4月16日(金)～2022年3月5日(金)'
-        },
-        {
-          campaignName: 'パナソニック スマホとビストロをつなげようキャンペーン',
-          href: 'https://panasonic.jp/range/connect2102.html',
-          img: 'https://shopimg.kitamura.jp/images/banner/8269.jpg',
-          Contents: '期間中、対象商品をご購入&アプリとビストロをつないで登録後、アンケート回答された方に2,000円分のクラパナコインをプレゼント！',
-          TargetPeriod: '2021年2月10日(水)～2021年8月17日(火)'
-        }
-      ]
-    };
-  },
-  methods: {
-    linkToOtherWindow(url: string | undefined) {
-      window.open(url, '_blank');
-    }
-  },
-  setup: (props, context) => {
-    const state = reactive({
-      breadcrumbs: [
-        {
-          path: 'ネットショップトップ',
-          linkUrl: '/',
-          disabled: false
-        },
-        {
-          path: 'メーカーキャンペーン',
-          disabled: true
         }
       ]
     });
@@ -305,5 +297,18 @@ export default Vue.extend({
 
 .period-height {
   height: 3em;
+}
+
+.orange-btn {
+  background: rgba(255, 163, 59, 1);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 163, 59, 1)), to(rgba(255, 94, 0, 1)));
+  background: -webkit-linear-gradient(top, rgba(255, 163, 59, 1) 0%, rgba(255, 94, 0, 1) 100%);
+  background: linear-gradient(to bottom, rgba(255, 163, 59, 1) 0%, rgba(255, 94, 0, 1) 100%);
+}
+
+.orange-btn:hover {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 163, 59, 1)), to(rgba(255, 94, 0, 1)));
+  background: -webkit-linear-gradient(bottom, rgba(255, 163, 59, 1) 0%, rgba(255, 94, 0, 1) 100%);
+  background: linear-gradient(to top, rgba(255, 163, 59, 1) 0%, rgba(255, 94, 0, 1) 100%);
 }
 </style>

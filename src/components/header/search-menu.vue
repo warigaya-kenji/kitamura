@@ -102,7 +102,7 @@ import UserMenu from '@/components/header/user-menu.vue';
 import SuggestService from '@/logic/suggest.service';
 import { SuggestItem } from '@/types/suggest';
 import { SEARCH_STATE } from '@/constants/search-state';
-import { NewerCategory } from '@/types/tsv-config';
+import { NewerCategory, UsedCategory } from '@/types/tsv-config';
 
 export default Vue.extend({
   name: 'search-menu',
@@ -116,7 +116,13 @@ export default Vue.extend({
       keywordSearchCombobox: ref<HTMLElement>(),
       newOldList: SEARCH_STATE.option,
       selectNewOld: SEARCH_STATE.option[0].value,
-      categoryList: [
+      newerCategoryList: [
+        {
+          text: '全てのカテゴリから',
+          value: 'all'
+        }
+      ],
+      usedCategoryList: [
         {
           text: '全てのカテゴリから',
           value: 'all'
@@ -145,14 +151,41 @@ export default Vue.extend({
      * 検索時の選択カテゴリーリストを生成
      */
     const generateCategorySearchList = async () => {
+      // 新品用カテゴリリスト
       if (!category.newerCategory.length) await category.fetchNewerCategories();
       category.newerCategoryOnlyParent.forEach((cate: NewerCategory) => {
-        state.categoryList.push({
+        state.newerCategoryList.push({
           text: cate.parentCategoryName,
           value: cate.parentCategoryName
         });
       });
+
+      // 中古在庫用カテゴリリスト
+      if (!category.usedCategory.length) await category.fetchUsedCategories();
+      category.usedCategoryOnlyParent.forEach((cate: UsedCategory) => {
+        state.usedCategoryList.push({
+          text: cate.categoryName,
+          value: cate.categoryName
+        });
+      });
     };
+
+    /**
+     * 検索時の選択カテゴリーリストを取得
+     */
+    const categoryList = computed(() => {
+      return state.selectNewOld === '3' ? state.usedCategoryList : state.newerCategoryList;
+    });
+
+    /**
+     * 新品・中古の選択が変更されたとき、カテゴリの選択を初期化する
+     */
+    watch(
+      () => state.selectNewOld,
+      () => {
+        state.selectCategory = 'all';
+      }
+    );
 
     /**
      * 検索ワードに基づくサジェストを取得
@@ -161,50 +194,25 @@ export default Vue.extend({
       let result = {} as SuggestItem;
       let showItem = [];
 
-      switch (state.selectNewOld) {
-        case '0': // 新品・中古
-          try {
+      try {
+        switch (state.selectNewOld) {
+          case '0': // 新品・中古
+          case '1': // 新品のみ
+          case '2': // 中古のみ
             result = await SuggestService.searchNewItem('', String(state.search));
-          } catch (e) {
-            //エラー処理
-            console.log(e);
-          }
-          break;
-        case '1': // 新品のみ
-          try {
-            result = await SuggestService.searchNewItem('', String(state.search));
-          } catch (e) {
-            //エラー処理
-            console.log(e);
-          }
-          break;
-        case '2': // 中古のみ
-          try {
-            result = await SuggestService.searchNewItem('', String(state.search));
-          } catch (e) {
-            //エラー処理
-            console.log(e);
-          }
-          break;
-        case '3': // 中古在庫
-          try {
+            break;
+          case '3': // 中古在庫
             result = await SuggestService.searchUsedItem('', String(state.search));
-          } catch (e) {
-            //エラー処理
-            console.log(e);
-          }
-          break;
-        case '4': // 買取り
-          try {
+            break;
+          case '4': // 買取り
             result = await SuggestService.searchSellItem('', String(state.search));
-          } catch (e) {
-            //エラー処理
-            console.log(e);
-          }
-          break;
-        default:
-          // エラー処理
-          break;
+            break;
+          default:
+            // エラー処理
+            break;
+        }
+      } catch (error) {
+        console.error(error);
       }
 
       if (!(result?.conditions.length == 0 && result?.items.length == 0)) {
@@ -256,14 +264,12 @@ export default Vue.extend({
      */
     const toChukoProductList = (keyword: string, itemId: string, category: string): void => {
       const urlParams = new URLSearchParams({
-        goodsname: itemId ? itemId : keyword,
-        pattern: '2'
+        keyword: itemId ? itemId : keyword
       });
       if (category) {
-        urlParams.append('kindName', category);
+        urlParams.append('category', category);
       }
-
-      const url = process.env.VUE_APP_NET_CHUKO_URL + 'sell/item-list.do?' + urlParams.toString();
+      const url = process.env.VUE_APP_NET_CHUKO_URL + 'ec/sell/item-list?' + urlParams.toString();
 
       window.location.href = url;
     };
@@ -377,7 +383,8 @@ export default Vue.extend({
       selectSuggest,
       toProductList,
       keydownWrapper,
-      isObjectType
+      isObjectType,
+      categoryList
     };
   }
 });

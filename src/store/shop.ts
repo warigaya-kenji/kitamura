@@ -22,6 +22,7 @@ export default function shopStore() {
         state.shopList = shopResluts.shops;
         WebStorage.setSessionStorage(KEY, state.shopList);
       } catch (error) {
+        console.error(error);
         state.shopList = [];
       }
     },

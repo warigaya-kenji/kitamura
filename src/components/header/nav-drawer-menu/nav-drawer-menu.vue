@@ -9,16 +9,16 @@
           <v-list-item link @click="checkLoginStatus" v-if="!isLoggedIn">
             <v-list-item-title>ログイン</v-list-item-title>
           </v-list-item>
-          <v-list-item link href="/mypage/index.html" v-if="isLoggedIn">
+          <v-list-item link exact to="/ec/mypage" v-if="isLoggedIn">
             <v-list-item-title>マイページ</v-list-item-title>
           </v-list-item>
-          <v-list-item link href="/mypage/favorite_list.html">
+          <v-list-item link exact to="/ec/mypage/favorite/list">
             <v-list-item-title>お気に入り</v-list-item-title>
           </v-list-item>
           <v-list-item link href="https://member.kitamura.jp/account/regist/basic/input" target="_blank" v-if="!isLoggedIn">
             <v-list-item-title>新規会員登録</v-list-item-title>
           </v-list-item>
-          <v-list-item link href="/mypage/odr/list.html" v-if="isLoggedIn">
+          <v-list-item link exact to="/ec/mypage/odr/list" v-if="isLoggedIn">
             <v-list-item-title>注文履歴</v-list-item-title>
           </v-list-item>
         </div>
@@ -269,9 +269,9 @@ export default Vue.extend({
       ([isLoggedIn, user]) => {
         state.isLoggedIn = isLoggedIn;
         if (user?.lastName && user?.firstName) {
-          return user.lastName + ' ' + user.firstName;
+          state.userName = user.lastName + ' ' + user.firstName;
         } else {
-          return 'ようこそ（ゲスト）';
+          state.userName = 'ようこそ（ゲスト）';
         }
       }
     );

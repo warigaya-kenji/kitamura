@@ -7,7 +7,7 @@
         <!-- ↑ パンくず -->
 
         <!-- ↓url copy -->
-        <urlcopy :url="'https://shop.kitamura.jp/ec/special/camera/feature/canon/eosr5_r6/'" />
+        <urlcopy />
         <!-- ↑url copy -->
 
         <!-- ↓top image -->
@@ -32,69 +32,29 @@
         <!-- ↑ ナビボタン -->
 
         <div class="text-right">
-          <v-btn href="/ec/special/camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in main-contents-wrap-btn"
-            >≫ 話題の新製品バックナンバー</v-btn
+          <v-btn tile href="/ec/special/camera/feature/backnumber" color="black" class="kg-in main-product-btn"
+            ><span class="white--text">≫ 話題の新製品バックナンバー</span></v-btn
           >
         </div>
 
         <subText :textItem="'世界最高8.0段の手ブレ補正による快適な撮影を実現した次世代「EOS R」'" />
+        <!-- ↓ 価格・ご購入ー -->
         <subText :textItem="'キヤノン EOS R5 / EOS R6 / EOS R6レンズキット 価格・ご購入'" />
+        <priceAndPurchase :mainProductList="mainProductList" :btnColor="'red darken-2'" />
 
-        <!--====== 価格・ご購入 ======-->
-        <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(mainProduct, index) in mainProductList" :key="`first-${index}`">
-          <v-container>
-            <v-row>
-              <v-col class="text-center" cols="12" sm="5">
-                <router-link :to="`/ec/pd/${mainProduct.janCode}`"
-                  ><v-img :src="mainProduct.images[0].imagePath" max-width="100%" height="auto"></v-img><br />
-                  {{ mainProduct.itemName }}
-                </router-link>
-              </v-col>
-              <v-col class="text-center mt-4 px-10" cols="12" sm="6">
-                <div class="main-product-area-right">
-                  <p class="main-product-price text-center">
-                    <span class="d-inline-block">価格</span><span class="text-h4 primary--text">¥{{ formatPrice(parseInt(mainProduct.price)) }}&nbsp;</span
-                    ><span class="d-inline-block">(税込)</span>
-                  </p>
-                  <v-btn
-                    class="main-product-btn text-h5 font-weight-bold"
-                    dark
-                    block
-                    color="red darken-2"
-                    width="100px"
-                    height="60px"
-                    :href="`/ec/pd/${mainProduct.janCode}`"
-                  >
-                    <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
-                    ご購入はこちら
-                  </v-btn>
-                </div>
-
-                <div class="mt-4" v-if="index === 0">
-                  <p><img src="https://shop.kitamura.jp/images/banner/6931.jpg" alt="電話で相談・ご注文できます" /></p>
-                </div>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
-
-        <div class="col-sm-12 text-center float-left pa-4 mt-10">
-          <v-btn
-            elevation="3"
-            class="black darken-4 white--text text-subtitle-1 main-product-btn"
-            height="70px"
-            width="50%"
-            @click="linkToOtherWindow('https://cweb.canon.jp/eos/your-eos/product/eosr/')"
-            >メーカーサイトで<br />仕様・作例を詳しく見る</v-btn
-          >
-        </div>
+        <!-- ↓ 仕様・作例ボタンー -->
+        <specificationsExamplesBtn
+          :btntxt="'メーカーサイトで\n仕様・作例を詳しく見る'"
+          :url="'https://cweb.canon.jp/eos/your-eos/product/eosr/'"
+          :height="'70px'"
+        />
 
         <!--動画で見る-->
         <subText :textItem="'動画で見る キヤノン EOS R5！'" />
-        <watchInVideo :src="'https://www.youtube.com/embed/AxJYDPGlcvw?rel=0'" :width="'70%'" :height="315" />
+        <watchInVideo :src="'https://www.youtube.com/embed/AxJYDPGlcvw?rel=0'" :height="315" />
 
         <!--特徴-->
-        <div class="contents_inner" id="point">
+        <div class="contents_inner" id="spec">
           <subText :textItem="'EOS R5 / EOS R6 共通の特徴'" />
           <characteristic :characteristics="commonCharacteristicList" />
 
@@ -107,258 +67,260 @@
         <!--特徴-->
 
         <!--比較-->
-        <subText :textItem="'キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較'" id="hikaku" />
-        <div class="product-comparison mb-5">
-          <p class="mb-2">キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較しました。</p>
-          <table class="product-comparison-table">
-            <tbody>
-              <tr>
-                <th>商品名</th>
-                <td v-for="(product, index) in comparisonDetailList" :key="`second-${index}`">{{ product.itemName }}</td>
-              </tr>
-              <tr>
-                <th>発売日</th>
-                <td>2020年7月30日</td>
-                <td>2020年8月27日</td>
-                <td>2018年10月25日</td>
-                <td>2019年9月6日</td>
-                <td>2018年3月23日</td>
-              </tr>
-              <tr>
-                <th>価格</th>
-                <td v-for="(product, index) in comparisonDetailList" :key="`third-${index}`">
-                  <span class="primary--text font-weight-bold">¥{{ formatPrice(parseInt(product.price)) }}</span
-                  >（税込）
-                </td>
-              </tr>
-              <tr>
-                <th>有効画素数</th>
-                <td>約4500万画素</td>
-                <td>約2010万画素</td>
-                <td>約3030万画素</td>
-                <td>約6100万画素</td>
-                <td>約2420万画素</td>
-              </tr>
-              <tr>
-                <th>撮像素子</th>
-                <td>
-                  35mmフルサイズ<br />
-                  CMOSセンサー（デュアルピクセルCMOS AF II対応）
-                </td>
-                <td>
-                  35mmフルサイズ<br />
-                  CMOSセンサー（デュアルピクセルCMOS AF II対応）
-                </td>
-                <td>
-                  35mmフルサイズ<br />
-                  CMOSセンサー（デュアルピクセルCMOS AF対応）
-                </td>
-                <td>
-                  35mmフルサイズ<br />
-                  Exmor R CMOSセンサー
-                </td>
-                <td>
-                  35mmフルサイズ<br />
-                  ExmorR CMOSセンサー
-                </td>
-              </tr>
-              <tr>
-                <th>連続撮影速度</th>
-                <td>最高約12コマ/秒</td>
-                <td>最高約12コマ/秒</td>
-                <td>最高約8.0コマ／秒</td>
-                <td>最高約10コマ/秒</td>
-                <td>最高約10コマ/秒</td>
-              </tr>
-              <tr>
-                <th>連続撮影可能枚数</th>
-                <td>
-                  JPEG:約350枚<br />
-                  RAW：約87枚
-                </td>
-                <td>
-                  JPEG:約1000枚以上<br />
-                  RAW：約240枚
-                </td>
-                <td>
-                  JPEG:約100枚<br />
-                  RAW：約34枚
-                </td>
-                <td>
-                  JPEG:約68枚<br />
-                  RAW：約68枚
-                </td>
-                <td>
-                  JPEG:約163枚<br />
-                  RAW：約89枚
-                </td>
-              </tr>
-              <tr>
-                <th>シャッタースピード</th>
-                <td>1／8000～30秒、バルブ</td>
-                <td>1／8000～30秒、バルブ</td>
-                <td>1／8000～30秒、バルブ</td>
-                <td>1／8000～30秒、バルブ</td>
-                <td>1／8000～30秒、バルブ</td>
-              </tr>
-              <tr>
-                <th>ストロボ同調速度</th>
-                <td>1／200秒</td>
-                <td>1／200秒</td>
-                <td>1／200秒</td>
-                <td>1/250秒</td>
-                <td>1/250秒</td>
-              </tr>
-              <tr>
-                <th>ISO感度</th>
-                <td>
-                  ISO100～51200<br />
-                  （拡張：下限ISO50、上限ISO102400)
-                </td>
-                <td>
-                  ISO100～102400<br />
-                  （拡張：下限ISO50、上限ISO204800)
-                </td>
-                <td>
-                  ISO100～12800<br />
-                  （拡張：下限ISO50、上限ISO102400)
-                </td>
-                <td>
-                  ISO100-32000<br />
-                  （拡張：下限ISO50、上限ISO102400)
-                </td>
-                <td>
-                  ISO100-51200<br />
-                  （拡張：下限ISO50、上限ISO204800)
-                </td>
-              </tr>
-              <tr>
-                <th>測距輝度範囲</th>
-                <td>EV－6～20</td>
-                <td>EV－6.5～20</td>
-                <td>EV－6～18</td>
-                <td>EV-3 - EV20</td>
-                <td>EV-3-20</td>
-              </tr>
-              <tr>
-                <th>撮影可能枚数</th>
-                <td>
-                  静止画：約200枚<br />
-                  動画:合計約1時間10分
-                </td>
-                <td>
-                  静止画：約250枚<br />
-                  動画:合計約2時間25分
-                </td>
-                <td>
-                  静止画：約350枚<br />
-                  動画:合計約2時間20分
-                </td>
-                <td>
-                  静止画：約530枚<br />
-                  動画:合計約2時間40分
-                </td>
-                <td>
-                  静止画：約610枚<br />
-                  動画:合計約3時間10分
-                </td>
-              </tr>
-              <tr>
-                <th>手ブレ補正</th>
-                <td>5軸補正 最大8段</td>
-                <td>5軸補正 最大8段</td>
-                <td>レンズ補正のみ</td>
-                <td>5軸補正 最大5.5段</td>
-                <td>5軸補正 最大5.0段</td>
-              </tr>
-              <tr>
-                <th>液晶性能</th>
-                <td>
-                  3.2型/約210万ドット<br />
-                  バリアングル式液晶モニター
-                </td>
-                <td>
-                  3.0型/約162万ドット<br />
-                  バリアングル式液晶モニター
-                </td>
-                <td>
-                  3.15型/約210万ドット<br />
-                  バリアングル式液晶モニター
-                </td>
-                <td>
-                  3.0型/144万ドット<br />
-                  チルト式液晶モニター
-                </td>
-                <td>
-                  3.0型/92万ドット<br />
-                  チルト式液晶モニター
-                </td>
-              </tr>
-              <tr>
-                <th>ファインダー</th>
-                <td>0.5型/576万ドット</td>
-                <td>0.5型/369万ドット</td>
-                <td>0.5型/369万ドット</td>
-                <td>0.5型/576万ドット</td>
-                <td>0.5型/236万ドット</td>
-              </tr>
-              <tr>
-                <th>視野率</th>
-                <td>約100% / 約0.76倍</td>
-                <td>約100% / 約0.76倍</td>
-                <td>約100% / 約0.76倍</td>
-                <td>約100% / 約0.78倍</td>
-                <td>約100% / 約0.78倍</td>
-              </tr>
-              <tr>
-                <th>外形寸法</th>
-                <td>約138.5×97.5×88.0ｍｍ</td>
-                <td>約138.4×97.5×88.4ｍｍ</td>
-                <td>約135.8×98.3×84.4mm</td>
-                <td>約128.9×96.4×67.3mm</td>
-                <td>約126.9×95.6×62.7mm</td>
-              </tr>
-              <tr>
-                <th>質量（本体のみ）</th>
-                <td>約650g</td>
-                <td>約598g</td>
-                <td>約580g</td>
-                <td>約580g</td>
-                <td>約565g</td>
-              </tr>
-              <tr>
-                <th>記録メディア/スロット</th>
-                <td>
-                  CFexpressカード（Type B）/<br />
-                  SD(sUHS-II 対応)デュアルスロット
-                </td>
-                <td>
-                  SDデュアルスロット<br />
-                  slot1/slot12:UHS-II 対応
-                </td>
-                <td>
-                  SDシングルスロット<br />
-                  UHS-II 対応
-                </td>
-                <td>
-                  SDデュアルスロット<br />
-                  slot1/slot12:UHS-II 対応
-                </td>
-                <td>
-                  SDデュアルスロット<br />
-                  slot1のみUHS-II 対応
-                </td>
-              </tr>
-              <tr>
-                <th>動画記録方式</th>
-                <td>8K/4K/フルHD</td>
-                <td>4K/フルHD</td>
-                <td>4K/フルHD/HD</td>
-                <td>4K/フルHD/HD</td>
-                <td>4K/フルHD/HD</td>
-              </tr>
-            </tbody>
-          </table>
+        <div id="hikaku">
+          <subText :textItem="'キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較'" />
+          <div class="product-comparison mb-5">
+            <p class="mb-2">キヤノン EOS R5 / EOS R6 / EOS R / ソニー α7R IV / α7 III 比較しました。</p>
+            <table class="product-comparison-table">
+              <tbody>
+                <tr>
+                  <th>商品名</th>
+                  <td v-for="(product, index) in comparisonDetailList" :key="`second-${index}`">{{ product.itemName }}</td>
+                </tr>
+                <tr>
+                  <th>発売日</th>
+                  <td>2020年7月30日</td>
+                  <td>2020年8月27日</td>
+                  <td>2018年10月25日</td>
+                  <td>2019年9月6日</td>
+                  <td>2018年3月23日</td>
+                </tr>
+                <tr>
+                  <th>価格</th>
+                  <td v-for="(product, index) in comparisonDetailList" :key="`third-${index}`">
+                    <span class="primary--text font-weight-bold">{{ formatPrice(parseInt(product.price)) }}</span
+                    >（円）
+                  </td>
+                </tr>
+                <tr>
+                  <th>有効画素数</th>
+                  <td>約4500万画素</td>
+                  <td>約2010万画素</td>
+                  <td>約3030万画素</td>
+                  <td>約6100万画素</td>
+                  <td>約2420万画素</td>
+                </tr>
+                <tr>
+                  <th>撮像素子</th>
+                  <td>
+                    35mmフルサイズ<br />
+                    CMOSセンサー（デュアルピクセルCMOS AF II対応）
+                  </td>
+                  <td>
+                    35mmフルサイズ<br />
+                    CMOSセンサー（デュアルピクセルCMOS AF II対応）
+                  </td>
+                  <td>
+                    35mmフルサイズ<br />
+                    CMOSセンサー（デュアルピクセルCMOS AF対応）
+                  </td>
+                  <td>
+                    35mmフルサイズ<br />
+                    Exmor R CMOSセンサー
+                  </td>
+                  <td>
+                    35mmフルサイズ<br />
+                    ExmorR CMOSセンサー
+                  </td>
+                </tr>
+                <tr>
+                  <th>連続撮影速度</th>
+                  <td>最高約12コマ/秒</td>
+                  <td>最高約12コマ/秒</td>
+                  <td>最高約8.0コマ／秒</td>
+                  <td>最高約10コマ/秒</td>
+                  <td>最高約10コマ/秒</td>
+                </tr>
+                <tr>
+                  <th>連続撮影可能枚数</th>
+                  <td>
+                    JPEG:約350枚<br />
+                    RAW：約87枚
+                  </td>
+                  <td>
+                    JPEG:約1000枚以上<br />
+                    RAW：約240枚
+                  </td>
+                  <td>
+                    JPEG:約100枚<br />
+                    RAW：約34枚
+                  </td>
+                  <td>
+                    JPEG:約68枚<br />
+                    RAW：約68枚
+                  </td>
+                  <td>
+                    JPEG:約163枚<br />
+                    RAW：約89枚
+                  </td>
+                </tr>
+                <tr>
+                  <th>シャッタースピード</th>
+                  <td>1／8000～30秒、バルブ</td>
+                  <td>1／8000～30秒、バルブ</td>
+                  <td>1／8000～30秒、バルブ</td>
+                  <td>1／8000～30秒、バルブ</td>
+                  <td>1／8000～30秒、バルブ</td>
+                </tr>
+                <tr>
+                  <th>ストロボ同調速度</th>
+                  <td>1／200秒</td>
+                  <td>1／200秒</td>
+                  <td>1／200秒</td>
+                  <td>1/250秒</td>
+                  <td>1/250秒</td>
+                </tr>
+                <tr>
+                  <th>ISO感度</th>
+                  <td>
+                    ISO100～51200<br />
+                    （拡張：下限ISO50、上限ISO102400)
+                  </td>
+                  <td>
+                    ISO100～102400<br />
+                    （拡張：下限ISO50、上限ISO204800)
+                  </td>
+                  <td>
+                    ISO100～12800<br />
+                    （拡張：下限ISO50、上限ISO102400)
+                  </td>
+                  <td>
+                    ISO100-32000<br />
+                    （拡張：下限ISO50、上限ISO102400)
+                  </td>
+                  <td>
+                    ISO100-51200<br />
+                    （拡張：下限ISO50、上限ISO204800)
+                  </td>
+                </tr>
+                <tr>
+                  <th>測距輝度範囲</th>
+                  <td>EV－6～20</td>
+                  <td>EV－6.5～20</td>
+                  <td>EV－6～18</td>
+                  <td>EV-3 - EV20</td>
+                  <td>EV-3-20</td>
+                </tr>
+                <tr>
+                  <th>撮影可能枚数</th>
+                  <td>
+                    静止画：約200枚<br />
+                    動画:合計約1時間10分
+                  </td>
+                  <td>
+                    静止画：約250枚<br />
+                    動画:合計約2時間25分
+                  </td>
+                  <td>
+                    静止画：約350枚<br />
+                    動画:合計約2時間20分
+                  </td>
+                  <td>
+                    静止画：約530枚<br />
+                    動画:合計約2時間40分
+                  </td>
+                  <td>
+                    静止画：約610枚<br />
+                    動画:合計約3時間10分
+                  </td>
+                </tr>
+                <tr>
+                  <th>手ブレ補正</th>
+                  <td>5軸補正 最大8段</td>
+                  <td>5軸補正 最大8段</td>
+                  <td>レンズ補正のみ</td>
+                  <td>5軸補正 最大5.5段</td>
+                  <td>5軸補正 最大5.0段</td>
+                </tr>
+                <tr>
+                  <th>液晶性能</th>
+                  <td>
+                    3.2型/約210万ドット<br />
+                    バリアングル式液晶モニター
+                  </td>
+                  <td>
+                    3.0型/約162万ドット<br />
+                    バリアングル式液晶モニター
+                  </td>
+                  <td>
+                    3.15型/約210万ドット<br />
+                    バリアングル式液晶モニター
+                  </td>
+                  <td>
+                    3.0型/144万ドット<br />
+                    チルト式液晶モニター
+                  </td>
+                  <td>
+                    3.0型/92万ドット<br />
+                    チルト式液晶モニター
+                  </td>
+                </tr>
+                <tr>
+                  <th>ファインダー</th>
+                  <td>0.5型/576万ドット</td>
+                  <td>0.5型/369万ドット</td>
+                  <td>0.5型/369万ドット</td>
+                  <td>0.5型/576万ドット</td>
+                  <td>0.5型/236万ドット</td>
+                </tr>
+                <tr>
+                  <th>視野率</th>
+                  <td>約100% / 約0.76倍</td>
+                  <td>約100% / 約0.76倍</td>
+                  <td>約100% / 約0.76倍</td>
+                  <td>約100% / 約0.78倍</td>
+                  <td>約100% / 約0.78倍</td>
+                </tr>
+                <tr>
+                  <th>外形寸法</th>
+                  <td>約138.5×97.5×88.0ｍｍ</td>
+                  <td>約138.4×97.5×88.4ｍｍ</td>
+                  <td>約135.8×98.3×84.4mm</td>
+                  <td>約128.9×96.4×67.3mm</td>
+                  <td>約126.9×95.6×62.7mm</td>
+                </tr>
+                <tr>
+                  <th>質量（本体のみ）</th>
+                  <td>約650g</td>
+                  <td>約598g</td>
+                  <td>約580g</td>
+                  <td>約580g</td>
+                  <td>約565g</td>
+                </tr>
+                <tr>
+                  <th>記録メディア/スロット</th>
+                  <td>
+                    CFexpressカード（Type B）/<br />
+                    SD(sUHS-II 対応)デュアルスロット
+                  </td>
+                  <td>
+                    SDデュアルスロット<br />
+                    slot1/slot12:UHS-II 対応
+                  </td>
+                  <td>
+                    SDシングルスロット<br />
+                    UHS-II 対応
+                  </td>
+                  <td>
+                    SDデュアルスロット<br />
+                    slot1/slot12:UHS-II 対応
+                  </td>
+                  <td>
+                    SDデュアルスロット<br />
+                    slot1のみUHS-II 対応
+                  </td>
+                </tr>
+                <tr>
+                  <th>動画記録方式</th>
+                  <td>8K/4K/フルHD</td>
+                  <td>4K/フルHD</td>
+                  <td>4K/フルHD/HD</td>
+                  <td>4K/フルHD/HD</td>
+                  <td>4K/フルHD/HD</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <!--比較-->
 
@@ -376,8 +338,10 @@
         <priceAndPopular :productDetailList="productDetailList" />
 
         <!-- ↓ 高値下取りー -->
-        <subText :textItem="'キヤノン EOS R5 / EOS R6 ご購入時、高値下取り実施中！'" id="price" />
-        <expensiveTradeIn :expensiveTradeInList="expensiveTradeInList" />
+        <div id="price">
+          <subText :textItem="'キヤノン EOS R5 / EOS R6 ご購入時、高値下取り実施中！'" />
+          <expensiveTradeIn :expensiveTradeInList="expensiveTradeInList" />
+        </div>
 
         <!-- ↓ 48回まで分割ー -->
         <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
@@ -391,15 +355,17 @@
         />
 
         <!-- ↓ 作例画像 -->
-        <subText :textItem="'EOS R5 / EOS R6 作例画像'" id="images" />
-        <exampleImages :path="'/ec/images2/special/camera/feature/canon/eosr5_r6/'" :count="6" />
+        <div id="images">
+          <subText :textItem="'EOS R5 / EOS R6 作例画像'" />
+          <exampleImages :path="'/ec/images2/special/camera/feature/canon/eosr5_r6/'" :count="6" />
+        </div>
 
         <!-- ↓ SNS -->
         <facebookAndTwitter />
 
         <kitamuraService />
 
-        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
+        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" />
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
@@ -427,7 +393,8 @@ import KitamuraService from '@/components/common/special/kitamura-service.vue';
 import ExampleImages from '@/components/common/special/example-image.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
-
+import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
+import SpecificationsExamplesBtn from '@/components/common/special/specifications-examples-btn.vue';
 export default Vue.extend({
   name: 'canon-eosr5-r6',
   components: {
@@ -446,17 +413,16 @@ export default Vue.extend({
     facebookAndTwitter: FacebookAndTwitter,
     recommendedFeatures: RecommendedFeatures,
     naviBtn: NaviBtn,
+    priceAndPurchase: PriceAndPurchase,
+    specificationsExamplesBtn: SpecificationsExamplesBtn
   },
-  methods: {
-    linkToOtherWindow(url: string | undefined) {
-      window.open(url, '_blank');
-    }
-  },
-  props: {},
   setup: (props, context) => {
+    document.title = '好評発売中！キヤノンEOS R5 R6 | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'キヤノン EOS R5 R6 好評発売中！比較や、価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
+
     const state = reactive({
       naviList: [
-        { naviItem: '特徴スペック', href: '#point' },
+        { naviItem: '特徴スペック', href: '#spec' },
         { naviItem: '機種比較', href: '#hikaku' },
         { naviItem: 'お得情報', href: '#price' },
         { naviItem: '作例', href: '#images' }
@@ -535,30 +501,31 @@ export default Vue.extend({
         nameImg: 'https://shopimg.kitamura.jp/images/pd/e6a/566/223/13d/322/7d3/e9e/d4c/92d/3ba/b4d/q99/qon/e/L.jpg',
         txt: 'キヤノン EOS R5 / EOS R6',
         tradeInImg: '/ec/images2/special/camera/feature/canon/eosr5_r6/bnr_shitadori_350-130.jpg',
+        tradeInProducts: []
       },
       recommendedFeaturesList: [
         {
-          href: '/ec/special/camera/feature/backnumber/',
+          href: '/ec/special/camera/feature/backnumber',
           img: 'https://shopimg.kitamura.jp/images/banner/4924.png',
           alt: '話題の新製品バックナンバー'
         },
         {
-          href: '/ec/special/general/highly_recommended/2020/4722/',
+          href: '/ec/special/general/highly_recommended/2020/4722',
           img: 'https://shopimg.kitamura.jp/images/banner/7619.png',
           alt: 'スタッフイチオシ！キヤノン RF70-200mm F2.8 L IS USM'
         },
         {
-          href: '/ec/special/',
+          href: '/ec/special/sale-fair',
           img: 'https://shopimg.kitamura.jp/images/banner/3808.gif',
           alt: 'セール・特集一覧'
         },
         {
-          href: '/ec/special/sale/shoppingcredit-campaign/',
+          href: '/ec/special/sale/shoppingcredit-campaign',
           img: 'https://shopimg.kitamura.jp/images/banner/4847.jpg',
           alt: '60回無金利 ショッピングクレジット'
         },
         {
-          href: '/ec/special/general/tokutokukoukan/',
+          href: '/ec/special/general/tokutokukoukan',
           img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
           alt: 'トクトク交換'
         },
@@ -576,7 +543,7 @@ export default Vue.extend({
         },
         {
           path: '最新デジカメ新製品',
-          linkUrl: '/ec/special/sale-fair/camera/feature/',
+          linkUrl: '/ec/special/camera/feature',
           disabled: false
         },
         {
@@ -650,27 +617,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style lang="scss">
-.main-contents-wrap {
-  .banner-img {
-    max-width: 100%;
-  }
-  @media screen and (min-width: 601px) {
-    .pc {
-      display: block;
-    }
-    .sp {
-      display: none;
-    }
-  }
-  @media only screen and (max-width: 600px) {
-    .pc {
-      display: none;
-    }
-    .sp {
-      display: block;
-    }
-  }
-}
-</style>

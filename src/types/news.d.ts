@@ -95,6 +95,17 @@ export type News = {
 
   /** JanCode */
   janCodes?: Array<string>;
+
+  /** 商品情報 */
+  items?: Array<NewsItem>;
+};
+
+export type NewsItem = {
+  /** 行番号（ソートのため） */
+  rowNo: number;
+
+  /** JanCode */
+  janCode: string;
 };
 
 export type ShaSha = {

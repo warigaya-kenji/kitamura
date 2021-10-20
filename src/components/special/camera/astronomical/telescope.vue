@@ -5,19 +5,8 @@
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
-        <div class="text-right">
-          <v-btn
-            color="orange darken-2"
-            class="white--text body-2 mb-1"
-            v-clipboard:copy="'https://shop.kitamura.jp/ec/special/camera/feature/canon/tripod'"
-            v-clipboard:success="onCopy"
-            height="30px"
-            >≫ このページのURLをコピーする</v-btn
-          >
-          <p class="caption">
-            <a href="/special/sale-fair/page/bookmark/" target="_blank"> (?)ブラウザ別 お気に入り・ブックマーク登録方法</a>
-          </p>
-        </div>
+        <!-- ↓url copy -->
+        <urlcopy :color="'#e49512'" />
 
         <!-- ↓ 画像の読み込み -->
         <v-card class="mb-4">
@@ -38,21 +27,25 @@
         </v-card>
         <!-- ↑ 画像の読み込み -->
 
-        <!--↓アンカー-->
-        <v-container class="mb-10">
-          <v-row class="">
-            <v-col v-for="navi in naviList" :key="navi">
-              <v-btn block color="indigo" class="white--text text-center pa-4 newline" :href="navi.href">
-                {{ navi.naviItem }}
-              </v-btn>
+        <!--↓アンカー--><!-- 960px以上 -->
+        <v-container class="mb-10 pa-0" id="ankrbo" v-if="$vuetify.breakpoint.mdAndUp">
+          <v-row no-gutters>
+            <v-col v-for="(navi, index) in naviList" :key="index">
+              <a :href="navi.href">
+                <h2 class="white--text newline nbtna">
+                  {{ navi.naviItem }}
+                </h2>
+              </a>
             </v-col>
           </v-row>
         </v-container>
 
+        <!-- 960px未満 -->
+        <tableOfContentsNavi :naviList="naviList" v-if="$vuetify.breakpoint.smAndDown" />
+
         <!--↓天体望遠鏡の種類-->
-        <div class="mb-12">
-          <h2 class="page-color">天体望遠鏡の種類</h2>
-          <v-divider></v-divider>
+        <div class="mb-12" id="select">
+          <h2 class="subtitle">天体望遠鏡の種類</h2>
           <p class="my-4">
             <span class="red--text yellow lighten-3">天体望遠鏡は、主に2つの種類</span>に分けられます。<span class="red--text yellow lighten-3"
               >屈折式と反射式の2種類</span
@@ -61,13 +54,13 @@
           <v-row class="mt-2">
             <v-col cols="12" sm="6">
               <h3 class="page-color">
-                <v-img src="/ec/images2/special/camera/astronomical/telescope/point_01.png"></v-img
-                ><span class="text-subtitle-2">使い方がカンタン♪</span>屈折式天体望遠鏡
+                <v-img src="/ec/images2/special/camera/astronomical/telescope/point_01.png" max-width="10%" height="auto" class="float-left"></v-img
+                ><span class="text-subtitle-1 font-weight-bold mx-2">使い方がカンタン♪</span>屈折式天体望遠鏡
               </h3>
-              <div>
+              <div class="d-flex flex-column justify-space-between align-center">
                 <v-img
                   src="https://shopimg.kitamura.jp/images/pd/679/6ac/2fd/dae/166/c87/152/5d0/58c/069/d3q/3xd/9e2/4/M.jpg"
-                  max-width="60%"
+                  max-width="50%"
                   height="auto"
                 ></v-img>
               </div>
@@ -82,13 +75,13 @@
             </v-col>
             <v-col cols="12" sm="6">
               <h3 class="page-color">
-                <v-img src="/ec/images2/special/camera/astronomical/telescope/point_01.png"></v-img
-                ><span class="text-subtitle-2">高倍率を楽める本格派！</span>反射式天体望遠鏡
+                <v-img src="/ec/images2/special/camera/astronomical/telescope/point_01.png" class="float-left"></v-img
+                ><span class="text-subtitle-1 font-weight-bold mx-2">高倍率を楽める本格派！</span>反射式天体望遠鏡
               </h3>
-              <div>
+              <div class="d-flex flex-column justify-space-between align-center">
                 <v-img
                   src="https://shopimg.kitamura.jp/images/pd/db7/6ff/f9e/465/cfe/910/5a6/818/77d/f23/d20/f6k/ikr/j/M.jpg"
-                  max-width="60%"
+                  max-width="50%"
                   height="auto"
                 ></v-img>
               </div>
@@ -104,9 +97,8 @@
         </div>
 
         <!--↓天体望遠鏡の種類-->
-        <div>
-          <h2 class="page-color">おすすめの天体望遠鏡</h2>
-          <v-divider></v-divider>
+        <div id="pickup">
+          <h2 class="subtitle">おすすめの天体望遠鏡</h2>
           <p class="text-left line-height py-6">
             おすすめの天体望遠鏡は、ずばり、
             <span class="red--text yellow lighten-3">ビクセンのポルタシリーズ</span>です。
@@ -116,62 +108,79 @@
           </p>
           <v-row class="mb-6">
             <v-col cols="12" sm="4" class="bd-rgr">
-              <h3 class="ossm page-color">
+              <h3 class="ossm page-color text-center">
                 初心者でも安心♪<br />
                 撮影もできる天体望遠鏡
               </h3>
-              <v-img src="/ec/images2/special/camera/astronomical/telescope/img_01.jpg" max-width="60%" height="auto"></v-img>
+              <div class="d-flex flex-column justify-space-between align-center">
+                <v-img src="/ec/images2/special/camera/astronomical/telescope/img_01.jpg" max-width="100%" height="auto"></v-img>
+              </div>
               <p class="text-left line-height">
                 初心者でも扱いやすい屈折式で、<span class="red--text yellow lighten-3">ゆくゆくはデジカメや小型一眼で写真を撮ってみたい人は、迷わずコレ</span
                 >！<br />
                 使いやすさはもちろん、APS-Cのデジタル一眼レフくらいまでなら、撮影が可能です。<br />
                 耐加重があり、カメラを付けたときの「たわみ」や強度・風ブレの影響を、受けにくいです。
               </p>
-              <a
-                href="/ec/pd/list_dtl.html?index=all&searchbox=1&sort=number20%2CScore&q=%E3%83%93%E3%82%AF%E3%82%BB%E3%83%B3+%E3%83%9D%E3%83%AB%E3%82%BFII+A80Mf&path=&y=0%3Fref%3Dtelescope&x=0"
-              >
-                <v-btn block class="bg-buru pa-4"> おすすめ天体望遠鏡<br />ビクセン ポルタII A80Mf</v-btn></a
-              >
+              <v-hover v-slot="{ hover }">
+                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-2 text-center rounded-lg">
+                  <a
+                    href="/ec/pd/list_dtl.html?index=all&searchbox=1&sort=number20%2CScore&q=%E3%83%93%E3%82%AF%E3%82%BB%E3%83%B3+%E3%83%9D%E3%83%AB%E3%82%BFII+A80Mf&path=&y=0%3Fref%3Dtelescope&x=0"
+                  >
+                    <span class="white--text">おすすめ天体望遠鏡<br />ビクセン ポルタII A80Mf</span></a
+                  >
+                </v-sheet>
+              </v-hover>
             </v-col>
-
             <v-col cols="12" sm="4" class="bd-rgr">
-              <h3 class="ossm page-color">高倍率を楽しみたい！br /> 本格派の天体望遠鏡</h3>
-              <v-img src="/ec/images2/special/camera/astronomical/telescope/img_02.jpg" max-width="60%" height="auto"></v-img>
+              <h3 class="ossm page-color text-center">高倍率を楽しみたい！<br />本格派の天体望遠鏡</h3>
+              <div class="d-flex flex-column justify-space-between align-center">
+                <v-img src="/ec/images2/special/camera/astronomical/telescope/img_02.jpg" max-width="100%" height="auto"></v-img>
+              </div>
               <p class="text-left line-height">
                 本格的に天体観測をしたい人向け。<span class="red--text yellow lighten-3">別売の接眼レンズを使えば、20倍～260倍と幅広い倍率で観測ができます</span
                 >。<br />
                 外に出してから30～40分くらいは筒の内外で気温差が発生するため、もやもやと見えたり、大気の状況に見え方が左右されやすかったりと、扱いが少し難しい部分もあります。
               </p>
-              <a
-                href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E3%83%93%E3%82%AF%E3%82%BB%E3%83%B3%20%20%E3%83%9D%E3%83%AB%E3%82%BFII%20R130Sf&category=&index=all&searchbox=1&sort=number20,Score&q=%E3%83%93%E3%82%AF%E3%82%BB%E3%83%B3%20%20%E3%83%9D%E3%83%AB%E3%82%BFII%20R130Sf&path=&y=0%3Fref%3Dtelescope&x=0"
-              >
-                <v-btn block class="bg-buru pa-4"> おすすめ天体望遠鏡<br />ビクセン ポルタII R130Sf</v-btn></a
-              >
+              <v-hover v-slot="{ hover }">
+                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-2 text-center rounded-lg">
+                  <a
+                    href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E3%83%93%E3%82%AF%E3%82%BB%E3%83%B3%20%20%E3%83%9D%E3%83%AB%E3%82%BFII%20R130Sf&category=&index=all&searchbox=1&sort=number20,Score&q=%E3%83%93%E3%82%AF%E3%82%BB%E3%83%B3%20%20%E3%83%9D%E3%83%AB%E3%82%BFII%20R130Sf&path=&y=0%3Fref%3Dtelescope&x=0"
+                  >
+                    <span class="white--text">おすすめ天体望遠鏡<br />ビクセン ポルタII R130Sf</span></a
+                  >
+                </v-sheet>
+              </v-hover>
             </v-col>
 
             <v-col cols="12" sm="4" class="bd-rgr">
-              <h3 class="ossm page-color">
+              <h3 class="ossm page-color text-center">
                 簡単操作で<br />
                 お手頃価格な天体望遠鏡
               </h3>
-              <v-img src="/ec/images2/special/camera/astronomical/telescope/img_03.jpg" max-width="60%" height="auto"></v-img>
+              <div class="d-flex flex-column justify-space-between align-center">
+                <v-img src="/ec/images2/special/camera/astronomical/telescope/img_03.jpg" max-width="100%" height="auto"></v-img>
+              </div>
               <p class="text-left line-height">
                 ビクセン スペースアイ600は、お子様へのプレゼントや、これから天体観測を始めたい初心者さんにピッタリの、お手頃価格がうれしい天体望遠鏡です。<br />
                 月のクレーターから木星の衛星、土星のリングまで幅広く観測できます。 また、3.3kgと軽量・コンパクトなので、<span class="red--text yellow lighten-3"
                   >組立や操作がとても簡単です</span
                 >!
               </p>
-              <a
-                href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%A2%E3%82%A4&category=&r=&q=%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%A2%E3%82%A4&path=&index=all&sort=number20,Number17,Score&searchbox=1"
-              >
-                <v-btn block class="bg-buru pa-4"> おすすめ天体望遠鏡<br />ビクセン ビクセン スペースアイ600</v-btn></a
-              >
+              <v-hover v-slot="{ hover }">
+                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-2 text-center rounded-lg">
+                  <a
+                    href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%A2%E3%82%A4&category=&r=&q=%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%A2%E3%82%A4&path=&index=all&sort=number20,Number17,Score&searchbox=1"
+                  >
+                    <span class="white--text">おすすめ天体望遠鏡<br />ビクセン ビクセン スペースアイ600</span></a
+                  >
+                </v-sheet>
+              </v-hover>
             </v-col>
           </v-row>
         </div>
 
         <!--↓月や惑星の見え方 倍率による違い-->
-        <h2 class="page-color">月や惑星の見え方 倍率による違い</h2>
+        <h2 class="subtitle" id="magnification">月や惑星の見え方 倍率による違い</h2>
         <v-divider></v-divider>
         <p class="my-4">
           接眼レンズを変えることで、倍率を変えることができます。<br />上記、<a href="#pickup" class="indigo--text">おすすめの3機種</a
@@ -207,7 +216,7 @@
           </v-row>
         </v-container>
 
-        <div class="blloon">
+        <div class="balloon">
           <h4 class="imgtitle my-4">担当者おすすめの倍率★</h4>
           <p>
             <span class="red--text yellow lighten-3">50倍前後の低倍率で見る土星や木星は、アクセサリーみたいでとってもかわいい</span
@@ -233,18 +242,16 @@
         <v-row>
           <v-col cols="12" sm="7">
             <p>
-              天体望遠鏡は理論上いくらでも高倍率にできますが、<span class="red--text mx-4">倍率が大きいほど、よく見えるわけではありません</span>。<span
-                class="red--text mx-4"
-                >適正倍率までで見ることがポイント</span
-              >です。適正倍率以上で見ると、星がぼやけてしまいます。 適正倍率の求め方は、<span class="red--text mx-4">対物レンズ（鏡）有効径の約2.5倍</span
-              >です。
+              天体望遠鏡は理論上いくらでも高倍率にできますが、<span class="red--text yellow lighten-3 mx-4">倍率が大きいほど、よく見えるわけではありません</span
+              >。<span class="red--text yellow lighten-3 mx-4">適正倍率までで見ることがポイント</span>です。適正倍率以上で見ると、星がぼやけてしまいます。
+              適正倍率の求め方は、<span class="red--text yellow lighten-3 mx-4">対物レンズ（鏡）有効径の約2.5倍</span>です。
             </p>
           </v-col>
           <v-col cols="12" sm="5"><v-img src="/ec/images2/special/camera/astronomical/telescope/mg-stn1.jpg" max-width="100%" height="auto"></v-img></v-col>
         </v-row>
 
         <!--↓ 価格・人気アクセサリー-->
-        <h2 class="page-color mt-10">おすすめ天体望遠鏡 商品・価格一覧</h2>
+        <h2 class="page-color mt-10" id="list">おすすめ天体望遠鏡 商品・価格一覧</h2>
         <v-divider></v-divider>
         <v-container class="mb-10">
           <v-row>
@@ -261,74 +268,18 @@
         </v-container>
         <!--↓ 価格・人気アクセサリー-->
 
-        <div>
-          <span>天体望遠鏡を買うなら、お支払いラクラク♪</span><br />
-          <h4 class="my-4"><v-icon color="red">fas fa-chevron-double-down</v-icon>ショッピングクレジット</h4>
-          <p>
-            カメラのキタムラおすすめの『ショッピングクレジット』なら<span class="red--text">最長48回払いまで金利手数料が「0円」</span
-            >!<br />ショッピングクレジットをぜひご利用ください！
-          </p>
+        <!--↓ ショッピングクレジット-->
+        <shoppingCredit :installmentPaymentExampleList="installmentPaymentExampleList" :title="'天体望遠鏡'" :isMomoBtn="false" />
 
-          <h3>分割払い例</h3>
-          <v-container class="ba-gr">
-            <v-row class="mb-4">
-              <v-col cols="6">
-                <h4 class="red--text">分割払い例①</h4>
-                <div class="s-credit text-center">
-                  <table cellspacing="0" cellpadding="0">
-                    <tbody>
-                      <tr>
-                        <th>商品価格</th>
-                        <th>分割回数</th>
-                        <th>月々の<br />お支払額</th>
-                        <th>分割<br />手数料</th>
-                      </tr>
-                      <tr>
-                        <td>109,962<span>円</span></td>
-                        <td>30<span>回</span></td>
-                        <td class="txt-org"><span>約</span>3,666<span>円</span></td>
-                        <td>0<span>円</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </v-col>
-              <v-col cols="6">
-                <h4 class="red--text">分割払い例②</h4>
-                <div class="s-credit text-center">
-                  <table cellspacing="0" cellpadding="0">
-                    <tbody>
-                      <tr>
-                        <th>商品価格</th>
-                        <th>分割回数</th>
-                        <th>月々の<br />お支払額</th>
-                        <th>分割<br />手数料</th>
-                      </tr>
-                      <tr>
-                        <td>33,174円<span>円</span></td>
-                        <td>10<span>回</span></td>
-                        <td class="txt-org"><span>約</span>3,318<span>円</span></td>
-                        <td>0<span>円</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </v-col>
-            </v-row>
-          </v-container>
-          <p class="my-2">※注文総額3万円、月々3,000円以上のお支払いからご利用いただけます ※初回お支払い額は､月々のお支払い金額より高くなる場合がございます</p>
-          <div class="text-right mb-8">
-            <v-btn
-              elevation="6"
-              color="#0972c0"
-              :href="'https://shop.kitamura.jp/sitemap/s_credit_01.html'"
-              class="white--text font-weight-bold pa-4"
-              width="50%"
-            >
-              → ショッピングクレジットを詳しく見る</v-btn
-            >
-          </div>
-        </div>
+        <v-row class="mb-8" justify="end">
+          <v-col cols="12" sm="6">
+            <v-hover v-slot="{ hover }">
+              <v-btn block height="50px" :elevation="hover ? 12 : 2" :color="hover ? '#119ce3' : '#0972c0'" :href="'/ec/guide/s_credit_01'">
+                <span class="white--text font-weight-bold text-subtitle-1">→ ショッピングクレジットを詳しく見る</span></v-btn
+              >
+            </v-hover>
+          </v-col>
+        </v-row>
 
         <!--↓ 価格・人気アクセサリー-->
         <h2 class="page-color mt-4">月・惑星の写真をおしゃれにプリント♪</h2>
@@ -344,18 +295,20 @@
               <v-btn
                 block
                 elevation="6"
-                color="yellow"
+                height="45px"
+                color="#FAD516"
                 :href="'https://www.kitamura-print.com/print/design_collage/'"
-                class="lime--text darken-4 font-weight-bold pa-4 my-4"
+                class="brown--text text-subtitle-1 font-weight-bold my-4"
               >
                 お店で注文</v-btn
               >
               <v-btn
                 block
                 elevation="6"
-                color="orange"
+                height="45px"
+                color="#FFA600"
                 :href="'https://www.kitamura-print.com/print/design_collage/?_ga=2.198533999.1902037495.1627264363-279164427.1627285160'"
-                class="white--text font-weight-bold pa-4 my-4"
+                class="white--text text-subtitle-1 font-weight-bold my-4"
               >
                 ネットで注文</v-btn
               >
@@ -366,7 +319,7 @@
         <!--↓ SNSー-->
         <facebookAndTwitter />
 
-        <h2 class="page-color mt-8">関連おすすめ特集・アプリ</h2>
+        <h2 class="page-color mt-8" id="tokusyu">関連おすすめ特集・アプリ</h2>
         <v-divider></v-divider>
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
@@ -382,21 +335,35 @@ import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
+import TableOfContentsNavi from '@/components/common/special/table-of-contents-navi.vue';
+import ShoppingCredit from '@/components/common/special/shopping-credit.vue';
+
 export default Vue.extend({
   name: 'telescope',
   components: {
     breadcrumbs: Breadcrumbs,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
+    recommendedFeatures: RecommendedFeatures,
+    urlcopy: Urlcopy,
+    tableOfContentsNavi: TableOfContentsNavi,
+    shoppingCredit: ShoppingCredit
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    document.title = 'おすすめ天体望遠鏡の選び方 | カメラのキタムラネットショップ';
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', '初心者にもおすすめ♪天体望遠鏡の選び方をまとめました★ビクセン天体望遠鏡のおすすめ理由や月や木星・土星の倍率イメージなど！天体望遠鏡はカメラのキタムラへおまかせください。'
+    )
+    const state = reactive({
       naviList: [
         { naviItem: '天体望遠鏡の\n種類 ', href: '#select' },
         { naviItem: 'おすすめの\n天体望遠鏡 ', href: '#pickup' },
         { naviItem: '月や惑星の\n見え方', href: '#magnification' },
         { naviItem: '天体望遠鏡\n価格一覧 ', href: '#list' },
         { naviItem: '関連おすすめ\n特集一覧', href: '#tokusyu' }
+      ],
+      installmentPaymentExampleList: [
+        { productPrice: '109,962', numberOfDivisions: '30', monthlyPayment: '3,666' },
+        { productPrice: '33,174', numberOfDivisions: '10', monthlyPayment: '3,318' },
       ],
       recommendedFeaturesList: [
         {
@@ -416,23 +383,7 @@ export default Vue.extend({
         }
       ],
       visible: false,
-      index: 0 // default: 0
-    };
-  },
-  methods: {
-    onCopy() {
-      alert('URLをコピーしました♪お気に入り・ブックマーク登録やメール・ブログでお友達と共有してください♪');
-    },
-    showImg(index: number) {
-      this.index = index;
-      this.visible = true;
-    },
-    handleHide() {
-      this.visible = false;
-    }
-  },
-  setup: (props, context) => {
-    const state = reactive({
+      index: 0, // default: 0
       breadcrumbs: [
         {
           path: 'ネットショップ',
@@ -488,14 +439,14 @@ export default Vue.extend({
   }
 });
 </script>
-<style lang="scss" scoped>
+<style scoped>
 .newline {
   white-space: pre-wrap;
+  word-wrap: break-word;
 }
 .page-color {
   color: #000066;
 }
-
 .ossm {
   width: 100%;
   height: auto;
@@ -538,5 +489,36 @@ ul.squ li {
   background-repeat: no-repeat;
   box-sizing: border-box;
   line-height: 1.2em;
+}
+
+.nbtna {
+  height: 60px;
+  font-size: 14px;
+  background-image: url(/ec/images2/special/camera/astronomical/telescope/bg_btn.jpg);
+  background-repeat: no-repeat;
+  text-align: center;
+  font-weight: normal;
+  line-height: 1.5em;
+  text-decoration: none;
+  padding: 5% 0;
+  box-sizing: border-box;
+}
+
+.nbtna:hover {
+  text-decoration: underline;
+}
+
+.subtitle {
+  width: 100%;
+  height: auto;
+  color: #000066;
+  background-image: url(/ec/images2/special/camera/astronomical/telescope/bg_subtitle.jpg);
+  background-repeat: no-repeat;
+  border-bottom: 1px #000066 solid;
+  padding: 0 0 5px 30px;
+  box-sizing: border-box;
+  line-height: 1.3em;
+  font-weight: bold;
+  font-size: 20px;
 }
 </style>

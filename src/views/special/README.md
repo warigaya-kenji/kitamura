@@ -384,7 +384,7 @@ URL: **/ec/special/XXXXX**　（/ec/special/からなるnews以外のもの）
         },
         {
           path: '最新デジカメ新製品',
-          linkUrl: '/ec/special/sale-fair/camera/feature/',
+          linkUrl: '/ec/special/camera/feature',
           disabled: false
         },
         {

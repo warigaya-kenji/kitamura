@@ -1,4 +1,11 @@
-export const CAMERA_CATEGORY_LIST = [
+type Category = {
+  text: string;
+  url: string;
+  image: string;
+  linkType?: 'internal' | 'external';
+};
+
+export const CAMERA_CATEGORY_LIST: Category[] = [
   {
     text: '交換レンズ',
     url: '/ec/ct/C004',
@@ -21,8 +28,7 @@ export const CAMERA_CATEGORY_LIST = [
   },
   {
     text: '中古商品',
-    linkType: 'external',
-    url: process.env.VUE_APP_NET_CHUKO_URL + 'buy/index.do',
+    url: '/ec/ct/used/list',
     image: 'img_topctC05.png'
   },
   {
@@ -117,7 +123,7 @@ export const CAMERA_CATEGORY_LIST = [
   }
 ];
 
-export const APPLIANCES_CATEGORY_LIST = [
+export const APPLIANCES_CATEGORY_LIST: Category[] = [
   {
     text: '生活/家事家電',
     url: '/ec/ct/E004',

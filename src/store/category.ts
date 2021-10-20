@@ -28,11 +28,17 @@ export default function categoryStore() {
       return state.usedCategory ? state.usedCategory : [];
     },
 
+    get usedCategoryOnlyParent(): Array<UsedCategory> {
+      const parentCategory = state.usedCategory ? state.usedCategory.filter((cate) => !cate.categoryName.includes(':')) : [];
+      return parentCategory.length ? parentCategory : [];
+    },
+
     async fetchNewerCategories() {
       try {
         state.newerCategory = await ProductListSysConfigsService.fetchNewerCategories();
         WebStorage.setSessionStorage(NEWER_KEY, state.newerCategory);
       } catch (error) {
+        console.error(error);
         state.newerCategory = [];
       }
     },
@@ -42,6 +48,7 @@ export default function categoryStore() {
         state.usedCategory = await ProductListSysConfigsService.fetchUsedCategories();
         WebStorage.setSessionStorage(USED_KEY, state.usedCategory);
       } catch (error) {
+        console.error(error);
         state.usedCategory = [];
       }
     },

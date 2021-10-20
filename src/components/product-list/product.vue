@@ -9,7 +9,7 @@
           id="product-comparison-checkbox"
           v-model="comparisonCheck"
           label="比較する"
-          :disabled="!comparisonCheck && comparison.comparisonList.length >= 5"
+          :disabled="!comparisonCheck && comparison.comparisonList.length >= comparison.limit"
         ></v-checkbox>
 
         <!-- お気に入り登録 -->
@@ -44,7 +44,7 @@
       </router-link>
       <div class="product-price-area">
         <div class="product-text" v-show="displayPriceType === SEARCH_STATE.option[0].value || displayPriceType === SEARCH_STATE.option[1].value">
-          価格:<span class="product-price">{{ formatPrice(parseInt(stateProduct.price)) }}円</span>
+          価格:<span class="product-price">{{ isSpecial && stateProduct.isSalesEnd ? '-' : formatPrice(parseInt(stateProduct.price)) }}円</span>
         </div>
         <div
           class="product-text"
@@ -104,7 +104,7 @@
           </router-link>
           <div class="product-price-area">
             <div class="product-text" v-show="displayPriceType === SEARCH_STATE.option[0].value || displayPriceType === SEARCH_STATE.option[1].value">
-              価格:<span class="product-price">{{ formatPrice(parseInt(stateProduct.price)) }}円</span>
+              価格:<span class="product-price">{{ isSpecial && stateProduct.isSalesEnd ? '-' : formatPrice(parseInt(stateProduct.price)) }}円</span>
             </div>
             <div
               class="product-text"
@@ -136,7 +136,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { reactive, toRefs, PropType, watch, onBeforeMount } from '@vue/composition-api';
+import { reactive, toRefs, PropType, watch } from '@vue/composition-api';
 import ProductService from '@/logic/product.service';
 import { ProductItem } from '@/types/product-list';
 import { SEARCH_STATE } from '@/constants/search-state';
@@ -205,32 +205,18 @@ export default Vue.extend({
       }
     );
 
-    // お気に入り情報取得反映
-    // TODO: 仕様決定後、お気に入りに登録済かを一括取得実装
-    // watch(
-    //   () => authorizer.isLoggedIn,
-    //   (newVal) => {
-    //     if (newVal) {
-    //       ProductService.isFavoriteByJanCode(state.stateProduct.itemid).then(
-    //         (result) => {
-    //           if (result.itemInfo && result.itemInfo.length) {
-    //             state.productFavorite = true;
-    //           }
-    //         }
-    //       );
-    //     }
-    //   },
-    //   { immediate: true }
-    // );
-
-    onBeforeMount(() => {
-      // 新品中古情報の格納
-      if (props.usedProductsSummary) {
-        const usedProductsSummary = props.usedProductsSummary as usedProductsSummary;
-        state.productUsedMinPrice = formatPrice(usedProductsSummary.minPrice);
-        state.productUsedItemCount = usedProductsSummary.itemCount;
+    // 新品用中古情報チェック処理
+    watch(
+      () => props.usedProductsSummary,
+      () => {
+        // 新品中古情報の格納
+        if (props.usedProductsSummary) {
+          const usedProductsSummary = props.usedProductsSummary as usedProductsSummary;
+          state.productUsedMinPrice = formatPrice(usedProductsSummary.minPrice);
+          state.productUsedItemCount = usedProductsSummary.itemCount;
+        }
       }
-    });
+    );
 
     // お気に入り商品登録
     const clickFavorite = async () => {

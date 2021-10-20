@@ -16,7 +16,8 @@ const SpecialProductService = {
         price: element.price,
         image: element.images[0].imagePath,
         itemid: element.janCode,
-        narrow1: element.makerName
+        narrow1: element.makerName,
+        isSalesEnd: element.isSalesEnd
       };
       updatedProductList.push(item);
     });
@@ -61,7 +62,7 @@ const SpecialProductService = {
 
   async fetchJsonFile(path: string): Promise<any> {
     const url = process.env.VUE_APP_STATIC_FILE_BASE_URL + 'json/sale/' + path;
-    const response = await ApiService.get(url, {}, true, false, true);
+    const response = await ApiService.get(url, { headers: { 'Cache-Control': 'no-cache' } }, true, false, true);
     return response;
   },
 
@@ -76,7 +77,7 @@ const SpecialProductService = {
    */
   async getHealthCheck(): Promise<any> {
     const url = isLocalHost() ? 'https://nc-feature9.kitamura.shop/healthcheck' : '/healthcheck';
-    const config: AxiosRequestConfig = {};
+    const config: AxiosRequestConfig = { headers: { 'Cache-Control': 'no-cache' } };
     config.responseType = 'text';
     const response = await ApiService.get(url, config, true, false, true);
 

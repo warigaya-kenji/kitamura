@@ -73,6 +73,9 @@ export type UsedCategory = {
 
   /** 新品コード */
   newerCode: string;
+
+  /** 画像PATH */
+  imageSrc: string;
 };
 
 /**

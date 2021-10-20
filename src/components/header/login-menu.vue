@@ -72,7 +72,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { computed, reactive, ref, toRefs } from '@vue/composition-api';
+import { computed, reactive, ref, toRefs, watch } from '@vue/composition-api';
 import AuthService from '@/logic/auth.service';
 
 export default Vue.extend({
@@ -106,9 +106,7 @@ export default Vue.extend({
      */
     const checkLoginStatus = (): void => {
       init();
-      AuthService.checkLoginStatus().then((isLoggedIn) => {
-        authorizer.loginMenuOpenState = !isLoggedIn;
-      });
+      authorizer.openLoginMenu();
     };
 
     /**
@@ -126,7 +124,6 @@ export default Vue.extend({
         authorizer.loginMenuOpenState = false;
       } catch (error) {
         console.error(error);
-
         const status = error.response?.status || -1;
         if (status === 401) {
           state.errorMessage = 'メールアドレスまたはパスワードが正しくありません。';
@@ -139,19 +136,24 @@ export default Vue.extend({
       }
     }
 
+    watch(
+      () => authorizer.loginMenuOpenState,
+      (newValue, oldValue) => {
+        // ダイアログの開閉時にそれぞれ初期化する
+        if (newValue && !oldValue) {
+          init();
+        } else if (!newValue && oldValue) {
+          state.email = '';
+          state.password = '';
+          state.errorMessage = '';
+        }
+      }
+    );
+
     // ダイアログ表示状態
     const isShowMenu = computed({
-      get: () => {
-        // 「authorizer.loginMenuOpenState」が変化する度に表示を初期化する
-        init();
-        return authorizer.loginMenuOpenState;
-      },
-      set: (openState) => {
-        state.email = '';
-        state.password = '';
-        state.errorMessage = '';
-        authorizer.loginMenuOpenState = openState;
-      }
+      get: () => authorizer.loginMenuOpenState,
+      set: (openState) => (authorizer.loginMenuOpenState = openState)
     });
 
     return {

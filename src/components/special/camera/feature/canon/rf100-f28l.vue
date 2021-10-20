@@ -6,9 +6,18 @@
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
 
-        <!-- ↓ 画像の読み込み -->
-        <img class="mb-5" src="/ec/images2/special/camera/feature/canon/rf100-f28l/bg_top.jpg" @error="noimage" />
-        <!-- ↑ 画像の読み込み -->
+        <!-- ↓url copy -->
+        <urlcopy />
+        <!-- ↑url copy -->
+
+        <!-- ↓top image -->
+        <topTitleImg
+          :pcBackgroundImg="'/ec/images2/special/camera/feature/canon/rf100-f28l/bg_top.png'"
+          :spBackgroundImg="'/ec/images2/special/camera/feature/canon/rf100-f28l/sp_img_top.png'"
+          :topTitle="'キヤノン RF100mm F2.8 L MACRO IS USM'"
+          :topTitleText="'最大撮影倍率1.4倍のマクロ機能と\n「SA コントロールリング」を搭載した本格マクロレンズ'"
+        />
+        <!-- ↑top image -->
 
         <div class="red darken-4 text-center mb-2">
           <span class="white--text text-h6 font-weight-bold">好評発売中!</span>
@@ -23,221 +32,152 @@
         <!-- ↑ ナビボタン -->
 
         <div class="text-right">
-          <v-btn href="/ec/special/camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
+          <v-btn tile href="/ec/special/camera/feature/backnumber" color="black" class="kg-in main-product-btn"
+            ><span class="white--text">≫ 話題の新製品バックナンバー</span></v-btn
+          >
         </div>
 
         <subText :textItem="'最大撮影倍率1.4倍を実現したRF本格マクロレンズ「RF100mm F2.8 L マクロ IS USM 」'" />
         <p>RF レンズとして等倍以上のマクロ機能を初めて搭載した「L (Luxury)」レンズ</p>
+
+        <!-- ↓ 価格・ご購入ー -->
         <subText :textItem="'キヤノン RF100mm F2.8 L MACRO IS USM 価格・ご購入'" />
+        <priceAndPurchase :mainProductList="mainProductList" />
 
-        <!--====== キヤノン EOS R5 ======-->
-        <!--====== キヤノン EOS R6 ======-->
-        <!-- <priceAndPurchase :mainProductList="mainProductList" /> -->
-
-        <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in mainProductList" :key="product">
-          <v-container>
-            <v-row>
-              <v-col class="text-center" cols="12" sm="5">
-                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr" /></router-link>
-                <p>
-                  <a :href="`/ec/pd/${product.janCode}`">{{ product.itemName }}</a>
-                </p>
-              </v-col>
-              <v-col class="text-center mt-4" cols="12" sm="6">
-                <p class="text-h6">
-                  価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
-                </p>
-                <v-btn
-                  elevation="3"
-                  x-large
-                  dark
-                  color="red"
-                  class="text-h5 font-weight-bold accent-4"
-                  height="55px"
-                  width="65%"
-                  :href="`/ec/pd/${product.janCode}`"
-                >
-                  <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
-                  ご購入はこちら
-                </v-btn>
-                <div class="mt-4" v-if="index === 0">
-                  <p><img src="https://shop.kitamura.jp/images/banner/6931.jpg" alt="電話で相談・ご注文できます" /></p>
-                </div>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
-
-        <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
-        <v-row class="mb-10" v-if="mainProductList.length !== 0">
-          <v-col class="text-center" cols="4">
-            <a :href="`/ec/pd/${mainProductList[0].janCode}`"
-              ><v-img
-                src="//shopimg.kitamura.jp/images/pd/b4d/b9c/97c/c64/14f/3de/756/843/ff6/bef/41g/ca5/3a3/r/M.jpg"
-                class="hover"
-                width="80%"
-                height="auto"
-              ></v-img
-            ></a>
-            <br />
-            キヤノン RF100mm F2.8 L マクロ IS USM<br /><span class="red--text">{{ mainProductList[0].price }}</span
-            >円(税込)
-          </v-col>
-          <v-col col="6">
-            <p>
-              分割払いなら一度にかかるご負担を軽減する事ができます。<br />
-              ショッピングクレジットの分割払いなら、最大48回分割払いまで分割金利手数料を当店が負担致します。
-            </p>
-            <font size="-1">※2021年7月16日時点の価格です</font>
-            <splitContent :numberOfTimes="'48'" :amount="'3,404'" :commission="'0'" />
-            <div class="text-center">
-              <v-btn width="80%" color="#E53935" class="white--text font-weight-bold" href="/sitemap/s_credit_01.html">
-                ショッピングクレジットについて詳細はこちら
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row>
+        <div id="price">
+          <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
+          <splitContent
+            v-if="mainProductList.length !== 0"
+            :ProductList="mainProductList[0]"
+            :amount="'3,404'"
+            :targetDate="'2021年7月16日'"
+            :isCreditBtn="true"
+          />
+        </div>
 
         <!--比較-->
-        <subText
-          :textItem="'キヤノン RF100mm F2.8 L MACRO IS USM / RF85mm F1.2 L USM DS/ EF100mm F2.8L マクロ IS USM / タムロン SP 90mm F/2.8 Di MACRO (Model F017) 比較'"
-          id="hikaku"
-        />
-        <div class="product-comparison mb-5">
-          <p class="mb-2">
-            キヤノン RF100mm F2.8 L MACRO IS USM /RF85mm F1.2 L USM DS / EF100mm F2.8L マクロ IS USM / タムロン SP 90mm F/2.8 Di MACRO (Model
-            F017)を比較しました
-          </p>
-          <table class="product-comparison-table">
-            <tbody>
-              <tr>
-                <th>商品名</th>
-                <td v-for="product in comparisonDetailList" :key="product">{{ product.itemName }}</td>
-              </tr>
-              <tr>
-                <th>発売日</th>
-                <td>2021年7月15日発売</td>
-                <td>2019年12月19日</td>
-                <td>2009年10月02日</td>
-                <td>2016年2月25日</td>
-              </tr>
-              <tr>
-                <th>価格</th>
-                <td v-for="product in comparisonDetailList" :key="product">
-                  <span class="primary--text font-weight-bold">¥{{ formatPrice(parseInt(product.price)) }}</span
-                  >（税込）
-                </td>
-              </tr>
-              <tr>
-                <th>レンズ構成</th>
-                <td>13群17枚</td>
-                <td>11群12枚</td>
-                <td>12群15枚</td>
-                <td>11群14枚</td>
-              </tr>
-              <tr>
-                <th>最短撮影距離</th>
-                <td>26cm</td>
-                <td>35cm</td>
-                <td>30cm</td>
-                <td>30cm</td>
-              </tr>
-              <tr>
-                <th>最大撮影倍率</th>
-                <td>1.4倍</td>
-                <td>0.5倍</td>
-                <td>1倍</td>
-                <td>1倍</td>
-              </tr>
-              <tr>
-                <th>フォーカス駆動</th>
-                <td>超音波モーターナノUSM</td>
-                <td>ステッピングモーターSTM</td>
-                <td>超音波モーターUSM</td>
-                <td>超音波モーターUSD</td>
-              </tr>
-              <tr>
-                <th>絞り羽根（枚）</th>
-                <td>9枚</td>
-                <td>9枚（円形絞り）</td>
-                <td>9枚</td>
-                <td>9枚（円形絞り)</td>
-              </tr>
-              <tr>
-                <th>フィルター径</th>
-                <td>67mm</td>
-                <td>67mm</td>
-                <td>67mm</td>
-                <td>62mm</td>
-              </tr>
-              <tr>
-                <th>外寸 最大径ｘ長さ (mm)</th>
-                <td>81.5mm×148mm</td>
-                <td>78.0×90.5mm</td>
-                <td>77.7mm×123mm</td>
-                <td>79mm×117.1mm</td>
-              </tr>
-              <tr>
-                <th>質量</th>
-                <td>約730g</td>
-                <td>約500g</td>
-                <td>約625g</td>
-                <td>約610g</td>
-              </tr>
-            </tbody>
-          </table>
+        <div id="hikaku">
+          <subText
+            :textItem="'キヤノン RF100mm F2.8 L MACRO IS USM / RF85mm F1.2 L USM DS/ EF100mm F2.8L マクロ IS USM / タムロン SP 90mm F/2.8 Di MACRO (Model F017) 比較'"
+            id="hikaku"
+          />
+          <div class="product-comparison mb-5">
+            <p class="mb-2">
+              キヤノン RF100mm F2.8 L MACRO IS USM /RF85mm F1.2 L USM DS / EF100mm F2.8L マクロ IS USM / タムロン SP 90mm F/2.8 Di MACRO (Model
+              F017)を比較しました
+            </p>
+            <table class="product-comparison-table">
+              <tbody>
+                <tr>
+                  <th>商品名</th>
+                  <td v-for="(product, index) in comparisonDetailList" :key="`product-name-${index}`">{{ product.itemName }}</td>
+                </tr>
+                <tr>
+                  <th>発売日</th>
+                  <td>2021年7月15日発売</td>
+                  <td>2019年12月19日</td>
+                  <td>2009年10月02日</td>
+                  <td>2016年2月25日</td>
+                </tr>
+                <tr>
+                  <th>価格</th>
+                  <td v-for="(product, index) in comparisonDetailList" :key="`price-${index}`">
+                    <span class="primary--text font-weight-bold">{{ formatPrice(parseInt(product.price)) }}</span
+                    >（円）
+                  </td>
+                </tr>
+                <tr>
+                  <th>レンズ構成</th>
+                  <td>13群17枚</td>
+                  <td>11群12枚</td>
+                  <td>12群15枚</td>
+                  <td>11群14枚</td>
+                </tr>
+                <tr>
+                  <th>最短撮影距離</th>
+                  <td>26cm</td>
+                  <td>35cm</td>
+                  <td>30cm</td>
+                  <td>30cm</td>
+                </tr>
+                <tr>
+                  <th>最大撮影倍率</th>
+                  <td>1.4倍</td>
+                  <td>0.5倍</td>
+                  <td>1倍</td>
+                  <td>1倍</td>
+                </tr>
+                <tr>
+                  <th>フォーカス駆動</th>
+                  <td>超音波モーターナノUSM</td>
+                  <td>ステッピングモーターSTM</td>
+                  <td>超音波モーターUSM</td>
+                  <td>超音波モーターUSD</td>
+                </tr>
+                <tr>
+                  <th>絞り羽根（枚）</th>
+                  <td>9枚</td>
+                  <td>9枚（円形絞り）</td>
+                  <td>9枚</td>
+                  <td>9枚（円形絞り)</td>
+                </tr>
+                <tr>
+                  <th>フィルター径</th>
+                  <td>67mm</td>
+                  <td>67mm</td>
+                  <td>67mm</td>
+                  <td>62mm</td>
+                </tr>
+                <tr>
+                  <th>外寸 最大径ｘ長さ (mm)</th>
+                  <td>81.5mm×148mm</td>
+                  <td>78.0×90.5mm</td>
+                  <td>77.7mm×123mm</td>
+                  <td>79mm×117.1mm</td>
+                </tr>
+                <tr>
+                  <th>質量</th>
+                  <td>約730g</td>
+                  <td>約500g</td>
+                  <td>約625g</td>
+                  <td>約610g</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="clear: both"></div>
         </div>
         <!--比較-->
 
         <!--特徴-->
-        <div class="contents_inner" id="point">
+        <div class="contents_inner" id="spec">
           <subText :textItem="'キヤノン RF100mm F2.8 L MACRO IS USM の特徴'" />
           <characteristic :characteristics="commonCharacteristicList" />
         </div>
         <!--特徴-->
 
-        <div class="col-sm-12 text-center float-left pa-4 mt-10">
-          <v-btn
-            elevation="3"
-            class="black darken-4 white--text text-h7"
-            height="70px"
-            width="50%"
-            @click="linkToOtherWindow('https://cweb.canon.jp/eos/your-eos/product/eosr/')"
-            >メーカーサイトで<br />仕様・作例を詳しく見る</v-btn
-          >
-        </div>
+        <!-- ↓ 仕様・作例ボタンー -->
+        <specificationsExamplesBtn
+          :btntxt="'メーカーサイトで\n仕様・作例を詳しく見る'"
+          :url="'https://cweb.canon.jp/eos/rf/lineup/rf100-f28l/'"
+          :height="'70px'"
+        />
 
         <!--↓ 価格・人気アクセサリー-->
         <subText :textItem="'キヤノン RF100mm F2.8 L MACRO IS USM 価格・人気アクセサリー'" />
-        <v-container>
-          <v-row>
-            <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
-              <p class="font-small blue--text mb-2 height-20">
-                <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
-              </p>
-              <p class="mt-2">
-                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
-              </p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <priceAndPopular :productDetailList="productDetailList" />
 
         <!--↓ 外観画像ー-->
-        <subText :textItem="'キヤノン RF100mm F2.8 L MACRO IS USM 外観画像'" />
-        <p class="text-subtitle-1">キヤノン RF100mm F2.8 L MACRO IS USM の外観画像</p>
-        <v-container>
-          <v-row>
-            <v-col v-for="n in 2" :key="n" cols="12">
-              <v-img :src="`/ec/images2/special/camera/feature/canon/rf100-f28l/img_${n}.jpg`" max-width="100%" height="auto"> </v-img>
-            </v-col>
-          </v-row>
-        </v-container>
+        <div id="images">
+          <subText :textItem="'キヤノン RF100mm F2.8 L MACRO IS USM 外観画像'" />
+          <p class="text-subtitle-1">キヤノン RF100mm F2.8 L MACRO IS USM の外観画像</p>
+          <appearanceImage :src="'/ec/images2/special/camera/feature/canon/rf100-f28l'" :count="2" />
+        </div>
 
         <!--↓ SNSー-->
         <facebookAndTwitter />
 
-        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
+        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" />
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
@@ -257,6 +197,12 @@ import Characteristic from '@/components/common/special/characteristic.vue';
 import SplitContent from '@/components/common/special/split-content.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
+import TopTitleImg from '@/components/common/special/top-title-img.vue';
+import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
+import SpecificationsExamplesBtn from '@/components/common/special/specifications-examples-btn.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
+import AppearanceImage from '@/components/common/special/appearance-image.vue';
 export default Vue.extend({
   name: 'rf100-f28l',
   components: {
@@ -266,13 +212,21 @@ export default Vue.extend({
     characteristic: Characteristic,
     splitContent: SplitContent,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
+    recommendedFeatures: RecommendedFeatures,
+    urlcopy: Urlcopy,
+    topTitleImg: TopTitleImg,
+    priceAndPurchase: PriceAndPurchase,
+    specificationsExamplesBtn: SpecificationsExamplesBtn,
+    priceAndPopular: PriceAndPopular,
+    appearanceImage: AppearanceImage
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    document.title = 'キヤノン RF100mm F2.8 L MACRO IS USM | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'キヤノン RF100mm F2.8 L MACRO IS USM 好評発売中！比較や、価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
+    const state = reactive({
       naviList: [
         { naviItem: 'お得情報', href: '#price' },
-        { naviItem: '特徴スペック', href: '#point' },
+        { naviItem: '特徴スペック', href: '#spec' },
         { naviItem: '機種比較', href: '#hikaku' },
         { naviItem: '外観', href: '#images' }
       ],
@@ -312,7 +266,7 @@ export default Vue.extend({
           alt: 'セール・特集一覧'
         },
         {
-          href: '/sitemap/s_credit_01.html',
+          href: '/ec/guide/s_credit_01l',
           img: 'http://shopimg.kitamura.jp/images/banner/1486.gif',
           alt: 'ショッピングクレジット'
         },
@@ -326,17 +280,7 @@ export default Vue.extend({
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
           alt: 'トクトク買取'
         }
-      ]
-    };
-  },
-  methods: {
-    linkToOtherWindow(url: string | undefined) {
-      window.open(url, '_blank');
-    }
-  },
-  props: {},
-  setup: (props, context) => {
-    const state = reactive({
+      ],
       breadcrumbs: [
         {
           path: 'ネットショップ',

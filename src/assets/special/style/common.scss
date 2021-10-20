@@ -8,29 +8,44 @@
   line-height: 1.5;
 }
 
+.main-contents-wrap {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0 6px;
+  a {
+    color: $text-blue !important;
+    &:hover {
+      color: $text-primary !important;
+      text-decoration: none !important;
+    }
+  }
+}
+
+//話題の新製品バックナンバーのボタン
 .kg-in {
   box-shadow: 0px 9px 5px 1px rgb(176 126 164 / 60%) inset;
 }
 
+// 画像にopacityを付与したい時
 .hover:hover {
   opacity: 0.7;
 }
 
-.main-contents-wrap {
-  max-width: 950px;
-  margin: 0 auto;
-  padding: 0 12px;
-}
-
+// 比較表
 .product-comparison {
   &-table {
-    font-size: 12px;
+    width: 100%;
+    font-size: 70%;
+    float: left;
     border-collapse: collapse;
     text-align: center;
+    box-sizing: border-box;
+  word-break: break-all;
     %cell {
       width: 16%;
       padding: 12px 8px;
       border: 1px solid $ec-light-grey2;
+      box-sizing: border-box;
       vertical-align: middle;
     }
     th {
@@ -59,7 +74,7 @@
 }
 
 .line-height {
-  line-height: 1.8em;
+  line-height: 1.8em !important;
 }
 
 .routerLink {
@@ -84,7 +99,7 @@ div.s-credit table td {
   box-sizing: border-box;
 }
 div.s-credit table th {
-  background: #389c88 none repeat scroll 0 0;
+  background: #1abc9c none repeat scroll 0 0;
   color: #ffffff;
   font-size: 13px;
   font-weight: normal;
@@ -125,7 +140,7 @@ div.s-credit table td span {
   background: linear-gradient(#ff8383, #ff5b5b);
 }
 
-.main-contents-wrap {
+.main-product {
   &-btn {
     &:hover {
       .v-btn__content {
@@ -134,4 +149,117 @@ div.s-credit table td span {
       }
     }
   }
+
+  &-name {
+    color: $text-blue;
+  }
+}
+
+.category-nav span.v-btn__content {
+  width: 120px;
+  height: 60px;
+}
+
+.campaign .individual .img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 150px;
+  height: auto;
+}
+
+.campaign .individual a {
+  background: #fff url(/ec/images2/special/camera/album/arrow-2-off.png) no-repeat right bottom;
+  box-shadow: 0 0 6px rgb(0 0 0 / 5%), 0 3px 3px rgb(0 0 0 / 5%);
+  color: #444;
+  display: block;
+}
+
+.campaign .individual a:hover {
+  background: #fff url(/ec/images2/special/camera/album/arrow-2-on.png) no-repeat right bottom;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%), 0 6px 6px rgb(0 0 0 / 20%);
+  color: #d80b24;
+  text-decoration: underline;
+}
+
+.campaign .individual .item-name {
+  display: block;
+  height: 5em;
+  margin-top: 5px;
+  padding: 0 3%;
+}
+
+.tx-pnk {
+  color: #FF3366;
+}
+
+.s-bnr p {
+  background: rgba(0, 0, 0, 0) linear-gradient(transparent 70%, #ddd 70%) repeat scroll 0 0;
+  font-family: 'ヒラギノ角ゴ Pro W3', 'メイリオ', 'ＭＳ Ｐゴシック', Osaka, sans-serif;
+  padding-left: 10px;
+  margin-top: 30px;
+  font-size: 140%;
+}
+
+// data文字列に改行入れたいとき
+.including-line-breaks {
+  white-space:pre-wrap; 
+  word-wrap:break-word;
+}
+
+// 白四角の中に赤い右矢印の画像
+.allow-icon {
+  margin: 0 0 4px 0;
+  padding-left: 16px;
+  background: url(https://shop.kitamura.jp/common/images/arrow_square.gif) no-repeat left 0.1em;
+  list-style: none;
+}
+// 白四角の中に赤い上矢印の画像
+.allow-top {
+  margin: 0 0 4px 0;
+  padding-left: 16px;
+  background: url(https://shop.kitamura.jp/common/images/arrow_square_top.gif) no-repeat left 0.1em;
+  list-style: none;
+}
+
+// guideページに使用
+.w760 {
+  max-width: 760px;
+  margin: 0 auto;
+}
+// mkr_popup.gif
+.icoOpen {
+  margin: 0 0.2em;
+  padding-right: 1.5em;
+  background: url(https://shop.kitamura.jp/common/images/mkr_popup.gif) no-repeat right center;
+  color: #1122cc;
+}
+.icoOpen:hover {
+color: #d80b24;
+text-decoration: underline;
+}
+
+.list-none {
+  list-style: none;
+}
+
+ul.listAttention li {
+  margin: 0 0 4px 0;
+  padding-left: 16px;
+  color: #666;
+  background: url(https://shop.kitamura.jp/common/images/mkr_attention.gif) no-repeat left 0.3em;
+  list-style: none;
+}
+// 非コンテンツ系のページのタイトルに使用
+.heading-1 {
+  font-size: 180%;
+  font-weight: bold;
+}
+// 背景にラインをつけたいとき
+.line-g {
+  background: url(/ec/images2/special/camera/bag/feature/trekking/bk_line.gif) repeat scroll top left;
+}
+// v-btnテキストにアルファベットを使用時、大文字になるのを防ぐ
+.text-transform {
+  text-transform: none
 }

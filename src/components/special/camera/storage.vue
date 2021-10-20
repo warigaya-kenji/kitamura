@@ -5,28 +5,26 @@
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
-        <div class="text-right">
-          <v-btn
-            color="red darken-2"
-            class="white--text body-2 mb-1"
-            v-clipboard:copy="'https://shop.kitamura.jp/ec/special/camera/feature/canon/tripod'"
-            v-clipboard:success="onCopy"
-            height="30px"
-            >≫ このページのURLをコピーする</v-btn
-          >
-          <p class="caption">
-            <a href="/special/sale-fair/page/bookmark/" target="_blank"> (?)ブラウザ別 お気に入り・ブックマーク登録方法</a>
-          </p>
-        </div>
+        <urlcopy />
 
         <!-- ↓ 画像の読み込み -->
-        <img class="mb-5" src="/ec/images2/special/camera/storage/topbnr768130.jpg" @error="noimage" />
+        <v-img class="mb-5" src="/ec/images2/special/camera/storage/topbnr768130.jpg" max-width="100%" height="auto" />
         <!-- ↑ 画像の読み込み -->
-        <p class="text-subtitle-2 ma-0 pa-0">カメラやレンズの保管におすすめの防湿庫、防湿庫の選び方や防湿用品のご紹介</p>
+        <p class="text-subtitle-2 mb-4 pa-0">カメラやレンズの保管におすすめの防湿庫、防湿庫の選び方や防湿用品のご紹介</p>
 
-        <!--カテゴリーメニュー-->
-        <naviBtn :naviList="naviList" :color="'grey'" :cols="2.5" />
-        <!-- /カテゴリーメニュー -->
+        <v-container class="v-container" v-if="$vuetify.breakpoint.mdAndUp">
+          <v-row no-gutters>
+            <v-col v-for="(navi, index) in naviList" :key="`navi-${index}`">
+              <v-hover v-slot="{ hover }">
+                <v-btn block :href="navi.href" :elevation="hover ? 12 : 2" class="nbtna" height="60px"
+                  ><span>{{ navi.naviItem }}</span></v-btn
+                >
+              </v-hover>
+            </v-col>
+          </v-row>
+        </v-container>
+
+        <tableOfContentsNavi :naviList="naviList" v-if="$vuetify.breakpoint.smAndDown" />
 
         <h2 class="subtitle mt-10 text-h5" id="04">おすすめ防湿庫</h2>
 
@@ -34,7 +32,7 @@
         <h3 class="mt-10 mb-6 left text-left cyan lighten-4 pa-4">東洋リビング 防湿庫</h3>
         <v-container>
           <v-row class="mb-8">
-            <v-col v-for="(moistureProof, index) in toyoMoistureProofList" :key="moistureProof" cols="3" class="bd-r01">
+            <v-col cols="12" sm="3" v-for="(moistureProof, index) in toyoMoistureProofList" :key="moistureProof" class="bd-r01">
               <a :href="moistureProof.href">
                 {{ moistureProof.text }}<br />
                 <img :src="`/ec/images2/special/camera/storage/toyo-0${index + 1}.png`" />
@@ -42,22 +40,24 @@
             </v-col>
           </v-row>
 
-          <div class="text-right">
-            <v-btn
-              width="50%"
-              class="bg-btn py-6 px-10 text-subtitle-1"
-              href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E6%9D%B1%E6%B4%8B%E3%83%AA%E3%83%93%E3%83%B3%E3%82%B0&category=&r=&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&index=&sort=number20,number19,Score&searchbox=1&s1%5B%5D=%E6%9D%B1%E6%B4%8B%E3%83%AA%E3%83%93%E3%83%B3%E3%82%B0&q=%E6%9D%B1%E6%B4%8B%E3%83%AA%E3%83%93%E3%83%B3%E3%82%B0&path=&range_member_price=10000_"
-            >
-              <v-icon small class="mr-4">fas fa-angle-right</v-icon>東洋リビング 防湿庫一覧
-            </v-btn>
-          </div>
+          <v-row justify="end">
+            <v-col cols="12" sm="6">
+              <v-btn
+                block
+                class="bg-btn py-6 px-10 text-subtitle-1"
+                href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E6%9D%B1%E6%B4%8B%E3%83%AA%E3%83%93%E3%83%B3%E3%82%B0&category=&r=&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&index=&sort=number20,number19,Score&searchbox=1&s1%5B%5D=%E6%9D%B1%E6%B4%8B%E3%83%AA%E3%83%93%E3%83%B3%E3%82%B0&q=%E6%9D%B1%E6%B4%8B%E3%83%AA%E3%83%93%E3%83%B3%E3%82%B0&path=&range_member_price=10000_"
+              >
+                <v-icon small class="mr-4">fas fa-angle-right</v-icon>東洋リビング 防湿庫一覧
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-container>
 
         <!--トーリハン防湿庫-->
         <h3 class="mt-10 mb-6 left text-left cyan lighten-4 pa-4">トーリ・ハン 防湿庫</h3>
         <v-container>
           <v-row class="mb-8">
-            <v-col v-for="(moistureProof, index) in toriMoistureProofList" :key="moistureProof" cols="3" class="bd-r01">
+            <v-col cols="12" sm="3" v-for="(moistureProof, index) in toriMoistureProofList" :key="moistureProof" class="bd-r01">
               <a :href="moistureProof.href">
                 {{ moistureProof.text }}<br />
                 <img :src="`/ec/images2/special/camera/storage/tori-0${index + 1}.png`" />
@@ -65,22 +65,24 @@
             </v-col>
           </v-row>
 
-          <div class="text-right">
-            <v-btn
-              width="50%"
-              class="bg-btn py-6 px-10 text-subtitle-1"
-              href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BB%E3%83%8F%E3%83%B3&category=&r=&limit=40&index=&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&sort=number20,Price,Score&searchbox=1&q=%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BB%E3%83%8F%E3%83%B3&path="
-            >
-              <v-icon small class="mr-4">fas fa-angle-right</v-icon>トーリ・ハン 防湿庫一覧
-            </v-btn>
-          </div>
+          <v-row justify="end">
+            <v-col cols="12" sm="6">
+              <v-btn
+                block
+                class="bg-btn py-6 px-10 text-subtitle-1"
+                href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BB%E3%83%8F%E3%83%B3&category=&r=&limit=40&index=&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&sort=number20,Price,Score&searchbox=1&q=%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BB%E3%83%8F%E3%83%B3&path="
+              >
+                <v-icon small class="mr-4">fas fa-angle-right</v-icon>トーリ・ハン 防湿庫一覧
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-container>
 
         <!--ハクバ-->
         <h3 class="mt-10 mb-6 text-left cyan lighten-4 pa-4">ハクバ（HAKUBA）</h3>
         <v-container class="mb-8">
           <v-row class="mb-8">
-            <v-col v-for="(moistureProof, index) in hakubaMoistureProofList" :key="moistureProof" cols="3" class="bd-r01">
+            <v-col cols="12" sm="3" v-for="(moistureProof, index) in hakubaMoistureProofList" :key="moistureProof" class="bd-r01">
               <a :href="moistureProof.href">
                 {{ moistureProof.text }}<br />
                 <img :src="`/ec/images2/special/camera/storage/haku-0${index + 1}.png`" />
@@ -88,33 +90,39 @@
             </v-col>
           </v-row>
 
-          <div class="text-right">
-            <v-btn
-              width="50%"
-              class="bg-btn py-6 px-10 text-subtitle-1"
-              href="https://shop.kitamura.jp/pd/list.html?n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&index=&sort=number20%2Cnumber19%2CScore&searchbox=1&s1[]=%E3%83%8F%E3%82%AF%E3%83%90&q=%E9%9B%BB%E5%AD%90&path=%E9%98%B2%E6%B9%BF%E5%BA%AB"
-            >
-              <v-icon small class="mr-4">fas fa-angle-right</v-icon>ハクバ 防湿庫一覧
-            </v-btn>
-          </div>
+          <v-row justify="end">
+            <v-col cols="12" sm="6">
+              <v-btn
+                block
+                class="bg-btn py-6 px-10 text-subtitle-1"
+                href="https://shop.kitamura.jp/pd/list.html?n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&index=&sort=number20%2Cnumber19%2CScore&searchbox=1&s1[]=%E3%83%8F%E3%82%AF%E3%83%90&q=%E9%9B%BB%E5%AD%90&path=%E9%98%B2%E6%B9%BF%E5%BA%AB"
+              >
+                <v-icon small class="mr-4">fas fa-angle-right</v-icon>ハクバ 防湿庫一覧
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-container>
+
+        <v-row justify="center" class="mb-12">
+          <v-col cols="12" sm="6">
+            <v-btn
+              block
+              class="bg-btn py-6 px-10 text-subtitle-1"
+              href="https://shop.kitamura.jp/pd/list.html?limit=40&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&index=&searchbox=1&sort=number20%2Cnumber19%2CScore&q=%E9%98%B2%E6%B9%BF%E5%BA%AB&path=%E9%98%B2%E6%B9%BF%E5%BA%AB&range_member_price=10000_"
+            >
+              <v-icon small class="mr-4">fas fa-angle-right</v-icon>防湿庫一覧を見る（大型タイプもこちら）
+            </v-btn>
+          </v-col>
+        </v-row>
+
         <!-- ct02防湿庫の選び方 -->
-        <div class="text-center mb-12">
-          <v-btn
-            width="50%"
-            class="bg-btn py-6 px-10 text-subtitle-1"
-            href="https://shop.kitamura.jp/pd/list.html?limit=40&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&index=&searchbox=1&sort=number20%2Cnumber19%2CScore&q=%E9%98%B2%E6%B9%BF%E5%BA%AB&path=%E9%98%B2%E6%B9%BF%E5%BA%AB&range_member_price=10000_"
-          >
-            <v-icon small class="mr-4">fas fa-angle-right</v-icon>防湿庫一覧を見る（大型タイプもこちら）
-          </v-btn>
-        </div>
-        <h2 class="subtitle mt-10 text-h5 mb-10" id="04">防湿庫の選び方 <font size="4">防湿庫選びの3つのポイント</font></h2>
+        <h2 class="subtitle mt-10 text-h5 mb-10" id="02">防湿庫の選び方 <font size="4">防湿庫選びの3つのポイント</font></h2>
 
         <div class="">
           <h3 class="text-h5 indigo--text mb-4 font-weight-bold"><v-icon>fas fa-check</v-icon> ①ワンサイズ大きめの防湿庫を選ぼう！</h3>
 
           <v-row>
-            <v-col cols="9">
+            <v-col cols="12" sm="9">
               <p class="text-subtitle-1">
                 「<a href="#03">防湿庫の収納容量比較</a>」を参考に、必要サイズを確認したら、次は設置場所ですが、ここで重要な選び方のポイントは「<strong
                   class="red--text yellow lighten-3"
@@ -126,8 +134,8 @@
                 ・1台あたりの電気代が1日1円程度で、サイズが大きくなっても、ランニングコストはほぼ変わらない
               </p>
             </v-col>
-            <v-col cols="3">
-              <img src="/ec/images2/special/camera/storage/ct02-01image.gif" width="100%" />
+            <v-col cols="8" sm="3">
+              <v-img src="/ec/images2/special/camera/storage/ct02-01image.gif" max-width="100%" height="auto" />
             </v-col>
           </v-row>
           <p class="text-subtitle-1 mb-8">
@@ -140,8 +148,8 @@
           </p>
 
           <h3 class="text-h5 indigo--text mb-4 font-weight-bold"><v-icon>fas fa-check</v-icon> ②防湿庫内の湿度を確認できる湿度計は必須！</h3>
-          <v-row class="mb-4">
-            <v-col cols="9">
+          <v-row class="mb-4" justify="center">
+            <v-col cols="12" sm="9">
               <p class="text-subtitle-1">
                 動作音がないので、正常に動いているのか、わかりにくい防湿庫。コンセントが抜けていたり、万が一、防湿庫が故障してしまったときでも、庫内の湿度が確認できるよう、湿度計の有無も、選ぶ際のポイントになります。<br />
                 湿度計にはアナログタイプ、デジタルタイプとありますが、だいたい40％前後の湿度になっていることがわかればいいので、これについては、お好みで選んでも問題ありません。<br />
@@ -152,15 +160,15 @@
                 >もありますので、ぜひ一緒に購入を♪
               </p>
             </v-col>
-            <v-col cols="3">
-              <img src="/ec/images2/special/camera/storage/ct02-01.gif" alt="アナログ湿度計" width="100%" /><br />
+            <v-col cols="8" sm="3">
+              <v-avatar size="200"><img src="/ec/images2/special/camera/storage/ct02-01.gif" alt="アナログ湿度計" width="100%" /></v-avatar><br />
               <img src="/ec/images2/special/camera/storage/ct02-02.gif" alt="デジタル湿度計" width="100%" />
             </v-col>
           </v-row>
 
           <h3 class="text-h5 indigo--text mb-4 font-weight-bold"><v-icon>fas fa-check</v-icon> ③コンセントつきが非常に便利！</h3>
-          <v-row>
-            <v-col cols="9">
+          <v-row justify="center">
+            <v-col cols="12" sm="9">
               <p class="text-subtitle-1">
                 <strong class="red--text yellow lighten-3">防湿庫の近くでカメラの電池を充電できる</strong>のは、とても便利で魅力的ですよね♪<br />
                 防湿庫内にコンセントがついているタイプは、カメラ本体に直接電源をつないで充電する機種の場合、防湿しながら充電ができるメリットがあります。<br />
@@ -168,7 +176,7 @@
                 庫内タイプ、庫外タイプともに、お好みのスタイルで選んでください。
               </p>
             </v-col>
-            <v-col cols="3">
+            <v-col cols="8" sm="3">
               <img src="/ec/images2/special/camera/storage/ct02-04.gif" alt="デジタル湿度計" width="100%" />
             </v-col>
           </v-row>
@@ -176,26 +184,26 @@
         <!-- ct02防湿庫の選び方 -->
 
         <!--防湿庫比較 -->
-        <h2 class="subtitle mt-10 text-h5 mb-10" id="04">防湿庫の収納容量と収納数の目安</h2>
+        <h2 class="subtitle mt-10 text-h5 mb-10" id="03">防湿庫の収納容量と収納数の目安</h2>
         <v-container>
           <v-row>
-            <v-col cols="4" v-for="storageCapacity in storageCapacityList" :key="storageCapacity">
+            <v-col cols="12" sm="4" v-for="storageCapacity in storageCapacityList" :key="storageCapacity">
               <v-card outlined color="#a8985e">
                 <v-card-text class="white--text text-center"
                   ><v-icon color="white">fas fa-camera</v-icon> 収納容量<br /><span class="text-h5">{{ storageCapacity.amount }}</span
                   >{{ storageCapacity.type }}</v-card-text
                 >
               </v-card>
-              <p class="pa-4 bd-di" style="white-space: pre-wrap; word-wrap: break-word">{{ storageCapacity.criterion }}</p>
+              <p class="pa-4 bd-di including-line-breaks">{{ storageCapacity.criterion }}</p>
             </v-col>
           </v-row>
         </v-container>
 
         <!--湿気対策おすすめ商品-->
-        <h2 class="subtitle mt-10 text-h5 mb-10" id="04">湿気対策におすすめ商品・雨の日撮影用品</h2>
+        <h2 class="subtitle mt-10 text-h5 mb-10" id="05">湿気対策におすすめ商品・雨の日撮影用品</h2>
         <v-container>
-          <v-row>
-            <v-col cols="6" class="bd-r01">
+          <v-row justify="center">
+            <v-col cols="12" sm="6" class="bd-r01">
               <p class="text-center">お手軽な価格で湿気対策をするならコレ！</p>
               <h3 class="font-weight-bold text-left cyan lighten-4 pa-2">ドライボックス</h3>
               <div>
@@ -211,7 +219,7 @@
                 >をしましょう。（交換目安／約3ヶ月に1度 ※環境によって異なります）
               </p>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="12" sm="6">
               <p class="text-center">防湿剤でカビの繁殖を防ぐ！</p>
               <h3 class="font-weight-bold text-left cyan lighten-4 pa-2">防カビ・防湿剤・モバイルドライ</h3>
               <div>
@@ -225,7 +233,7 @@
                 >しましょう♪<br />モバイルドライは繰り返し使える充電式の除湿ユニット。湿気でいっぱいになったら家庭用コンセントにつないで、乾燥させましょう。
               </p>
             </v-col>
-            <v-col cols="6" class="bd-r01">
+            <v-col cols="12" sm="6" class="bd-r01">
               <h3 class="font-weight-bold text-left cyan lighten-4 pa-2">お手入れ用品</h3>
               <div>
                 <p class="text-center">大切なカメラやレンズのお手入れに！</p>
@@ -235,7 +243,7 @@
                 <v-icon small class="mr-4">fas fa-angle-right</v-icon> お手入れ用品
               </v-btn>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="12" sm="6">
               <h3 class="font-weight-bold text-left cyan lighten-4 pa-2">雨の日撮影用品</h3>
               <div>
                 <p class="text-center">雨の日の撮影でもカメラをしっかり<br />ガードできる「雨よけアイテム」</p>
@@ -249,11 +257,11 @@
         </v-container>
 
         <!--  防湿の必要性 -->
-        <h2 class="subtitle mt-10 text-h5 mb-10" id="04">防湿庫の必要性 <font size="4">大切なレンズやカメラは湿気対策！ カビ対策！</font></h2>
+        <h2 class="subtitle mt-10 text-h5 mb-10" id="01">防湿庫の必要性 <font size="4">大切なレンズやカメラは湿気対策！ カビ対策！</font></h2>
         <div>
           <h3 class="text-h5 indigo--text mb-4 font-weight-bold"><v-icon color="indigo">fas fa-check</v-icon> なぜ防湿庫が必要？</h3>
-          <v-row class="mb-8">
-            <v-col cols="9">
+          <v-row class="mb-8" justify="center">
+            <v-col cols="12" sm="9">
               <p class="text-subtitle-1">
                 カメラやレンズは湿気に弱く、カビが生えやすいデリケートな機材なので、湿気から守る必要があります。その湿気から大切な撮影機材を守ってくれる「<strong
                   class="red--text yellow lighten-3"
@@ -264,8 +272,8 @@
                 >があります。
               </p>
             </v-col>
-            <v-col cols="3">
-              <img src="/ec/images2/special/camera/storage/imagect01.gif" class="mx-w100" />
+            <v-col cols="10" sm="3">
+              <v-img src="/ec/images2/special/camera/storage/imagect01.gif" max-width="100%" height="auto" />
             </v-col>
           </v-row>
 
@@ -286,8 +294,8 @@
           <h3 class="text-h5 indigo--text mb-4 font-weight-bold">
             <v-icon color="indigo">fas fa-check</v-icon> カメラバックごとカメラ機材を押し入れに入れるのは危険
           </h3>
-          <v-row class="mb-8">
-            <v-col cols="9">
+          <v-row class="mb-8" justify="center">
+            <v-col cols="12" sm="9">
               <p class="text-subtitle-1">
                 撮影に使ったカメラやレンズは、どこに保管してますか？『カメラバックごと機材を押し入れに。』という方も多いのでは？<br />
                 この方法、危険です。<br />
@@ -296,11 +304,25 @@
                 カメラの保管は、押し入れではなく、<strong class="red--text yellow lighten-3">カメラバックから出して、防湿庫での保管が必要</strong>です。
               </p>
             </v-col>
-            <v-col cols="3" class="float-left">
-              <img src="https://shopimg.kitamura.jp/images/pd/5f5/001/bf7/29a/06f/628/a27/06a/26c/dfd/79w/cxp/an0/z/M.jpg" width="45%" />
-              <img src="https://shopimg.kitamura.jp/images/pd/22a/0fe/f26/697/8fa/60f/fe2/10d/299/060/40i/8pb/o1m/8/M.jpg" width="45%" />
-              <br />
-              <v-btn block class="bg-btn py-6 px-10 text-subtitle-1" href="/special/sale-fair/camera/storage/366/">
+            <v-col cols="10" sm="3">
+              <v-row class="mb-2">
+                <v-col cols="6">
+                  <v-img
+                    src="https://shopimg.kitamura.jp/images/pd/5f5/001/bf7/29a/06f/628/a27/06a/26c/dfd/79w/cxp/an0/z/M.jpg"
+                    max-width="100%"
+                    height="auto"
+                  />
+                </v-col>
+                <v-col cols="6">
+                  <v-img
+                    src="https://shopimg.kitamura.jp/images/pd/22a/0fe/f26/697/8fa/60f/fe2/10d/299/060/40i/8pb/o1m/8/M.jpg"
+                    max-width="100%"
+                    height="auto"
+                  />
+                </v-col>
+              </v-row>
+
+              <v-btn block class="bg-btn px-10 text-subtitle-1" href="/special/sale-fair/camera/storage/366/">
                 <v-icon small class="mr-4">fas fa-angle-right</v-icon> お手入れ用品
               </v-btn>
             </v-col>
@@ -311,7 +333,7 @@
         <facebookAndTwitter />
 
         <!--↓ おすすめ特集ー-->
-        <subText :textItem="'▼おすすめ特集・プリントサービス'" id="images" />
+        <p class="mt-12">▼おすすめ特集・プリントサービス</p>
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
@@ -325,20 +347,24 @@ import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
-import NaviBtn from '@/components/common/special/navi-btn.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
+import TableOfContentsNavi from '@/components/common/special/table-of-contents-navi.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
 
 export default Vue.extend({
   name: 'storage',
   components: {
     breadcrumbs: Breadcrumbs,
-    naviBtn: NaviBtn,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
+    recommendedFeatures: RecommendedFeatures,
+    tableOfContentsNavi: TableOfContentsNavi,
+    urlcopy: Urlcopy
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    document.title = '防湿庫は必要！ おすすめの防湿庫＆選び方を教えます';
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', '大切なカメラやレンズを湿気やカビから守る！防湿庫を購入する方へ、選び方のアドバイスや、おすすめの防湿庫を教えます')
+    const state = reactive({
       naviList: [
         { naviItem: 'おすすめ\n防湿庫', href: '#04' },
         { naviItem: '防湿庫の\n選び方', href: '#02' },
@@ -402,23 +428,7 @@ export default Vue.extend({
         }
       ],
       visible: false,
-      index: 0 // default: 0
-    };
-  },
-  methods: {
-    onCopy() {
-      alert('URLをコピーしました♪お気に入り・ブックマーク登録やメール・ブログでお友達と共有してください♪');
-    },
-    showImg(index: number) {
-      this.index = index;
-      this.visible = true;
-    },
-    handleHide() {
-      this.visible = false;
-    }
-  },
-  setup: (props, context) => {
-    const state = reactive({
+      index: 0,
       breadcrumbs: [
         {
           path: 'ネットショップ',
@@ -490,5 +500,32 @@ export default Vue.extend({
 
 .bd-di {
   border: 1px solid #a8985e;
+}
+
+@media screen and (min-width: 950px) {
+  .nbtna {
+    color: #444444;
+    text-decoration: none;
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'Century Gothic', 'メイリオ', 'ヒラギノ角ゴ Pro W3', 'ＭＳ Ｐゴシック', Osaka, sans-serif, sans-serif;
+    font-weight: normal;
+    box-sizing: border-box;
+    display: block;
+    background: -moz-linear-gradient(top, #fff 0%, #fff 3%, #e6e6e6 3%, #fff);
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.03, #fff), color-stop(0.03, #e6e6e6), to(#fff));
+    border-radius: 8px 8px 0px 0px;
+    -moz-border-radius: 8px 8px 0px 0px;
+    -webkit-border-radius: 8px 8px 0px 0px;
+    border: 1px solid #ccc;
+    border-bottom: 3px solid #14bfd1;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+.nbtna span {
+  width: 120px;
 }
 </style>

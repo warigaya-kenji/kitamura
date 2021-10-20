@@ -100,6 +100,7 @@ const AuthService = {
 
       return user?.isLogin;
     } catch (error) {
+      console.error(error);
       Vue.prototype.$store.authorizer.logout();
     }
 
@@ -143,7 +144,7 @@ const AuthService = {
     );
 
     // ユーザー情報取得
-    this.checkLoginStatus().then();
+    await this.checkLoginStatus();
   },
 
   /**

@@ -144,6 +144,7 @@ export default Vue.extend({
           throw 'newsResult.length 0';
         }
       } catch (error) {
+        console.error(error);
         state.newsDetail = {} as News;
         context.root.$router.push({ name: 'not-found-page' });
       } finally {

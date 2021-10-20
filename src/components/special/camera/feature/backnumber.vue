@@ -1,63 +1,51 @@
 <template>
   <v-app>
     <div class="campaign">
-      <v-card>
-        <v-img src="/ec/images2/special/camera/feature/backnumber/title.png" height="200px" class="woo">
-          <!-- <v-avatar style="postion: absolute; left: 44%; top: 50%" rounded width="80px" class="pa-1" height="80px">
-            <img width="80" height="100" src="/ec/images2/special/camera/feature/backnumber/bn-sns.png" />
-          </v-avatar> -->
-        </v-img>
-      </v-card>
-
-      <div class="grey lighten-3 main-contents-wrap">
+      <div class="main-contents-wrap">
+        <!-- ↓パンくず -->
+        <breadcrumbs :breadcrumbs="breadcrumbs" />
+        <h1>
+          <span><img src="/ec/images2/special/camera/feature/backnumber/title.png" alt="話題の新製品特集 バックナンバー一覧" /></span>
+        </h1>
         <p>下記ボタンよりメーカーを絞り込む事ができます</p>
-        <div class="category-nav mb-6">
-          <v-row>
-            <v-col cols="4" sm="2" class="text-center">
-              <label class=""> <input type="radio" v-model="category" value="new" />新着</label>
-            </v-col>
-            <v-col cols="4" sm="2" class="text-center">
-              <label class=""> <input type="radio" v-model="category" value="canon" />キャノン</label>
-            </v-col>
-            <v-col cols="4" sm="2" class="text-center">
-              <label class=""> <input type="radio" v-model="category" value="nikon" />ニコン</label>
-            </v-col>
-            <v-col cols="4" sm="2" class="text-center">
-              <label class=""> <input type="radio" v-model="category" value="olympus" />オリンパス</label>
-            </v-col>
-            <v-col cols="4" sm="2" class="text-center">
-              <label class=""> <input type="radio" v-model="category" value="sony" />ソニー</label>
-            </v-col>
-            <v-col cols="4" sm="2" class="text-center">
-              <label class=""> <input type="radio" v-model="category" value="fujifilm" />フジフィルム</label>
-            </v-col>
-            <v-col cols="4" sm="2" class="text-center">
-              <label class=""> <input type="radio" v-model="category" value="panasonic" />パナソニック</label>
-            </v-col>
-            <v-col cols="4" sm="2" class="text-center">
-              <label class=""> <input type="radio" v-model="category" value="other" />その他</label>
-            </v-col>
-            <v-col cols="4" sm="2" class="text-center">
-              <label class=""> <input type="radio" v-model="category" value="all" />全て</label>
-            </v-col>
-          </v-row>
+
+        <div class="category-nav">
+          <v-container fluid>
+            <v-row>
+              <v-col cols="6" sm="2" v-for="narrowing in narrowingList" :key="narrowing.value" class="pa-1">
+                <v-hover v-slot="{ hover }">
+                  <v-btn
+                    :elevation="hover ? 10 : 2"
+                    :color="hover ? '#ff0c00' : '#de1b27'"
+                    width="140px"
+                    height="60px"
+                    v-model="category"
+                    :value="narrowing.value"
+                    @click="searchByCategory(narrowing.value)"
+                  >
+                    <v-img :src="narrowing.src" max-width="75%" height="auto"></v-img><v-icon small color="white">fas fa-chevron-right</v-icon>
+                  </v-btn>
+                </v-hover>
+              </v-col>
+            </v-row>
+          </v-container>
         </div>
 
-        <v-container>
-          <v-row class="individual">
-            <v-col v-for="image in filterByCategory" :key="image.index" cols="4" class="category-list">
-              <v-hover v-slot="{ hover }" close-delay="200">
-                <v-card :elevation="hover ? 16 : 2" :class="{ 'on-hover': hover }" class="mx-auto">
-                  <p class="white--text text-right font-weight-bold ma-0 pa-0">
-                    <span style="background-color: #296c72" class="darken-4 font-small">{{ image.releaseDate }}</span>
-                  </p>
-                  <v-divider></v-divider>
-                  <a href="/special/sale-fair/camera/feature/canon/rf14-35mmf4lisusm/">
-                    <img :src="image.src" alt="" />
-                    <span class="font-small product-name">{{ image.productName }}</span>
-                    <img src="/ec/images2/special/camera/feature/backnumber/arrow-2-off.png" width="10%" />
-                  </a>
-                </v-card>
+        <v-container class="individual">
+          <v-row>
+            <v-col cols="12" sm="6" md="4" v-for="(campaign, index) in filterByCategory" :key="index">
+              <v-hover v-slot="{ hover }">
+                <v-expand-transition>
+                  <v-card :elevation="hover ? 10 : 2">
+                    <v-card-text class="text-right pa-0 ma-0"
+                      ><span class="days2">{{ campaign.releaseDate }}</span></v-card-text
+                    >
+                    <router-link :to="campaign.href">
+                      <v-img :src="campaign.src" max-width="100%" class="hover"></v-img>
+                      <span class="item-name text-subtitle-2">{{ campaign.productName }}</span>
+                    </router-link>
+                  </v-card>
+                </v-expand-transition>
               </v-hover>
             </v-col>
           </v-row>
@@ -67,226 +55,459 @@
   </v-app>
 </template>
 
-<script>
-import { noimage, formatPrice } from '@/logic/utils';
-export default {
+<script lang="ts">
+import Vue from 'vue';
+import { computed, reactive, toRefs } from '@vue/composition-api';
+import Breadcrumbs from '@/components/common/breadcrumbs.vue';
+export default Vue.extend({
   name: 'backnumber',
-  data() {
-    return {
-      category: '',
+  components: {
+    breadcrumbs: Breadcrumbs
+  },
+  setup: (props, context) => {
+    document.title = '話題の新製品特集バックナンバー | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', '話題の新製品特集 バックナンバー一覧')
+
+    const state = reactive({
+      breadcrumbs: [
+        {
+          path: 'ネットショップ',
+          linkUrl: '/',
+          disabled: false
+        },
+        {
+          path: '話題の新製品特集バックナンバー',
+          disabled: true
+        }
+      ],
+      category: 'all',
       narrowingList: [
-        { itemName: '新着' },
-        { itemName: 'キャノン\ncanon' },
-        { itemName: 'ニコン\nnikon' },
-        { itemName: 'オリンパス\nolympus' },
-        { itemName: 'ソニー\nsony' },
-        { itemName: 'フジフィルム\nfujifilm' },
-        { itemName: 'パナソニック\npanasonic' },
-        { itemName: 'その他' },
-        { itemName: '全て' }
+        { src: '/ec/images2/special/camera/feature/backnumber/btn-new-w.png', value: 'new' },
+        { src: '/ec/images2/special/camera/feature/backnumber/btn-canon-w.png', value: 'canon' },
+        { src: '/ec/images2/special/camera/feature/backnumber/btn-nikon-w.png', value: 'nikon' },
+        { src: '/ec/images2/special/camera/feature/backnumber/btn-olympus-w.png', value: 'olympus' },
+        { src: '/ec/images2/special/camera/feature/backnumber/btn-sony-w.png', value: 'sony' },
+        { src: '/ec/images2/special/camera/feature/backnumber/btn-fujifilm-w.png', value: 'fujifilm' },
+        { src: '/ec/images2/special/camera/feature/backnumber/btn-panasonic-w.png', value: 'panasonic' },
+        { src: '/ec/images2/special/camera/feature/backnumber/btn-general-w.png', value: 'general' },
+        { src: '/ec/images2/special/camera/feature/backnumber/btn-all.png', value: 'all' }
       ],
       campaignlist: [
         {
-          index: 1,
+          category: ['all', 'sony', 'new'],
+          releaseDate: '2021年9月17日発売予定',
+          href: '/special/camera/feature/sony/vlogcam_zv_e10',
+          src: 'https://shopimg.kitamura.jp/images/banner/8551.jpg',
+          productName: 'ソニー VLOGCAM ZV-E10'
+        },
+        {
           category: ['all', 'canon', 'new'],
           releaseDate: '2021年9月下旬発売予定',
-          href: '/special/sale-fair/camera/feature/canon/rf14-35mmf4lisusm/',
+          href: '/special/camera/feature/canon/rf14-35mmf4lisusm',
           src: 'https://shopimg.kitamura.jp/images/banner/8510.jpg',
           productName: 'キヤノン RF14-35mm F4 L IS USM'
         },
         {
-          index: 2,
           category: ['all', 'nikon', 'new'],
           releaseDate: '2021年7月23日発売予定',
-          href: '/special/sale-fair/camera/feature/nikon/zfc/',
+          href: '/special/camera/feature/nikon/zfc',
           src: 'https://shopimg.kitamura.jp/images/banner/8494.jpg',
           productName: 'ニコン Z fc'
         },
         {
-          index: 3,
           category: ['all', 'olympus', 'new'],
           releaseDate: '発売日 2021.6.25',
-          href: '/special/sale-fair/camera/feature/olympus/pen_e-p7/',
+          href: '/special/camera/feature/olympus/pen_e-p7',
           src: 'https://shopimg.kitamura.jp/images/banner/8466.jpg',
           productName: 'オリンパス PEN E-P7'
         },
         {
-          index: 4,
           category: ['all', 'nikon', 'new'],
           releaseDate: '発売日 2021.6.25',
-          href: '/special/sale-fair/camera/feature/nikon/z_mc_105mm_f28_vr_s/',
+          href: '/special/camera/feature/nikon/z_mc_105mm_f28_vr_s',
           src: 'https://shopimg.kitamura.jp/images/banner/8458.jpg',
           productName: 'ニコン NIKKOR Z MC 105mm f/2.8 VR S'
         },
         {
-          index: 5,
           category: ['all', 'panasonic', 'new'],
           releaseDate: '発売日 2021.6.25',
-          href: '/special/sale-fair/camera/feature/panasonic/gh5m2/',
+          href: '/special/camera/feature/panasonic/gh5m2',
           src: 'https://shopimg.kitamura.jp/images/banner/8439.jpg',
           productName: 'パナソニック LUMIX DC-GH5M2'
         },
         {
-          index: 6,
           category: ['all', 'sony', 'new'],
           releaseDate: '発売日 2021.6.4',
-          href: '/special/sale-fair/camera/feature/sony/7rm4a-7rm3a/',
+          href: '/special/camera/feature/sony/7rm4a-7rm3a',
           src: 'https://shopimg.kitamura.jp/images/banner/8456.jpg',
           productName: 'ソニー α7R IV A & α7R III A'
         },
         {
-          index: 7,
           category: ['all', 'sony', 'new'],
           releaseDate: '発売日 2021.5.28',
-          href: '/special/sale-fair/camera/feature/sony/fe14f18gm/',
+          href: '/special/camera/feature/sony/fe14f18gm',
           src: 'https://shopimg.kitamura.jp/images/banner/8405.png',
           productName: 'ソニー FE 14mm F1.8 GM [SEL14F18GM]'
         },
         {
-          index: 8,
           category: ['all', 'general', 'new'],
           releaseDate: '発売日 2021.6.24',
-          href: '/special/sale-fair/camera/feature/tamron/150-500mm-f5-6.7/',
+          href: '/special/camera/feature/tamron/150-500mm-f5-6.7',
           src: 'https://shopimg.kitamura.jp/images/banner/8403.png',
           productName: 'タムロン 150-500mm F/5-6.7 Di III VC VXD、タムロン 11-20mm F/2.8 Di III-A RXD'
         },
         {
-          index: 9,
           category: ['all', 'fujifilm', 'new'],
           releaseDate: '発売日 2021.5.27',
-          href: '/special/sale-fair/camera/feature/fujifilm/xf18mmf14-r-lm-wr/',
+          href: '/special/camera/feature/fujifilm/xf18mmf14-r-lm-wr',
           src: 'https://shopimg.kitamura.jp/images/banner/8398.png',
           productName: 'フジフイルム XF18mm F1.4 R LM WR'
         },
         {
-          index: 10,
           category: ['all', 'canon', 'new'],
           releaseDate: '2021.7.15 発売予定',
-          href: '/special/sale-fair/camera/feature/canon/rf100-f28l/',
+          href: '/special/camera/feature/canon/rf100-f28l',
           src: 'https://shopimg.kitamura.jp/images/banner/8394.png',
           productName: 'キヤノン RF100mm F2.8 L MACRO IS USM'
         },
         {
-          index: 11,
           category: ['all', 'canon', 'new'],
           releaseDate: '2021.7.15 発売予定',
-          href: '/special/sale-fair/camera/feature/canon/rf400-f28l/',
+          href: '/special/camera/feature/canon/rf400-f28l',
           src: 'https://shopimg.kitamura.jp/images/banner/8396.png',
           productName: 'キヤノン RF400mm F2.8 L IS USM / RF600mm F4 L IS USM'
         },
         {
-          index: 13,
+          category: ['all', 'general', 'new'],
+          releaseDate: '発売日 2021.4.23',
+          href: '/special/camera/feature/pentax/k-3mk3',
+          src: 'https://shopimg.kitamura.jp/images/banner/8376.jpg',
+          productName: 'ペンタックス K-3 Mark III'
+        },
+        {
           category: ['all', 'sony'],
           releaseDate: '発売日 2021.4.23',
-          href: '/special/sale-fair/camera/feature/sony/sel24f28g/',
+          href: '/special/camera/feature/sony/sel24f28g',
           src: 'https://shopimg.kitamura.jp/images/banner/8380.jpg',
           productName: 'ソニー FE 24mm F2.8 G / FE 40mm F2.5 G / FE 50mm F2.5 G'
         },
         {
-          index: 14,
           category: ['all', 'general'],
           releaseDate: '発売日 2021.4.16',
-          href: '/special/sale-fair/camera/feature/sigma/fp_l/',
+          href: '/special/camera/feature/sigma/fp_l',
           src: 'https://shopimg.kitamura.jp/images/banner/8368.jpg',
           productName: 'シグマ fp L'
         },
         {
-          index: 15,
           category: ['all', 'sony'],
           releaseDate: '発売日 2021.4.23',
-          href: '/special/sale-fair/camera/feature/sony/sel50f12gm/',
+          href: '/special/camera/feature/sony/sel50f12gm',
           src: 'https://shopimg.kitamura.jp/images/banner/8354.jpg',
           productName: 'ソニー Cinema Line FX3'
         },
         {
-          index: 16,
           category: ['all', 'sony'],
-          releaseDate: '発売日 2021.3.21',
-          href: '/special/sale-fair/camera/feature/sony/cinemaline-fx3/',
-          src: 'https://shopimg.kitamura.jp/images/banner/8330.jpg',
-          productName: 'ソニー Cinema Line FX3'
+          releaseDate: '発売日 2021.3.19',
+          href: '/special/camera/feature/sony/a1',
+          src: 'https://shopimg.kitamura.jp/images/banner/8198.jpg',
+          productName: 'ソニー a1'
+        },
+        {
+          category: ['all', 'fujifilm'],
+          releaseDate: '発売日 2021.2.25',
+          href: '/special/camera/feature/fujifilm/gfx100s',
+          src: 'https://shopimg.kitamura.jp/images/banner/8232.jpg',
+          productName: 'フジフイルム GFX100S'
+        },
+        {
+          category: ['all', 'fujifilm'],
+          releaseDate: '発売日 2021.2.25',
+          href: '/special/camera/feature/fujifilm/x-e4',
+          src: 'https://shopimg.kitamura.jp/images/banner/8209.jpg',
+          productName: 'フジフイルム X-E4'
+        },
+        {
+          category: ['all', 'fujifilm'],
+          releaseDate: '発売日 2021.3.18',
+          href: '/special/camera/feature/fujifilm/xf70-300mmf4-56rlm-ois-wr',
+          src: 'https://shopimg.kitamura.jp/images/banner/8236.jpg',
+          productName: 'フジフイルム XF70-300mmF4-5.6 R LM OIS WR / XF27mmF2.8 R WR'
+        },
+        {
+          category: ['all', 'sony'],
+          releaseDate: '発売日 2021.2.12',
+          href: '/special/camera/feature/sony/sel35f14gm',
+          src: 'https://shopimg.kitamura.jp/images/banner/8186.jpg',
+          productName: 'ソニー FE 35mm F1.4 GM'
+        },
+        {
+          category: ['all', 'canon'],
+          releaseDate: '発売日 2020.12.24',
+          href: '/special/camera/feature/canon/rf50-f18',
+          src: 'https://shopimg.kitamura.jp/images/banner/8084.jpg',
+          productName: 'キヤノン RF70-200mm F4 L IS USM'
+        },
+        {
+          category: ['all', 'fujifilm', ''],
+          releaseDate: '発売日 2020.11.19',
+          href: '/special/camera/feature/fujifilm/x-s10',
+          src: 'https://shopimg.kitamura.jp/images/banner/8038.jpg',
+          productName: 'フジフイルム X-S10'
+        },
+        {
+          category: ['all', 'nikon', ''],
+          releaseDate: '発売日 2020.12.11',
+          href: '/special/camera/feature/nikon/z6II_z7II',
+          src: 'https://shopimg.kitamura.jp/images/banner/8030.jpg',
+          productName: 'ニコン Z6II Z7II'
+        },
+        {
+          category: ['all', 'canon', ''],
+          releaseDate: '発売日 2020.11.27',
+          href: '/special/camera/feature/canon/eoskiss_m2',
+          src: 'https://shopimg.kitamura.jp/images/banner/8022.jpg',
+          productName: 'キヤノン EOS Kiss M2'
+        },
+        {
+          category: ['all', 'nikon', ''],
+          releaseDate: '発売日 2020.12.11',
+          href: '/special/camera/feature/nikon/z50mm_z14-24mm',
+          src: 'https://shopimg.kitamura.jp/images/banner/7946.jpg',
+          productName: 'ニコン NIKKOR Z 50mm f/1.2 S、NIKKOR Z 14-24mm f/2.8 S'
+        },
+        {
+          category: ['all', 'sony'],
+          releaseDate: '発売日 2020.10.23',
+          href: '/special/camera/feature/sony/7c',
+          src: 'https://shopimg.kitamura.jp/images/banner/7942.jpg',
+          productName: 'ソニー α7C'
+        },
+        {
+          category: ['all', 'fujifilm', ''],
+          releaseDate: '発売日 2020.9.24',
+          href: '/special/sale-fair/camera/feature/fujifilm/xf50mmf1.0rwr/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7898.jpg',
+          productName: 'フジフイルムXF50mm F1.0 R WR'
+        },
+
+        {
+          category: ['all', 'sony', ''],
+          releaseDate: '発売日 2020.10.9',
+          href: '/special/sale-fair/camera/feature/sony/7sm3/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7770.jpg',
+          productName: 'ソニー α7S III'
+        },
+
+        {
+          category: ['all', 'nikon', ''],
+          releaseDate: '発売日 2020.8.28',
+          href: '/special/sale-fair/camera/feature/nikon/z_5/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7758.jpg',
+          productName: 'ニコン Z 5'
+        },
+
+        {
+          category: ['all', 'panasonic', ''],
+          releaseDate: '発売日 2020.8.20',
+          href: '/special/sale-fair/camera/feature/panasonic/g100/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7728.jpg',
+          productName: 'パナソニックLUMIX G100'
+        },
+
+        {
+          category: ['all', 'canon', ''],
+          releaseDate: '発売日 R5 2020.7.30,R6 2020.8.27',
+          href: '/special/sale-fair/camera/feature/canon/eosr5_r6/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7725.jpg',
+          productName: 'キヤノン EOS R5 / EOS R6'
+        },
+
+        {
+          category: ['all', 'canon', ''],
+          releaseDate: '発売日 2020.8.27',
+          href: '/special/sale-fair/camera/feature/canon/rf100-500mm_f4.5_7.1l_is_usm/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7712.jpg',
+          productName: 'キヤノン RF100-500mm F4.5-7.1 L IS USM'
+        },
+
+        {
+          category: ['all', 'canon'],
+          releaseDate: '発売日 2020.7.30',
+          href: '/special/sale-fair/camera/feature/canon/rf600mm-rf800mm_f11_is_stm/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7737.jpg',
+          productName: 'キヤノン RF600mm F11 IS STM／キヤノン RF800mm F11 IS STM'
+        },
+
+        {
+          category: ['all', 'sony', ''],
+          releaseDate: '発売日 2020.6.19',
+          href: '/special/sale-fair/camera/feature/sony/vlogcam_zv1_zv1g/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7632.jpg',
+          productName: 'ソニーZV-1'
+        },
+
+        {
+          category: ['all', 'fujifilm', ''],
+          releaseDate: '発売日 シルバー2020.4.28 ブラック5.21',
+          href: '/special/sale-fair/camera/feature/fujifilm/xt4/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7422.jpg',
+          productName: 'フジフイルムX-T4'
+        },
+
+        {
+          category: ['all', 'nikon', ''],
+          releaseDate: '発売日 2020.6.5',
+          href: '/special/sale-fair/camera/feature/nikon/d6/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7374.jpg',
+          productName: 'ニコンD6'
+        },
+
+        {
+          category: ['all', 'canon', ''],
+          releaseDate: '発売日 2020.6.25',
+          href: '/special/sale-fair/camera/feature/canon/eoskiss10I/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7373.jpg',
+          productName: 'キヤノン EOS KISS X10i'
+        },
+
+        {
+          category: ['all', 'olympus', ''],
+          releaseDate: '発売日 2020.2.28',
+          href: '/special/sale-fair/camera/feature/olympus/em1m3/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7342.jpg',
+          productName: ' オリンパス OM-D E-M1 Mark III '
+        },
+
+        {
+          category: ['all', 'olympus', ''],
+          releaseDate: '発売日 2020.3.27',
+          href: '/special/sale-fair/camera/feature/olympus/ed_12-45mm_f4.0pro/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7371.jpg',
+          productName: 'オリンパスM.ZUIKO DIGITAL ED 12-45mm F4.0 PRO'
+        },
+
+        {
+          category: ['all', 'fujifilm', ''],
+          releaseDate: '発売日 シルバー2020.2.27ブラック3.12',
+          href: '/special/sale-fair/camera/feature/fujifilm/x100v/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7275.jpg',
+          productName: 'フジフイルムX100V'
+        },
+
+        {
+          category: ['all', 'fujifilm', ''],
+          releaseDate: '発売日 2020.2.27',
+          href: '/special/sale-fair/camera/feature/fujifilm/x-t200/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7252.jpg',
+          productName: 'フジフイルムX-T200'
+        },
+
+        {
+          category: ['all', 'canon', ''],
+          releaseDate: '発売日 2020.2.14',
+          href: '/special/sale-fair/camera/feature/canon/1dxmk3/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7163.jpg',
+          productName: 'キヤノン EOS-1D X Mark III'
+        },
+
+        {
+          category: ['all', 'nikon', ''],
+          releaseDate: '発売日 2020.1.24',
+          href: '/special/sale-fair/camera/feature/nikon/D780/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7171.png',
+          productName: 'ニコン D780'
+        },
+
+        {
+          category: ['all', 'nikon', ''],
+          releaseDate: '発売日 2020.2.14',
+          href: '/special/sale-fair/camera/feature/nikon/nikkorz_70-200mm_f2.8_vr_s/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7165.jpg',
+          productName: 'ニコン NIKKOR Z 70-200mm f/2.8 VR S'
+        },
+
+        {
+          category: ['all', 'nikon', ''],
+          releaseDate: '発売日 2020.2.29',
+          href: '/special/sale-fair/camera/feature/nikon/nikkor_120_300mm_f2.8_e_fl_ed_sr_vr/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7180.jpg',
+          productName: 'ニコン AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR'
+        },
+
+        {
+          category: ['all', 'nikon', ''],
+          releaseDate: '発売日 2020.2.7',
+          href: '/special/sale-fair/camera/feature/nikon/p950/',
+          src: 'https://shopimg.kitamura.jp/images/banner/7186.jpg',
+          productName: 'ニコン COOLPIX P950'
         }
       ]
+    });
+
+    const filterByCategory = computed(() => {
+      const result = state.campaignlist.filter((value) => {
+        if (value.category.indexOf(state.category) !== -1) {
+          return value;
+        }
+      });
+      return result;
+    });
+
+    const searchByCategory = (value: string) => {
+      state.category = value;
     };
-  },
-  computed: {
-    filterByCategory: function () {
-      return this.campaignlist.filter((image) => !image.category.indexOf(this.category));
-    }
-  },
-  setup: (props, context) => {
+
     return {
-      noimage
+      ...toRefs(state),
+      filterByCategory,
+      searchByCategory
     };
   }
-};
+});
 </script>
 
 <style lang="scss" scoped>
-.product-name {
+.campaign h1 {
+  background: url(/ec/images2/special/camera/feature/backnumber/title-bg.jpg) no-repeat center;
+}
+
+.campaign h1 span {
+  display: block;
+  height: 200px;
+  margin: 0 auto;
+  text-align: center;
+  width: 550px;
+}
+
+@media (max-width: 949px) {
+  .campaign h1 span {
+    display: block;
+    height: auto;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 949px) {
+  .campaign h1 img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+span.days2 {
+  width: auto;
+  height: auto;
+  font-size: 12px;
+  color: #ffffff;
+  background-color: /*#1F1F1F*/ #c3002a;
+  padding: 0 5px;
+}
+
+.campaign .individual .item-name {
   display: block;
   height: 5em;
   margin-top: 5px;
   padding: 0 3%;
-}
-.category-list {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  list-style: none;
-}
-.category-list img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-}
-
-.category-nav label {
-  background: #de1b27;
-  color: #fff;
-  margin: 10px;
-  cursor: pointer;
-  display: block;
-  float: left;
-  width: 100%;
-  border-radius: 4px;
-  height: 60px;
-  box-shadow: 0 0 6px rgb(0 0 0 / 5%), 0 3px 3px rgb(0 0 0 / 5%);
-}
-.category-nav input[type='radio'] {
-  /* Hide radio buttonns */
-  opacity: 0;
-  -webkit-appearance: none;
-  appearance: none;
-  position: absolute;
-}
-.v-enter-active,
-.v-enter-active,
-.v-leave-active,
-.v-move {
-  transition-property: transform, opacity;
-  transition-duration: 0.3s;
-}
-.v-enter-active {
-  opacity: 0;
-  transform: translateY(50px);
-}
-.v-enter-to,
-.v-leave-active {
-  opacity: 1;
-  transform: translateY(0);
-}
-.v-leave-to {
-  opacity: 0;
-  transform: translateY(50px);
-}
-.category-list ul {
-  list-style: none;
-}
-.individual {
-  height: auto;
-  padding: 3% 3% 5%;
-  box-sizing: border-box;
 }
 </style>

@@ -5,9 +5,9 @@
         <v-icon>fas fa-times</v-icon>
       </v-btn>
 
-      <v-card-title class="ma-auto">
-        <div class="d-flex">
-          <v-icon size="42" class="mr-5">fas fa-exclamation-circle</v-icon>
+      <v-card-title class="error-dialog-msg ma-auto">
+        <div class="error-dialog-msg-area d-flex">
+          <v-icon size="42" class="mr-9">fas fa-exclamation-circle</v-icon>
           <span>{{ errorMessage }}</span>
         </div>
       </v-card-title>
@@ -60,6 +60,12 @@ export default Vue.extend({
 
   &-body {
     min-height: 200px;
+  }
+
+  &-msg {
+    &-area {
+      align-items: center;
+    }
   }
 }
 

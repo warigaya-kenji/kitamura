@@ -28,12 +28,21 @@
           <!-- メインバナー -->
           <div class="mb-4">
             <div class="text-center" v-if="jsonConfig.parent && jsonConfig.parent.bannerImagePath">
-              <img class="banner-img" :src="jsonConfig.parent.bannerImagePath" :alt="jsonConfig.parent.title" @click="clickMainBanner()" />
+              <img
+                class="banner-img"
+                :class="{ link: jsonConfig.children && jsonConfig.children.length }"
+                :src="jsonConfig.parent.bannerImagePath"
+                :alt="jsonConfig.parent.title"
+                @click="clickMainBanner()"
+              />
             </div>
             <div class="text-right" v-if="jsonConfig.parent && jsonConfig.parent.backLinkTitle">
               <router-link :to="`${jsonConfig.parent.backLinkUrl}`">{{ jsonConfig.parent.backLinkTitle }}</router-link>
             </div>
           </div>
+
+          <!-- インクルード表示 -->
+          <div id="include-contents" v-html="includeHtml"></div>
 
           <!-- テキスト -->
           <div class="sale-text mb-4" v-if="jsonConfig.content">{{ jsonConfig.content }}</div>
@@ -174,7 +183,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { reactive, toRefs, computed, watch } from '@vue/composition-api';
+import { reactive, ref, toRefs, computed, watch, onMounted, onUpdated } from '@vue/composition-api';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
 import SectionLoading from '@/components/common/section-loading.vue';
 import Product from '@/components/product-list/product.vue';
@@ -183,6 +192,7 @@ import { SPECIAL_ITEM_SORT_LIST } from '@/constants/sort-list';
 import { DISPLAY_COUNT_LIST } from '@/constants/display-conut-list';
 import { isDebugMode, validationPeriod } from '@/logic/utils';
 import SpecialProductService from '@/logic/special-product.service';
+import IncludeFileService from '@/logic/include-file.service';
 import { SpecialBanner } from '@/types/tsv-config';
 import { ProductItem } from '@/types/product-list';
 
@@ -202,6 +212,7 @@ export default Vue.extend({
   setup: (props, context) => {
     const route = context.root.$route;
     const query = context.root.$route.query;
+    const includeHtml = ref<string>('');
 
     const state = reactive({
       // パスコード
@@ -264,9 +275,31 @@ export default Vue.extend({
         state.totalCount = state.results.length;
         setDispalySpecialproduct();
       } catch (error) {
+        console.error(error);
         state.results = [] as Array<ProductItem>;
       } finally {
         state.loaded.results = true;
+      }
+    };
+
+    /**
+     * v:htmlだとスクリプトが実行されないため、個別に実行する。
+     */
+    const runScript = () => {
+      const scripts = document.getElementById('include-contents')?.querySelectorAll('script');
+      if (scripts) {
+        scripts.forEach((script) => {
+          const parentNode = script.parentNode;
+          const alternativeNode = document.createElement('script');
+          if (parentNode) {
+            if (script.src) {
+              alternativeNode.src = script.src;
+            } else {
+              alternativeNode.textContent = script.textContent;
+            }
+            parentNode.replaceChild(alternativeNode, script);
+          }
+        });
       }
     };
 
@@ -298,6 +331,20 @@ export default Vue.extend({
           }
         }
 
+        // インクルードファイルの取得
+        if (state.jsonConfig.includeFilePath) {
+          IncludeFileService.fetchStaticHtmlFile(state.jsonConfig.includeFilePath).then((response) => {
+            const dom = new DOMParser().parseFromString(response, 'text/html');
+
+            const styles = dom.querySelectorAll('style');
+            let style = '';
+            styles.forEach((elem) => (style += elem.outerHTML));
+            const html = dom.getElementById('contents')?.innerHTML || '';
+
+            includeHtml.value = style + html;
+          });
+        }
+
         // 各種設定
         document.title = state.jsonConfig.parent.title;
         state.breadcrumbs = [
@@ -312,6 +359,7 @@ export default Vue.extend({
         ];
         state.recommendContents = state.jsonConfig.footBanners;
       } catch (error) {
+        console.error(error);
         // 取得できない場合は、NotFoundPageに遷移させる
         context.root.$router.push({ name: 'not-found-page' });
       }
@@ -326,6 +374,9 @@ export default Vue.extend({
     };
 
     init();
+
+    onMounted(() => runScript());
+    onUpdated(() => runScript());
 
     /** -------------------------------------------------------------
      * 監視対象
@@ -409,6 +460,7 @@ export default Vue.extend({
 
     return {
       ...toRefs(state),
+      includeHtml,
       getLinkTarget,
       displayMaxCount,
       validatePassCode,
@@ -472,7 +524,7 @@ export default Vue.extend({
 .banner-img {
   max-width: 100% !important;
 
-  &:hover {
+  &.link:hover {
     opacity: 0.7;
     cursor: pointer;
   }

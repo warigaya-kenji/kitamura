@@ -6,7 +6,7 @@ const NewsService = {
    * SHASHAコンテンツを取得する関数
    */
   async searchShashaContent(): Promise<Array<ShaSha>> {
-    const url = process.env.VUE_APP_API_SHASHA_URL + 'shashafeed';
+    const url = process.env.VUE_APP_API_OTHER_URL + 'shashafeed';
     const response = await ApiService.get(url);
     return response.result;
   },
@@ -23,7 +23,7 @@ const NewsService = {
       from?: string;
       to?: string;
       newsNo?: string;
-      newsType: Array<number>;
+      newsType?: Array<number>;
     }
   ): Promise<Array<News>> {
     const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'news';
@@ -35,7 +35,7 @@ const NewsService = {
         from: option?.from,
         to: option?.to,
         newsNo: option?.newsNo,
-        newsType: option?.newsType.join(',')
+        newsType: option?.newsType?.join(',')
       }
     });
 

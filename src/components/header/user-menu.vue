@@ -33,24 +33,24 @@
 
     <div class="ml-0 mr-3">
       <v-col class="user-info" align="center" justify="center">
-        <a href="/mypage/index.html" v-if="isLoggedIn">
+        <router-link to="/ec/mypage" v-if="isLoggedIn">
           <div class="guide">
             <i class="fas fa-user"></i>
           </div>
           <p>マイページ</p>
-        </a>
+        </router-link>
         <login-menu v-else />
       </v-col>
     </div>
 
     <div class="ml-0 mr-3">
       <v-col class="user-info" align="center" justify="center">
-        <a href="/mypage/favorite_list.html">
+        <router-link to="/ec/mypage/favorite/list">
           <div class="guide">
             <i class="fas fa-heart"></i>
           </div>
           <p>お気に入り</p>
-        </a>
+        </router-link>
       </v-col>
     </div>
 

@@ -1,9 +1,9 @@
 import Vue from 'vue';
-import { ProductDetail, UsedProductDetail, RecommendProducts, UsedProductsSummary, MemberProduct, SimpleProduct } from '@/types/product';
-import { FavoriteList } from '@/types/favorite';
+import { ProductDetail, UsedProductDetail, RecommendProducts, UsedProductsSummary, MemberProduct, SimpleProduct, PostReview } from '@/types/product';
 import ApiService from './api.service';
 import { generateImagePath } from './utils';
 import { CART_ERROR_LIST } from '@/constants/cart-error';
+import { ReviewList } from '@/types/review-list';
 
 /**
  * Windowのinterfaceにレコメンド (ppz.js) 関連のプロパティを追加する
@@ -246,32 +246,6 @@ const ProductService = {
   },
 
   /**
-   * TODO: 仕様決定後、実装修正（一覧と詳細でAPIが異なる場合は、lise.serviceに移行）
-   * 既にお気に入り商品の登録済か確認
-   * @param janCode 商品コード
-   */
-  async isFavoriteByJanCode(janCode: string): Promise<FavoriteList> {
-    const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'favorite';
-    const response = {} as FavoriteList;
-    // response = await ApiService.get(url, { params: { janCode } });
-
-    return response;
-  },
-
-  /**
-   * TODO: 仕様決定後、実装修正（一覧と詳細でAPIが異なる場合は、lise.serviceに移行）
-   * 一括取得：既にお気に入り商品の登録済か確認
-   * @param janCode 商品コード
-   */
-  async isFavoriteByJanCodes(janCode: string[]): Promise<FavoriteList> {
-    const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'favorite';
-    const response = {} as FavoriteList;
-    // response = await ApiService.get(url, { params: { janCode } });
-
-    return response;
-  },
-
-  /**
    * 会員商品の取得
    * @param janCode JANコード
    * @returns 会員商品
@@ -308,9 +282,9 @@ const ProductService = {
    * 持っている商品登録
    * @param janCode 持っている商品のJANコード
    */
-  async registerHaving(janCode: string): Promise<any> {
+  async registerHaving(janCode: string, isDelete?: boolean): Promise<any> {
     const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'add_owned';
-    const response = await ApiService.post(url, { janCode }, {}, true, { apiName: 'have' });
+    const response = await ApiService.post(url, { janCode, isDelete }, {}, true, { apiName: 'have' });
 
     return response;
   },
@@ -327,6 +301,94 @@ const ProductService = {
     } else {
       return false;
     }
+  },
+
+  /**
+   * 一般レビュー一覧の取得
+   * @param janCode 商品コード
+   * @param pageNo ページ数
+   * @param sort ソート １：投稿の早い順, ２：遅い順
+   */
+  async searchReviews(janCode: string, pageNo?: number, sort = 2): Promise<ReviewList> {
+    const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'review';
+    const response = await ApiService.get(url, {
+      params: {
+        isMyPage: false,
+        janCode,
+        pageNo,
+        sort
+      }
+    });
+
+    return response;
+  },
+
+  /**
+   * レビューの取得
+   * @param reviewId レビューID
+   */
+  async fetchReview(reviewId: number): Promise<ReviewList> {
+    const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'review';
+    const response = await ApiService.get(url, {
+      params: {
+        reviewId
+      }
+    });
+
+    return response;
+  },
+
+  /**
+   * レビューを投稿
+   * @param janCode 商品コード
+   * @param review レビュー内容
+   */
+  async postReview(janCode: string, review: PostReview = {} as PostReview): Promise<{ message?: string }> {
+    const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'review';
+    const body = {
+      mode: '1',
+      janCode,
+      ...review
+    };
+    const response = await ApiService.post(url, body, {}, true, { apiName: 'review' });
+
+    return response;
+  },
+
+  /**
+   * レビューを更新
+   * @param reviewId レビューID
+   * @param janCode 商品コード
+   * @param review レビュー内容
+   */
+  async updateReview(reviewId: number, janCode: string, review: PostReview = {} as PostReview): Promise<{ message?: string }> {
+    const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'review';
+    const body = {
+      mode: '2',
+      reviewId,
+      janCode,
+      ...review
+    };
+    const response = await ApiService.post(url, body, {}, true, { apiName: 'review' });
+
+    return response;
+  },
+
+  /**
+   * レビューを削除
+   * @param reviewId レビューID
+   * @param janCode 商品コード
+   */
+  async deleteReview(reviewId: number, janCode: string): Promise<{ message?: string }> {
+    const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'review';
+    const body = {
+      mode: '3',
+      reviewId,
+      janCode
+    };
+    const response = await ApiService.post(url, body, {}, true, { apiName: 'review' });
+
+    return response;
   }
 };
 

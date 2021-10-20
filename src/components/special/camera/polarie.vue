@@ -5,26 +5,17 @@
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
-        <div class="text-right">
-          <v-btn
-            color="red darken-2"
-            class="white--text body-2 mb-1"
-            v-clipboard:copy="'https://shop.kitamura.jp/ec/special/camera/feature/canon/tripod'"
-            v-clipboard:success="onCopy"
-            height="30px"
-            >≫ このページのURLをコピーする</v-btn
-          >
-          <p class="caption">
-            <a href="/special/sale-fair/page/bookmark/" target="_blank"> (?)ブラウザ別 お気に入り・ブックマーク登録方法</a>
-          </p>
-        </div>
+        <!-- ↓url copy -->
+        <urlcopy />
+
         <!-- ↓ 画像の読み込み -->
         <div class="topimg">
-          <h1 class="text-center white--text">星空を撮影しよう！ 星空撮影入門特集</h1>
+          <h1 class="text-center white--text txkg-01">星空を撮影しよう！ 星空撮影入門特集</h1>
         </div>
         <!-- ↑ 画像の読み込み -->
+
         <!--↓アンカー-->
-        <v-container class="bk-kn mb-4">
+        <v-container class="bk-kn my-4" v-if="$vuetify.breakpoint.mdAndUp">
           <v-row class="">
             <v-col cols="4" v-for="navi in naviList" :key="navi">
               <p class="lin pa-2">
@@ -33,7 +24,11 @@
             </v-col>
           </v-row>
         </v-container>
-        <h2 class="text-left ntitle white--text pa-2">
+
+        <!-- 960px未満 -->
+        <tableOfContentsNavi :naviList="naviList" v-if="$vuetify.breakpoint.smAndDown" />
+
+        <h2 class="text-left ntitle white--text pa-2" id="no1">
           星空撮影に最低限必要なアイテム！<span class="text-subtitle-2 font-weight-bold">星空撮影の事前準備</span>
         </h2>
         <p class="py-4">
@@ -110,7 +105,7 @@
             ビクセン LEDコンパス <v-icon small class="ml-2">fas fa-angle-right</v-icon>
           </v-btn>
         </div>
-        <h2 class="text-left ntitle white--text pa-2">ポラリエを使って星を点で撮影してみよう！</h2>
+        <h2 class="text-left ntitle white--text pa-2" id="no3">ポラリエを使って星を点で撮影してみよう！</h2>
         <h3 class="indigo--text darken-4 text-h6 font-weight-bold my-8"><span class="yellow--text">★</span>ポラリエとは？</h3>
         <v-row>
           <v-col cols="12" sm="6">
@@ -150,7 +145,7 @@
         <v-container class="mb-12">
           <p><span class="yellow--text">★</span>ポラリエ使用の星空写真ギャラリー</p>
           <v-row class="ba-gr">
-            <v-col cols="3" v-for="(src, index) in imgs" :key="index" class="pic" @click="() => showImg(index)">
+            <v-col cols="12" sm="3" v-for="(src, index) in imgs" :key="index" class="pic" @click="() => showImg(index)">
               <img :src="src" width="100%" />
               <p class="text-right mb-0 pb-0">
                 <v-icon>fas fa-search-plus</v-icon>
@@ -167,8 +162,8 @@
           <v-row>
             <v-col cols="12" sm="6" md="3" v-for="porarier in porarierList" :key="porarier">
               <p>{{ porarier.itemName }}</p>
-              <v-img :src="porarier.img"></v-img>
-              <p style="white-space: pre-wrap; word-wrap: break-word">{{ porarier.text }}</p>
+              <v-img :src="porarier.img" :max-width="$vuetify.breakpoint.mdAndUp ? '100%' : '80%'" height="auto"></v-img>
+              <p class="including-line-breaks">{{ porarier.text }}</p>
               <v-btn block class="bg-btn py-6 text-subtitle-1" :href="porarier.href">
                 商品ページへ <v-icon small class="ml-2">fas fa-angle-right</v-icon>
               </v-btn>
@@ -178,7 +173,7 @@
 
         <!--↓極軸合わせが楽になる♪-->
         <v-card class="linkn pa-4 mb-12">
-          <v-card-title><span class="yellow--text">★</span>極軸合わせが楽になる♪ ポーラメーター</v-card-title>
+          <v-card-title class="pa-0 mb-2 text-subtitle-1"><span class="yellow--text">★</span>極軸合わせが楽になる♪ ポーラメーター</v-card-title>
           <v-card-text
             ><div class="text--primary">
               星空雲台ポラリエのオプションパーツ「ポーラメーター」の使い方動画です。<br />
@@ -188,17 +183,17 @@
           <v-row>
             <v-col cols="12" sm="6">
               <p class="text-center">↓星景写真を撮ろう！ポーラメーターの使い方①</p>
-              <watchInVideo :src="'https://www.youtube.com/embed/08MhxPHSj1g?rel=0'" :width="'90%'" :height="250" />
+              <watchInVideo :src="'https://www.youtube.com/embed/08MhxPHSj1g?rel=0'" :height="250" :sm="12" />
             </v-col>
             <v-col cols="12" sm="6">
               <p class="text-center">↓星景写真を撮ろう！ポーラメーターの使い方②</p>
-              <watchInVideo :src="'https://www.youtube.com/embed/Uk81uDtIPis?rel=0'" :width="'90%'" :height="250" />
+              <watchInVideo :src="'https://www.youtube.com/embed/Uk81uDtIPis?rel=0'" :height="250" :sm="12" />
             </v-col>
           </v-row>
         </v-card>
 
         <!--↓星空撮影ができる♪-->
-        <h2 class="text-left ntitle white--text pa-2">星空撮影ができる おすすめカメラ</h2>
+        <h2 class="text-left ntitle white--text pa-2" id="no4">星空撮影ができる おすすめカメラ</h2>
         <p class="my-6">
           星の軌跡を表現する方法は、長時間露光によるものが一般的でしたが、近年は「比較明合成」という撮影方法で表現するのが主流となっております。<br />
           通常は、インターバル撮影した画像を「パソコン用フリーソフトで合成」するやり方ですが、実はパソコンがなくても、星の軌跡を表現できるカメラがあるんです！<br />
@@ -215,21 +210,31 @@
         </p>
 
         <h3 class="indigo--text"><span class="yellow--text">★</span>星空撮影機能付きデジカメ＆アプリ対応デジカメ</h3>
-        <v-row class="my-8">
-          <v-col cols="12" sm="6" md="4" lg="2" v-for="recommendedCamera in recommendedCameraList" :key="recommendedCamera">
-            <v-img :src="recommendedCamera.img"> </v-img>
-            <v-btn block class="bg-btn py-6 text-subtitle-2" :href="recommendedCamera.href" style="white-space: pre-wrap; word-wrap: break-word">
-              {{ recommendedCamera.name }}
-            </v-btn>
+        <v-row class="my-8" justify="center">
+          <v-col cols="10" sm="6" md="4" lg="2" v-for="recommendedCamera in recommendedCameraList" :key="recommendedCamera">
+            <div class="d-flex flex-column justify-space-between align-center">
+              <v-img :src="recommendedCamera.img" :max-width="$vuetify.breakpoint.mdAndUp ? '100%' : '40%'" height="auto"> </v-img>
+            </div>
+            <v-hover v-slot="{ hover }">
+              <v-btn
+                :elevation="hover ? 6 : 2"
+                height="45px"
+                block
+                class="bg-btn py-2 text-subtitle-2 text-center including-line-breaks"
+                :href="recommendedCamera.href"
+              >
+                {{ recommendedCamera.name }}
+              </v-btn>
+            </v-hover>
           </v-col>
         </v-row>
 
         <h3 class="indigo--text mb-6"><span class="yellow--text">★</span>星の軌跡 星空写真 ギャラリー</h3>
         <v-container class="mb-12">
           <v-row>
-            <v-col cols="3" v-for="(src, index) in starTrailImages" :key="index" class="pic" @click="() => showImg(index)">
+            <v-col cols="12" sm="4" v-for="(src, index) in starTrailImages" :key="index" class="pic" @click="() => showImg(index)">
               <p>リコーGRにて撮影</p>
-              <img :src="src" width="100%" />
+              <v-img :src="src" max-width="100%" height="auto" />
             </v-col>
           </v-row>
           <vue-easy-lightbox :visible="visible" :imgs="imgs" :index="index" @hide="handleHide"></vue-easy-lightbox>
@@ -237,18 +242,20 @@
         <p class="text-right mb-10">photo by.成澤広幸</p>
 
         <!--↓星空撮影におすすめのカメラレンズ-->
-        <h2 class="text-left ntitle white--text pa-2">星空撮影におすすめのカメラレンズ</h2>
+        <h2 class="text-left ntitle white--text pa-2" id="no5">星空撮影におすすめのカメラレンズ</h2>
         <h3 class="indigo--text my-6"><span class="yellow--text">★</span>星空撮影におすすめのカメラレンズをご紹介</h3>
         <v-container class="mb-6">
-          <v-row>
+          <v-row justify="center">
             <v-col cols="12" sm="6" md="3" v-for="starrySkyShoot in starrySkyShootingList" :key="starrySkyShoot">
               <p>{{ starrySkyShoot.itemName }}</p>
-              <div class="pa-8">
-                <v-img :src="starrySkyShoot.img" width="100%"></v-img>
+              <div class="d-flex flex-column justify-space-between align-center">
+                <v-img :src="starrySkyShoot.img" :max-width="$vuetify.breakpoint.mdAndUp ? '100%' : '40%'"></v-img>
               </div>
-              <v-btn block class="bg-btn py-6 text-subtitle-1" :href="starrySkyShoot.href">
-                {{ starrySkyShoot.btntxt }} <v-icon small class="ml-2">fas fa-angle-right</v-icon>
-              </v-btn>
+              <v-hover v-slot="{ hover }">
+                <v-btn :elevation="hover ? 6 : 2" block class="bg-btn py-6 text-subtitle-1" :href="starrySkyShoot.href">
+                  {{ starrySkyShoot.btntxt }} <v-icon small class="ml-2">fas fa-angle-right</v-icon>
+                </v-btn>
+              </v-hover>
             </v-col>
           </v-row>
           <div class="pa-8">
@@ -261,7 +268,7 @@
         </v-container>
 
         <v-card class="linkn pa-4 mb-12">
-          <v-card-title><span class="yellow--text">★</span>★ポラリエとカメラ用望遠レンズを使っての星空撮影・天体撮影</v-card-title>
+          <v-card-title class="pa-0"><span class="yellow--text">★</span>ポラリエとカメラ用望遠レンズを使っての星空撮影・天体撮影</v-card-title>
           <v-row>
             <v-col cols="12" sm="6">
               <v-card-text
@@ -281,23 +288,27 @@
         </v-card>
 
         <!--↓星空撮影におすすめのカメラ用品-->
-        <h2 class="text-left ntitle white--text pa-2">星空撮影におすすめのカメラレンズ</h2>
+        <h2 class="text-left ntitle white--text pa-2" id="no6">星空撮影におすすめのカメラレンズ</h2>
         <v-container class="my-6">
           <v-row>
-            <v-col cols="2" v-for="productDetail in productDetailList" :key="productDetail" class="text-center ma-2">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
+            <v-col cols="6" sm="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
+              <a :href="`/ec/pd/${productDetail.janCode}`">
+                <div class="d-flex flex-column justify-space-between align-center">
+                  <v-img :src="productDetail.images[0].imagePath" max-width="50%" height="auto" />
+                </div>
+              </a>
               <p class="font-small blue--text mb-2 height-20">
                 <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
               </p>
               <p class="mt-2">
-                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
+                価格:<span class="red--text font-small">{{ productDetail.price }}&nbsp;</span><span class="font-small">(円)</span>
               </p>
             </v-col>
           </v-row>
         </v-container>
 
         <!--↓ポラリエを使った星空写真ギャラリー-->
-        <h2 class="text-left ntitle white--text pa-2 my-4">星空撮影におすすめのカメラレンズ</h2>
+        <h2 class="text-left ntitle white--text pa-2 my-4" id="no7">星空撮影におすすめのカメラレンズ</h2>
         <v-container>
           <v-row>
             <v-col cols="12" sm="6">
@@ -414,11 +425,17 @@
               </p>
             </v-col>
           </v-row>
-          <div class="text-right">
-            <a href="https://www.nao.ac.jp/astro/sky/">
-              <v-btn color="#57B9BD" class="white--text font-weight-bold">国立天文台 ほしぞら情報をチェック<v-icon>fas fa-external-link-alt</v-icon> </v-btn>
-            </a>
-          </div>
+          <v-row justify="end">
+            <v-col cols="12" sm="4">
+              <v-hover v-slot="{ hover }">
+                <a href="https://www.nao.ac.jp/astro/sky/">
+                  <v-btn :elevation="hover ? 6 : 2" block height="45px" color="#57B9BD" class="white--text font-weight-bold"
+                    >国立天文台 ほしぞら情報をチェック<v-icon>fas fa-external-link-alt</v-icon>
+                  </v-btn>
+                </a>
+              </v-hover>
+            </v-col>
+          </v-row>
         </v-container>
 
         <!--↓星空写真をプリントして楽しむ-->
@@ -438,7 +455,7 @@
             <v-col cols="12" sm="4">
               <v-img src="/ec/images2/special/camera/polarie/digitalcrystal.jpg" width="100%" height="auto"></v-img>
               <p>詳細・ご注文はこちら ↓</p>
-              <v-btn elevation="4" block class="bg-btn py-6 text-subtitle-1" href="https://www.kitamura-print.com/print/digitalcrystal/">
+              <v-btn elevation="4" block class="py-6 text-subtitle-1" href="https://www.kitamura-print.com/print/digitalcrystal/">
                 クリスタルプリント<v-icon>fas fa-external-link-alt</v-icon>
               </v-btn>
               <p class="caption">※プリントサービスのページへ移動します</p>
@@ -460,11 +477,13 @@
             </v-col>
             <v-col cols="12" sm="3">
               <a href="/ec/ct/C024002001">
-                <v-img
-                  src="https://shopimg.kitamura.jp/images/pd/7bf/e63/b83/ffc/be6/e34/be8/f9e/10a/a78/61n/afh/3nd/a/M.jpg"
-                  width="100%"
-                  height="auto"
-                ></v-img>
+                <div class="d-flex flex-column justify-space-between align-center">
+                  <v-img
+                    src="https://shopimg.kitamura.jp/images/pd/7bf/e63/b83/ffc/be6/e34/be8/f9e/10a/a78/61n/afh/3nd/a/M.jpg"
+                    :max-width="$vuetify.breakpoint.mdAndUp ? '100%' : '60%'"
+                    height="auto"
+                  ></v-img>
+                </div>
               </a>
               <v-btn elevation="4" block class="bg-btn py-6 text-subtitle-1" href="/ec/ct/C024002001">
                 光沢紙一覧<v-icon>fas fa-external-link-alt</v-icon>
@@ -492,16 +511,24 @@ import ProductService from '@/logic/product.service';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 import WatchInVideo from '@/components/common/special/watch-in-video.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
+import TableOfContentsNavi from '@/components/common/special/table-of-contents-navi.vue';
+
 export default Vue.extend({
   name: 'polarie',
   components: {
     breadcrumbs: Breadcrumbs,
     watchInVideo: WatchInVideo,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
+    recommendedFeatures: RecommendedFeatures,
+    urlcopy: Urlcopy,
+    tableOfContentsNavi: TableOfContentsNavi
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    document.title = '星空を撮影しよう！星空撮影入門 | カメラのキタムラネットショップ';
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', '星空撮影の方法、星空撮影に便利なアイテム、星空撮影におすすめのカメラ・レンズをご紹介。星景写真ギャラリーもお楽しみください♪ | 星空を撮影しよう！星空撮影入門')
+
+    const state = reactive({
       naviList: [
         { naviItem: '星空撮影に最低限必要なもの ', href: '#no1' },
         { naviItem: 'ポラリエで星空撮影 ', href: '#no3' },
@@ -601,7 +628,7 @@ export default Vue.extend({
       porarierList: [
         {
           itemName: 'ビクセン ポータブル赤道儀 星空雲台 ポラリエ',
-          img: 'https://shop.kitamura.jp/ts_rsc/1194/images/posd.webp',
+          img: '/ec/images2/special/camera/polarie/posd.webp',
           text: '耐荷重：2kg\n ミラーレス一眼、コンパクトデジカメでの撮影におすすめ',
           src: '/ec/pd/4955295355051/'
         },
@@ -691,23 +718,7 @@ export default Vue.extend({
           btntxt: '標準ズームレンズ',
           src: '/ec/pd/list.html?limit=100&n20c=%E5%AE%8C%E4%BA%86%E5%95%86%E5%93%81%E3%81%AF%E9%99%A4%E3%81%8F&path=%E4%BA%A4%E6%8F%9B%E3%83%AC%E3%83%B3%E3%82%BA&s4[]=%E6%A8%99%E6%BA%96%E3%82%BA%E3%83%BC%E3%83%A0%E3%83%AC%E3%83%B3%E3%82%BA'
         }
-      ]
-    };
-  },
-  methods: {
-    onCopy() {
-      alert('URLをコピーしました♪お気に入り・ブックマーク登録やメール・ブログでお友達と共有してください♪');
-    },
-    showImg(index: number) {
-      this.index = index;
-      this.visible = true;
-    },
-    handleHide() {
-      this.visible = false;
-    }
-  },
-  setup: (props, context) => {
-    const state = reactive({
+      ],
       breadcrumbs: [
         {
           path: 'ネットショップ',
@@ -757,25 +768,52 @@ export default Vue.extend({
         state.productDetailList = [] as Array<ProductDetail>;
       }
     };
+
+    const showImg = (index: number) => {
+      state.index = index;
+      state.visible = true;
+    }
+
+    const handleHide = () => {
+      state.visible = false;
+    }
+
     onMounted(() => {
       fetchProduct();
     });
     return {
       ...toRefs(state),
       noimage,
-      formatPrice
+      formatPrice,
+      showImg,
+      handleHide
     };
   }
 });
 </script>
 <style lang="scss" scoped>
 .topimg {
-  background-image: url('/ec/images2/special/camera/polarie/bn-000.jpg');
+  background-image: url(/ec/images2/special/camera/polarie/bn-000.jpg);
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: 0px -140px;
   display: block;
   padding: 40px 0 70px 0;
+}
+
+@media screen and (max-width: 463px) {
+  .topimg {
+    background-image: url(/ec/images2/special/camera/polarie/bn-000.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: 0 top;
+    display: block;
+    padding: 30px 10px;
+    float: left;
+  }
+}
+.txkg-01 {
+  text-shadow: 2px 2px 0 #461360;
 }
 .bk-kn {
   background-color: #09093f;

@@ -1,8 +1,11 @@
 <template>
-  <v-container>
+  <v-container :class="ismb ? 'mb-8' : ''">
     <v-row dense>
       <v-col :cols="cols" :sm="sm" v-for="n in count" :key="n">
-        <a :href="`${path}pic_0${n + target}.jpg`"><v-img class="mb-1 hover" :src="`${path}pic_0${n + target}`" max-width="100%" height="auto" /></a>
+        <a :href="`${path}pic_0${n + target}.jpg`">
+          <v-img v-if="type === 1" class="mb-1 hover" :src="`${path}pic_0${n + target}s.jpg`" max-width="100%" height="auto" />
+          <v-img v-if="type === 2" class="mb-1 hover" :src="`${path}pic_0${n + target}.jpg`" max-width="100%" height="auto" />
+        </a>
       </v-col>
     </v-row>
   </v-container>
@@ -31,6 +34,14 @@ export default {
     target: {
       type: Number,
       default: 0
+    },
+    type: {
+      type: Number,
+      default: 2
+    },
+    ismb: {
+      type: Boolean,
+      default: true
     }
   }
 };

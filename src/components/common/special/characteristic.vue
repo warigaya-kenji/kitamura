@@ -5,11 +5,12 @@
         <p class="pttex">
           <span class="bgtypetitle">{{ characteristic.subtitle }}</span>
         </p>
-        <li class="pointt" v-for="content in characteristic.contents" :key="content">
+        <li class="pointt including-line-breaks" v-for="content in characteristic.contents" :key="content">
           {{ content }}
         </li>
       </ul>
     </div>
+    <div style="clear: both"></div>
   </div>
 </template>
 

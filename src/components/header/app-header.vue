@@ -53,7 +53,7 @@
             fixed: headerAreaNarrowSlideFixed
           }"
         >
-          <search-menu />
+          <search-menu v-show="showSearchMenu" />
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { reactive, toRefs, onMounted, ref, SetupContext } from '@vue/composition-api';
+import { reactive, toRefs, onMounted, watch, ref, SetupContext } from '@vue/composition-api';
 import Banner from '@/components/header/banner.vue';
 import HearderTop from '@/components/header/header-top.vue';
 import SearchMenu from '@/components/header/search-menu.vue';
@@ -90,7 +90,8 @@ export default Vue.extend({
       headerAreaNarrowRel: ref<HTMLElement>(),
       headerAreaNarrowSlide: ref<HTMLElement>(),
       headerAreaNarrowSlideFixed: false,
-      headerAreaWelcomeHide: false
+      headerAreaWelcomeHide: false,
+      showSearchMenu: true
     });
 
     const onScroll = () => {
@@ -108,6 +109,9 @@ export default Vue.extend({
           state.headerAreaNarrowRel.style.marginTop = headerFixedHeight + 'px';
           header.setHeight(headerFixedHeight);
         }
+      } else if (state.headerAreaWideFixed) {
+        const headerFixedHeight = state.headerAreaWideFixed.clientHeight;
+        header.setHeight(headerFixedHeight);
       }
       if (window.pageYOffset > 5) {
         state.headerAreaWelcomeHide = true;
@@ -140,6 +144,14 @@ export default Vue.extend({
         });
       }
     });
+
+    watch(
+      () => context.root.$route.name,
+      () => {
+        state.showSearchMenu = context.root.$route.name === 'my-page-order-list' ? false : true;
+      },
+      { immediate: true }
+    );
 
     return {
       onScroll,

@@ -75,7 +75,7 @@ import NewsItem from '@/components/toppage/news-item.vue';
 import NewsService from '@/logic/news.service';
 import { CategoryTag, NewsOnScreen } from '@/types/news';
 import TopConfigsService from '@/logic/tsv/top-configs.service';
-import { getNewsLinkUrl, getYouTubeThumbnailUrl, getYouTubeUrl } from '@/logic/utils';
+import { getNewsLinkUrl, getYouTubeThumbnailUrl, getYouTubeUrl, isDebugMode } from '@/logic/utils';
 import SectionLoading from '@/components/common/section-loading.vue';
 import dayjs from 'dayjs';
 
@@ -87,7 +87,7 @@ export default Vue.extend({
     'news-item': NewsItem,
     'section-loading': SectionLoading
   },
-  setup: () => {
+  setup: (props, context) => {
     // 表示する新着情報の最大個数
     const MAX_COUNT = 32;
     const state = reactive({
@@ -199,10 +199,12 @@ export default Vue.extend({
         console.log(error);
       });
 
+    const tsvPlus = isDebugMode() ? parseInt((context.root.$route.query.tsv_plus as string) || '0') : 0;
+
     /**
      * 新着用動画を取得する
      */
-    TopConfigsService.fetchMovieNews()
+    TopConfigsService.fetchMovieNews(tsvPlus)
       .then((movieResult) => {
         state.loaded.movieNews = true;
         if (!movieResult) {
@@ -229,7 +231,7 @@ export default Vue.extend({
     /**
      * 特集を取得する
      */
-    TopConfigsService.fetchSpecialSaleNews()
+    TopConfigsService.fetchSpecialSaleNews(tsvPlus)
       .then((seleResult) => {
         state.loaded.specialSaleNew = true;
         if (!seleResult) {

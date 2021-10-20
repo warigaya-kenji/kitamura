@@ -5,8 +5,19 @@
         <!-- ↓パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
 
-        <!-- ↓ サンプル：画像の読み込み -->
-        <img class="mb-5" src="/ec/images2/special/camera/feature/olympus/pen_e-p7/bg_top.jpg" @error="noimage" />
+        <!-- ↓url copy -->
+        <urlcopy />
+        <!-- ↑url copy -->
+
+        <!-- ↓top image -->
+        <topTitleImg
+          :pcBackgroundImg="'/ec/images2/special/camera/feature/olympus/pen_e-p7/bg_top.jpg'"
+          :spBackgroundImg="'/ec/images2/special/camera/feature/olympus/pen_e-p7/sp_img_top.jpg'"
+          :topTitle="'オリンパス\n PEN E-P7'"
+          :topTitleText="'ディテールまで美しい小型軽量ボディーに\n5軸手ぶれ補正を搭載'"
+          :textPadding="'10px 0px 0px 0px'"
+        />
+        <!-- ↑top image -->
 
         <div class="red darken-4 text-center mb-2">
           <span class="white--text text-h5 font-weight-bold">好評発売中！</span>
@@ -17,11 +28,13 @@
         </div>
 
         <!-- ↓ ナビボタン -->
-        <naviBtn :naviList="naviList" />
+        <naviBtn :naviList="naviList" :hoverColor="'#1122cc'" />
         <!-- ↑ ナビボタン -->
 
         <div class="text-right">
-          <v-btn href="camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in">≫ 話題の新製品バックナンバー</v-btn>
+          <v-btn tile href="/ec/special/camera/feature/backnumber" color="black" class="kg-in main-product-btn"
+            ><span class="white--text">≫ 話題の新製品バックナンバー</span></v-btn
+          >
         </div>
 
         <subText :textItem="'2000万画素Live MOSセンサー＆ボディー内5軸手ぶれ補正搭載ミラーレス一眼カメラ「オリンパス PEN E-P7」'" />
@@ -41,7 +54,7 @@
               </v-col>
               <v-col class="text-center mt-4" cols="12" sm="6">
                 <p class="text-h6">
-                  価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
+                  価格<span class="text-h4 red--text">{{ product.price }}&nbsp;</span><span class="font-small">(円)</span>
                 </p>
                 <v-btn
                   elevation="3"
@@ -61,191 +74,155 @@
           </v-container>
         </v-card>
 
-        <subText :textItem="'キタムラなら24回まで分割金利手数料0円！'" />
-        <v-row class="mb-10">
-          <v-col class="text-center" cols="4">
-            <a href="ec/pd/4545350053574"
-              ><img src="//shopimg.kitamura.jp/images/pd/a14/e5a/3b5/8c5/715/c61/596/1ee/140/2a4/653/nrh/iwd/r/M.jpg" width="80%"
-            /></a>
-            <br />
-            <a href="ec/pd/4545350053574">オリンパス PEN E-P7 ボディ シルバー</a><br /><span class="red--text">{{}}</span>円(税込)
-          </v-col>
-          <v-col col="6">
-            <p>
-              分割払いなら一度にかかるご負担を軽減する事ができます。<br />
-              ショッピングクレジットの分割払いなら、最大24回分割払いまで分割金利手数料を当店が負担致します。
-            </p>
-            <font size="-1">※2021年6月25日時点の価格です</font>
-            <splitContent :numberOfTimes="'24'" :amount="'3,507'" :commission="'0'" />
-          </v-col>
-        </v-row>
-
-        <v-row class="mb-10">
-          <v-col class="text-center" cols="4">
-            <a href="ec/pd/4545350053598"
-              ><img src="//shopimg.kitamura.jp/images/pd/fcb/e11/669/0c7/15b/149/79f/808/691/6d3/adm/u8x/ag0/d/M.jpg" width="80%"
-            /></a>
-            <br />
-            <a href="ec/pd/4545350053598">オリンパス PEN E-P7 14-42mm EZレンズキット シルバー</a><br /><span class="red--text">{{}}</span>円(税込)
-          </v-col>
-          <v-col col="6">
-            <font size="-1">※2021年7月1日時点の価格です</font>
-            <splitContent :numberOfTimes="'24'" :amount="'4,043'" :commission="'0'" />
-            <div class="text-center">
-              <v-btn
-                elevation="3"
-                x-large
-                dark
-                color="red"
-                class="accent-4"
-                height="40px"
-                width="85%"
-                :href="`https://shop.kitamura.jp/sitemap/s_credit_01.html`"
-              >
-                ショッピングクレジットについて詳細はこちら
-              </v-btn>
-            </div>
-          </v-col>
-        </v-row>
+        <div id="price">
+          <subText :textItem="'キタムラなら24回まで分割金利手数料0円！'" />
+          <splitContent
+            :ProductList="mainProductList[0]"
+            :amount="'3,507'"
+            :targetDate="'2021年6月25日'"
+            :numberOfTimes="'24'"
+            :maximumInstallmentPayment="'24'"
+          />
+          <splitContent
+            :ProductList="mainProductList[2]"
+            :amount="'4,042'"
+            :targetDate="'2021年6月25日'"
+            :numberOfTimes="'24'"
+            :isCreditBtn="true"
+            :isText="false"
+          />
+        </div>
 
         <!--比較-->
-        <subText :textItem="'オリンパス E-P7 / E-P5 / フジフイルム X-E4 / ソニー α6100 比較'" id="hikaku" />
-        <div class="product-comparison mb-5">
-          <p class="mb-2">オリンパス E-P7 / E-P5 / フジフイルム X-E4 / ソニー α6100 を比較しました</p>
-          <table class="product-comparison-table">
-            <tbody>
-              <tr>
-                <th>商品名</th>
-                <td>オリンパス E-P7</td>
-                <td>オリンパス E-P5</td>
-                <td>フジフイルム X-E4</td>
-                <td>ソニー α6100</td>
-              </tr>
-              <tr>
-                <th>発売日</th>
-                <td>2021年6月25日 発売予定</td>
-                <td>2013年6月28日</td>
-                <td>2021年2月25日</td>
-                <td>2019年10月25日</td>
-              </tr>
-              <tr>
-                <th>価格</th>
-                <td v-for="product in comparisonDetailList" :key="product">
-                  <span class="primary--text font-weight-bold">¥{{ formatPrice(parseInt(product.price)) }}</span
-                  >（税込）
-                </td>
-              </tr>
-              <tr>
-                <th>有効画素数</th>
-                <td>約2030万画素</td>
-                <td>約1605万画素</td>
-                <td>約2610万画素</td>
-                <td>約2420万画素</td>
-              </tr>
-              <tr>
-                <th>撮像素子</th>
-                <td>4/3型（17.3×13.0mm ）<br />Live MOSセンサー</td>
-                <td>4/3型（17.3×13.0mm ）<br />Live MOSセンサー</td>
-                <td>APS-Cサイズ（23.5 x 15.6mm）<br />X-Trans CMOS 4センサー</td>
-                <td>APS-Cサイズ（23.5 x 15.6mm）<br />Exmor CMOSセンサー</td>
-              </tr>
-              <tr>
-                <th>連続撮影速度</th>
-                <td>約8.7コマ/秒</td>
-                <td>約5コマ/秒</td>
-                <td>約8コマ/秒</td>
-                <td>約11コマ/秒</td>
-              </tr>
-              <tr>
-                <th>シャッタースピード</th>
-                <td>1/4000～60秒、バルブ、ライブタイム、ライブコンポジット</td>
-                <td>1/8000～60秒、バルブ、タイム撮影</td>
-                <td>1/4000～15分、バルブ</td>
-                <td>1/4000～30秒、バルブ</td>
-              </tr>
-              <tr>
-                <th>ISO感度</th>
-                <td>LOW（約100相当）～6400（200～25600まで拡張可能）</td>
-                <td>LOW（約100相当）～1600（200～25600まで拡張可能）</td>
-                <td>160～12800(拡張：80／100／125／25600／51200)</td>
-                <td>100～32000(拡張：上限ISO51200)</td>
-              </tr>
-              <tr>
-                <th>ファインダー</th>
-                <td>－</td>
-                <td>電子ビューファインダー別売</td>
-                <td>0.39型/約236万ドット</td>
-                <td>0.39型/約144万ドット</td>
-              </tr>
-              <tr>
-                <th>液晶モニター</th>
-                <td>3.0型/約104万ドット<br />チルト式</td>
-                <td>3.0型/約104万ドット<br />チルト式</td>
-                <td>3.0型/約162万ドット<br />チルト式</td>
-                <td>3.0型ワイド/約92万ドット<br />チルト式</td>
-              </tr>
-              <tr>
-                <th>静止画撮影可能枚数/時間<br />(CIPA規格基準)</th>
-                <td>約360枚</td>
-                <td>約400枚</td>
-                <td>約460枚</td>
-                <td>約420枚</td>
-              </tr>
-              <tr>
-                <th>手ブレ補正</th>
-                <td>センサーシフト方式5軸補正</td>
-                <td>センサーシフト方式5軸補正</td>
-                <td>レンズ内手ブレのみ</td>
-                <td>レンズ内手ブレのみ</td>
-              </tr>
-              <tr>
-                <th>外形寸法</th>
-                <td>約118.3ｘ68.5ｘ38.1mm</td>
-                <td>約122.3ｘ68.9ｘ37.2mm</td>
-                <td>121.3ｘ72.9ｘ32.7mm</td>
-                <td>約120.0ｘ66.9ｘ59.4mm</td>
-              </tr>
-              <tr>
-                <th>質量（本体のみ）</th>
-                <td>289g</td>
-                <td>約366g</td>
-                <td>約315g</td>
-                <td>約352g</td>
-              </tr>
-              <tr>
-                <th>カードスロット</th>
-                <td>シングルスロット<br />SDメモリーカード</td>
-                <td>シングルスロット<br />SDメモリーカード</td>
-                <td>シングルスロット<br />SDメモリーカード</td>
-                <td>シングルスロット<br />SDメモリーカード</td>
-              </tr>
-              <tr>
-                <th>動画記録方式</th>
-                <td>4K/フルHD/HD</td>
-                <td>フルHD/HD</td>
-                <td>4K/フルHD</td>
-                <td>4K/フルHD</td>
-              </tr>
-            </tbody>
-          </table>
+        <div id="hikaku">
+          <subText :textItem="'オリンパス E-P7 / E-P5 / フジフイルム X-E4 / ソニー α6100 比較'" />
+          <div class="product-comparison mb-5">
+            <p class="mb-2">オリンパス E-P7 / E-P5 / フジフイルム X-E4 / ソニー α6100 を比較しました</p>
+            <table class="product-comparison-table">
+              <tbody>
+                <tr>
+                  <th>商品名</th>
+                  <td>オリンパス E-P7</td>
+                  <td>オリンパス E-P5</td>
+                  <td>フジフイルム X-E4</td>
+                  <td>ソニー α6100</td>
+                </tr>
+                <tr>
+                  <th>発売日</th>
+                  <td>2021年6月25日 発売予定</td>
+                  <td>2013年6月28日</td>
+                  <td>2021年2月25日</td>
+                  <td>2019年10月25日</td>
+                </tr>
+                <tr>
+                  <th>価格</th>
+                  <td v-for="product in comparisonDetailList" :key="product">
+                    <span class="primary--text font-weight-bold">{{ formatPrice(parseInt(product.price)) }}</span
+                    >（円）
+                  </td>
+                </tr>
+                <tr>
+                  <th>有効画素数</th>
+                  <td>約2030万画素</td>
+                  <td>約1605万画素</td>
+                  <td>約2610万画素</td>
+                  <td>約2420万画素</td>
+                </tr>
+                <tr>
+                  <th>撮像素子</th>
+                  <td>4/3型（17.3×13.0mm ）<br />Live MOSセンサー</td>
+                  <td>4/3型（17.3×13.0mm ）<br />Live MOSセンサー</td>
+                  <td>APS-Cサイズ（23.5 x 15.6mm）<br />X-Trans CMOS 4センサー</td>
+                  <td>APS-Cサイズ（23.5 x 15.6mm）<br />Exmor CMOSセンサー</td>
+                </tr>
+                <tr>
+                  <th>連続撮影速度</th>
+                  <td>約8.7コマ/秒</td>
+                  <td>約5コマ/秒</td>
+                  <td>約8コマ/秒</td>
+                  <td>約11コマ/秒</td>
+                </tr>
+                <tr>
+                  <th>シャッタースピード</th>
+                  <td>1/4000～60秒、バルブ、ライブタイム、ライブコンポジット</td>
+                  <td>1/8000～60秒、バルブ、タイム撮影</td>
+                  <td>1/4000～15分、バルブ</td>
+                  <td>1/4000～30秒、バルブ</td>
+                </tr>
+                <tr>
+                  <th>ISO感度</th>
+                  <td>LOW（約100相当）～6400（200～25600まで拡張可能）</td>
+                  <td>LOW（約100相当）～1600（200～25600まで拡張可能）</td>
+                  <td>160～12800(拡張：80／100／125／25600／51200)</td>
+                  <td>100～32000(拡張：上限ISO51200)</td>
+                </tr>
+                <tr>
+                  <th>ファインダー</th>
+                  <td>－</td>
+                  <td>電子ビューファインダー別売</td>
+                  <td>0.39型/約236万ドット</td>
+                  <td>0.39型/約144万ドット</td>
+                </tr>
+                <tr>
+                  <th>液晶モニター</th>
+                  <td>3.0型/約104万ドット<br />チルト式</td>
+                  <td>3.0型/約104万ドット<br />チルト式</td>
+                  <td>3.0型/約162万ドット<br />チルト式</td>
+                  <td>3.0型ワイド/約92万ドット<br />チルト式</td>
+                </tr>
+                <tr>
+                  <th>静止画撮影可能枚数/時間<br />(CIPA規格基準)</th>
+                  <td>約360枚</td>
+                  <td>約400枚</td>
+                  <td>約460枚</td>
+                  <td>約420枚</td>
+                </tr>
+                <tr>
+                  <th>手ブレ補正</th>
+                  <td>センサーシフト方式5軸補正</td>
+                  <td>センサーシフト方式5軸補正</td>
+                  <td>レンズ内手ブレのみ</td>
+                  <td>レンズ内手ブレのみ</td>
+                </tr>
+                <tr>
+                  <th>外形寸法</th>
+                  <td>約118.3ｘ68.5ｘ38.1mm</td>
+                  <td>約122.3ｘ68.9ｘ37.2mm</td>
+                  <td>121.3ｘ72.9ｘ32.7mm</td>
+                  <td>約120.0ｘ66.9ｘ59.4mm</td>
+                </tr>
+                <tr>
+                  <th>質量（本体のみ）</th>
+                  <td>289g</td>
+                  <td>約366g</td>
+                  <td>約315g</td>
+                  <td>約352g</td>
+                </tr>
+                <tr>
+                  <th>カードスロット</th>
+                  <td>シングルスロット<br />SDメモリーカード</td>
+                  <td>シングルスロット<br />SDメモリーカード</td>
+                  <td>シングルスロット<br />SDメモリーカード</td>
+                  <td>シングルスロット<br />SDメモリーカード</td>
+                </tr>
+                <tr>
+                  <th>動画記録方式</th>
+                  <td>4K/フルHD/HD</td>
+                  <td>フルHD/HD</td>
+                  <td>4K/フルHD</td>
+                  <td>4K/フルHD</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="clear: both"></div>
         </div>
         <!--比較-->
 
         <!--動画で見る-->
         <subText :textItem="'動画で見る オリンパス PEN E-P7'" />
         <p class="text-center text-subtitle-2">【ミラーレス一眼レビュー】オリンパス PEN E-P7を徹底解説！</p>
-        <div class="product-video-wrap text-center">
-          <div class="">
-            <iframe
-              width="70%"
-              height="350"
-              src="https://www.youtube.com/embed/UEDz_xCfS20?rel=0"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
+        <watchInVideo :src="'https://www.youtube.com/embed/UEDz_xCfS20?rel=0'" :height="315" />
 
         <!--特徴-->
         <subText :textItem="'オリンパス PEN E-P7 の特徴'" id="point" />
@@ -254,43 +231,33 @@
 
         <!-- ↓ ShaSha -->
         <subText :textItem="'ShaSha:オリンパス PEN E-P7｜レビュー'" />
-        <shasha :shashaData="shashaData" />
+        <shasha
+          :txt="'2013年に発売されたPENのフラグシップ機E-P5の後継なのかと思われるが、デザインやサイズ感を見るとE-PLシリーズに近い。そして、PEN-Fに搭載されていたモノクロプロファイル、カラープロファイルを搭載している。まさに、E-Pシリーズの高級感と、E-PLシリーズの手軽さと、PEN-Fの表現力を...'"
+          :href="'https://shasha.kitamura.jp/article/482049434.html'"
+          :src="'/ec/images2/special/camera/feature/olympus/pen_e-p7/shashabnr.jpg'"
+        />
 
         <!--↓ 価格・人気アクセサリー-->
         <subText :textItem="'オリンパス PEN E-P7 価格/人気アクセサリー'" />
-        <v-container>
-          <v-row>
-            <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
-              <p class="font-small blue--text mb-2 height-20">
-                <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
-              </p>
-              <p class="mt-2">
-                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
-              </p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <priceAndPopular :productDetailList="productDetailList" />
 
         <!-- ↓ 作例画像 -->
-        <subText :textItem="'オリンパス PEN E-P7 作例画像'" />
-        <exampleImages :path="'/ec/images2/special/camera/feature/olympus/pen_e-p7/'" :count="10" />
+        <div id="images">
+          <subText :textItem="'オリンパス PEN E-P7 作例画像'" />
+          <exampleImages :path="'/ec/images2/special/camera/feature/olympus/pen_e-p7/'" :count="10" />
+        </div>
 
         <!--↓ 外観画像ー-->
-        <subText :textItem="'オリンパス PEN E-P7 外観画像'" />
-        <p class="text-subtitle-1">オリンパス PEN E-P7 の外観画像</p>
-        <v-container>
-          <v-row>
-            <v-col v-for="n in 5" :key="n" cols="12">
-              <v-img :src="`/ec/images2/special/camera/feature/olympus/pen_e-p7/img_${n}.jpg`"> </v-img>
-            </v-col>
-          </v-row>
-        </v-container>
+        <div id="images2">
+          <subText :textItem="'オリンパス PEN E-P7 外観画像'" />
+          <p class="text-subtitle-1">オリンパス PEN E-P7 の外観画像</p>
+          <appearanceImage :src="'/ec/images2/special/camera/feature/olympus/pen_e-p7'" />
+        </div>
 
         <!--↓ SNSー-->
         <facebookAndTwitter />
 
-        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
+        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" />
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
@@ -312,6 +279,11 @@ import ShaSha from '@/components/common/special/shasha.vue';
 import ExampleImages from '@/components/common/special/example-image.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
+import TopTitleImg from '@/components/common/special/top-title-img.vue';
+import AppearanceImage from '@/components/common/special/appearance-image.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
+import WatchInVideo from '@/components/common/special/watch-in-video.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
 
 export default Vue.extend({
   name: 'pen_e-p7',
@@ -324,11 +296,56 @@ export default Vue.extend({
     shasha: ShaSha,
     exampleImages: ExampleImages,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
+    recommendedFeatures: RecommendedFeatures,
+    topTitleImg: TopTitleImg,
+    appearanceImage: AppearanceImage,
+    priceAndPopular: PriceAndPopular,
+    watchInVideo: WatchInVideo,
+    urlcopy: Urlcopy
   },
-  data() {
-    return {
-      test: '',
+  setup: (props, context) => {
+    document.title = 'オリンパス PEN E-P7 | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'オリンパス PEN E-P7 好評発売中！！比較や、価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
+
+    const state = reactive({
+      breadcrumbs: [
+        {
+          path: 'ネットショップ',
+          linkUrl: '/',
+          disabled: false
+        },
+        {
+          path: '最新デジカメ新製品',
+          linkUrl: '/ec/special/camera/feature',
+          disabled: false
+        },
+        {
+          path: 'オリンパス PEN E-P7',
+          disabled: true
+        }
+      ],
+      mainProductJanCode: ['4545350053574', '4545350053581', '4545350053598', '4545350053604'],
+      mainProductList: [] as Array<ProductDetail>,
+      // ↓ ---- 比較 ----
+      comparisonJanCodeList: ['4545350053574', '4545350044350', '4547410442632', '4548736108486'],
+      // 結果格納用
+      comparisonDetailList: [] as Array<ProductDetail>,
+      // ↑ ---- 比較 ----
+      // ↓ ---- 価格・人気アクセサリー ----
+      // 取得するJancode
+      productJanCodeList: [
+        '4545350053574',
+        '4545350053598',
+        '4545350053581',
+        '4545350053604',
+        '4545350044152',
+        '4545350042189',
+        '4545350053536',
+        '4545350053536'
+      ],
+      // 結果格納用
+      productDetailList: [] as Array<ProductDetail>,
+      // ↑ ---- 価格・人気アクセサリー ----
       naviList: [
         { naviItem: 'お得情報', href: '#price' },
         { naviItem: '機種比較', href: '#hikaku' },
@@ -359,13 +376,6 @@ export default Vue.extend({
           ]
         }
       ],
-      shashaData: [
-        {
-          text: '2013年に発売されたPENのフラグシップ機E-P5の後継なのかと思われるが、デザインやサイズ感を見るとE-PLシリーズに近い。そして、PEN-Fに搭載されていたモノクロプロファイル、カラープロファイルを搭載している。まさに、E-Pシリーズの高級感と、E-PLシリーズの手軽さと、PEN-Fの表現力を...',
-          href: 'https://shasha.kitamura.jp/article/482049434.html',
-          src: '/ec/images2/special/camera/feature/olympus/pen-e-p7/shashabnr.jpg'
-        }
-      ],
       recommendedFeaturesList: [
         {
           href: '/special/sale-fair/camera/feature/backnumber/',
@@ -393,49 +403,6 @@ export default Vue.extend({
           alt: 'トクトク買取'
         }
       ]
-    };
-  },
-  props: {},
-  setup: (props, context) => {
-    const state = reactive({
-      breadcrumbs: [
-        {
-          path: 'ネットショップ',
-          linkUrl: '/',
-          disabled: false
-        },
-        {
-          path: '最新デジカメ新製品',
-          linkUrl: '/ec/special/camera/feature/',
-          disabled: false
-        },
-        {
-          path: 'オリンパス PEN E-P7',
-          disabled: true
-        }
-      ],
-      mainProductJanCode: ['4545350053574', '4545350053581', '4545350053598', '4545350053604'],
-      mainProductList: [] as Array<ProductDetail>,
-      // ↓ ---- 比較 ----
-      comparisonJanCodeList: ['4545350053574', '4545350044350', '4547410442632', '4548736108486'],
-      // 結果格納用
-      comparisonDetailList: [] as Array<ProductDetail>,
-      // ↑ ---- 比較 ----
-      // ↓ ---- 価格・人気アクセサリー ----
-      // 取得するJancode
-      productJanCodeList: [
-        '4545350053574',
-        '4545350053598',
-        '4545350053581',
-        '4545350053604',
-        '4545350044152',
-        '4545350042189',
-        '4545350053536',
-        '4545350053536'
-      ],
-      // 結果格納用
-      productDetailList: [] as Array<ProductDetail>
-      // ↑ ---- 価格・人気アクセサリー ----
     });
     /**
      * 商品詳細を取得する

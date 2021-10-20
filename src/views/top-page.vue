@@ -286,7 +286,7 @@ import ProductService from '@/logic/product.service';
 import { CAMERA_CATEGORY_LIST, APPLIANCES_CATEGORY_LIST } from '@/constants/categories';
 import NewsService from '@/logic/news.service';
 import { NewsOnScreen } from '@/types/news';
-import { getNewsLinkUrl } from '@/logic/utils';
+import { getNewsLinkUrl, isDebugMode } from '@/logic/utils';
 
 const CAMERA_CATEGORY_MIN_SIZE = 6;
 const APPLIANCES_CATEGORY_MIN_SIZE = 3;
@@ -302,7 +302,7 @@ export default Vue.extend({
       title: '【カメラのキタムラ】デジカメ・ビデオカメラ・プリンター等の通販'
     };
   },
-  setup: () => {
+  setup: (props, context) => {
     const state = reactive({
       model: null,
       selectedCamera: null,
@@ -316,7 +316,8 @@ export default Vue.extend({
     });
 
     // カルーセルバナーを取得
-    TopConfigsService.fetchCarouselBanners().then((carouselBanners) => {
+    const tsvPlus = isDebugMode() ? parseInt((context.root.$route.query.tsv_plus as string) || '0') : 0;
+    TopConfigsService.fetchCarouselBanners(tsvPlus).then((carouselBanners) => {
       state.carouselBannerList = carouselBanners;
     });
 

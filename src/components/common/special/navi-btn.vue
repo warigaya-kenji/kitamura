@@ -1,11 +1,13 @@
 <template>
   <v-container class="v-container">
-    <v-row>
-      <v-col :cols="cols" v-for="(navi, index) in naviList" :key="`navi-${index}`">
+    <v-row justify="center">
+      <v-col :cols="cols" :sm="sm" v-for="(navi, index) in naviList" :key="`navi-${index}`">
         <v-hover v-slot="{ hover }">
-          <v-btn block :height="height" :href="navi.href" :elevation="hover ? 12 : 2" :color="hover ? backgroundColor : 'black'"
-            ><span class="v-btn-text-color text-h6 font-weight-bold">{{ navi.naviItem }}</span></v-btn
-          >
+          <a v-scroll-to="{ el: navi.href }">
+            <v-btn block :height="height" :elevation="hover ? 12 : 2" :color="hover ? hoverColor : color"
+              ><span class="v-btn-text-color text-h6">{{ navi.naviItem }}</span></v-btn
+            >
+          </a>
         </v-hover>
       </v-col>
     </v-row>
@@ -24,6 +26,11 @@ export default {
     cols: {
       type: Number,
       required: false,
+      default: 6
+    },
+    sm: {
+      type: Number,
+      required: false,
       default: 3
     },
     height: {
@@ -31,22 +38,26 @@ export default {
       required: false,
       default: 55
     },
-    backgroundColor: {
+    hoverColor: {
       type: String,
       required: false,
       default: 'red darken-4'
     },
+    color: {
+      type: String,
+      required: false,
+      default: 'black'
+    }
   },
   setup: () => {
     const state = reactive({
-      activeItem: "",
+      activeItem: ''
     });
 
     return {
       ...toRefs(state)
     };
   }
-
 };
 </script>
 

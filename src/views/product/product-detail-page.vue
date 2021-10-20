@@ -196,7 +196,7 @@
       </div>
 
       <!-- 新品の場合の商品詳細位置 -->
-      <product-tabs :isUsed="isUsed" :product="product" v-if="!isUsed" />
+      <product-tabs id="product-tabs-scroll" :isUsed="isUsed" :product="product" :firstTabNum="tab" v-if="!isUsed" />
     </div>
 
     <!-- 商品が存在しない場合 -->
@@ -211,7 +211,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { computed, reactive, toRefs, watch } from '@vue/composition-api';
+import { computed, reactive, toRefs, onUpdated, watch } from '@vue/composition-api';
 import ProductSlider from '@/components/product-detail/product-slider.vue';
 import ProductTabs from '@/components/product-detail/product-tabs.vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
@@ -291,7 +291,9 @@ export default Vue.extend({
         isFavoriteOperation: false
       },
       /** JSON-LD */
-      jsonLd: ''
+      jsonLd: '',
+      // 内部スクロール用：tab指定
+      tab: 0
     });
 
     function sanitize(text: string) {
@@ -425,14 +427,14 @@ export default Vue.extend({
             if (_purchaseNnumList.length !== 0) {
               state.cartOption.canBuyNum = _purchaseNnumList.reduce((a, b) => Math.min(a, b));
             }
-          }
 
-          // タイトルを設定する
-          let title = state.product.itemName + ' | ';
-          if (state.product.breadcrumbs?.length >= 2) {
-            title += state.product.breadcrumbs[1].path + 'の通販 | ';
+            // タイトルを設定する
+            let title = state.product.itemName + ' | ';
+            if (state.product.breadcrumbs?.length >= 2) {
+              title += state.product.breadcrumbs[1].path + 'の通販 | ';
+            }
+            document.title = title + 'カメラのキタムラ';
           }
-          document.title = title + 'カメラのキタムラ';
 
           // JSON-LDを設定する
           state.jsonLd = createJsonLd(state.product);
@@ -580,18 +582,21 @@ export default Vue.extend({
           }
 
           // パンくずリスト作成
+          const itemName = state.usedProduct.itemName.replace('【中古】', '');
           state.breadcrumbsList = [
+            { no: 1, path: 'TOP', linkUrl: '/' },
+            { no: 2, path: state.usedProduct.prdType, linkUrl: `/ec/list?type=u&category=${state.usedProduct.prdType}` },
             {
-              no: 1,
-              path: 'TOP',
-              linkUrl: '/'
+              no: 3,
+              path: state.usedProduct.makerName,
+              linkUrl: `/ec/list?type=u&category=${state.usedProduct.prdType}&keyword=${state.usedProduct.makerName}`
             },
-            {
-              no: 2,
-              path: state.usedProduct.prdType,
-              linkUrl: '/ec/list?type=u&category=' + state.usedProduct.prdType
-            }
+            { no: 4, path: itemName, linkUrl: `/ec/pd/${state.usedProduct.janCode}` },
+            { no: 5, path: '中古在庫', linkUrl: '' }
           ];
+
+          // タイトルを設定する
+          document.title = `${state.usedProduct.itemName} | ${state.usedProduct.prdType} | ${state.usedProduct.itemCode}の在庫詳細`;
 
           // カートに入れるオプション
           // 中古在庫商品の場合
@@ -741,6 +746,21 @@ export default Vue.extend({
 
     // 初期化
     setProduct(context.root.$route);
+
+    onUpdated(() => {
+      // ページ内スクロール
+      const query = context.root.$route.query;
+      const { header } = context.root.$store;
+      if (query.tab && state.loaded.product) {
+        state.tab = +(query.tab as string);
+
+        context.root.$vuetify.goTo('#product-tabs-scroll', {
+          duration: 100,
+          offset: header.headerHeight,
+          easing: 'linear'
+        });
+      }
+    });
 
     /**
      * 画面が切り替わった際に再度商品詳細情報を再設定する

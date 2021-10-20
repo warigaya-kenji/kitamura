@@ -1,39 +1,60 @@
 <template>
   <v-app>
-    <div class="lensfilter">
+    <div class="girlscamera">
       <div class="main-contents-wrap">
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
         <!-- ↓url copy -->
-        <urlcopy :url="'https://shop.kitamura.jp/special/sale-fair/camera/feature/fujifilm/xf18mmf14-r-lm-wr/'" :color="'pink lighten-1'" />
+        <urlcopy :color="'pink lighten-1'" />
 
-        <v-img src="/ec/images2/special/camera/girlscamera/bg_title-box.jpg" max-width="95%" height="auto" />
+        <!-- 960px以上 -->
+        <div class="title-box pc text-center" v-if="$vuetify.breakpoint.mdAndUp">
+          <h1 class="tx-pnk txkg-wi font-weight-bold tx-28">女子がきゅんとくる ミラーレス一眼カメラ</h1>
+          <p class="tx-pnk txkg-wi font-weight-bold text-h6">女性に人気のミラーレス一眼カメラをピックアップ</p>
+        </div>
+
+        <!-- 960px未満 -->
+        <div v-if="$vuetify.breakpoint.smAndDown">
+          <v-img src="/ec/images2/special/camera/girlscamera/sp_bg_title-box.webp" max-width="100%" height="auto" />
+          <h1 class="text-h6 tx-pnk font-weight-bold">女子がきゅんとくる ミラーレス一眼カメラ</h1>
+          <p class="tx-pnk">女性に人気のおすすめのミラーレス一眼カメラをピックアップ</p>
+        </div>
 
         <!--↓アンカー-->
         <v-container>
-          <p class="py-4">女子におすすめミラーレス一眼カメラ</p>
-          <v-row class="mb-6">
-            <v-col cols="12" sm="4" v-for="(navi, index) in navibtn" :key="navi">
-              <router-link :to="navi.href">
-                <div class="bk-pnk white--text text-center rounded-lg">
-                  <v-img :src="`/ec/images2/special/camera/lensfilter/ic0${index + 1}.png`" max-width="100%" height="auto"></v-img><br />
-                  {{ navi.txt }}
-                </div>
-              </router-link>
+          <p class="py-2">女子におすすめミラーレス一眼カメラ</p>
+          <v-row class="mb-6" dense>
+            <v-col cols="12" sm="4" v-for="(navi, index) in navibtn" :key="index">
+              <v-hover v-slot="{ hover }">
+                <a :href="navi.href">
+                  <v-sheet
+                    :elevation="hover ? 6 : 2"
+                    rounded
+                    class="bk-pnk white--text text-center rounded-lg d-flex flex-column justify-space-between align-center pa-1"
+                  >
+                    <v-img :src="`/ec/images2/special/camera/girlscamera/ic0${index + 1}.png`" max-width="33%" height="auto"></v-img>
+                    {{ navi.txt }}
+                  </v-sheet>
+                </a>
+              </v-hover>
             </v-col>
           </v-row>
 
-          <div class="text-right">
-            <v-btn elevation="6" class="bk-pnk white--text pa-2" href="#citms" width="50%"> おすすめミラーレス一覧 ≫ </v-btn>
-          </div>
+          <v-row justify="end">
+            <v-col cols="12" sm="6">
+              <v-hover v-slot="{ hover }">
+                <v-btn block :elevation="hover ? 6 : 2" class="bk-pnk white--text pa-2" href="#citms"> おすすめミラーレス一覧 ≫ </v-btn>
+              </v-hover>
+            </v-col>
+          </v-row>
         </v-container>
         <!--↑アンカー-->
 
         <!--↓女子におすすめ☆人気のミラーレス一眼カメラ-->
         <p class="spec my-8">女子におすすめ☆人気のミラーレス一眼カメラ</p>
 
-        <div class="my-10 pa-2 bd-wk rounded-lg">
+        <div class="my-10 pa-2 bd-wk rounded-lg" id="caa">
           <v-row>
             <v-col cols="12" sm="6">
               <p class="cameratitle">風景&人物の自分撮りも広角で楽しめるDC-GF10W♪</p>
@@ -59,7 +80,7 @@
           </v-row>
         </div>
 
-        <div class="my-10 pa-2 bd-wk rounded-lg">
+        <div class="my-10 pa-2 bd-wk rounded-lg" id="cab">
           <v-row>
             <v-col cols="12" sm="6">
               <p class="cameratitle">自分らしく撮影を楽しめる PEN E-PL10</p>
@@ -86,7 +107,7 @@
           </v-row>
         </div>
 
-        <div class="my-10 pa-2 bd-wk rounded-lg">
+        <div class="my-10 pa-2 bd-wk rounded-lg" id="cac">
           <v-row>
             <v-col cols="12" sm="6">
               <p class="cameratitle">カメラ女子×Nikon１</p>
@@ -98,13 +119,7 @@
                 ■コンパクトなので、お出かけのおともにピッタリ☆<br />
                 ■自分撮りがしやすいモニターと、8つのメイクアップ効果でかんたんキレイに残せます♪
               </p>
-              <v-btn
-                block
-                elevation="6"
-                class="bk-pnk white--text pa-2 my-4"
-                href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=PEN%20E-PL10&category=&r=&index=&searchbox=1&q=PEN%20E-PL10&path="
-                height="60"
-              >
+              <v-btn block elevation="6" class="bk-pnk white--text pa-2 my-4" href="/special/camera/feature/nikon/nikon1" height="60">
                 女子におすすめミラーレス一眼カメラ<br />ニコン Nikon1 J5 ≫
               </v-btn>
             </v-col>
@@ -112,39 +127,15 @@
         </div>
 
         <!--↓ 価格・人気アクセサリー-->
-        <p class="spec my-12">女子に人気のミラーレス・デジカメ 商品一覧</p>
+        <p class="spec my-12" id="citms">女子に人気のミラーレス・デジカメ 商品一覧</p>
         <priceAndPopular :productDetailList="productDetailList" />
 
         <!--↓ ショッピングクレジット-->
         <p class="spec mt-12">
           <span class="text-subtitle-2">デジカメを買うなら、お支払いラクラク♪<br /></span>ショッピングクレジット
         </p>
-        <p>
-          カメラのキタムラおすすめの『ショッピングクレジット』なら、<span class="red--text amber lighten-3">最長48回払いまで金利手数料が「0円」</span
-          >!<br />ショッピングクレジットをぜひご利用ください！
-        </p>
-        <h3>分割払い例</h3>
-        <v-container class="ma-2 ba-gr">
-          <v-row class="mb-4">
-            <v-col cols="12" sm="6">
-              <p class="mb-2 text-h6">分割払い例①</p>
-              <installmentPaymentExample :productPrice="'84,910'" :numberOfDivisions="'20'" :monthlyPayment="'4,246'" />
-            </v-col>
-            <v-col cols="12" sm="6">
-              <p class="mb-2 text-h6">分割払い例②</p>
-              <installmentPaymentExample :productPrice="'58,310'" :numberOfDivisions="'10'" :monthlyPayment="'5,831'" />
-            </v-col>
-          </v-row>
-        </v-container>
-
-        <p class="mt-2 caption">
-          ※注文総額3万円、月々3,000円以上のお支払いからご利用いただけます ※初回お支払い額は､月々のお支払い金額より高くなる場合がございます
-        </p>
-        <h4 class="bg-momo my-8">
-          <v-btn block href="https://shop.kitamura.jp/sitemap/s_credit_01.html" class="white--text text-subtitle-1 font-weight-bold"
-            >→ショッピングクレジットを詳しく見る</v-btn
-          >
-        </h4>
+        <!--↓ ショッピングクレジット-->
+        <shoppingCredit :installmentPaymentExampleList="installmentPaymentExampleList" :isTitle="false" />
 
         <!--↓ SNSー-->
         <facebookAndTwitter />
@@ -165,9 +156,9 @@ import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
 import Urlcopy from '@/components/common/special/url-copy.vue';
 import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
-import InstallmentPaymentExample from '@/components/common/special/installmentPaymentExample.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
+import ShoppingCredit from '@/components/common/special/shopping-credit.vue';
 
 export default Vue.extend({
   name: 'girlscamera',
@@ -175,12 +166,19 @@ export default Vue.extend({
     breadcrumbs: Breadcrumbs,
     urlcopy: Urlcopy,
     priceAndPopular: PriceAndPopular,
-    installmentPaymentExample: InstallmentPaymentExample,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
+    recommendedFeatures: RecommendedFeatures,
+    shoppingCredit: ShoppingCredit
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    document.title = '女子がきゅんとくる ミラーレス一眼カメラ | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', '女子がきゅんとくる ミラーレス一眼カメラ☆人気のおすすめミラーレスをピックアップ★かわいいミラーレス、おしゃれなミラーレスは、カメラのキタムラへおまかせください。')
+
+    const state = reactive({
+      installmentPaymentExampleList: [
+        { productPrice: '84,910', numberOfDivisions: '20', monthlyPayment: '4,246' },
+        { productPrice: '58,310', numberOfDivisions: '10', monthlyPayment: '5,831' },
+      ],
       recommendedFeaturesList: [
         {
           href: 'https://shop.kitamura.jp/ec/special/camera/bag/',
@@ -232,16 +230,7 @@ export default Vue.extend({
         { txt: 'パナソニック LUMIX GF10W ≫', href: '#caa' },
         { txt: 'オリンパス PEN E-PL10 ≫', href: '#cab' },
         { txt: 'vニコン Nikon1 J5 ≫', href: '#cac' }
-      ]
-    };
-  },
-  methods: {
-    onCopy() {
-      alert('URLをコピーしました♪お気に入り・ブックマーク登録やメール・ブログでお友達と共有してください♪');
-    }
-  },
-  setup: (props, context) => {
-    const state = reactive({
+      ],
       breadcrumbs: [
         {
           path: 'ネットショップ',
@@ -302,7 +291,25 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.girlscamera .title-box {
+  max-width: 950px;
+  height: auto;
+  margin: 0px;
+  padding: 1% 0px 4.5% 0px;
+  background-image: url(/ec/images2/special/camera/girlscamera/bg_title-box.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.tx-28 {
+  font-size: 28px;
+}
+
+.txkg-wi {
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
 .bk-pnk {
   background: rgb(255, 127, 149);
   background: linear-gradient(90deg, rgba(255, 127, 149, 1) 0%, rgba(231, 118, 199, 1) 100%);
@@ -336,4 +343,8 @@ p.spec {
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
+
+/* .girlscamera a:hover {
+  text-decoration: underline;
+} */
 </style>

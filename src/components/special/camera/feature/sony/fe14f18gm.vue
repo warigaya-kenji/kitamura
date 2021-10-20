@@ -5,132 +5,87 @@
         <!-- ↓パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
 
-        <!-- ↓ サンプル：画像の読み込み -->
-        <img class="mb-5" src="/ec/images2/special/camera/feature/sony/fe14f18gm/bg_top.jpg" @error="noimage" />
+        <!-- ↓url copy -->
+        <urlcopy />
+        <!-- ↑url copy -->
+
+        <!-- ↓top image -->
+        <topTitleImg
+          :pcBackgroundImg="'/ec/images2/special/camera/feature/sony/fe14f18gm/bg_top.png'"
+          :spBackgroundImg="'/ec/images2/special/camera/feature/sony/fe14f18gm/sp_img_top.png'"
+          :topTitle="'ソニー FE 14mm F1.8 GM [SEL14F18GM]'"
+          :topTitleText="'Gマスターならではの高い解像性能と美しいぼけ描写を実現した\n大口径超広角単焦点レンズ'"
+          :titleColor="'#ffffff'"
+          :textColor="'#ffffff'"
+          :padding="'190px 0px 15px 25px'"
+          :textPadding="'20px 0px 0px 0px'"
+        />
+        <!-- ↑top image -->
 
         <div class="red darken-4 text-center mb-2">
           <span class="white--text text-h5 font-weight-bold">好評発売中</span>
         </div>
 
-        <p class="darken-2 text-left">オリンパス PEN E-P7</p>
+        <p class="darken-2 text-left">ソニー FE 14mm F1.8 GM [SEL14F18GM]</p>
 
         <!-- ↓ ナビボタン -->
-        <naviBtn :naviList="naviList" />
+        <naviBtn :naviList="naviList" :hoverColor="'blue lighten-1'" />
         <!-- ↑ ナビボタン -->
 
-        <div class="text-right mb-2">
-          <v-btn href="camera/feature/backnumber/" text class="black white--text kg-in" height="40px">≫ 話題の新製品バックナンバー</v-btn>
+        <div class="text-right">
+          <v-btn tile href="/ec/special/camera/feature/backnumber" color="black" class="kg-in main-product-btn"
+            ><span class="white--text">≫ 話題の新製品バックナンバー</span></v-btn
+          >
         </div>
 
         <subText :textItem="'高い解像性能と美しいぼけ描写を小型軽量化した本体サイズで実現'" />
         <p class="text-sibtitle-2">幅広い撮影用途においてあらゆるクリエーターの創造性に応える大口径超広角単焦点レンズ</p>
 
         <!--====== 価格・ご購入 ======-->
-        <v-card :id="index" class="credit line-g mt-10 float-left" width="100%" v-for="(product, index) in mainProductList" :key="product">
-          <v-container>
-            <v-row>
-              <v-col class="text-center" cols="12" sm="5">
-                <router-link :to="`/ec/pd/${product.janCode}`"><img :src="product.images[0].imagePath" class="mx100pr" /></router-link>
-                <p>
-                  <a :href="`/ec/pd/${product.janCode}`">{{ product.itemName }}</a>
-                </p>
-              </v-col>
-              <v-col class="text-center mt-4" cols="12" sm="6">
-                <p class="text-h6">
-                  価格<span class="text-h4 red--text">&yen;{{ product.price }}&nbsp;</span><span class="font-small">(税込)</span>
-                </p>
-                <v-btn
-                  elevation="3"
-                  x-large
-                  dark
-                  color="orange lighten-1"
-                  class="text-h5 font-weight-bold accent-4"
-                  height="55px"
-                  width="65%"
-                  :href="`/ec/pd/${product.janCode}`"
-                >
-                  <v-icon class="main-product-btn-icon">fas fa-chevron-right</v-icon>
-                  ご購入はこちら
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
+        <subText :textItem="'ソニー FE 14mm F1.8 GM [SEL14F18GM] 価格・ご購入'" />
+        <priceAndPurchase :mainProductList="mainProductList" />
 
-        <!--↓ショッピングクレジット -->
-        <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
-        <v-container v-if="mainProductList.length != 0">
-          <v-row class="mb-10">
-            <v-col class="text-center" cols="4">
-              <a :href="`/ec/pd/${mainProductList[0].janCode}`"
-                ><img src="//shopimg.kitamura.jp/images/pd/a14/e5a/3b5/8c5/715/c61/596/1ee/140/2a4/653/nrh/iwd/r/M.jpg" width="80%"
-              /></a>
-              <br />
-              <a :href="`/ec/pd/${mainProductList[0].janCode}`">{{ mainProductList[0].itemName }}</a
-              ><br /><span class="red--text">{{ mainProductList[0].price }}</span
-              >円(税込)
-            </v-col>
-            <v-col col="6">
-              <p>
-                分割払いなら一度にかかるご負担を軽減する事ができます。<br />
-                ショッピングクレジットの分割払いなら、最大24回分割払いまで分割金利手数料を当店が負担致します。
-              </p>
-              <font size="-1">※2021年6月25日時点の価格です</font>
-              <splitContent :numberOfTimes="'48'" :amount="'4,061'" :commission="'0'" />
-            </v-col>
-          </v-row>
-        </v-container>
+        <!-- ↓ 48回まで分割ー -->
+        <div id="price">
+          <subText :textItem="'キタムラなら最大48回まで分割金利手数料0円！'" />
+          <splitContent v-if="mainProductList.length !== 0" :ProductList="mainProductList[0]" :amount="'3,734'" :targetDate="'2021年5月28日'" />
+        </div>
 
         <!--動画で見る-->
-        <subText :textItem="'動画で見る ソニー FE 14mm F1.8 GM [SEL14F18GM]'" />
-
-        <div class="col-sm-12 text-center float-left pa-4 mt-10">
-          <v-btn
-            elevation="3"
-            class="black darken-4 white--text text-h7"
-            height="70px"
-            width="50%"
-            @click="linkToOtherWindow('https://cweb.canon.jp/eos/your-eos/product/eosr/')"
-            >メーカーサイトで<br />仕様・作例を詳しく見る</v-btn
-          >
+        <div id="hikaku">
+          <subText :textItem="'動画で見る ソニー FE 14mm F1.8 GM [SEL14F18GM]'" />
+          <watchInVideo :src="'https://www.youtube.com/embed/R3BP4YEkdas'" :height="315" />
         </div>
+
+        <!-- ↓ 仕様・作例ボタンー -->
+        <specificationsExamplesBtn
+          :btntxt="'メーカーサイトで\n仕様・作例を詳しく見る'"
+          :url="'https://www.sony.jp/ichigan/products/SEL14F18GM/'"
+          :height="'70px'"
+        />
 
         <!--↓ 価格・人気アクセサリー-->
         <subText :textItem="'ソニー FE 14mm F1.8 GM [SEL14F18GM] 価格・人気アクセサリー'" />
-        <v-container>
-          <v-row>
-            <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
-              <p class="font-small blue--text mb-2 height-20">
-                <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
-              </p>
-              <p class="mt-2">
-                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
-              </p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <priceAndPopular :productDetailList="productDetailList" />
 
         <!--↓ 外観画像ー-->
-        <subText :textItem="'ソニー FE 14mm F1.8 GM [SEL14F18GM] 外観画像'" />
-        <p class="text-subtitle-1">ソニー FE 14mm F1.8 GM [SEL14F18GM] の外観画像</p>
-        <v-container>
-          <v-row>
-            <v-col cols="12">
-              <v-img :src="`/ec/images2/special/camera/feature/olympus/pen_e-p7/img_1.jpg`"> </v-img>
-            </v-col>
-          </v-row>
-        </v-container>
+        <div id="images">
+          <subText :textItem="'ソニー FE 14mm F1.8 GM [SEL14F18GM] 外観画像'" />
+          <p class="text-subtitle-1">ソニー FE 14mm F1.8 GM [SEL14F18GM] の外観画像</p>
+          <appearanceImage :src="'/ec/images2/special/camera/feature/sony/fe14f18gm'" :count="1" />
+        </div>
 
         <!-- ↓ 作例画像 -->
-        <subText :textItem="'ソニー FE 14mm F1.8 GM [SEL14F18GM] 作例画像'" />
-        <p>ソニー FE 14mm F1.8 GM 作例</p>
-        <exampleImages :path="'/ec/images2/special/camera/feature/sony/fe14f18gm/'" :count="11" :sm="4" />
+        <div id="images2">
+          <subText :textItem="'ソニー FE 14mm F1.8 GM [SEL14F18GM] 作例画像'" />
+          <p>ソニー FE 14mm F1.8 GM 作例</p>
+          <exampleImages :path="'/ec/images2/special/camera/feature/sony/fe14f18gm/'" :count="11" :sm="4" />
+        </div>
 
         <!--↓ SNSー-->
         <facebookAndTwitter />
 
-        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
+        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" />
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
@@ -150,6 +105,13 @@ import ExampleImages from '@/components/common/special/example-image.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
 import WatchInVideo from '@/components/common/special/watch-in-video.vue';
+import TopTitleImg from '@/components/common/special/top-title-img.vue';
+import Urlcopy from '@/components/common/special/url-copy.vue';
+import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
+import SplitContent from '@/components/common/special/split-content.vue';
+import SpecificationsExamplesBtn from '@/components/common/special/specifications-examples-btn.vue';
+import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
+import AppearanceImage from '@/components/common/special/appearance-image.vue';
 
 export default Vue.extend({
   name: 'sony-fe14f18gm',
@@ -159,11 +121,45 @@ export default Vue.extend({
     subText: SubText,
     exampleImages: ExampleImages,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
-    // watchInVideo: WatchInVideo
+    recommendedFeatures: RecommendedFeatures,
+    topTitleImg: TopTitleImg,
+    urlcopy: Urlcopy,
+    priceAndPurchase: PriceAndPurchase,
+    splitContent: SplitContent,
+    watchInVideo: WatchInVideo,
+    specificationsExamplesBtn: SpecificationsExamplesBtn,
+    priceAndPopular: PriceAndPopular,
+    appearanceImage: AppearanceImage
   },
-  data() {
-    return {
+  setup: (props, context) => {
+    document.title = 'ソニー α7R IV A & α7R III A | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'ソニー α7R IV A & α7R III A  好評発売中！比較や、価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
+
+    const state = reactive({
+      breadcrumbs: [
+        {
+          path: 'ネットショップ',
+          linkUrl: '/',
+          disabled: false
+        },
+        {
+          path: '最新デジカメ新製品',
+          linkUrl: '/ec/special/camera/feature',
+          disabled: false
+        },
+        {
+          path: 'ソニー α7R IV A & α7R III A',
+          disabled: true
+        }
+      ],
+      mainProductJanCode: ['4548736131187'],
+      mainProductList: [] as Array<ProductDetail>,
+      // ↓ ---- 価格・人気アクセサリー ----
+      // 取得するJancode
+      productJanCodeList: ['4548736131187', '4977187330878', '4902520009609', '4977187330045'],
+      // 結果格納用
+      productDetailList: [] as Array<ProductDetail>,
+      // ↑ ---- 価格・人気アクセサリー ----
       naviList: [
         { naviItem: 'お得情報', href: '#price' },
         { naviItem: '動画', href: '#hikaku' },
@@ -192,35 +188,6 @@ export default Vue.extend({
           alt: 'トクトク買取'
         }
       ]
-    };
-  },
-  props: {},
-  setup: (props, context) => {
-    const state = reactive({
-      breadcrumbs: [
-        {
-          path: 'ネットショップ',
-          linkUrl: '/',
-          disabled: false
-        },
-        {
-          path: '最新デジカメ新製品',
-          linkUrl: '/ec/special/camera/feature/',
-          disabled: false
-        },
-        {
-          path: 'ソニー α7R IV A & α7R III A',
-          disabled: true
-        }
-      ],
-      mainProductJanCode: ['4548736131187'],
-      mainProductList: [] as Array<ProductDetail>,
-      // ↓ ---- 価格・人気アクセサリー ----
-      // 取得するJancode
-      productJanCodeList: ['4548736131187', '4977187330878', '4902520009609', '4977187330045'],
-      // 結果格納用
-      productDetailList: [] as Array<ProductDetail>
-      // ↑ ---- 価格・人気アクセサリー ----
     });
     /**
      * 商品詳細を取得する

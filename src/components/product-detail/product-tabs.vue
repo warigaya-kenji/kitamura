@@ -89,7 +89,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { reactive, toRefs } from '@vue/composition-api';
+import { reactive, toRefs, watch } from '@vue/composition-api';
 import ProductDescription from '@/components/product-detail/product-description.vue';
 import ProductReviews from '@/components/product-detail/product-reviews.vue';
 import ProductVideo from '@/components/product-detail/product-video.vue';
@@ -110,12 +110,23 @@ export default Vue.extend({
     // 商品情報
     product: {
       required: true // 必須かどうか
+    },
+    firstTabNum: {
+      type: Number,
+      required: false
     }
   },
-  setup: () => {
+  setup: (props) => {
     const state = reactive({
-      tab: null
+      tab: 0
     });
+
+    watch(
+      () => props.firstTabNum,
+      () => {
+        if (props.firstTabNum) state.tab = props.firstTabNum as number;
+      }
+    );
 
     return {
       ...toRefs(state)

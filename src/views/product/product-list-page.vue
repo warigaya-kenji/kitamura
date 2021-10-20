@@ -20,9 +20,9 @@
     <p class="none-result-message" v-if="!totalCount">条件に該当する商品は見つかりませんでした。</p>
 
     <!-- タイトル（新品；カテゴリー選択時） -->
-    <h1 class="category-title" v-if="currentCategoryInfo && totalCount && !isKeyword3">{{ currentCategoryInfo.concatenationCategoryName }}</h1>
+    <h1 class="category-title" v-if="!isKeyword3 && currentCategoryInfo && totalCount">{{ currentCategoryInfo.concatenationCategoryName }}</h1>
     <!-- タイトル（中古在庫；同型商品選択時） -->
-    <h1 class="category-title mt-2" v-else-if="isKeyword3 && totalCount">【中古】&emsp;{{ results[0].title }}&emsp;の在庫一覧</h1>
+    <h1 class="category-title mt-2" v-else-if="isKeyword3 && totalCount">{{ usedTitle }}</h1>
 
     <!-- メーカーリスト 960px未満 -->
     <maker-slider
@@ -191,7 +191,7 @@
             </li>
             <li class="none-result-hint-item">
               「中古カメラ」等をお探しの方は
-              <a :href="netChukoUrl + 'buy/index.do'">コチラ</a>
+              <router-link to="/ec/ct/used/list">コチラ</router-link>
             </li>
             <li class="none-result-hint-item">
               「商品の取扱いリクエスト」は
@@ -226,7 +226,7 @@
             <div class="comparison-area">
               <span class="comparison-current-text">
                 <span class="comparison-count">{{ comparison.comparisonList.length }}</span
-                >件/5件中
+                >件/{{ comparison.limit }}件中
               </span>
               <v-btn small dark depressed color="rgba(112, 112, 112, 1)" @click="toComparison">チェックした商品を比較する</v-btn>
               <v-btn small dark depressed color="rgba(112, 112, 112, 1)" @click="comparison.clear">リセット</v-btn>
@@ -363,10 +363,13 @@ import UsedProduct from '@/components/product-list/used-product.vue';
 import SimpleProductSlider from '@/components/common/simple-product-slider.vue';
 import SectionLoading from '@/components/common/section-loading.vue';
 
+import { convertToUsedStatesText } from '@/logic/utils';
 import ProductListService from '@/logic/product-list.service';
 import ProductService from '@/logic/product.service';
+import IncludeFileService from '@/logic/include-file.service';
 import ProductListConfigsService from '@/logic/tsv/product-list-configs.service';
 import ProductListSysConfigsService from '@/logic/tsv/product-list-sys-configs.service';
+import CanonicalService from '@/logic/canonical.service';
 
 import { NewerCategory, UsedCategory, SpecialBanner } from '@/types/tsv-config';
 import { ProductItem, ProductListCount } from '@/types/product-list';
@@ -376,8 +379,6 @@ import { ConditionItem } from '@/types/conditions';
 import { SEARCH_STATE } from '@/constants/search-state';
 import { DISPLAY_COUNT_LIST } from '@/constants/display-conut-list';
 import { NEWER_SORT_LIST, USED_SORT_LIST } from '@/constants/sort-list';
-import { USED_STATES } from '@/constants/used-states';
-import IncludeFileService from '@/logic/include-file.service';
 
 type BreadcrumbItem = {
   path: string;
@@ -418,6 +419,7 @@ export default Vue.extend({
       netChukoUrl: process.env.VUE_APP_NET_CHUKO_URL,
       // 中古表示判定用
       isUsed: false,
+      usedTitle: '',
       // 同型商品絞り込み判定用
       isKeyword3: false,
       // 現在選択中のカテゴリ情報, キーワード
@@ -495,6 +497,9 @@ export default Vue.extend({
       if (query.type && query.type === 'u') {
         state.isUsed = true;
         state.sort = USED_SORT_LIST;
+
+        // カノニカルを設定
+        CanonicalService.set(window.location.origin + '/ec/list?type=u&sort=update_date');
       } else {
         state.isUsed = false;
         state.sort = NEWER_SORT_LIST;
@@ -627,13 +632,13 @@ export default Vue.extend({
           // 中古在庫:商品状態
           case 'n1c':
             if (state.isUsed) {
-              const convertState = USED_STATES.filter((item) => item.value === val)[0];
-              if (convertState) {
+              const targetStateText = convertToUsedStatesText(val as string);
+              if (targetStateText) {
                 state.currentConditions.push({
                   paramCode: key,
                   paramText: conditionInfo.name,
                   value: val as string,
-                  valueText: conditionInfo.isConvert ? convertState.text : (val as string)
+                  valueText: conditionInfo.isConvert ? targetStateText : (val as string)
                 });
               }
             }
@@ -778,6 +783,43 @@ export default Vue.extend({
     };
 
     /**
+     * パンくずの生成（中古在庫）
+     * @param itemCode 商品コード
+     */
+    const generateUsedBreadcrumbs = async (itemCode: string): Promise<void> => {
+      // カテゴリ指定時
+      if (state.currentCategoryInfo.concatenationCategoryName) {
+        state.breadcrumbs = [
+          { path: 'TOP', linkUrl: '/' },
+          { path: '中古商品', linkUrl: '/ec/ct/used/list' },
+          { path: `${state.currentCategoryInfo.concatenationCategoryName}の中古在庫`, linkUrl: '' }
+        ];
+        // 同型商品表示時
+      } else if (state.isKeyword3) {
+        try {
+          const usedProduct = await ProductService.fetchUsedProducts(itemCode);
+
+          const itemName = usedProduct.itemName.replace('【中古】', '');
+          state.breadcrumbs = [
+            { path: 'TOP', linkUrl: '/' },
+            { path: usedProduct.prdType, linkUrl: `/ec/list?type=u&category=${usedProduct.prdType}` },
+            { path: usedProduct.makerName, linkUrl: `/ec/list?type=u&category=${usedProduct.prdType}&narrow1=${usedProduct.makerName}` },
+            { path: itemName, linkUrl: `/ec/pd/${usedProduct.janCode}` },
+            { path: '中古在庫の一覧', linkUrl: '' }
+          ];
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        state.breadcrumbs = [
+          { path: 'TOP', linkUrl: '/' },
+          { path: '中古商品', linkUrl: '/ec/ct/used/list' },
+          { path: '中古在庫', linkUrl: '' }
+        ];
+      }
+    };
+
+    /**
      * 現在選択中のカテゴリーのみの条件を生成
      */
     const generateCategoryCondition = (): Array<ConditionItem> => {
@@ -851,7 +893,8 @@ export default Vue.extend({
       let searchResult;
       try {
         searchResult = await ProductListService.searchNewItem(serchCondition, sort, displayCount, page);
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         searchResult = {
           items: [] as Array<ProductItem>,
           wordItems: [] as Array<{
@@ -871,15 +914,16 @@ export default Vue.extend({
         searchResult.items.forEach((item) => {
           itemIds.push(item.itemid);
         });
-        try {
-          const usedProductsResult = await ProductService.searchUsedProductsSummary(itemIds);
-          state.usedProductsSummary = usedProductsResult.itemInfo;
-          // TODO: 仕様決定後、お気に入りに登録済かを一括取得実装
-          // const isFavoriteByJanCodes = await ProductService.isFavoriteByJanCodes(itemIds);
-        } catch (err) {
-          state.usedProductsSummary = [];
-        }
+
+        // 画面描画を早くするため、APIを非同期でコールする
+        ProductService.searchUsedProductsSummary(itemIds)
+          .then((usedProductsResult) => (state.usedProductsSummary = usedProductsResult.itemInfo))
+          .catch((error) => {
+            console.error(error);
+            state.usedProductsSummary = [];
+          });
       }
+
       // 各種格納
       switch (type) {
         case 'search':
@@ -936,7 +980,8 @@ export default Vue.extend({
       let result;
       try {
         result = await ProductListService.searchUsedItem(serchCondition, sort, displayCount, page);
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         result = {
           items: [] as Array<ProductItem>,
           wordItems: [] as Array<{
@@ -951,7 +996,13 @@ export default Vue.extend({
           if (result.items.length) {
             state.results = result.items;
             // titleの設定
-            document.title = state.isKeyword3 ? `【中古】${result.items[0].title}の通販・在庫一覧` : DEFAULT_TITLE;
+            if (state.isKeyword3) {
+              document.title = `【中古】${result.items[0].title}の通販・在庫一覧`;
+              state.usedTitle = `【中古】 ${result.items[0].title} の在庫一覧`;
+            }
+
+            // パンくずを設定する
+            generateUsedBreadcrumbs(result.items[0].itemid);
           } else {
             searchError();
           }
@@ -992,7 +1043,8 @@ export default Vue.extend({
         const result = await ProductListService.searchNewItemCount(serchCondition);
         state.totalCount = result.total;
         state.condisionsCount = result;
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         searchError();
       }
     };
@@ -1005,7 +1057,8 @@ export default Vue.extend({
         const result = await ProductListService.searchUsedItemCount(serchCondition);
         state.totalCount = result.total;
         state.condisionsCount = result;
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         searchError();
       }
     };
@@ -1068,7 +1121,8 @@ export default Vue.extend({
       try {
         const result = await ProductService.searchRecommendProducts(customerId, recommendId, '', 'searchReccomenedProducts', categoryCode);
         state.recommendProducts = result.items;
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         state.recommendProducts = [] as Array<sliderItem>;
       } finally {
         state.loaded.recommendProducts = true;
@@ -1086,7 +1140,7 @@ export default Vue.extend({
       }
     );
 
-    // 検索条件情に基づく表示
+    // 検索条件情報に基づく表示
     watch(
       () => [state.isfinishedInit, state.currentConditions, state.currentSort, state.currentDisplayCount],
       () => {
@@ -1284,11 +1338,15 @@ export default Vue.extend({
      * 既存の比較ページに遷移
      */
     const toComparison = () => {
-      let url = '/pd/compareproducts.html?prd=';
+      // storeに保存
+      condition.saveRecentCondtion(state.currentConditions, state.currentSort, state.currentDisplayCount);
+
+      // 遷移
+      let url = '/ec/pd/compareproducts?prd=';
       comparison.comparisonList.forEach((janCode: string, index: number) => {
         url = index === 0 ? url + janCode : url + '-' + janCode;
       });
-      window.open(url, '_blank');
+      context.root.$router.push({ path: url });
     };
 
     /**
@@ -1349,7 +1407,25 @@ export default Vue.extend({
         } else {
           state.currentConditions.unshift(addCondItem);
         }
-        state.currentCategoryInfo = category.searchNewerCategoryByConcatenationName(addCondItem.value);
+
+        if (state.isUsed) {
+          // 中古在庫の場合
+          const currentUsedCategory = category.searchUsedCategoryByName(addCondItem.value);
+          if (Object.keys(currentUsedCategory).length) {
+            state.currentCategoryInfo = {
+              code: currentUsedCategory.newerCode,
+              digit: `${currentUsedCategory.newerCode.length}`,
+              parentCategoryName: currentUsedCategory.categoryName,
+              childCategoryName: '',
+              grandchildCategoryName: '',
+              concatenationCategoryName: currentUsedCategory.categoryName,
+              path: ''
+            };
+          }
+        } else {
+          // 新品の場合
+          state.currentCategoryInfo = category.searchNewerCategoryByConcatenationName(addCondItem.value);
+        }
       } else {
         state.currentConditions.push(addCondItem);
       }

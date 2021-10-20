@@ -8,6 +8,7 @@
             :product="item"
             :usedProductSummary="fetchUsedProductSummary(item.janCode)"
             :isRelatedProducts="isRelatedProducts"
+            :cartButtonText="cartButtonText"
           />
         </v-slide-item>
       </v-slide-group>
@@ -39,6 +40,11 @@ export default Vue.extend({
     isRelatedProducts: {
       type: Boolean,
       required: true
+    },
+    // カートボタンテキスト
+    cartButtonText: {
+      type: String,
+      default: 'あわせて買う'
     }
   },
   setup: (props) => {

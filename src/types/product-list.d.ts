@@ -13,12 +13,14 @@ export type ProductItem = {
   image: string;
   price: string;
   data18: string; // レビュー評価
+  isSalesEnd?: boolean;
 };
 
 export type ProductListCount = {
   total: number;
   price: Array<any>;
-  category: Array<any>;
+  category: { [key: string]: number };
+  narrow1: { [key: string]: number };
 };
 
 export type ShopResluts = {

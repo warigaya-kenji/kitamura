@@ -25,9 +25,9 @@
               >
               </v-rating>
               <span class="secondary-link ml-5" v-if="reviewNum > 0">
-                <a :href="'/pd/review/list.html?jan_cd=' + janCode">
+                <router-link :to="`/ec/review/${janCode}`">
                   <span class="secondary-link-text">{{ reviewNum }}件のレビュー</span>
-                </a>
+                </router-link>
               </span>
               <span v-else class="secondary-link ml-5">{{ reviewNum }}件のレビュー</span>
             </div>
@@ -72,7 +72,7 @@
         </v-card>
 
         <!-- もっと見る -->
-        <v-btn class="review-list-more-btn" outlined tile :href="`/pd/review/list.html?jan_cd=${janCode}`"
+        <v-btn class="review-list-more-btn" outlined tile :to="`/ec/review/${janCode}`"
           >もっと見る
           <v-icon class="review-list-more-btn-icon" small color="rgba(0, 0, 0, 1)">fas fa-plus</v-icon>
         </v-btn>
@@ -162,7 +162,7 @@ export default Vue.extend({
      */
     const toReviewEntry = () => {
       if (authorizer.isLoggedIn) {
-        location.href = `/pd/review/entry.html?jan_cd=${props.janCode}`;
+        context.root.$router.push({ name: 'my-page-review-post', params: { janCode: props.janCode as string } });
       } else {
         alert('レビュー投稿にはログインが必要です。');
         authorizer.openLoginMenu();

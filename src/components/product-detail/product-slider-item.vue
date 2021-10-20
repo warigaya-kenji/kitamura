@@ -49,24 +49,24 @@
         <!-- 関連商品以外の時 -->
         <div class="price-nomarl" v-if="!isRelatedProducts">
           <span>価格：</span>
-          <span class="price-text">{{ formatPrice(product.price) }}円</span>(税込)
+          <span class="price-text">{{ formatPrice(product.price) }}円</span>
         </div>
         <!-- 関連商品の時 -->
         <div class="price-related" v-if="isRelatedProducts">
           <div v-if="!isUsed && product.isSetDiscount">
             <span class="price-emphasis">同時購入で：</span>
-            <span class="price-text">{{ formatPrice(product.setDiscountPrice) }}円</span>(税込)
+            <span class="price-text">{{ formatPrice(product.setDiscountPrice) }}円</span>
           </div>
           <div v-else>
             <span v-if="product.priceDiv === 3" class="price-emphasis">特別価格：</span>
             <span v-else-if="product.priceDiv === 2" class="price-emphasis">会員価格：</span>
             <span v-else-if="product.priceDiv === 1">価格：</span>
-            <span class="price-text">{{ formatPrice(product.price) }}円</span>(税込)
+            <span class="price-text">{{ formatPrice(product.price) }}円</span>
           </div>
         </div>
         <div class="price-used" v-if="usedProductSummary.itemCount && usedProductSummary.itemCount > 0">
           <span>中古：</span>
-          <span class="price-text">{{ formatPrice(usedProductSummary.minPrice) }}円</span>(税込)～
+          <span class="price-text">{{ formatPrice(usedProductSummary.minPrice) }}円</span>～
           <a :href="'/ec/list?keyword3=' + product.janCode + '&type=u'">
             <span class="price-text-used">({{ usedProductSummary.itemCount }}点)</span>
           </a>
@@ -79,7 +79,7 @@
           <template v-slot:activator="{ attrs }">
             <v-btn color="#ff8400" class="cart-button" v-on:click="addCart()" v-bind="attrs">
               <i class="fas fa-shopping-cart mr-1"></i>
-              あわせて買う
+              {{ cartButtonText }}
             </v-btn>
           </template>
           <span>カートに投入しました</span>
@@ -122,6 +122,11 @@ export default Vue.extend({
     isRelatedProducts: {
       type: Boolean,
       required: true
+    },
+    // カートボタンテキスト
+    cartButtonText: {
+      type: String,
+      default: 'あわせて買う'
     }
   },
   setup: (props: any) => {

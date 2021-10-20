@@ -6,13 +6,13 @@
         <breadcrumbs :breadcrumbs="breadcrumbs" />
 
         <!-- ↓url copy -->
-        <urlcopy :url="'https://shop.kitamura.jp/ec/special/sale-fair/camera/feature/nikon/zfc/'" />
+        <urlcopy />
         <!-- ↑url copy -->
 
         <!-- ↓top image -->
         <topTitleImg
-          :pcBackgroundImg="'/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm'"
-          :spBackgroundImg="'/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/sp_img_top.jpg'"
+          :pcBackgroundImg="'/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/bg_top.png'"
+          :spBackgroundImg="'/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/sp_img_top.png'"
           :topTitle="'キヤノン RF14-35mm F4 L IS USM'"
           :topTitleText="'超広角14mm採用で広がりのある\n映像表現が可能なRFマウント「L」レンズ'"
         />
@@ -31,47 +31,39 @@
         <!-- ↑ ナビボタン -->
 
         <div class="text-right">
-          <v-btn href="camera/feature/backnumber/" text class="black white--text font-weight-bold kg-in main-contents-wrap-btn"
-            >≫ 話題の新製品バックナンバー</v-btn
+          <v-btn tile href="/ec/special/camera/feature/backnumber" color="black" class="kg-in main-product-btn"
+            ><span class="white--text">≫ 話題の新製品バックナンバー</span></v-btn
           >
         </div>
 
         <subText :textItem="'焦点距離14mmの超広角撮影を実現し、最高水準の性能を追求した”L” レンズ'" />
         <!-- ↓ 価格・ご予約 -->
         <subText :textItem="'キヤノン RF14-35mm F4 L IS USM 価格・ご予約'" />
-        <priceReserve :mainProductList="productDetailList" />
+        <priceAndPurchase :mainProductList="productDetailList" :btnColor="'red darken-2'" :btntxt="'ご予約はこちら'" />
 
         <!-- ↓ 高価下取り -->
         <subText :textItem="'キヤノン RF14-35mm F4 L IS USM ご購入時、高価下取り実施中！'" />
         <expensiveTradeIn :expensiveTradeInList="expensiveTradeInList" />
 
         <!-- ↓ 48回まで分割ー -->
-        <subText :textItem="'キタムラなら48回まで分割金利手数料0円！'" />
-        <splitContent
-          v-if="productDetailList.length !== 0"
-          :ProductList="productDetailList"
-          :amount="'4,435'"
-          :targetDate="'2021年6月29日'"
-          :isCreditBtn="true"
-        />
-
-        <!--特徴-->
-        <subText :textItem="'キヤノン RF14-35mm F4 L IS USMの特徴'" id="point" />
-        <characteristic :characteristics="characteristicList" />
-        <!--特徴-->
-
-        <div class="text-center">
-          <v-hover v-slot="{ hover }">
-            <v-btn
-              :elevation="hover ? 12 : 2"
-              class="black darken-4 text-h6 white--text main-contents-wrap-btn my-10"
-              height="70px"
-              width="50%"
-              :href="`https://cweb.canon.jp/eos/rf/lineup/rf14-35-f4l/`"
-              >キヤノン メーカーサイトは<br />コチラから</v-btn
-            >
-          </v-hover>
+        <div id="price">
+          <subText :textItem="'キタムラなら48回まで分割金利手数料0円！'" />
+          <splitContent :ProductList="productDetailList[0]" :amount="'4,435'" :targetDate="'2021年6月29日'" :isCreditBtn="true" />
         </div>
+
+        <!--特徴-->
+        <div id="spec">
+          <subText :textItem="'キヤノン RF14-35mm F4 L IS USMの特徴'" />
+          <characteristic :characteristics="characteristicList" />
+        </div>
+        <!--特徴-->
+
+        <!-- ↓ 仕様・作例ボタンー -->
+        <specificationsExamplesBtn
+          :btntxt="'キヤノン メーカーサイトは\nコチラから'"
+          :url="'https://cweb.canon.jp/eos/rf/lineup/rf14-35-f4l/'"
+          :height="'70px'"
+        />
 
         <!--比較-->
         <subText
@@ -97,7 +89,7 @@
                 <th>価格</th>
                 <td v-for="(product, index) in comparisonDetailList" :key="`third-${index}`">
                   <span class="primary--text font-weight-bold">¥{{ formatPrice(parseInt(product.price)) }}</span
-                  >（税込）
+                  >（円）
                 </td>
               </tr>
               <tr>
@@ -169,7 +161,7 @@
         <!--比較-->
 
         <!-- ↓ ShaSha -->
-        <subText :textItem="'ShaSha:キヤノン EOS R5｜航空写真家がスチル＆ムービーで徹底レビュー'" />
+        <subText :textItem="'ShaSha:キヤノン RF14-35mm F4 L IS USM 紹介記事'" />
         <shasha
           :txt="'キヤノンからフルサイズミラーレスカメラ用交換レンズの「RF14-35mm F4 L IS USM」を2021年9月下旬に発売するとアナウンスがありました。これでRFマウントの小三元が全て揃うことになります。\n本製品の魅力について、キヤノンマーケティングジャパン カメラ営業二部 営業第一課のご担当の方へインタビューしましたので...'"
           :href="'https://shasha.kitamura.jp/article/482251290.html'"
@@ -182,13 +174,15 @@
         <priceAndPopular :productDetailList="productDetailList" />
 
         <!-- ↓ 作例画像 -->
-        <subText :textItem="'キヤノン RF14-35mm F4 L IS USM 作例画像'" />
-        <exampleImages :path="'/ec/images2/special/camera/feature/canon/rf1435mmf4lisusm/'" :count="4" />
+        <div id="images">
+          <subText :textItem="'キヤノン RF14-35mm F4 L IS USM 作例画像'" />
+          <exampleImages :path="'/ec/images2/special/camera/feature/canon/rf1435mmf4lisusm/'" :count="4" :type="2" />
+        </div>
 
         <!-- ↓ SNS -->
         <facebookAndTwitter />
 
-        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" id="images" />
+        <subText :textItem="'話題の新製品バックナンバー＆おすすめの特集'" />
         <recommendedFeatures :recommendedFeaturesList="recommendedFeaturesList" />
       </div>
     </div>
@@ -203,7 +197,7 @@ import { noimage, formatPrice } from '@/logic/utils';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
 import Urlcopy from '@/components/common/special/url-copy.vue';
 import TopTitleImg from '@/components/common/special/top-title-img.vue';
-import PriceReserve from '@/components/common/special/price-reserve.vue';
+import PriceAndPurchase from '@/components/common/special/price-purchase.vue';
 import ExpensiveTradeIn from '@/components/common/special/expensive-trade-in.vue';
 import ProductService from '@/logic/product.service';
 import NaviBtn from '@/components/common/special/navi-btn.vue';
@@ -215,6 +209,7 @@ import PriceAndPopular from '@/components/common/special/price-and-popular.vue';
 import ExampleImages from '@/components/common/special/example-image.vue';
 import FacebookAndTwitter from '@/components/common/special/facebook-twitter.vue';
 import RecommendedFeatures from '@/components/common/special/recommended-features.vue';
+import SpecificationsExamplesBtn from '@/components/common/special/specifications-examples-btn.vue';
 
 export default Vue.extend({
   name: 'rf14-35mmf4lisusm',
@@ -222,7 +217,7 @@ export default Vue.extend({
     breadcrumbs: Breadcrumbs,
     urlcopy: Urlcopy,
     topTitleImg: TopTitleImg,
-    priceReserve: PriceReserve,
+    priceAndPurchase: PriceAndPurchase,
     expensiveTradeIn: ExpensiveTradeIn,
     naviBtn: NaviBtn,
     subText: SubText,
@@ -232,9 +227,12 @@ export default Vue.extend({
     priceAndPopular: PriceAndPopular,
     exampleImages: ExampleImages,
     facebookAndTwitter: FacebookAndTwitter,
-    recommendedFeatures: RecommendedFeatures
+    recommendedFeatures: RecommendedFeatures,
+    specificationsExamplesBtn: SpecificationsExamplesBtn
   },
   setup: (props, context) => {
+    document.title = 'キヤノン RF14-35mm F4 L IS USM | カメラのキタムラネットショップ'
+    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'キヤノン RF14-35mm F4 L IS USM 予約受付中！比較や、価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
     const state = reactive({
       breadcrumbs: [
         {
@@ -244,7 +242,7 @@ export default Vue.extend({
         },
         {
           path: '最新デジカメ新製品',
-          linkUrl: '/ec/special/camera/feature/',
+          linkUrl: '/ec/special/camera/feature',
           disabled: false
         },
         {
@@ -314,9 +312,9 @@ export default Vue.extend({
           { name: 'EF11-24mm F4L USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292010169&pattern=1' },
           { name: 'EF16-35mm F2.8L III USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292037722&pattern=1' },
           { name: 'EF17-40mm F4L USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4960999189949&pattern=1' },
-          { name: 'RF15-35mm F2.8 L IS USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292152272&pattern=1' },
+          { name: 'RF15-35mm F2.8 L IS USM', href: 'https://www.net-chuko.com/sell/item-list.do?goodsname=4549292152272&pattern=1' }
         ],
-        tradeInImg: '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/bnr_shitadori_350-130.jpg',
+        tradeInImg: '/ec/images2/special/camera/feature/canon/rf14-35mmf4lisusm/bnr_shitadori_350-130.png'
       },
       recommendedFeaturesList: [
         {
@@ -330,7 +328,7 @@ export default Vue.extend({
           alt: 'セール・特集一覧'
         },
         {
-          href: '/sitemap/s_credit_01.htm',
+          href: '/ec/guide/s_credit_01',
           img: 'https://shopimg.kitamura.jp/images/banner/1486.gif',
           alt: 'ショッピングクレジット'
         },
