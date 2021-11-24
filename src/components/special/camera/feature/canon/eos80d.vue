@@ -54,7 +54,7 @@
             <v-container class="mt-8">
               <v-row>
                 <v-col cols="12">
-                  <a href="http://shop.kitamura.jp/pd/compareproducts.html?prd=4549292060935-4960999979779-4960759145604">
+                  <router-link to="/ec/pd/compareproducts?prd=4549292060935-4960999979779-4960759145604">
                     <v-img
                       src="/ec/images2/special/camera/feature/canon/80d/btn_comparison.gif"
                       alt="比較"
@@ -62,7 +62,7 @@
                       max-height="100px"
                       class="mx-auto hover"
                     ></v-img>
-                  </a>
+                  </router-link>
                 </v-col>
               </v-row>
             </v-container>
@@ -233,7 +233,8 @@ export default Vue.extend({
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       breadcrumbs: [

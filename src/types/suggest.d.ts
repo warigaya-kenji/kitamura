@@ -9,6 +9,7 @@ export type SuggestItem = {
   items: Array<{
     title: string;
     jan_code: string;
+    goods_code?:string;
   }>;
   word: string;
 };

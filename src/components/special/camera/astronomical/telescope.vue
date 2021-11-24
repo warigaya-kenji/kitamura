@@ -106,73 +106,96 @@
               >初心者さんや、お子様との観測でも使いやすいシリーズ</span
             >です◎<br />お手頃価格なスペースアイ600も人気です☆
           </p>
+
           <v-row class="mb-6">
-            <v-col cols="12" sm="4" class="bd-rgr">
-              <h3 class="ossm page-color text-center">
-                初心者でも安心♪<br />
-                撮影もできる天体望遠鏡
-              </h3>
+            <v-col cols="12" sm="6" class="bd-rgr mb-4">
+              <h3 class="ossm page-color text-center">おすすめ天体望遠鏡 ビクセン ポルタII A80Mf</h3>
               <div class="d-flex flex-column justify-space-between align-center">
-                <v-img src="/ec/images2/special/camera/astronomical/telescope/img_01.jpg" max-width="100%" height="auto"></v-img>
+                <router-link to="/ec/pd/4955295399529"
+                  ><v-img
+                    src="https://shopimg.kitamura.jp/images/pd/45f/b5f/99d/27b/674/30b/cbf/4a7/bae/3fd/7f0/p7e/zwr/1/L.jpg"
+                    max-width="350px"
+                    height="auto"
+                    class="mx-auto"
+                  ></v-img
+                ></router-link>
               </div>
               <p class="text-left line-height">
                 初心者でも扱いやすい屈折式で、<span class="red--text yellow lighten-3">ゆくゆくはデジカメや小型一眼で写真を撮ってみたい人は、迷わずコレ</span
                 >！<br />
-                使いやすさはもちろん、APS-Cのデジタル一眼レフくらいまでなら、撮影が可能です。<br />
-                耐加重があり、カメラを付けたときの「たわみ」や強度・風ブレの影響を、受けにくいです。
+                使いやすさはもちろん、APS-Cのデジタル一眼レフくらいまでなら、撮影が可能です。耐加重があり、カメラを付けたときの「たわみ」や強度・風ブレの影響を、受けにくいです。
               </p>
               <v-hover v-slot="{ hover }">
-                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-2 text-center rounded-lg">
-                  <a
-                    href="/ec/pd/list_dtl.html?index=all&searchbox=1&sort=number20%2CScore&q=%E3%83%93%E3%82%AF%E3%82%BB%E3%83%B3+%E3%83%9D%E3%83%AB%E3%82%BFII+A80Mf&path=&y=0%3Fref%3Dtelescope&x=0"
-                  >
-                    <span class="white--text">おすすめ天体望遠鏡<br />ビクセン ポルタII A80Mf</span></a
-                  >
+                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-1 text-center rounded-lg">
+                  <router-link to="/ec/pd/4955295399529"> <span class="white--text">商品ページを見る</span></router-link>
                 </v-sheet>
               </v-hover>
             </v-col>
-            <v-col cols="12" sm="4" class="bd-rgr">
-              <h3 class="ossm page-color text-center">高倍率を楽しみたい！<br />本格派の天体望遠鏡</h3>
+            <v-col cols="12" sm="6" class="bd-rgr mb-4">
+              <h3 class="ossm page-color text-center">おすすめ天体望遠鏡 ビクセン ポルタII R130Sf</h3>
               <div class="d-flex flex-column justify-space-between align-center">
-                <v-img src="/ec/images2/special/camera/astronomical/telescope/img_02.jpg" max-width="100%" height="auto"></v-img>
+                <router-link to="/ec/pd/4955295399543"
+                  ><v-img src="/ec/images2/special/camera/astronomical/telescope/img_02.jpg" max-width="350px" height="auto" class="mx-auto"></v-img
+                ></router-link>
               </div>
               <p class="text-left line-height">
-                本格的に天体観測をしたい人向け。<span class="red--text yellow lighten-3">別売の接眼レンズを使えば、20倍～260倍と幅広い倍率で観測ができます</span
-                >。<br />
+                本格的に天体観測をしたい人向け。<span class="red--text yellow lighten-3"
+                  >別売の接眼レンズを使えば、20倍～260倍と幅広い倍率で観測ができます。</span
+                ><br />
                 外に出してから30～40分くらいは筒の内外で気温差が発生するため、もやもやと見えたり、大気の状況に見え方が左右されやすかったりと、扱いが少し難しい部分もあります。
               </p>
               <v-hover v-slot="{ hover }">
-                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-2 text-center rounded-lg">
-                  <a
-                    href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E3%83%93%E3%82%AF%E3%82%BB%E3%83%B3%20%20%E3%83%9D%E3%83%AB%E3%82%BFII%20R130Sf&category=&index=all&searchbox=1&sort=number20,Score&q=%E3%83%93%E3%82%AF%E3%82%BB%E3%83%B3%20%20%E3%83%9D%E3%83%AB%E3%82%BFII%20R130Sf&path=&y=0%3Fref%3Dtelescope&x=0"
-                  >
-                    <span class="white--text">おすすめ天体望遠鏡<br />ビクセン ポルタII R130Sf</span></a
-                  >
+                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-1 text-center rounded-lg">
+                  <router-link to="/ec/pd/4955295399543"><span class="white--text">商品ページを見る</span></router-link>
                 </v-sheet>
               </v-hover>
             </v-col>
 
-            <v-col cols="12" sm="4" class="bd-rgr">
-              <h3 class="ossm page-color text-center">
-                簡単操作で<br />
-                お手頃価格な天体望遠鏡
-              </h3>
+            <v-col cols="12" sm="6" class="bd-rgr mb-4">
+              <h3 class="ossm page-color text-center">おすすめ天体望遠鏡 セレストロン 天体望遠鏡 StarSense Explorer LT 70AZ</h3>
               <div class="d-flex flex-column justify-space-between align-center">
-                <v-img src="/ec/images2/special/camera/astronomical/telescope/img_03.jpg" max-width="100%" height="auto"></v-img>
+                <router-link to="/ec/pd/4955295361557"
+                  ><v-img
+                    src="https://shopimg.kitamura.jp/images/pd/ca0/3b2/b89/095/c91/56c/1db/eed/1fe/8ee/c3g/fga/slq/y/L.jpg"
+                    max-width="350px"
+                    height="auto"
+                    class="mx-auto"
+                  ></v-img
+                ></router-link>
               </div>
               <p class="text-left line-height">
-                ビクセン スペースアイ600は、お子様へのプレゼントや、これから天体観測を始めたい初心者さんにピッタリの、お手頃価格がうれしい天体望遠鏡です。<br />
-                月のクレーターから木星の衛星、土星のリングまで幅広く観測できます。 また、3.3kgと軽量・コンパクトなので、<span class="red--text yellow lighten-3"
-                  >組立や操作がとても簡単です</span
-                >!
+                セレストロン StarSense Explorer LT70AZは<span class="red--text yellow lighten-3"
+                  >星の知識に自信がない方でも、星を探して見ることができる天体望遠鏡</span
+                >です。<br />土星や木星などの惑星はもちろん、オリオン大星雲や二重星など、初心者には難易度の高い星雲や星団までスマートフォンがナビゲートします。<br />
+                ビクセンのYouTube公式チャンネルでは組み立て、ファインダー合わせ、アプリの設定方法など、動画で解説しています。
               </p>
               <v-hover v-slot="{ hover }">
-                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-2 text-center rounded-lg">
-                  <a
-                    href="https://shop.kitamura.jp/ec/list?narrow18=0&keyword=%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%A2%E3%82%A4&category=&r=&q=%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%A2%E3%82%A4&path=&index=all&sort=number20,Number17,Score&searchbox=1"
-                  >
-                    <span class="white--text">おすすめ天体望遠鏡<br />ビクセン ビクセン スペースアイ600</span></a
-                  >
+                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-1 text-center rounded-lg">
+                  <router-link to="/ec/pd/4955295361557"><span class="white--text">商品ページを見る</span></router-link>
+                </v-sheet>
+              </v-hover>
+            </v-col>
+            <v-col cols="12" sm="6" class="bd-rgr mb-4">
+              <h3 class="ossm page-color text-center">おすすめ天体望遠鏡 ビクセン 天体望遠鏡 スペースアイ600</h3>
+              <div class="d-flex flex-column justify-space-between align-center">
+                <router-link to="/ec/pd/4955295327539"
+                  ><v-img
+                    src="https://shopimg.kitamura.jp/images/pd/614/a24/7ad/8c1/009/138/24d/978/27b/086/443/0ah/l85/2/L.jpg"
+                    max-width="350px"
+                    height="auto"
+                    class="mx-auto"
+                  ></v-img
+                ></router-link>
+              </div>
+              <p class="text-left line-height">
+                ビクセン スペースアイ600は、お子様へのプレゼントや、これから天体観測を始めたい初心者さんにピッタリの、お手頃価格がうれしい天体望遠鏡です。<br />月のクレーターから木星の衛星、土星のリングまで幅広く観測できます。<br />また、3.3kgと軽量・コンパクトなので、<span
+                  class="red--text yellow lighten-3"
+                  >組立や操作がとても簡単</span
+                >です！
+              </p>
+              <v-hover v-slot="{ hover }">
+                <v-sheet :elevation="hover ? 6 : 2" class="bg-buru text-subtitle-1 text-center rounded-lg">
+                  <router-link to="/ec/pd/4955295327539"> <span class="white--text">商品ページを見る</span></router-link>
                 </v-sheet>
               </v-hover>
             </v-col>
@@ -234,7 +257,7 @@
           >となります。
         </p>
         <p class="text-justify text-h6">
-          例②<br />ポルタII A80Mf(焦点距離910mm)と、<a href="/ec/pd/4955295372072" class="indigo--text">接眼レンズSLV10mm(焦点距離 10mm)</a
+          例②<br />ポルタII A80Mf(焦点距離910mm)と、<router-link to="/ec/pd/4955295372072" class="indigo--text">接眼レンズSLV10mm(焦点距離 10mm)</router-link
           >を組み合わせた場合・・・<br />910 ÷ 10 =<span class="red--text mx-4">91倍</span>となります。
         </p>
 
@@ -251,21 +274,11 @@
         </v-row>
 
         <!--↓ 価格・人気アクセサリー-->
-        <h2 class="page-color mt-10" id="list">おすすめ天体望遠鏡 商品・価格一覧</h2>
+        <h2 class="page-color mt-10 mb-7" id="list">おすすめ天体望遠鏡 商品・価格一覧</h2>
         <v-divider></v-divider>
-        <v-container class="mb-10">
-          <v-row>
-            <v-col cols="3" v-for="productDetail in productDetailList" :key="productDetail" class="text-center">
-              <a :href="`/ec/pd/${productDetail.janCode}`"><img :src="productDetail.images[0].imagePath" class="mx100pr" /></a>
-              <p class="font-small blue--text mb-2 height-20">
-                <a :href="`/ec/pd/${productDetail.janCode}`">{{ productDetail.itemName }}</a>
-              </p>
-              <p class="mt-2">
-                価格:<span class="red--text font-small">&yen;{{ productDetail.price }}&nbsp;</span><span class="font-small">(税込)</span>
-              </p>
-            </v-col>
-          </v-row>
-        </v-container>
+        <!-- ↓ サンプル：特集IDでの商品一覧表示 -->
+        <product-list-by-special-id class="my-5" :specialId="1379" />
+        <!-- ↑ サンプル：特集IDでの商品一覧表示 -->
         <!--↓ 価格・人気アクセサリー-->
 
         <!--↓ ショッピングクレジット-->
@@ -338,6 +351,7 @@ import RecommendedFeatures from '@/components/common/special/recommended-feature
 import Urlcopy from '@/components/common/special/url-copy.vue';
 import TableOfContentsNavi from '@/components/common/special/table-of-contents-navi.vue';
 import ShoppingCredit from '@/components/common/special/shopping-credit.vue';
+import ProductListBySpecialId from '@/components/special/common/product-list-by-special-id.vue';
 
 export default Vue.extend({
   name: 'telescope',
@@ -347,7 +361,8 @@ export default Vue.extend({
     recommendedFeatures: RecommendedFeatures,
     urlcopy: Urlcopy,
     tableOfContentsNavi: TableOfContentsNavi,
-    shoppingCredit: ShoppingCredit
+    shoppingCredit: ShoppingCredit,
+    'product-list-by-special-id': ProductListBySpecialId
   },
   setup: (props, context) => {
     document.title = 'おすすめ天体望遠鏡の選び方 | カメラのキタムラネットショップ';
@@ -392,7 +407,7 @@ export default Vue.extend({
         },
         {
           path: '天体観測スケジュール',
-          linkUrl: 'https://shop.kitamura.jp/special/sale-fair/camera/astronomical/',
+          linkUrl: 'https://shop.kitamura.jp/ec/special/camera/astronomical',
           disabled: false
         },
         {
@@ -401,18 +416,7 @@ export default Vue.extend({
         }
       ],
       // 取得するJancode
-      productJanCodeList: [
-        '4955295327539',
-        '4955295399529',
-        '4955295399543',
-        '4955295880003',
-        '4955295399697',
-        '4955295372072',
-        '4955295372058',
-        '4955295372027',
-        '4955295372034',
-        '4955295372225'
-      ],
+      productJanCodeList: ['4955295327539'],
       // 結果格納用
       productDetailList: [] as Array<ProductDetail>
     });
@@ -439,7 +443,7 @@ export default Vue.extend({
   }
 });
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .newline {
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -452,18 +456,19 @@ export default Vue.extend({
   height: auto;
   padding: 5px 0px;
   box-sizing: border-box;
-  background-image: url(/ec/images2/special/camera/astronomical/telescope/bg_mst.jpg);
-  background-repeat: no-repeat;
-  background-position: top center;
 }
 .bg-buru {
-  line-height: 1.2em;
+  height: auto;
   color: #ffffff !important;
   padding: 10px 0;
   background: rgb(61, 83, 150);
   background: linear-gradient(90deg, rgba(61, 83, 150, 1) 0%, rgba(115, 132, 203, 1) 100%);
 }
-
+.bg-buru a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .bd-rgr {
   border-right: 1px dashed #cccccc;
 }
@@ -482,7 +487,7 @@ ul.squ li {
 .imgtitle {
   width: 100%;
   height: auto;
-  padding: 0px 0px 0px 30px;
+  padding: 10px 0px 10px 30px;
   font-weight: 800;
   color: #313131;
   background-image: url(/ec/images2/special/camera/astronomical/telescope/bg_imgtitle.gif);

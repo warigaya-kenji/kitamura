@@ -66,26 +66,15 @@
                 </tr>
                 <tr>
                   <th>商品イメージ</th>
-                  <td>
-                    <v-img
-                      src="https://shopimg.kitamura.jp/images/pd/fbd/8a9/150/f4e/51e/08c/4ec/934/dbc/5cd/e41/bjr/8ui/x/M.jpg"
-                      :max-width="$vuetify.breakpoint.mdAndUp ? 220 : 77"
-                      height="auto"
-                    />
-                  </td>
-                  <td>
-                    <v-img
-                      src="https://shopimg.kitamura.jp/images/pd/a9e/a37/8b0/9f7/6bc/00d/0b7/5e9/d1e/c0a/1cw/xxc/1ut/g/M.jpg"
-                      :max-width="$vuetify.breakpoint.mdAndUp ? 220 : 77"
-                      height="auto"
-                    />
-                  </td>
-                  <td>
-                    <v-img
-                      src="https://shopimg.kitamura.jp/images/pd/b33/a35/f58/205/764/65f/6b1/e0c/690/ec5/6ev/cck/ovs/a/M.jpg"
-                      :max-width="$vuetify.breakpoint.mdAndUp ? 220 : 77"
-                      height="auto"
-                    />
+                  <td v-for="(product, i) in comparisonDetailList" :key="i">
+                    <router-link :to="`/ec/pd/${product.janCode}`">
+                      <v-img
+                        :src="product.images[0].imagePath.replace(/TN/g, 'M')"
+                        :max-width="$vuetify.breakpoint.mdAndUp ? '220' : '77'"
+                        height="auto"
+                        class="hover mx-auto"
+                      ></v-img>
+                    </router-link>
                   </td>
                 </tr>
                 <tr>
@@ -248,7 +237,8 @@ export default Vue.extend({
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       breadcrumbs: [
@@ -318,10 +308,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style scoped>
-.sen-gl {
-    border: #B8B8B8 1px solid !important;
-    box-sizing: border-box;
-}
-</style>

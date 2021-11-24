@@ -112,7 +112,8 @@
                 <div class="order-customer-info-title">お支払い情報</div>
                 <div>
                   <div class="order-customer-info-item">
-                    <span class="order-customer-info-item-label">お支払い方法</span>{{ orderDetail.paymentStatusName }}
+                    <span class="order-customer-info-item-label">お支払い方法</span
+                    >{{ !orderDetail.paymentStatusName && orderDetail.paymentStatusId === +PAYMENT_TYPE.TOKUTOKU ? '信販' : orderDetail.paymentStatusName }}
                   </div>
                 </div>
               </div>
@@ -195,6 +196,7 @@ import ProductSlider from '@/components/product-detail/product-slider.vue';
 import SectionLoading from '@/components/common/section-loading.vue';
 import { ORDER_DETAIL_TYPES } from '@/constants/mypage-order-detail-types';
 import { DELIVERY_TIME_ZONE, DELIVERY_BOX_TYPES } from '@/constants/mypage-order-detail-code';
+import { PAYMENT_TYPE } from '@/constants/order-register-type';
 import { sortByRowNo } from '@/logic/utils';
 import UserService from '@/logic/user.service';
 import ProductService from '@/logic/product.service';
@@ -356,6 +358,7 @@ export default Vue.extend({
     };
 
     return {
+      PAYMENT_TYPE,
       ...toRefs(state),
       dayjs,
       ORDER_DETAIL_TYPES,

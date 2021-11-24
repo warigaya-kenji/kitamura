@@ -136,7 +136,7 @@
                   <th>商品情報（製品特徴）</th>
                   <td>
                     【製品特徴】レンズ単体では200-800mm相当、望遠域をさらに拡大する別売のテレコンバーター「M.ZUIKO DIGITAL 1.4x Teleconverter MC-14」 「M.ZUIKO
-                    DIGITAL 2...<a href="/ec/pd/4545350053055/">続きを読む</a>
+                    DIGITAL 2...<router-link to="/ec/pd/4545350053055/">続きを読む</router-link>
                   </td>
                   <td>
                     【製品特徴】35mm判換算で150-600mm相当の超望遠域を、わずか423gの軽量設計で実現。ゴーストやフレアを徹底的に排除する...<a
@@ -259,7 +259,8 @@ export default Vue.extend({
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       breadcrumbs: [
@@ -326,10 +327,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style scoped>
-.sen-gl {
-    border: #B8B8B8 1px solid !important;
-    box-sizing: border-box;
-}
-</style>

@@ -54,16 +54,16 @@
         <p class="pttexb">
           ★人気No.1＞＞＞【【 予備バッテリー 】】<br />
           <span class="bgtypetitle">電池残量を気にせず、撮影に集中できる！<br /> </span>
-          <a href="/ec/pd/4960759127457">ニコン Li-ionリチャージャブルバッテリー EN-EL15</a>
+          <router-link to="/ec/pd/4960759127457">ニコン Li-ionリチャージャブルバッテリー EN-EL15</router-link>
         </p>
         <p class="pttexb">
           ★人気No.2＞＞＞【【 バッテリーグリップ 】】<br />
           <span class="bgtypetitle">撮影可能枚数をかなり増やせ、縦位置撮影にも便利！ </span><br />
-          <a href="/ec/pd/4960759128720">ニコン マルチパワーバッテリーパック MB-D12</a>
+          <router-link to="/ec/pd/4960759128720">ニコン マルチパワーバッテリーパック MB-D12</router-link>
         </p>
         <p class="pttexb">
           ★人気No.3＞＞＞【【 信頼のサンディスク製 CFメモリーカード 】】<br />
-          <a href="/ec/pd/4523052010132">サンディスク Extreme PRO UDMA 7 コンパクトフラッシュ カード 64GB</a>
+          <router-link to="/ec/pd/4523052010132">サンディスク Extreme PRO UDMA 7 コンパクトフラッシュ カード 64GB</router-link>
         </p>
         <p class="pttexb">
           ★人気No.4＞＞＞【【 液晶保護フィルム 】】<br />
@@ -73,9 +73,9 @@
         <p class="pttexb">
           ★人気No.5＞＞＞【【 交換レンズ 】】<br />
           <span class="bgtypetitle">使いやすい広角～5倍ズーム！</span>
-          <a href="/ec/pd/4960759026057">ニコン AF-S NIKKOR 24-120mm F4G ED VR</a> <br />
+          <router-link to="/ec/pd/4960759026057">ニコン AF-S NIKKOR 24-120mm F4G ED VR</router-link> <br />
           <span class="bgtypetitle">10.7倍の超高倍率ズーム！</span>
-          <a href="/ec/pd/4960759026002">ニコン AF-S NIKKOR 28-300mm F3.5-5.6G ED VR</a>
+          <router-link to="/ec/pd/4960759026002">ニコン AF-S NIKKOR 28-300mm F3.5-5.6G ED VR</router-link>
         </p>
         <p class="pttexb">
           ★番外編＞＞＞【【 おすすめカメラバッグ 】】<br />

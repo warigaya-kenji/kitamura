@@ -39,7 +39,10 @@ export type CouponItem = {
   /** 有効期間TO */
   validEndDttm: string;
 
-  /** 併用可否 */
+  /**
+   * 併用可否
+   * true:併用不可、false:併用可
+   */
   isCombined: boolean;
 
   /** 対象商品（JANコード) */

@@ -6,22 +6,12 @@
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
 
-        <v-img
-          src="https://shop.kitamura.jp/files/syuuri/tenpo/images/title_syuuri_shop.gif"
-          max-width="948px"
-          max-height="50px"
-          alt="店舗修理受付のご案内"
-        ></v-img>
+        <v-img src="/ec/images2/guide/syuuri/tenpo/title_syuuri_shop.gif" max-width="948px" max-height="50px" alt="店舗修理受付のご案内"></v-img>
 
         <div class="w760 text-subtitle-2">
           <v-row class="mt-2 mb-8">
             <v-col cols="12" sm="6">
-              <v-img
-                src="https://shop.kitamura.jp/files/syuuri/images/img_shop.gif"
-                max-width="360px"
-                max-height="250px"
-                alt="近くのお店で修理受付する"
-              ></v-img>
+              <v-img src="/ec/images2/guide/syuuri/img_shop.gif" max-width="360px" max-height="250px" alt="近くのお店で修理受付する"></v-img>
             </v-col>
             <v-col cols="12" sm="6">
               <p class="red--text">カメラのキタムラならどこでもＯＫ! 全国の店舗の窓口にて修理品をお預かりします。</p>
@@ -29,30 +19,20 @@
               <p>受付店舗よりお電話で料金をご連絡致します！</p>
               <a href="https://sss.kitamura.jp/?ref=grpTFM" target="_brank">
                 <div class="d-flex flex-column justify-space-between align-center">
-                  <v-img
-                    src="https://shop.kitamura.jp/files/syuuri/tenpo/images/btn_shop.gif"
-                    max-width="340px"
-                    max-height="70px"
-                    alt="カメラのキタムラ店舗検索"
-                  ></v-img>
+                  <v-img src="/ec/images2/guide/syuuri/tenpo/btn_shop.gif" max-width="340px" max-height="70px" alt="カメラのキタムラ店舗検索"></v-img>
                 </div>
               </a>
             </v-col>
           </v-row>
           <!-- 店舗修理の流れ -->
           <v-sheet color="#b0d246" class="pa-2 white--text font-weight-bold my-2">店舗修理の流れ</v-sheet>
-          <v-img src="https://shop.kitamura.jp/files/syuuri/tenpo/images/img_flow.gif" max-width="750px" max-height="100px" alt="店舗修理の流れ"></v-img>
+          <v-img src="/ec/images2/guide/syuuri/tenpo/img_flow.gif" max-width="750px" max-height="100px" alt="店舗修理の流れ"></v-img>
           <v-sheet color="#b0d246" class="pa-2 white--text font-weight-bold my-2">修理の前にご確認ください</v-sheet>
           <v-row class="mt-2 mb-8">
             <v-col cols="12" sm="6">
               <a href="https://shop.kitamura.jp/ec/guide/syuuri/syouhinQ&A" target="_brank">
                 <div class="d-flex flex-column justify-space-between align-center">
-                  <v-img
-                    src="https://shop.kitamura.jp/files/syuuri/images/btn_check.gif"
-                    max-width="340px"
-                    max-height="50px"
-                    alt="修理に出す前に、ここをチェック"
-                  ></v-img>
+                  <v-img src="/ec/images2/guide/syuuri/btn_check.gif" max-width="340px" max-height="50px" alt="修理に出す前に、ここをチェック"></v-img>
                 </div>
               </a>
               <p class="mt-2">よくある症状と対処法をまとめてみました。修理に出す前にスピード解決できるかも！</p>
@@ -60,7 +40,7 @@
             <v-col cols="12" sm="6">
               <a href="https://shop.kitamura.jp/ec/guide/syuuri/online/syuuriQ&A" target="_brank">
                 <div class="d-flex flex-column justify-space-between align-center">
-                  <v-img src="https://shop.kitamura.jp/files/syuuri/images/btn_faq.gif" max-width="340px" max-height="50px" alt="Q&A よくある質問"></v-img>
+                  <v-img src="/ec/images2/guide/syuuri/btn_faq.gif" max-width="340px" max-height="50px" alt="Q&A よくある質問"></v-img>
                 </div>
               </a>
               <p class="mt-2">オンライン修理に関して、お客様からいただいた質問をまとめております。</p>

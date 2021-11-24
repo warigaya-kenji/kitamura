@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="wf-c500">
+    <div class="wf-c500" v-if="isShow">
       <!-- 表示期間外の場合 -->
       <notfound :errorMessage="errorMsg" v-if="errorMsg" />
       <div class="main-contents-wrap" v-else-if="!errorMsg">
@@ -283,7 +283,8 @@ export default Vue.extend({
     document.querySelector<any>('meta[name="description"]').setAttribute('content', 'ソニー 完全ワイヤレスイヤホン WF-C500  価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
 
     const state = reactive({
-
+      // ↓ ---- 画面自体の表示制御 ----
+      isShow: false,
       // ↓ ---- プレ掲載期間 ----
       fanValidFrom: '2021/10/04 14:00',
       fanValidTo: '2021/10/04 14:15',
@@ -320,14 +321,15 @@ export default Vue.extend({
           alt: '60回無金利 ショッピングクレジット'
         },
         {
-          href: '/ec/special/general/tokutokukoukan/',
+          href: '/ec/special/general/tokutokukoukan',
           img: 'https://shopimg.kitamura.jp/images/banner/3778.gif',
           alt: 'トクトク交換'
         },
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       breadcrumbs: [
@@ -450,6 +452,7 @@ export default Vue.extend({
         verifyDate();
         fetchProduct();
       }
+      state.isShow = true
     });
     return {
       ...toRefs(state),

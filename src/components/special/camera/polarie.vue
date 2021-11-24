@@ -43,9 +43,9 @@
         <v-container>
           <v-row>
             <v-col cols="12" sm="3">
-              <a href="/ec/pd/4955295710898">
+              <router-link to="/ec/pd/4955295710898">
                 <v-img src="https://shopimg.kitamura.jp/images/pd/779/42d/30c/1f8/f27/99b/4ec/189/a2d/4c2/bfv/chy/8vk/w/M.JPG" />
-              </a>
+              </router-link>
             </v-col>
             <v-col cols="12" sm="9">
               <p class="">

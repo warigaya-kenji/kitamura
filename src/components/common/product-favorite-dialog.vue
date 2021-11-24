@@ -47,12 +47,12 @@ export default Vue.extend({
     isNoticePriceSetting: {
       required: false,
       type: Boolean,
-      default: false
+      default: true
     },
     isNoticeUsedSetting: {
       required: false,
       type: Boolean,
-      default: false
+      default: true
     }
   },
   setup(props: any, context) {

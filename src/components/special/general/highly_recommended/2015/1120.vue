@@ -1,21 +1,11 @@
 <template>
   <v-app>
-    <div class="1120">
+    <div class="highly-recommended-2015-1120">
       <div class="main-contents-wrap">
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
-        <!-- ↑ パンくず -->
 
-        <router-link to="/ec/special/general/highly_recommended">
-          <v-hover v-slot="{ hover }">
-            <v-img
-              :src="`/ec/images2/special/general/highly_recommended/2015/1120/pc/rec_gotop_${hover ? 'on' : 'off'}.gif`"
-              max-width="100%"
-              height="auto"
-              class="hover"
-            ></v-img>
-          </v-hover>
-        </router-link>
+        <titleImage></titleImage>
 
         <!--↓イチオシ品-->
         <div class="my-4 pa-6 line-g"></div>
@@ -261,13 +251,15 @@ import { onMounted, reactive, toRefs } from '@vue/composition-api';
 import { ProductDetail } from '@/types/product';
 import { noimage, formatPrice } from '@/logic/utils';
 import ProductService from '@/logic/product.service';
+import TitleImage from '@/components/common/special/highly-recommended/title-image.vue';
 
 export default Vue.extend({
-  name: '1120',
+  name: 'highly-recommended-2015-1120',
   components: {
-    breadcrumbs: Breadcrumbs
+    breadcrumbs: Breadcrumbs,
+    titleImage: TitleImage
   },
-  setup: (props, context) => {
+  setup: () => {
     document.title = '4Kビデオカメラでの撮影に適したSDカードをまとめました | カメラのキタムラネットショップ'
     document.querySelector<any>('meta[name="description"]').setAttribute('content', '4K画質のビデオカメラでお使いいただけるSDカード・マイクロSDカードをまとめました。4K対応SDカード・マイクロSDカードはカメラのキタムラへお任せください♪')
     const state = reactive({

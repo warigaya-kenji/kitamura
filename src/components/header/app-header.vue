@@ -11,13 +11,13 @@
           <div class="header-menu">
             <div class="header-contents">
               <hearder-top />
-              <search-menu />
+              <search-menu v-show="!simpleHeader" />
             </div>
           </div>
         </div>
         <!-- ヘッダスクロール部分 -->
         <div class="header-area-rel" ref="headerAreaWideRel">
-          <div class="header-menu">
+          <div class="header-menu" v-show="!simpleHeader">
             <div class="header-contents">
               <tab-menu />
             </div>
@@ -35,12 +35,14 @@
       <div class="header-area-narrow">
         <div class="header-area-fixed" ref="headerAreaNarrowFixed">
           <div class="header-menu">
-            <hearder-top :welcomeHide="headerAreaWelcomeHide" :narrowSlideFixed="headerAreaNarrowSlideFixed" />
+            <hearder-top :welcomeHide="headerAreaWelcomeHide" :narrowSlideFixed="headerAreaNarrowSlideFixed" :simpleHeader="simpleHeader" />
           </div>
+          <hr class="ec-hr" v-if="(!showTabMenu || !showSearchMenu || simpleHeader) && headerAreaNarrowSlideFixed" />
         </div>
         <div ref="headerAreaNarrowRel">
           <div class="header-menu">
-            <tab-menu />
+            <tab-menu v-show="showTabMenu && !simpleHeader" />
+            <hr class="ec-hr" v-if="!showTabMenu || simpleHeader" />
           </div>
         </div>
         <div class="header-banner ec-back-color">
@@ -53,7 +55,7 @@
             fixed: headerAreaNarrowSlideFixed
           }"
         >
-          <search-menu v-show="showSearchMenu" />
+          <search-menu v-show="showSearchMenu && !simpleHeader" />
         </div>
       </div>
     </div>
@@ -62,7 +64,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { reactive, toRefs, onMounted, watch, ref, SetupContext } from '@vue/composition-api';
+import { reactive, toRefs, onMounted, watch, ref, SetupContext, onUpdated } from '@vue/composition-api';
 import Banner from '@/components/header/banner.vue';
 import HearderTop from '@/components/header/header-top.vue';
 import SearchMenu from '@/components/header/search-menu.vue';
@@ -79,6 +81,12 @@ export default Vue.extend({
     // 非対応ブラウザの警告表示は現状OFFとする
     // 'notification-unsupported': NotificationUnspported
   },
+  props: {
+    simpleHeader: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup: (_, context: SetupContext) => {
     const { header } = context.root.$store;
 
@@ -91,7 +99,8 @@ export default Vue.extend({
       headerAreaNarrowSlide: ref<HTMLElement>(),
       headerAreaNarrowSlideFixed: false,
       headerAreaWelcomeHide: false,
-      showSearchMenu: true
+      showSearchMenu: true,
+      showTabMenu: true
     });
 
     const onScroll = () => {
@@ -145,10 +154,22 @@ export default Vue.extend({
       }
     });
 
+    // DOMが更新されたら、ヘッダーの固定領域の高さを計算し直す
+    onUpdated(() => {
+      if (state.headerAreaWideRel) {
+        state.headerAreaWideRel.style.marginTop = (state.headerAreaWideFixed?.clientHeight ? state.headerAreaWideFixed?.clientHeight : 0) + 'px';
+      }
+      if (state.headerAreaNarrowRel) {
+        state.headerAreaNarrowRel.style.marginTop = (state.headerAreaNarrowFixed?.clientHeight ? state.headerAreaNarrowFixed?.clientHeight : 0) + 'px';
+      }
+    });
+
     watch(
-      () => context.root.$route.name,
+      () => context.root.$route.meta,
       () => {
-        state.showSearchMenu = context.root.$route.name === 'my-page-order-list' ? false : true;
+        const meta = context.root.$route.meta;
+        state.showTabMenu = meta?.showTabMenu != null ? meta.showTabMenu : true;
+        state.showSearchMenu = meta?.showSearchMenu != null ? meta.showSearchMenu : true;
       },
       { immediate: true }
     );

@@ -617,7 +617,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 ul.cp_list {
   position: relative;
   padding: 0 0.5em;

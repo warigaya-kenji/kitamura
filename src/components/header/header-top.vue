@@ -38,7 +38,7 @@
     <div class="header-upper header-top-narrow" v-if="$vuetify.breakpoint.smAndDown" :class="{ narrower: narrowSlideFixed }">
       <v-container class="py-0 px-1">
         <v-row no-gutters class="rowUp-narrow">
-          <v-col class="d-flex row-up-narrow">
+          <v-col class="d-flex row-up-narrow" :class="{ 'menu-btn-space': !simpleHeader }">
             <router-link to="/" class="logo-link">
               <img src="@/assets/company/logo-kitamura.png" />
             </router-link>
@@ -48,7 +48,7 @@
               </router-link>
             </div>
           </v-col>
-          <v-col class="row-up-narrow-right">
+          <v-col class="row-up-narrow-right" v-show="!simpleHeader">
             <user-menu />
           </v-col>
         </v-row>
@@ -87,6 +87,10 @@ export default Vue.extend({
     narrowSlideFixed: {
       type: Boolean,
       required: false
+    },
+    simpleHeader: {
+      type: Boolean,
+      default: false
     }
   },
   setup: (_, context) => {
@@ -168,7 +172,7 @@ export default Vue.extend({
     height: 50px;
   }
 
-  .row-up-narrow {
+  .row-up-narrow.menu-btn-space {
     // ハンバーガーアイコンが入るため左に空白を入れる
     margin-left: 45px;
   }

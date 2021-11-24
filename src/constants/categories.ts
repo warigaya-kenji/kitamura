@@ -27,7 +27,7 @@ export const CAMERA_CATEGORY_LIST: Category[] = [
     image: 'img_topctC04.png'
   },
   {
-    text: '中古商品',
+    text: '中古カメラ・レンズ',
     url: '/ec/ct/used/list',
     image: 'img_topctC05.png'
   },

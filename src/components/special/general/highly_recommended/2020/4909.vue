@@ -164,7 +164,7 @@
                   </td>
                   <td>
                     【製品特徴】Vlog撮影の表現の幅を広げる充実の動画性能。高音質・臨場感あふれる音声記録が可能なマイク「OZO Audio by
-                    NOKIA」採用。業界初。顔・瞳認識AFに連動し、自動で収音範囲を...<a href="/ec/pd/4549980632253/">続きを読む</a>
+                    NOKIA」採用。業界初。顔・瞳認識AFに連動し、自動で収音範囲を...<router-link to="/ec/pd/4549980632253/">続きを読む</router-link>
                   </td>
                   <td>
                     【製品特徴】ボタン一つで自撮り時の背景を「ぼけ」または「くっきり」に切り替えられる背景ボケ切り換え機能を搭載。ボタン一つでオンにすることができる商品レビュー用設定は、顔と...<a
@@ -283,7 +283,8 @@ export default Vue.extend({
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       breadcrumbs: [
@@ -351,10 +352,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style scoped>
-.sen-gl {
-    border: #B8B8B8 1px solid !important;
-    box-sizing: border-box;
-}
-</style>

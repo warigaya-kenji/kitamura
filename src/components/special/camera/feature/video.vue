@@ -103,6 +103,21 @@ export default Vue.extend({
   data: () => ({
     slides: [
       {
+        image: 'https://shop.kitamura.jp/images/banner/8686.jpg',
+        linkUrl: '/special/sale-fair/camera/feature/nikon/z_9/',
+        name: 'ニコン Z 9'
+      },
+      {
+        image: 'https://shop.kitamura.jp/images/banner/8688.jpg',
+        linkUrl: '/special/sale-fair/camera/feature/nikon/z100-400mmf45-56vrs/',
+        name: 'ニコン NIKKOR Z 100-400mm f/4.5-5.6 VR S'
+      },
+      {
+        image: 'https://shop.kitamura.jp/images/banner/8658.jpg',
+        linkUrl: '/special/sale-fair/camera/feature/sony/sel70200gm2/',
+        name: 'ソニー FE 70-200mm F2.8 GM OSS II'
+      },
+      {
         image: 'https://shop.kitamura.jp/images/banner/8630.jpg',
         linkUrl: '/special/camera/feature/canon/eosr3/',
         name: 'キヤノン EOS R3'

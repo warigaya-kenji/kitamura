@@ -165,7 +165,10 @@ export default Vue.extend({
         context.root.$router.push({ name: 'my-page-review-post', params: { janCode: props.janCode as string } });
       } else {
         alert('レビュー投稿にはログインが必要です。');
-        authorizer.openLoginMenu();
+        const successCallback = () => {
+          context.root.$router.push({ name: 'my-page-review-post', params: { janCode: props.janCode as string } });
+        };
+        authorizer.openLoginMenu(successCallback);
       }
     };
 

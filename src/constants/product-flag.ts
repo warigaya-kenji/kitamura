@@ -42,5 +42,7 @@ export const PRODUCT_FLAG = {
   /** 何でも下取り対象 */
   TRADE_IN_ANYTHING_TARGET: 21,
   /** トクトク据置 */
-  TOKUTOKU_DEFERRED: 22
+  TOKUTOKU_DEFERRED: 22,
+  /** 下取査定申込対象 */
+  TRADE_IN_ASSESSMENT_TARGET: 26
 } as const;

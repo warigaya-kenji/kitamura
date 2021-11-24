@@ -217,7 +217,8 @@
                   >
                 </p>
                 <p class="mb-0">
-                  <v-icon left x-small color="black">fas fa-caret-right</v-icon>レンズ : <a href="/ec/pd/4547410206159">フジフイルム XF35mm F1.4 R</a>
+                  <v-icon left x-small color="black">fas fa-caret-right</v-icon>レンズ :
+                  <router-link to="/ec/pd/4547410206159">フジフイルム XF35mm F1.4 R</router-link>
                 </p>
               </v-col>
             </v-row>

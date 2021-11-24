@@ -2,13 +2,14 @@
   <div>
     <v-sheet class="mx-auto" :class="{ 'font-small': $vuetify.breakpoint.smAndDown }" max-width="100%">
       <v-slide-group v-model="model" show-arrows :class="{ 'pa-1': $vuetify.breakpoint.smAndDown }" v-if="items">
-        <v-slide-item v-for="item in items" :key="item.janCode">
+        <v-slide-item v-for="(item, index) in items" :key="index">
           <product-slider-item
             :isUsed="isUsed"
             :product="item"
             :usedProductSummary="fetchUsedProductSummary(item.janCode)"
             :isRelatedProducts="isRelatedProducts"
             :cartButtonText="cartButtonText"
+            @addCart="addCart()"
           />
         </v-slide-item>
       </v-slide-group>
@@ -47,7 +48,7 @@ export default Vue.extend({
       default: 'あわせて買う'
     }
   },
-  setup: (props) => {
+  setup: (props, context) => {
     const state = reactive({
       model: null,
       usedProductsSummary: [] as Array<{
@@ -80,9 +81,14 @@ export default Vue.extend({
       }
     }
 
+    function addCart() {
+      context.emit('addCart');
+    }
+
     return {
       ...toRefs(state),
-      fetchUsedProductSummary
+      fetchUsedProductSummary,
+      addCart
     };
   }
 });

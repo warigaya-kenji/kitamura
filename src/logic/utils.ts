@@ -3,6 +3,7 @@ import { Location, Route } from 'vue-router';
 import dayjs from 'dayjs';
 import { USED_STATUS } from '@/constants/used-status';
 import { BOT_USER_AGENTS } from '@/constants/bot-user-agents';
+import { prefectureList } from '@/constants/prefecture-list';
 
 /**
  * 対象がホスト名と同じか判定する
@@ -218,4 +219,22 @@ export function convertToUsedStatesText(val: string): string {
 export function isBot(userAgent: string): boolean {
   const isBot = BOT_USER_AGENTS.some((botUserAgent) => userAgent.indexOf(botUserAgent) !== -1);
   return isBot;
+}
+
+/**
+ * 都道府県名を取得する
+ * @param code 都道府県コード
+ */
+export function getPrefectureName(code: number): string {
+  const prefecture = prefectureList.find((item) => item.value === code);
+  return prefecture?.text || '';
+}
+
+/**
+ * 買取価格の切り捨て（0.9掛け、１の位切り捨て）
+ * @param price 買取価格
+ * @returns 表示価格
+ */
+export function roundDownSellPrice(price: number): number {
+  return Math.floor((price * 0.9) / 10) * 10;
 }

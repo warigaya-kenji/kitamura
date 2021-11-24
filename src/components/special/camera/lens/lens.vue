@@ -73,7 +73,7 @@
           <v-row align="center" justify="space-around">
             <v-col cols="12" sm="8">
               <v-btn
-                class="main-product-btn text-subtitle-1 mb-2 text-center including-line-breaks"
+                class="main-product-btn text-subtitle-1 mb-2 text-center including-line-breaks white--text"
                 dark
                 block
                 color="rgba(255, 132, 0, 1)"
@@ -259,6 +259,9 @@ export default Vue.extend({
   props: {},
   setup: (props, context) => {
     document.title = 'おすすめカメラレンズ人気ランキング | カメラのキタムラネットショップ';
+    document
+      .querySelector<any>('meta[name="description"]')
+      .setAttribute('content', 'おすすめカメラレンズランキング！デジタル一眼レフ、ミラーレス一眼の交換レンズ人気ランキングをまとめました。望遠ズーム・ミラーレス用レンズなど、キタムラネットショップなら全国のキタムラ店舗で受け取れます');
     const state = reactive({
       // ↓ ---- パンくず情報 ----
       breadcrumbs: [

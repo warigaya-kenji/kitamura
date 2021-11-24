@@ -56,12 +56,14 @@
 
     <div class="ml-0 mr-3">
       <v-col class="user-info" align="center" justify="center">
-        <a href="/cart.html">
+        <router-link to="/ec/cart">
           <div class="guide">
-            <i class="fas fa-shopping-cart"></i>
+            <v-badge :content="cartItemCount" :value="cartItemCount > 0" color="#d80b24" offset-y="10px">
+              <i class="fas fa-shopping-cart"></i>
+            </v-badge>
           </div>
           <p>カート</p>
-        </a>
+        </router-link>
       </v-col>
     </div>
   </div>
@@ -81,15 +83,17 @@ export default Vue.extend({
     const state = reactive({
       isLoggedIn: false,
       tPoint: 0,
-      isHovering: false
+      isHovering: false,
+      cartItemCount: 0
     });
 
-    // Tポイント情報を検知
+    // Tポイント、カート内商品数を検知
     watch(
       () => [context.root.$store.authorizer.isLoggedIn, context.root.$store.authorizer.user],
       ([isLoggedIn, user]) => {
         state.isLoggedIn = isLoggedIn;
         state.tPoint = user?.point ? user.point : 0;
+        state.cartItemCount = user?.cartItemCount;
       }
     );
 
@@ -113,6 +117,10 @@ export default Vue.extend({
   a {
     color: inherit;
     text-decoration: none;
+
+    &:hover .v-badge__badge {
+      color: $text-white;
+    }
   }
   p {
     white-space: nowrap;

@@ -70,7 +70,7 @@
                 <tr>
                   <th>商品イメージ</th>
                   <td>
-                    <a href="/ec/pd/4960759902528"
+                    <router-link to="/ec/pd/4960759902528"
                       ><v-img
                         src="https://shopimg.kitamura.jp/images/pd/ee1/374/ece/81d/f4e/7cb/e0b/701/cbe/ea8/f7z/b4r/vxt/6/M.jpg"
                         alt=" "
@@ -78,10 +78,10 @@
                         max-height="auto"
                         class="mx-auto hover"
                       ></v-img
-                    ></a>
+                    ></router-link>
                   </td>
                   <td>
-                    <a href="/ec/pd/4547410397789"
+                    <router-link to="/ec/pd/4547410397789"
                       ><v-img
                         src="https://shopimg.kitamura.jp/images/pd/e38/a6e/771/dc2/ddf/da8/f99/05c/baf/0ef/29r/u33/exz/a/M.jpg"
                         alt=" "
@@ -89,10 +89,10 @@
                         max-height="auto"
                         class="mx-auto hover"
                       ></v-img
-                    ></a>
+                    ></router-link>
                   </td>
                   <td>
-                    <a href="/ec/pd/4549212300882"
+                    <router-link to="/ec/pd/4549212300882"
                       ><v-img
                         src="https://shopimg.kitamura.jp/images/pd/59d/3ce/834/408/729/b65/db8/27c/1d0/3ff/00g/gxq/e85/2/M.jpg"
                         alt=" "
@@ -100,10 +100,10 @@
                         max-height="auto"
                         class="mx-auto hover"
                       ></v-img
-                    ></a>
+                    ></router-link>
                   </td>
                   <td>
-                    <a href="/ec/pd/4545350052690"
+                    <router-link to="/ec/pd/4545350052690"
                       ><v-img
                         src="https://shopimg.kitamura.jp/images/pd/eec/313/3f3/7df/2ee/3e4/ed5/39f/031/2dc/5de/a5c/s86/p/M.jpg"
                         alt=" "
@@ -111,7 +111,7 @@
                         max-height="auto"
                         class="mx-auto hover"
                       ></v-img
-                    ></a>
+                    ></router-link>
                   </td>
                 </tr>
 
@@ -188,19 +188,22 @@
                 <tr>
                   <th>商品情報（製品特徴）</th>
                   <td>
-                    【製品特徴】 水深10ｍまでの防水性能と1.8mの耐衝撃性能、優れた防じん性能、耐寒性能がさまざまなシチュエーシ.....<a href="/ec/pd/4960759902528"
-                      >続きを読む</a
+                    【製品特徴】 水深10ｍまでの防水性能と1.8mの耐衝撃性能、優れた防じん性能、耐寒性能がさまざまなシチュエーシ.....<router-link
+                      to="/ec/pd/4960759902528"
+                      >続きを読む</router-link
                     >
                   </td>
                   <td>
-                    【製品特徴】 手のひらサイズで約207gの小型軽量ボディに、独自開発の画像処理エンジンと1635万画素の裏面照射型..<a href="/ec/pd/4547410397789"
-                      >続きを読む</a
+                    【製品特徴】 手のひらサイズで約207gの小型軽量ボディに、独自開発の画像処理エンジンと1635万画素の裏面照射型..<router-link
+                      to="/ec/pd/4547410397789"
+                      >続きを読む</router-link
                     >
                   </td>
-                  <td>【製品特徴】 水深14mで連続2時間の撮影が可能なタフネス設計...<a href="/ec/pd/4549212300882">続きを読む</a></td>
+                  <td>【製品特徴】 水深14mで連続2時間の撮影が可能なタフネス設計...<router-link to="/ec/pd/4549212300882">続きを読む</router-link></td>
                   <td>
-                    【製品特徴】 防水性能15ｍ、防塵、耐衝撃2.1ｍ、耐荷重100Kgf、耐低温−10℃、撮影レンズ前面の保護ガラスのダブ...<a href="/ec/pd/4545350052690"
-                      >続きを読む</a
+                    【製品特徴】 防水性能15ｍ、防塵、耐衝撃2.1ｍ、耐荷重100Kgf、耐低温−10℃、撮影レンズ前面の保護ガラスのダブ...<router-link
+                      to="/ec/pd/4545350052690"
+                      >続きを読む</router-link
                     >
                   </td>
                 </tr>
@@ -327,7 +330,8 @@ export default Vue.extend({
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       // ↓ ---- ナビボタン ----

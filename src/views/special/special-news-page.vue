@@ -106,7 +106,7 @@ import { DISPLAY_COUNT_LIST } from '@/constants/display-conut-list';
 import SpecialProductService from '@/logic/special-product.service';
 import { ProductItem } from '@/types/product-list';
 import NewsService from '@/logic/news.service';
-import { sortByRowNo } from '@/logic/utils';
+import { sortByRowNo, isDebugMode } from '@/logic/utils';
 
 type BreadcrumbItem = {
   path: string;
@@ -201,11 +201,19 @@ export default Vue.extend({
           }
         }
 
-        // お知らせAPI実行
-        const newsResult = await NewsService.searchNews(false, {
+        const searchNewsOption: { [name: string]: any } = {
           newsNo: state.newsId,
           newsType: [4]
-        });
+        };
+
+        // 日付指定でのニュース表示確認
+        if (query.at && isDebugMode()) {
+          const at = query.at as string;
+          searchNewsOption.shiteiDttm = (at + '0'.repeat(14)).replace(/^([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2}).*$/, '$1-$2-$3 $4:$5:$6');
+        }
+
+        // お知らせAPI実行
+        const newsResult = await NewsService.searchNews(false, searchNewsOption);
 
         // 各種設定
         document.title = newsResult[0].newsTitle;

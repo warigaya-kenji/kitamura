@@ -33,7 +33,11 @@ const routes: Array<RouteConfig> = [
     path: 'odr/list',
     name: 'my-page-order-list',
     component: OrderList,
-    meta: { gtm: 'MyPageOrderList' }
+    meta: {
+      gtm: 'MyPageOrderList',
+      showTabMenu: true,
+      showSearchMenu: false
+    }
   },
   {
     path: 'odr/:orderId',

@@ -27,7 +27,7 @@
 
                 <template v-slot:price>
                   <div class="product-text">
-                    買取上限額:<span class="product-price">{{ product.maxPurchasePrice ? formatPrice(parseInt(product.maxPurchasePrice)) : '-' }}円</span>
+                    買取上限額:<span class="product-price">{{ product.assessPriceS ? formatPrice(parseInt(product.assessPriceS)) : '-' }}円</span>
                   </div>
                 </template>
 
@@ -37,9 +37,9 @@
                     <v-btn
                       id="sell-request-btn"
                       class="request-btn ec-link-btn"
-                      :href="`${netChukoUrl}ec/sell/item-price?goodsCode=${product.usedQuotesCode}&tradeinS=${product.maxPurchasePrice}`"
+                      :href="`${netChukoUrl}ec/sell/item-price?goodsCode=${product.usedQuotesCode}&tradeinS=${product.assessPriceS}`"
                       tile
-                      v-if="product.usedQuotesCode && product.maxPurchasePrice"
+                      v-if="product.usedQuotesCode && product.assessPriceS"
                     >
                       <i class="far fa-file-alt mr-1"></i>買取申込
                     </v-btn>

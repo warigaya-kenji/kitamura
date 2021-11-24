@@ -47,9 +47,9 @@
         </v-row>
 
         <v-row v-if="$vuetify.breakpoint.mdAndUp">
-          <v-col cols="4" v-for="navi in navibtn" :key="navi">
+          <v-col cols="4" v-for="(navi, i) in navibtn" :key="i">
             <v-hover v-slot="{ hover }">
-              <v-btn :elevation="hover ? 6 : 2" :href="navi.href" block color="#009f51" height="45px"
+              <v-btn :elevation="hover ? 6 : 2" v-scroll-to="navi.href" block color="#009f51" height="45px"
                 ><span class="mx-8 white--text pa-2 text-center text-subtitle-1">{{ navi.txt }}</span
                 ><v-icon small color="white">fas fa-chevron-down</v-icon></v-btn
               >
@@ -399,12 +399,17 @@ export default Vue.extend({
       }
     }
 
+    const linkToOtherWindow = (url: string | undefined) => {
+      window.open(url, '_blank');
+    }
+
     return {
       ...toRefs(state),
       noimage,
       formatPrice,
       changeSeeNext,
-      changeSeeNextSp
+      changeSeeNextSp,
+      linkToOtherWindow
     };
   }
 });

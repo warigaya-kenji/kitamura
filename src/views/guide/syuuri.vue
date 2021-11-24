@@ -6,7 +6,7 @@
         <breadcrumbs :breadcrumbs="breadcrumbs" />
         <!-- ↑ パンくず -->
 
-        <v-img src="https://shop.kitamura.jp/files/syuuri/images/title_syuuri_top.gif" max-width="100%" height="auto" alt="修理のご案内"></v-img>
+        <v-img src="/ec/images2/guide/syuuri/title_syuuri_top.gif" max-width="100%" height="auto" alt="修理のご案内"></v-img>
 
         <div class="w760 text-subtitle-2">
           <p class="mt-6">
@@ -16,7 +16,7 @@
           <v-row class="mb-8">
             <v-col cols="12" sm="6" md="6">
               <router-link to="/ec/guide/syuuri/tenpo">
-                <v-img src="https://shop.kitamura.jp/files/syuuri/images/img_shop.gif" max-width="auto" height="auto"></v-img>
+                <v-img src="/ec/images2/guide/syuuri/img_shop.gif" max-width="auto" height="auto"></v-img>
               </router-link>
               <p class="mt-2">【対象製品】</p>
               <v-row no-gutters>
@@ -28,13 +28,13 @@
 
               <router-link to="/ec/guide/syuuri/tenpo">
                 <div class="d-flex flex-column justify-space-between align-center">
-                  <v-img src="https://shop.kitamura.jp/files/syuuri/images/btn_shop.gif" max-width="340px" max-height="60px"></v-img>
+                  <v-img src="/ec/images2/guide/syuuri/btn_shop.gif" max-width="340px" max-height="60px"></v-img>
                 </div>
               </router-link>
             </v-col>
             <v-col cols="12" sm="6" md="6">
               <router-link to="/ec/guide/syuuri/online">
-                <v-img src="https://shop.kitamura.jp/files/syuuri/images/img_online.gif" max-width="auto" height="auto" alt="近くのお店で修理受付する"></v-img>
+                <v-img src="/ec/images2/guide/syuuri/img_online.gif" max-width="auto" height="auto" alt="近くのお店で修理受付する"></v-img>
               </router-link>
               <p class="mt-2">【対象製品】</p>
               <v-row no-gutters>
@@ -51,12 +51,7 @@
 
               <router-link to="/ec/guide/syuuri/online">
                 <div class="d-flex flex-column justify-space-between align-center">
-                  <v-img
-                    src="https://shop.kitamura.jp/files/syuuri/images/btn_online.gif"
-                    max-width="340px"
-                    max-height="60px"
-                    alt="ネットで受付ご希望の方はコチラ"
-                  ></v-img>
+                  <v-img src="/ec/images2/guide/syuuri/btn_online.gif" max-width="340px" max-height="60px" alt="ネットで受付ご希望の方はコチラ"></v-img>
                 </div>
               </router-link>
             </v-col>
@@ -93,8 +88,8 @@ export default Vue.extend({
           disabled: true
         }
       ],
-      products: ['https://shop.kitamura.jp/files/syuuri/images/img_condegi.jpg', 'https://shop.kitamura.jp/files/syuuri/images/img_degiichi.jpg', 'https://shop.kitamura.jp/files/syuuri/images/img_videocamera.jpg', '	https://shop.kitamura.jp/files/syuuri/images/img_lens.jpg', 'https://shop.kitamura.jp/files/syuuri/images/img_printer.jpg'],
-      products2: ['https://shop.kitamura.jp/files/syuuri/images/img_condegi.jpg', 'https://shop.kitamura.jp/files/syuuri/images/img_degiichi.jpg', 'https://shop.kitamura.jp/files/syuuri/images/img_videocamera.jpg', '	https://shop.kitamura.jp/files/syuuri/images/img_lens.jpg']
+      products: ['/ec/images2/guide/syuuri/img_condegi.jpg', '/ec/images2/guide/syuuri/img_degiichi.jpg', '/ec/images2/guide/syuuri/img_videocamera.jpg', '	/ec/images2/guide/syuuri/img_lens.jpg', '/ec/images2/guide/syuuri/img_printer.jpg'],
+      products2: ['/ec/images2/guide/syuuri/img_condegi.jpg', '/ec/images2/guide/syuuri/img_degiichi.jpg', '/ec/images2/guide/syuuri/img_videocamera.jpg', '	/ec/images2/guide/syuuri/img_lens.jpg']
 
     });
     return {

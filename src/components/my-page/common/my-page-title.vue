@@ -13,7 +13,7 @@ import Vue from 'vue';
 import { reactive, toRefs, watch } from '@vue/composition-api';
 
 export default Vue.extend({
-  name: 'my-page',
+  name: 'my-page-title',
   setup: (_, context) => {
     const { authorizer } = context.root.$store;
 

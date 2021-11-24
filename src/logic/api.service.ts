@@ -151,13 +151,16 @@ const ApiService = {
    * @param config ヘッダーやボディなどの設定
    * @param withCredentials 認証関連の情報をリクエストに付与するか
    * @param withErrorHandling 共通のエラーハンドリングを行うか
+   * @param withReturnHeader レスポンスヘッダーを含めてリターンするか（デフォルト：false）
    */
   async post(
     url: string,
     body?: unknown,
     config: AxiosRequestConfig = {},
     withCredentials = true,
-    withErrorHandling: boolean | { apiName: string } = false
+    withErrorHandling: boolean | { apiName: string } = false,
+    withReturnHeader = false,
+    useServerErrorMsg = false
   ): Promise<any> {
     // タイムアウト設定
     config.timeout = API_TIMEOUT_TIME;
@@ -171,13 +174,16 @@ const ApiService = {
     try {
       const response = await Vue.axios.post(url, body, config);
       const responseBody = response.data;
-      return responseBody;
+      return withReturnHeader ? response : responseBody;
     } catch (error) {
       // 共通エラーハンドリング
       if (withErrorHandling) {
         // タイムアウト、または、5xxエラーの処理
         const status = error.response?.status || -1;
-        if (error.code === 'ECONNABORTED' || (500 <= status && status < 600)) {
+        const errorMsg = error.response?.data?.details?.length ? error.response?.data?.details[0].message : '';
+        if (useServerErrorMsg && errorMsg) {
+          Vue.prototype.$store.errorStore.errorMessage = errorMsg;
+        } else if (error.code === 'ECONNABORTED' || (500 <= status && status < 600)) {
           let message = '一部のシステムがご利用いただけない可能性があります。しばらく待ってからご利用ください';
           const apiName = typeof withErrorHandling === 'boolean' ? null : withErrorHandling?.apiName;
           message += apiName ? '（' + apiName + '）' : '。';

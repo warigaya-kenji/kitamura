@@ -11,29 +11,30 @@
         <div class="flow-box px-5 mt-6">
           <div class="flow">
             <div class="square">
-              <p><span>1</span>トクトク交換対象品を買い物かごに入れる</p>
-              <v-img src="https://shop.kitamura.jp/sitemap/images/tokutoku-step01.gif" max-width="100%" height="auto" />
+              <p><span>1</span>トクトク交換対象品をカートへ入れる</p>
+              <v-img src="/ec/images2/guide/faq_tokutokukoukan/tokutoku-step01.jpg" max-width="100%" height="auto" />
             </div>
           </div>
           <div class="flow">
             <div class="square">
-              <p><span>2</span>「トクトク交換サービスを利用する」ボタンをクリックする</p>
-              <v-img src="https://shop.kitamura.jp/sitemap/images/tokutoku-step02.gif" max-width="100%" height="auto" />
+              <p><span>2</span>「持ってるカメラ・レンズを下取りに出す」を選択し「トクトク交換」を選択</p>
+              <v-img src="/ec/images2/guide/faq_tokutokukoukan/tokutoku-step02.jpg" max-width="100%" height="auto" />
             </div>
           </div>
           <div class="flow">
             <div class="square">
-              <p><span>3</span>下取品を検索、検索結果から商品を選択し｢決定する｣ボタンをクリックする</p>
+              <p><span>3</span>ご自身の、持っている商品リストから下取品を選択、または検索結果から商品を選択し｢選択｣し「下取申込に追加」ボタンをクリックする</p>
               <p class="small">※下取品は複数選択することが可能です</p>
               <p class="small">※下取品を送る箱を別途申し込む場合は「梱包キット」の申込みにもチェックを入れてください</p>
-              <v-img src="https://shop.kitamura.jp/sitemap/images/tokutoku-step03.gif" max-width="100%" height="auto" />
+              <v-img src="/ec/images2/guide/faq_tokutokukoukan/tokutoku-step03.jpg" max-width="100%" height="auto" />
+              <v-img src="/ec/images2/guide/faq_tokutokukoukan/tokutoku-step04.jpg" max-width="100%" height="auto" />
             </div>
           </div>
           <div class="flow">
             <div class="square">
-              <p><span>4</span>注意書きを確認の上、「手続きに同意」にチェックをいれる</p>
+              <p><span>4</span>購入手続きへ進み、注意書きを確認の上、「手続きに同意」にチェックをいれる</p>
               <p class="small">※下取品を送る箱を別途申し込む場合は「梱包キット」の申込みにもチェックを入れてください</p>
-              <v-img src="https://shop.kitamura.jp/sitemap/images/tokutoku-step04.gif" max-width="100%" height="auto" />
+              <v-img src="/ec/images2/guide/faq_tokutokukoukan/tokutoku-step05.jpg" max-width="100%" height="auto" />
             </div>
           </div>
           <div class="flow">
@@ -63,7 +64,7 @@
                 <v-row>
                   <v-col cols="10" sm="3">
                     <div class="d-flex flex-column justify-space-between align-center">
-                      <v-img src="https://shop.kitamura.jp/sitemap/images/tokutoku-flow_icon01.gif" max-width="100%" height="auto"></v-img>
+                      <v-img src="/ec/images2/guide/faq_tokutokukoukan/tokutoku-flow_icon01.gif" max-width="100%" height="auto"></v-img>
                     </div>
                   </v-col>
                   <v-col cols="12" sm="9">
@@ -80,7 +81,7 @@
                 <v-row>
                   <v-col cols="10" sm="3">
                     <div class="d-flex flex-column justify-space-between align-center">
-                      <v-img src="https://shop.kitamura.jp/sitemap/images/tokutoku-flow_icon02.gif" max-width="100%" height="auto"></v-img>
+                      <v-img src="/ec/images2/guide/faq_tokutokukoukan/tokutoku-flow_icon02.gif" max-width="100%" height="auto"></v-img>
                     </div>
                   </v-col>
                   <v-col cols="12" sm="9">
@@ -249,7 +250,7 @@ export default Vue.extend({
   font-family: 'Hiragino Kaku Gothic Pro W3', 'ヒラギノ角ゴ Pro W3', Meiryo, 'メイリオ', 'MS P Gothic', 'ＭＳ Ｐゴシック', sans-serif;
   padding-bottom: 30px;
   margin-bottom: 10px;
-  background: url(https://shop.kitamura.jp/sitemap/images/tokutoku-flow_next.gif) no-repeat bottom;
+  background: url(/ec/images2/guide/faq_tokutokukoukan/tokutoku-flow_next.gif) no-repeat bottom;
 }
 
 .flow .square {
@@ -282,18 +283,18 @@ export default Vue.extend({
 }
 
 .arrow {
-  background: url(https://shop.kitamura.jp/sitemap/images/tokutoku-flow_next2.gif) no-repeat top;
+  background: url(/ec/images2/guide/faq_tokutokukoukan/tokutoku-flow_next2.gif) no-repeat top;
   padding: 55px 0 0;
 }
 
 .kit div {
   padding-left: 80px;
-  background: url(https://shop.kitamura.jp/sitemap/images/tokutoku-flow_icon01.gif) no-repeat 5px 50%;
+  background: url(/ec/images2/guide/faq_tokutokukoukan/tokutoku-flow_icon01.gif) no-repeat 5px 50%;
 }
 
 .box div {
   padding-left: 80px;
-  background: url(https://shop.kitamura.jp/sitemap/images/tokutoku-flow_icon02.gif) no-repeat 5px 50%;
+  background: url(/ec/images2/guide/faq_tokutokukoukan/tokutoku-flow_icon02.gif) no-repeat 5px 50%;
 }
 
 .bunki {

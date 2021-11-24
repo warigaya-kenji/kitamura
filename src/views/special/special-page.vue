@@ -22,8 +22,10 @@ import SampleComponent1 from '@/components/special/sample-component1.vue';
 import SampleComponent2 from '@/components/special/sample-component2.vue';
 import SampleComponent3 from '@/components/special/sample-component3.vue';
 import SampleComponent4 from '@/components/special/sample-component4.vue';
+import SampleAmountSimulator from '@/components/special/sample-amount-simulator.vue';
 import Component20210401 from '@/components/special/2021/date-0401.vue';
 import Component20210402 from '@/components/special/2021/date-0402-test.vue';
+import VuetifyComponentList from '@/components/special/vuetify-component-list.vue';
 // ---- ↑ サンプル ------
 
 import Componentwireless from '@/components/special/general/wireless-image-share.vue';
@@ -38,11 +40,21 @@ import Photomount from '@/components/special/camera/photomount.vue';
 import Hosizora from '@/components/special/camera/hosizora.vue';
 import Travel from '@/components/special/camera/travel.vue';
 import OkamotoYutaka from '@/components/special/camera/okamoto-yutaka.vue';
+import Wearable from '@/components/special/camera/wearable.vue';
+import Mirrorlessoldlens from '@/components/special/camera/mirrorless-oldlens.vue';
+import Strap from '@/components/special/camera/strap/strap.vue';
+import Strap380 from '@/components/special/camera/strap/380.vue';
+
 // lensfilter
 import Lensfilter1869 from '@/components/special/camera/lensfilter/1869.vue';
 import Lensfilter2638 from '@/components/special/camera/lensfilter/2638.vue';
 import Lensfilter1104 from '@/components/special/camera/lensfilter/1104.vue';
 import LensfilterNd500 from '@/components/special/camera/lensfilter/nd500.vue';
+import LensfilterExus from '@/components/special/camera/lensfilter/exus.vue';
+import LensfilterNikonArcrest from '@/components/special/camera/lensfilter/nikon-arcrest.vue';
+import Lensfilter341 from '@/components/special/camera/lensfilter/341.vue';
+import Lensfilter343 from '@/components/special/camera/lensfilter/343.vue';
+import Lensfilter344 from '@/components/special/camera/lensfilter/344.vue';
 
 // original
 import Originalkitamuracamera from '@/components/special/camera/original/kitamuracamera.vue';
@@ -71,6 +83,11 @@ import LensMzuiko from '@/components/special/camera/lens/mzuiko.vue';
 import Lumixg from '@/components/special/camera/lens/lumixg.vue';
 import Lens809 from '@/components/special/camera/lens/809.vue';
 import LensFujifilmXf100400 from '@/components/special/camera/lens/fujifilm/xf100-400.vue';
+import LensTouit from '@/components/special/camera/lens/touit.vue';
+import LensTamron182701402 from '@/components/special/camera/lens/tamron18270/1402.vue';
+
+// travel
+import travelAccessory from '@/components/special/camera/travel/accessory.vue';
 
 //新製品扉
 import Componentfeature from '@/components/special/camera/feature/feature.vue';
@@ -102,6 +119,9 @@ import Canon5dmk4 from '@/components/special/camera/feature/canon/5dmk4.vue';
 import CanonEosr from '@/components/special/camera/feature/canon/eosr.vue';
 import Canon5ds from '@/components/special/camera/feature/canon/5ds.vue';
 import CanonEoskiss10I4496 from '@/components/special/camera/feature/canon/eoskiss10I/4496.vue';
+import CanonFv100 from '@/components/special/camera/feature/canon/fv100.vue';
+import Canon1dxmk2 from '@/components/special/camera/feature/canon/1dxmk2.vue';
+
 // sony
 import Sony7rm4a7rm3a from '@/components/special/camera/feature/sony/7rm4a-7rm3a.vue';
 import Sonyfe14f18gm from '@/components/special/camera/feature/sony/fe14f18gm.vue';
@@ -126,6 +146,9 @@ import SonyRx100m3 from '@/components/special/camera/feature/sony/rx100m3.vue';
 import SonyVlogcamzv1zv1g4709 from '@/components/special/camera/feature/sony/vlogcam_zv1_zv1g/4709.vue';
 import SonyA9 from '@/components/special/camera/feature/sony/a9.vue';
 import SonyA7r3 from '@/components/special/camera/feature/sony/a7r3.vue';
+import SonyHx90vwx500 from '@/components/special/camera/feature/sony/hx90vwx500.vue';
+import SonyA99ii from '@/components/special/camera/feature/sony/a99ii.vue';
+import SonyWh1000xm4lm from '@/components/special/camera/feature/sony/wh-1000xm4lm.vue';
 
 // fujifilm
 import FujifilmGfx100s from '@/components/special/camera/feature/fujifilm/gfx100s.vue';
@@ -145,6 +168,8 @@ import FujifilmInstaxMini11 from '@/components/special/camera/feature/fujifilm/i
 import Fujifilgfx50sII from '@/components/special/camera/feature/fujifilm/gfx50sII.vue';
 import FujifilmXt3 from '@/components/special/camera/feature/fujifilm/xt3.vue';
 import FujifilmXt2 from '@/components/special/camera/feature/fujifilm/xt2.vue';
+import FujifilmXc35mmf2 from '@/components/special/camera/feature/fujifilm/xc35mm-f2.vue';
+import FujifilmX100v4475 from '@/components/special/camera/feature/fujifilm/x100v/4475.vue';
 // nikon
 import NikonZfc from '@/components/special/camera/feature/nikon/zfc.vue';
 import NikonZ5 from '@/components/special/camera/feature/nikon/z_5.vue';
@@ -164,10 +189,19 @@ import NikonD5 from '@/components/special/camera/feature/nikon/d5.vue';
 import NikonNikkorz70200mmf28vrs from '@/components/special/camera/feature/nikon/nikkorz_70-200mm_f2.8_vr_s.vue';
 import NikonNikon1 from '@/components/special/camera/feature/nikon/nikon1.vue';
 import NikonD810 from '@/components/special/camera/feature/nikon/d810.vue';
+import NikonD4s from '@/components/special/camera/feature/nikon/d4s.vue';
+import NikonZ9 from '@/components/special/camera/feature/nikon/z_9.vue';
+import NikonDf from '@/components/special/camera/feature/nikon/df.vue';
+import Nikonz24200mmf463vr from '@/components/special/camera/feature/nikon/z24-200mm_f4-6.3_vr.vue';
+import NikonZnikkor120300mmf28efledsrvr from '@/components/special/camera/feature/nikon/nikkor_120_300mm_f2.8_e_fl_ed_sr_vr.vue';
 // olympus
 import OlympusPenEP7 from '@/components/special/camera/feature/olympus/pen-e-p7.vue';
 import OlympusEm1m2 from '@/components/special/camera/feature/olympus/em1m2.vue';
 import OlympusEm1m3 from '@/components/special/camera/feature/olympus/em1m3.vue';
+import OlympusEm10 from '@/components/special/camera/feature/olympus/em10.vue';
+import OlympusLens40150 from '@/components/special/camera/feature/olympus/lens40-150.vue';
+import OlympusEm1m34484 from '@/components/special/camera/feature/olympus/em1m3/4484.vue';
+
 // panasonic
 import PanasonicGh5m2 from '@/components/special/camera/feature/panasonic/gh5m2.vue';
 import Panasonicg100 from '@/components/special/camera/feature/panasonic/g100.vue';
@@ -181,6 +215,7 @@ import Tamron150500mmf567 from '@/components/special/camera/feature/tamron/150-5
 import Pentaxk3mk3 from '@/components/special/camera/feature/pentax/k-3mk3.vue';
 // ricoh
 import Ricohgr3x from '@/components/special/camera/feature/ricoh/gr3x.vue';
+import RicohThetasc from '@/components/special/camera/feature/ricoh/thetasc.vue';
 
 // general
 import Tokutokukoukan from '@/components/special/general/tokutokukoukan.vue';
@@ -192,39 +227,92 @@ import graduationEntrance from '@/components/special/general/graduation-entrance
 import keirou from '@/components/special/general/keirou.vue';
 import Pet from '@/components/special/general/pet.vue';
 import Tokutokusueoki from '@/components/special/general/tokutokusueoki.vue';
+import StoryAfterTaking from '@/components/special/general/story-after-taking.vue';
+import highlyRecommended from '@/components/special/general/highly_recommended.vue';
+import Summerhomework from '@/components/special/general/summerhomework.vue';
+import Photoconlearn from '@/components/special/general/photocon-learn.vue';
 
 // general/highly_recommended
 import highlyRecommended20151120 from '@/components/special/general/highly_recommended/2015/1120.vue';
 import highlyRecommended20150605 from '@/components/special/general/highly_recommended/2015/0605.vue';
-import highlyRecommended from '@/components/special/general/highly_recommended.vue';
+import highlyRecommended20150410 from '@/components/special/general/highly_recommended/2015/0410.vue';
+import highlyRecommended20151224 from '@/components/special/general/highly_recommended/2015/1224.vue';
+import highlyRecommended20150501 from '@/components/special/general/highly_recommended/2015/0501.vue';
+import highlyRecommended20150925 from '@/components/special/general/highly_recommended/2015/0925.vue';
+import highlyRecommended20150828 from '@/components/special/general/highly_recommended/2015/0828.vue';
+import highlyRecommended20150731 from '@/components/special/general/highly_recommended/2015/0731.vue';
+import highlyRecommended20150522 from '@/components/special/general/highly_recommended/2015/0522.vue';
+import highlyRecommended20150612 from '@/components/special/general/highly_recommended/2015/0612.vue';
+import highlyRecommended20150327 from '@/components/special/general/highly_recommended/2015/0327.vue';
+import highlyRecommended20150529 from '@/components/special/general/highly_recommended/2015/0529.vue';
+import highlyRecommended20150807 from '@/components/special/general/highly_recommended/2015/0807.vue';
 import highlyRecommended20194121 from '@/components/special/general/highly_recommended/2019/4121.vue';
 import highlyRecommended20194357 from '@/components/special/general/highly_recommended/2019/4357.vue';
+import highlyRecommended20194194 from '@/components/special/general/highly_recommended/2019/4194.vue';
+import highlyRecommended20194261 from '@/components/special/general/highly_recommended/2019/4261.vue';
+import highlyRecommended20194301 from '@/components/special/general/highly_recommended/2019/4301.vue';
+import highlyRecommended20194161 from '@/components/special/general/highly_recommended/2019/4161.vue';
+import highlyRecommended20194349 from '@/components/special/general/highly_recommended/2019/4349.vue';
+import highlyRecommended20194380 from '@/components/special/general/highly_recommended/2019/4380.vue';
+import highlyRecommended20194323 from '@/components/special/general/highly_recommended/2019/4323.vue';
 import highlyRecommended20204909 from '@/components/special/general/highly_recommended/2020/4909.vue';
 import highlyRecommended20204725 from '@/components/special/general/highly_recommended/2020/4725.vue';
 import highlyRecommended20204872 from '@/components/special/general/highly_recommended/2020/4872.vue';
 import highlyRecommended20204722 from '@/components/special/general/highly_recommended/2020/4722.vue';
-import highlyRecommended20150410 from '@/components/special/general/highly_recommended/2015/0410.vue';
-import highlyRecommended20151224 from '@/components/special/general/highly_recommended/2015/1224.vue';
-import highlyRecommended20150501 from '@/components/special/general/highly_recommended/2015/0501.vue';
+import highlyRecommended20204462 from '@/components/special/general/highly_recommended/2020/4462.vue';
+import highlyRecommended20204925 from '@/components/special/general/highly_recommended/2020/4925.vue';
+import highlyRecommended20204463 from '@/components/special/general/highly_recommended/2020/4463.vue';
+import highlyRecommended20204830 from '@/components/special/general/highly_recommended/2020/4830.vue';
+import highlyRecommended20204665 from '@/components/special/general/highly_recommended/2020/4665.vue';
+import highlyRecommended20204541 from '@/components/special/general/highly_recommended/2020/4541.vue';
+import highlyRecommended20204666 from '@/components/special/general/highly_recommended/2020/4666.vue';
+import highlyRecommended20204723 from '@/components/special/general/highly_recommended/2020/4723.vue';
+import highlyRecommended20204724 from '@/components/special/general/highly_recommended/2020/4724.vue';
+import highlyRecommended20204829 from '@/components/special/general/highly_recommended/2020/4829.vue';
+
 // general/sportsday
 import Sportsday from '@/components/special/general/sportsday.vue';
 import Sportsday485 from '@/components/special/general/sportsday/485.vue';
 import Sportsday531 from '@/components/special/general/sportsday/531.vue';
 import Sportsday1196 from '@/components/special/general/sportsday/1196.vue';
 import SportsdayPhotoKnowhow1 from '@/components/special/general/sportsday/photo-knowhow-1.vue';
-// general/photo-mono
+import Sportsday532 from '@/components/special/general/sportsday/532.vue';
+
+// general/photo_mono
 import PhotomonoMacrolens from '@/components/special/general/photo-mono/macro-lens.vue';
 import PhotomonoG9pro from '@/components/special/general/photo-mono/g9pro.vue';
 import Photomono50mmlens from '@/components/special/general/photo-mono/50mmlens.vue';
+import PhotomonoA7r3a9 from '@/components/special/general/photo-mono/a7r3-a9.vue';
+import PhotomonoSonya9 from '@/components/special/general/photo-mono/sony-a9.vue';
+import PhotomonoSigmaLens from '@/components/special/general/photo-mono/sigma-lens.vue';
 // general/summerhomework
 import SummerhomeworkMoon from '@/components/special/general/summerhomework/moon.vue';
+import SummerhomeworkCamera from '@/components/special/general/summerhomework/camera.vue';
+import SummerhomeworkObservationDiary from '@/components/special/general/summerhomework/observation-diary.vue';
 // general/stationery/mannenhitsu
 import MannenhitsuNenga from '@/components/special/general/stationery/mannenhitsu/nenga.vue';
+// general/how-to
+import HowtoSkillup01 from '@/components/special/general/how-to/skillup/01.vue';
+import HowtoNightView from '@/components/special/general/how-to/night-view.vue';
+import GraduationEntranceFaq from '@/components/special/general/graduation_entrance/faq.vue';
+import Howtohanabi from '@/components/special/general/how-to/hanabi.vue';
+import HowtoGroup from '@/components/special/general/how-to/group.vue';
+// general/tokutokusueoki
+import TokutokusueokiFelens from '@/components/special/general/tokutokusueoki/fe-lens.vue';
+import TokutokusueokiRflens from '@/components/special/general/tokutokusueoki/rf-lens.vue';
+import TokutokusueokiEflens from '@/components/special/general/tokutokusueoki/ef-lens.vue';
+import TokutokusueokiZlens from '@/components/special/general/tokutokusueoki/z-lens.vue';
+// general/watch
+import WatchOmega from '@/components/special/general/watch/omega.vue';
+// general/pet
+import Pet1472 from '@/components/special/general/pet/1472.vue';
 
 // page
 import Deliver from '@/components/special/page/deliver.vue';
 import Paypay from '@/components/special/page/paypay.vue';
 import TabletCalculateGuarantee from '@/components/special/page/tablet/calculate/guarantee.vue';
+import Usednavi from '@/components/special/page/used-navi.vue';
+import WrappingGift from '@/components/special/page/wrapping-gift.vue';
 // album
 import AlbumFeature from '@/components/special/camera/album/feature.vue';
 import AlbumFeature1985 from '@/components/special/camera/album/feature/1985.vue';
@@ -238,6 +326,7 @@ import Album1440 from '@/components/special/camera/album/1440.vue';
 import AlbumOriginal2052 from '@/components/special/camera/album/original/2052.vue';
 import Album3765 from '@/components/special/camera/album/3765.vue';
 import Album3766 from '@/components/special/camera/album/3766.vue';
+import AlbumStorageWonderphotobox from '@/components/special/camera/album/storage/wonderphotobox.vue';
 
 // other
 import Backnumber from '@/components/special/camera/feature/backnumber.vue';
@@ -273,6 +362,8 @@ import KadenRicemillInterview from '@/components/special/kaden/ricemill/intervie
 import KadenAirPurifierDaikin from '@/components/special/kaden/air-purifier/daikin.vue';
 import KadenHeyabosi from '@/components/special/kaden/heyabosi.vue';
 import KadenSmartphoneIphone7Iphone7camera from '@/components/special/kaden/smart_phone/iphone7/iphone7-camera.vue';
+import KadenDcfan from '@/components/special/kaden/dcfan.vue';
+import KadenBottle from '@/components/special/kaden/bottle.vue';
 
 // bag/feature
 import Trekking from '@/components/special/camera/bag/feature/trekking.vue';
@@ -350,8 +441,10 @@ const COMPONENT_LIST = {
   sample2: SampleComponent2,
   sample3: SampleComponent3,
   sample4: SampleComponent4,
+  'sample-amount-simulator': SampleAmountSimulator,
   component20210401: Component20210401,
   'component-20210402': Component20210402,
+  vuetify: VuetifyComponentList,
   // ---- ↑ サンプル ------
 
   //original
@@ -379,11 +472,15 @@ const COMPONENT_LIST = {
   'camera/lens/lumixg': Lumixg,
   'camera/lens/809': Lens809,
   'camera/lens/fujifilm/xf100-400': LensFujifilmXf100400,
+  'camera/lens/touit': LensTouit,
+  'camera/lens/tamron18270/1402': LensTamron182701402,
 
   // page
   'page/deliver': Deliver,
   'page/paypay': Paypay,
   'page/tablet/calculate/guarantee': TabletCalculateGuarantee,
+  'page/used-navi': Usednavi,
+  'page/wrapping-gift': WrappingGift,
   // album
   'camera/album/feature': AlbumFeature,
   'camera/album/feature/1985': AlbumFeature1985,
@@ -397,6 +494,7 @@ const COMPONENT_LIST = {
   'camera/album/original/2052': AlbumOriginal2052,
   'camera/album/3765': Album3765,
   'camera/album/3766': Album3766,
+  'camera/album/storage/wonderphotobox': AlbumStorageWonderphotobox,
 
   // general
   'general/tokutokukoukan': Tokutokukoukan,
@@ -408,36 +506,87 @@ const COMPONENT_LIST = {
   'general/keirou': keirou,
   'general/pet': Pet,
   'general/tokutokusueoki': Tokutokusueoki,
+  'general/story_after_taking': StoryAfterTaking,
+  'general/highly_recommended': highlyRecommended,
+  'general/summerhomework': Summerhomework,
+  'general/photocon-learn': Photoconlearn,
+
   // general/sportsday
   'general/sportsday': Sportsday,
   'general/sportsday/485': Sportsday485,
   'general/sportsday/531': Sportsday531,
   'general/sportsday/1196': Sportsday1196,
   'general/sportsday/photo-knowhow-1': SportsdayPhotoKnowhow1,
+  'general/sportsday/532': Sportsday532,
   // general/highly_recommended
   'general/highly_recommended/2015/1120': highlyRecommended20151120,
   'general/highly_recommended/2015/0605': highlyRecommended20150605,
-  'general/highly_recommended': highlyRecommended,
+  'general/highly_recommended/2015/0410': highlyRecommended20150410,
+  'general/highly_recommended/2015/1224': highlyRecommended20151224,
+  'general/highly_recommended/2015/0501': highlyRecommended20150501,
+  'general/highly_recommended/2015/0925': highlyRecommended20150925,
+  'general/highly_recommended/2015/0828': highlyRecommended20150828,
+  'general/highly_recommended/2015/0731': highlyRecommended20150731,
+  'general/highly_recommended/2015/0522': highlyRecommended20150522,
+  'general/highly_recommended/2015/0612': highlyRecommended20150612,
+  'general/highly_recommended/2015/0327': highlyRecommended20150327,
+  'general/highly_recommended/2015/0529': highlyRecommended20150529,
+  'general/highly_recommended/2015/0807': highlyRecommended20150807,
   'general/highly_recommended/2019/4121': highlyRecommended20194121,
   'general/highly_recommended/2019/4357': highlyRecommended20194357,
+  'general/highly_recommended/2019/4194': highlyRecommended20194194,
+  'general/highly_recommended/2019/4261': highlyRecommended20194261,
+  'general/highly_recommended/2019/4301': highlyRecommended20194301,
+  'general/highly_recommended/2019/4161': highlyRecommended20194161,
+  'general/highly_recommended/2019/4349': highlyRecommended20194349,
+  'general/highly_recommended/2019/4380': highlyRecommended20194380,
+  'general/highly_recommended/2019/4323': highlyRecommended20194323,
   'general/highly_recommended/2020/4909': highlyRecommended20204909,
   'general/highly_recommended/2020/4725': highlyRecommended20204725,
   'general/highly_recommended/2020/4872': highlyRecommended20204872,
   'general/highly_recommended/2020/4722': highlyRecommended20204722,
-  'general/highly_recommended/2015/0410': highlyRecommended20150410,
-  'general/highly_recommended/2015/1224': highlyRecommended20151224,
-  'general/highly_recommended/2015/0501': highlyRecommended20150501,
+  'general/highly_recommended/2020/4462': highlyRecommended20204462,
+  'general/highly_recommended/2020/4463': highlyRecommended20204463,
+  'general/highly_recommended/2020/4830': highlyRecommended20204830,
+  'general/highly_recommended/2020/4925': highlyRecommended20204925,
+  'general/highly_recommended/2020/4665': highlyRecommended20204665,
+  'general/highly_recommended/2020/4541': highlyRecommended20204541,
+  'general/highly_recommended/2020/4666': highlyRecommended20204666,
+  'general/highly_recommended/2020/4723': highlyRecommended20204723,
+  'general/highly_recommended/2020/4724': highlyRecommended20204724,
+  'general/highly_recommended/2020/4829': highlyRecommended20204829,
+
   // general/print-service
   'general/print-service/square': PrintServicesquare,
   // general/photo_mono
   'general/photo_mono/macro-lens': PhotomonoMacrolens,
   'general/photo_mono/g9pro': PhotomonoG9pro,
   'general/photo_mono/50mmlens': Photomono50mmlens,
-
-  // generak/summerhomework
+  'general/photo_mono/a7r3-a9': PhotomonoA7r3a9,
+  'general/photo_mono/sony-a9': PhotomonoSonya9,
+  'general/photo_mono/sigma-lens': PhotomonoSigmaLens,
+  // general/summerhomework
   'general/summerhomework/moon': SummerhomeworkMoon,
+  'general/summerhomework/camera': SummerhomeworkCamera,
+  'general/summerhomework/observation-diary': SummerhomeworkObservationDiary,
   // general/stationery/mannenhitsu
   'general/stationery/mannenhitsu/nenga': MannenhitsuNenga,
+  // general/how-to
+  'general/how-to/skillup/01': HowtoSkillup01,
+  'general/how-to/night-view': HowtoNightView,
+  'general/how-to/hanabi': Howtohanabi,
+  'general/how-to/group': HowtoGroup,
+  // general/graduation_entrance
+  'general/graduation_entrance/faq': GraduationEntranceFaq,
+  // general/tokutokusueoki
+  'general/tokutokusueoki/fe-lens': TokutokusueokiFelens,
+  'general/tokutokusueoki/rf-lens': TokutokusueokiRflens,
+  'general/tokutokusueoki/ef-lens': TokutokusueokiEflens,
+  'general/tokutokusueoki/z-lens': TokutokusueokiZlens,
+  // general/watch
+  'general/watch/omega': WatchOmega,
+  // general/pet
+  'general/pet/1472': Pet1472,
 
   // camera
   'camera/dslr': Componentdslr,
@@ -451,12 +600,22 @@ const COMPONENT_LIST = {
   'camera/hosizora': Hosizora,
   'camera/travel': Travel,
   'camera/okamoto-yutaka': OkamotoYutaka,
+  'camera/wearable': Wearable,
+  'camera/mirrorless-oldlens': Mirrorlessoldlens,
+  'camera/strap': Strap,
+  'camera/strap/380': Strap380,
 
   // lensfilter
   'camera/lensfilter/1869': Lensfilter1869,
   'camera/lensfilter/2638': Lensfilter2638,
   'camera/lensfilter/1104': Lensfilter1104,
   'camera/lensfilter/nd500': LensfilterNd500,
+  'camera/lensfilter/exus': LensfilterExus,
+  'camera/lensfilter/nikon-arcrest': LensfilterNikonArcrest,
+  'camera/lensfilter/341': Lensfilter341,
+  'camera/lensfilter/343': Lensfilter343,
+  'camera/lensfilter/344': Lensfilter344,
+
   // polarie
   'camera/polarie': Polarie,
   'camera/polarie/acc': PolarieAcc,
@@ -471,6 +630,9 @@ const COMPONENT_LIST = {
   //Printer
   'camera/printer/759': Printer759,
   'camera/printer/3133': Printer3133,
+  // travel
+  'camera/travel/accessory': travelAccessory,
+
   // feature
   'camera/feature': Componentfeature,
   'camera/feature/dslr': Componentfeaturedslr,
@@ -499,6 +661,8 @@ const COMPONENT_LIST = {
   'camera/feature/canon/eosr': CanonEosr,
   'camera/feature/canon/5ds': Canon5ds,
   'camera/feature/canon/eoskiss10I/4496': CanonEoskiss10I4496,
+  'camera/feature/canon/fv100': CanonFv100,
+  'camera/feature/canon/1dxmk2': Canon1dxmk2,
 
   // nikon
   'camera/feature/nikon/zfc': NikonZfc,
@@ -519,10 +683,18 @@ const COMPONENT_LIST = {
   'camera/feature/nikon/nikkorz_70-200mm_f2.8_vr_s': NikonNikkorz70200mmf28vrs,
   'camera/feature/nikon/nikon1': NikonNikon1,
   'camera/feature/nikon/d810': NikonD810,
+  'camera/feature/nikon/d4s': NikonD4s,
+  'camera/feature/nikon/z_9': NikonZ9,
+  'camera/feature/nikon/df': NikonDf,
+  'camera/feature/nikon/z24-200mm_f4-6.3_vr': Nikonz24200mmf463vr,
+  'camera/feature/nikon/nikkor_120_300mm_f2.8_e_fl_ed_sr_vr': NikonZnikkor120300mmf28efledsrvr,
   // olympus
   'camera/feature/olympus/penEP7': OlympusPenEP7,
   'camera/feature/olympus/em1m2': OlympusEm1m2,
   'camera/feature/olympus/em1m3': OlympusEm1m3,
+  'camera/feature/olympus/em10': OlympusEm10,
+  'camera/feature/olympus/lens40-150': OlympusLens40150,
+  'camera/feature/olympus/em1m3/4484': OlympusEm1m34484,
   // panasonic
   'camera/feature/panasonic/gh5m2': PanasonicGh5m2,
   'camera/feature/panasonic/g100': Panasonicg100,
@@ -552,6 +724,10 @@ const COMPONENT_LIST = {
   'camera/feature/sony/vlogcam_zv1_zv1g/4709': SonyVlogcamzv1zv1g4709,
   'camera/feature/sony/a9': SonyA9,
   'camera/feature/sony/a7r3': SonyA7r3,
+  'camera/feature/sony/hx90vwx500': SonyHx90vwx500,
+  'camera/feature/sony/a99ii': SonyA99ii,
+  'camera/feature/sony/wh-1000xm4lm': SonyWh1000xm4lm,
+
 
   // tamron
   'camera/feature/tamron/150500mmf567': Tamron150500mmf567,
@@ -573,6 +749,8 @@ const COMPONENT_LIST = {
   'camera/feature/fujifilm/gfx50sII': Fujifilgfx50sII,
   'camera/feature/fujifilm/xt3': FujifilmXt3,
   'camera/feature/fujifilm/xt2': FujifilmXt2,
+  'camera/feature/fujifilm/xc35mm_f2': FujifilmXc35mmf2,
+  'camera/feature/fujifilm/x100v/4475': FujifilmX100v4475,
 
   // pentax
   'camera/feature/pentax/k3mk3': Pentaxk3mk3,
@@ -580,6 +758,7 @@ const COMPONENT_LIST = {
   'camera/feature/sigma/fpl': SigmaFpl,
   // ricoh
   'camera/feature/ricoh/gr3x': Ricohgr3x,
+  'camera/feature/ricoh/thetasc': RicohThetasc,
 
   // その他
   'camera/filmcamera/utsurundesu': Componentutsurundesu,
@@ -602,6 +781,8 @@ const COMPONENT_LIST = {
   'kaden/air-purifier_fair/daikin': KadenAirPurifierDaikin,
   'kaden/heyabosi': KadenHeyabosi,
   'kaden/smart_phone/iphone7/iphone7-camera': KadenSmartphoneIphone7Iphone7camera,
+  'kaden/dcfan': KadenDcfan,
+  'kaden/bottle': KadenBottle,
 
   // bag/feature
   'camera/bag/feature/trekking': Trekking,
@@ -680,8 +861,10 @@ const URL_MAPPING_LIST = {
   sample2: 'sample2',
   sample3: 'sample3',
   sample4: 'sample4',
+  'sample-amount-simulator': 'sample-amount-simulator',
   '2021/0401': 'component20210401',
   '2021/0402-test': 'component-20210402',
+  vuetify: 'vuetify',
   // ---- ↑ サンプル ------
 
   //original
@@ -710,11 +893,14 @@ const URL_MAPPING_LIST = {
   'camera/lens/lumixg': 'camera/lens/lumixg',
   'camera/lens/809': 'camera/lens/809',
   'camera/lens/fujifilm/xf100-400': 'camera/lens/fujifilm/xf100-400',
+  'camera/lens/touit': 'camera/lens/touit',
+  'camera/lens/tamron18270/1402': 'camera/lens/tamron18270/1402',
   // page
   'page/deliver': 'page/deliver',
   'page/paypay': 'page/paypay',
   'page/tablet/calculate/guarantee': 'page/tablet/calculate/guarantee',
-
+  'page/used-navi': 'page/used-navi',
+  'page/wrapping-gift': 'page/wrapping-gift',
   // album
   'camera/album/feature': 'camera/album/feature',
   'camera/album/feature/1985': 'camera/album/feature/1985',
@@ -728,6 +914,7 @@ const URL_MAPPING_LIST = {
   'camera/album/original/2052': 'camera/album/original/2052',
   'camera/album/3765': 'camera/album/3765',
   'camera/album/3766': 'camera/album/3766',
+  'camera/album/storage/wonderphotobox': 'camera/album/storage/wonderphotobox',
   // general
   'general/wirelessimageshare': 'general/wirelessimageshare',
   'general/prepare': 'general/prepare',
@@ -738,25 +925,58 @@ const URL_MAPPING_LIST = {
   'general/keirou': 'general/keirou',
   'general/pet': 'general/pet',
   'general/tokutokusueoki': 'general/tokutokusueoki',
+  'general/story_after_taking': 'general/story_after_taking',
+  'general/highly_recommended': 'general/highly_recommended',
+  'general/summerhomework': 'general/summerhomework',
+  'general/photocon-learn': 'general/photocon-learn',
+
   // general/highly_recommended
   'general/highly_recommended/2015/1120': 'general/highly_recommended/2015/1120',
   'general/highly_recommended/2015/0605': 'general/highly_recommended/2015/0605',
-  'general/highly_recommended': 'general/highly_recommended',
-  'general/highly_recommended/2019/4121': 'general/highly_recommended/2019/4121',
-  'general/highly_recommended/2019/4357': 'general/highly_recommended/2019/4357',
-  'general/highly_recommended/2020/4909': 'general/highly_recommended/2020/4909',
-  'general/highly_recommended/2020/4725': 'general/highly_recommended/2020/4725',
-  'general/highly_recommended/2020/4872': 'general/highly_recommended/2020/4872',
-  'general/highly_recommended/2020/4722': 'general/highly_recommended/2020/4722',
   'general/highly_recommended/2015/0410': 'general/highly_recommended/2015/0410',
   'general/highly_recommended/2015/1224': 'general/highly_recommended/2015/1224',
   'general/highly_recommended/2015/0501': 'general/highly_recommended/2015/0501',
+  'general/highly_recommended/2015/0925': 'general/highly_recommended/2015/0925',
+  'general/highly_recommended/2015/0828': 'general/highly_recommended/2015/0828',
+  'general/highly_recommended/2015/0731': 'general/highly_recommended/2015/0731',
+  'general/highly_recommended/2015/0522': 'general/highly_recommended/2015/0522',
+  'general/highly_recommended/2015/0612': 'general/highly_recommended/2015/0612',
+  'general/highly_recommended/2015/0327': 'general/highly_recommended/2015/0327',
+  'general/highly_recommended/2015/0529': 'general/highly_recommended/2015/0529',
+  'general/highly_recommended/2015/0807': 'general/highly_recommended/2015/0807',
+  'general/highly_recommended/2019/4121': 'general/highly_recommended/2019/4121',
+  'general/highly_recommended/2019/4357': 'general/highly_recommended/2019/4357',
+  'general/highly_recommended/2019/4194': 'general/highly_recommended/2019/4194',
+  'general/highly_recommended/2019/4261': 'general/highly_recommended/2019/4261',
+  'general/highly_recommended/2019/4301': 'general/highly_recommended/2019/4301',
+  'general/highly_recommended/2019/4161': 'general/highly_recommended/2019/4161',
+  'general/highly_recommended/2019/4349': 'general/highly_recommended/2019/4349',
+  'general/highly_recommended/2019/4380': 'general/highly_recommended/2019/4380',
+  'general/highly_recommended/2019/4323': 'general/highly_recommended/2019/4323',
+  'general/highly_recommended/2020/4909': 'general/highly_recommended/2020/4909',
+  'general/highly_recommended/2020/4725': 'general/highly_recommended/2020/4725',
+  'general/highly_recommended/2020/4872': 'general/highly_recommended/2020/4872',
+  'general/highly_recommended/2020/4462': 'general/highly_recommended/2020/4462',
+  'general/highly_recommended/2020/4722': 'general/highly_recommended/2020/4722',
+  'general/highly_recommended/2020/4925': 'general/highly_recommended/2020/4925',
+  'general/highly_recommended/2020/4463': 'general/highly_recommended/2020/4463',
+  'general/highly_recommended/2020/4830': 'general/highly_recommended/2020/4830',
+  'general/highly_recommended/2020/4665': 'general/highly_recommended/2020/4665',
+  'general/highly_recommended/2020/4541': 'general/highly_recommended/2020/4541',
+  'general/highly_recommended/2020/4666': 'general/highly_recommended/2020/4666',
+  'general/highly_recommended/2020/4723': 'general/highly_recommended/2020/4723',
+  'general/highly_recommended/2020/4724': 'general/highly_recommended/2020/4724',
+  'general/highly_recommended/2020/4829': 'general/highly_recommended/2020/4829',
+
   // general/print-service
   'general/print-service/square': 'general/print-service/square',
   // general/photo_mono
   'general/photo_mono/macro-lens': 'general/photo_mono/macro-lens',
   'general/photo_mono/g9pro': 'general/photo_mono/g9pro',
   'general/photo_mono/50mmlens': 'general/photo_mono/50mmlens',
+  'general/photo_mono/a7r3-a9': 'general/photo_mono/a7r3-a9',
+  'general/photo_mono/sony-a9': 'general/photo_mono/sony-a9',
+  'general/photo_mono/sigma-lens': 'general/photo_mono/sigma-lens',
 
   // general/sportsday
   'general/sportsday': 'general/sportsday',
@@ -764,9 +984,29 @@ const URL_MAPPING_LIST = {
   'general/sportsday/531': 'general/sportsday/531',
   'general/sportsday/1196': 'general/sportsday/1196',
   'general/sportsday/photo-knowhow-1': 'general/sportsday/photo-knowhow-1',
-  'general/summerhomework/moon': 'general/summerhomework/moon',
+  'general/sportsday/532': 'general/sportsday/532',
   // general/stationery/mannenhitsu
   'general/stationery/mannenhitsu/nenga': 'general/stationery/mannenhitsu/nenga',
+  // general/how-to
+  'general/how-to/skillup/01': 'general/how-to/skillup/01',
+  'general/how-to/night-view': 'general/how-to/night-view',
+  'general/how-to/hanabi': 'general/how-to/hanabi',
+  'general/how-to/group': 'general/how-to/group',
+  // general/graduation_entrance
+  'general/graduation_entrance/faq': 'general/graduation_entrance/faq',
+  // general/tokutokusueoki
+  'general/tokutokusueoki/fe-lens': 'general/tokutokusueoki/fe-lens',
+  'general/tokutokusueoki/rf-lens': 'general/tokutokusueoki/rf-lens',
+  'general/tokutokusueoki/ef-lens': 'general/tokutokusueoki/ef-lens',
+  'general/tokutokusueoki/z-lens': 'general/tokutokusueoki/z-lens',
+  // general/watch
+  'general/watch/omega': 'general/watch/omega',
+  // general/pet
+  'general/pet/1472': 'general/pet/1472',
+  // general/summerhomework
+  'general/summerhomework/moon': 'general/summerhomework/moon',
+  'general/summerhomework/camera': 'general/summerhomework/camera',
+  'general/summerhomework/observation-diary': 'general/summerhomework/observation-diary',
 
   // camera
   'camera/dslr': 'camera/dslr',
@@ -780,12 +1020,22 @@ const URL_MAPPING_LIST = {
   'camera/hosizora': 'camera/hosizora',
   'camera/travel': 'camera/travel',
   'camera/okamoto-yutaka': 'camera/okamoto-yutaka',
+  'camera/wearable': 'camera/wearable',
+  'camera/mirrorless-oldlens': 'camera/mirrorless-oldlens',
+  'camera/strap': 'camera/strap',
+  'camera/strap/380': 'camera/strap/380',
 
   // lensfilter
   'camera/lensfilter/1869': 'camera/lensfilter/1869',
   'camera/lensfilter/2638': 'camera/lensfilter/2638',
   'camera/lensfilter/1104': 'camera/lensfilter/1104',
   'camera/lensfilter/nd500': 'camera/lensfilter/nd500',
+  'camera/lensfilter/exus': 'camera/lensfilter/exus',
+  'camera/lensfilter/nikon-arcrest': 'camera/lensfilter/nikon-arcrest',
+  'camera/lensfilter/341': 'camera/lensfilter/341',
+  'camera/lensfilter/343': 'camera/lensfilter/343',
+  'camera/lensfilter/344': 'camera/lensfilter/344',
+
   // polarie
   'camera/polarie': 'camera/polarie',
   'camera/polarie/acc': 'camera/polarie/acc',
@@ -799,6 +1049,9 @@ const URL_MAPPING_LIST = {
   // printer
   'camera/printer/759': 'camera/printer/759',
   'camera/printer/3133': 'camera/printer/3133',
+  // travel
+  'camera/travel/accessory': 'camera/travel/accessory',
+
   // feature
   'camera/feature': 'camera/feature',
   'camera/feature/dslr': 'camera/feature/dslr',
@@ -827,6 +1080,9 @@ const URL_MAPPING_LIST = {
   'camera/feature/canon/eosr': 'camera/feature/canon/eosr',
   'camera/feature/canon/5ds': 'camera/feature/canon/5ds',
   'camera/feature/canon/eoskiss10I/4496': 'camera/feature/canon/eoskiss10I/4496',
+  'camera/feature/canon/fv100': 'camera/feature/canon/fv100',
+  'camera/feature/canon/1dxmk2': 'camera/feature/canon/1dxmk2',
+
   // nikon
   'camera/feature/nikon/zfc': 'camera/feature/nikon/zfc',
   'camera/feature/nikon/z5': 'camera/feature/nikon/z5',
@@ -846,10 +1102,18 @@ const URL_MAPPING_LIST = {
   'camera/feature/nikon/nikkorz_70-200mm_f2.8_vr_s': 'camera/feature/nikon/nikkorz_70-200mm_f2.8_vr_s',
   'camera/feature/nikon/nikon1': 'camera/feature/nikon/nikon1',
   'camera/feature/nikon/d810': 'camera/feature/nikon/d810',
+  'camera/feature/nikon/d4s': 'camera/feature/nikon/d4s',
+  'camera/feature/nikon/z_9': 'camera/feature/nikon/z_9',
+  'camera/feature/nikon/df': 'camera/feature/nikon/df',
+  'camera/feature/nikon/z24-200mm_f4-6.3_vr': 'camera/feature/nikon/z24-200mm_f4-6.3_vr',
+  'camera/feature/nikon/nikkor_120_300mm_f2.8_e_fl_ed_sr_vr': 'camera/feature/nikon/nikkor_120_300mm_f2.8_e_fl_ed_sr_vr',
   // olympus
   'camera/feature/olympus/penEP7': 'camera/feature/olympus/penEP7',
   'camera/feature/olympus/em1m2': 'camera/feature/olympus/em1m2',
   'camera/feature/olympus/em1m3': 'camera/feature/olympus/em1m3',
+  'camera/feature/olympus/em10': 'camera/feature/olympus/em10',
+  'camera/feature/olympus/lens40-150': 'camera/feature/olympus/lens40-150',
+  'camera/feature/olympus/em1m3/4484': 'camera/feature/olympus/em1m3/4484',
   // panasonic
   'camera/feature/panasonic/gh5m2': 'camera/feature/panasonic/gh5m2',
   'camera/feature/panasonic/g100': 'camera/feature/panasonic/g100',
@@ -880,6 +1144,9 @@ const URL_MAPPING_LIST = {
   'camera/feature/sony/vlogcam_zv1_zv1g/4709': 'camera/feature/sony/vlogcam_zv1_zv1g/4709',
   'camera/feature/sony/a9': 'camera/feature/sony/a9',
   'camera/feature/sony/a7r3': 'camera/feature/sony/a7r3',
+  'camera/feature/sony/hx90vwx500': 'camera/feature/sony/hx90vwx500',
+  'camera/feature/sony/a99ii': 'camera/feature/sony/a99ii',
+  'camera/feature/sony/wh-1000xm4lm': 'camera/feature/sony/wh-1000xm4lm',
 
   // tamron
   'camera/feature/tamron/150500mmf567': 'camera/feature/tamron/150500mmf567',
@@ -901,14 +1168,18 @@ const URL_MAPPING_LIST = {
   'camera/feature/fujifilm/gfx50sII': 'camera/feature/fujifilm/gfx50sII',
   'camera/feature/fujifilm/xt3': 'camera/feature/fujifilm/xt3',
   'camera/feature/fujifilm/xt2': 'camera/feature/fujifilm/xt2',
+  'camera/feature/fujifilm/xc35mm_f2': 'camera/feature/fujifilm/xc35mm_f2',
+  'camera/feature/fujifilm/x100v/4475': 'camera/feature/fujifilm/x100v/4475',
 
   // pentax
   'camera/feature/pentax/k3mk3': 'camera/feature/pentax/k3mk3',
+
   // sigma
   'camera/feature/sigma/fpl': 'camera/feature/sigma/fpl',
 
   // ricoh
   'camera/feature/ricoh/gr3x': 'camera/feature/ricoh/gr3x',
+  'camera/feature/ricoh/thetasc': 'camera/feature/ricoh/thetasc',
 
   // その他
   'camera/filmcamera/utsurundesu': 'camera/filmcamera/utsurundesu',
@@ -931,6 +1202,8 @@ const URL_MAPPING_LIST = {
   'kaden/air-purifier_fair/daikin': 'kaden/air-purifier_fair/daikin',
   'kaden/heyabosi': 'kaden/heyabosi',
   'kaden/smart_phone/iphone7/iphone7-camera': 'kaden/smart_phone/iphone7/iphone7-camera',
+  'kaden/dcfan': 'kaden/dcfan',
+  'kaden/bottle': 'kaden/bottle',
 
   // bag/feature
   'camera/bag/feature/trekking': 'camera/bag/feature/trekking',

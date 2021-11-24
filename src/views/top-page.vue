@@ -213,7 +213,7 @@
           <div class="content-title content-title-small category-title">商品カテゴリーから探す</div>
           <v-list>
             <v-list-item-group>
-              <v-list-group>
+              <v-list-group value="true">
                 <template v-slot:activator>
                   <v-list-item-title class="content-subtitle-small">カメラ</v-list-item-title>
                 </template>

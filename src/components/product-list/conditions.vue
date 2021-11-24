@@ -391,6 +391,8 @@ export default Vue.extend({
           if ((cond.paramCode === 'narrow2' && !shop.shopList) || (cond.paramCode === 'narrow2' && !shop.shopList.length)) return;
           // 非表示制御： 中古のみ選択時の価格条件
           if (stateCond.length && stateCond[0].value === '2' && (cond.paramCode === 'price' || cond.paramCode === 'member_price')) return;
+          // 非表示制御： 中古在庫 画素数
+          if (props.isUsed && cond.paramCode === 'number4') return;
 
           // 件数順に並び替え
           if (cond.isSortWithCount) {

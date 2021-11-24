@@ -1,16 +1,16 @@
 <template>
   <v-dialog v-model="errorDialog" max-width="640" fixed @click:outside="close()" class="error-dialog">
-    <v-card class="error-dialog-body d-flex">
-      <v-btn icon class="dialog-close-button" @click="close()" color="black">
-        <v-icon>fas fa-times</v-icon>
-      </v-btn>
-
-      <v-card-title class="error-dialog-msg ma-auto">
+    <v-card class="error-dialog-body d-flex flex-column px-3 py-5">
+      <v-card-title class="error-dialog-msg">
         <div class="error-dialog-msg-area d-flex">
-          <v-icon size="42" class="mr-9">fas fa-exclamation-circle</v-icon>
+          <v-icon size="42" :class="{ 'mr-9': $vuetify.breakpoint.mdAndUp, 'mr-6': $vuetify.breakpoint.smAndDown }">fas fa-exclamation-circle</v-icon>
           <span>{{ errorMessage }}</span>
         </div>
       </v-card-title>
+
+      <v-card-actions class="error-dialog-actions-area d-flex justify-center">
+        <v-btn color="primary" class="error-dialog-btn" @click="close()">OK</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -58,20 +58,13 @@ export default Vue.extend({
 .error-dialog {
   z-index: 600;
 
-  &-body {
-    min-height: 200px;
+  &-msg-area {
+    align-items: center;
+    white-space: pre-line; // 改行を有効にする
   }
 
-  &-msg {
-    &-area {
-      align-items: center;
-    }
+  &-btn {
+    width: 100px;
   }
-}
-
-.dialog-close-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
 }
 </style>

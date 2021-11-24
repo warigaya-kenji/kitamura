@@ -17,7 +17,7 @@
         <breadcrumbs v-if="breadcrumbs.length" :breadcrumbs="breadcrumbs" />
 
         <!-- タイトル -->
-        <h1>中古カテゴリ一覧</h1>
+        <h1>【カメラのキタムラ】デジカメ・ビデオカメラ等の中古通販</h1>
         <hr />
 
         <v-row class="my-8">
@@ -116,7 +116,7 @@ export default Vue.extend({
   setup: (_, context) => {
     const categoryStore = context.root.$store.category;
 
-    document.title = '【カメラのキタムラ】中古カテゴリ一覧';
+    document.title = '【カメラのキタムラ】デジカメ・ビデオカメラ等の中古通販 ';
     const state = reactive({
       netChukoUrl: process.env.VUE_APP_NET_CHUKO_URL,
       breadcrumbs: [

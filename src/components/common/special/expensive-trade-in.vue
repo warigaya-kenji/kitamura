@@ -16,6 +16,7 @@
             color="#1122cc"
             min-height="20"
             class="x-small align-center py-1 px-2"
+            target="_blank"
             >・{{ expensiveTradeInList.name }}</v-btn
           ><span v-if="type === 1">で下取り実施中です</span>
           <span v-if="type === 2"><br />を、高価下取りいたします。</span>

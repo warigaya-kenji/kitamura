@@ -76,16 +76,16 @@
               ><h4 class="tx-16 text-center">おすすめ機種 スペースアイ600</h4>
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4955295327539/"
+                  <router-link to="/ec/pd/4955295327539/"
                     ><v-img
                       src="//shopimg.kitamura.jp/images/pd/614/a24/7ad/8c1/009/138/24d/978/27b/086/443/0ah/l85/2/M.jpg"
                       alt="ビクセン 天体望遠鏡 スペースアイ600"
                       contain
                       max-height="250px"
                       width="auto"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
-              <v-btn block class="bg-btn tx-14 text-center"><a href="/ec/pd/4955295327539/" class="white--text">商品詳細を見る</a></v-btn>
+              <v-btn block class="bg-btn tx-14 text-center"><router-link to="/ec/pd/4955295327539/" class="white--text">商品詳細を見る</router-link></v-btn>
               <p class="tx-14 mt-2">
                 入門機におすすめな軽量な天体望遠鏡。お子様でも扱える重さです。火星はもちろん、月・土星・木星などもしっかりと見ることができます。<br />
                 付属の接眼レンズは30倍と100倍です。もっと大きく楽しみたいという方は別売りの接眼レンズをプラスワン！してみましょう。
@@ -95,16 +95,16 @@
               ><h4 class="tx-16 text-center">おすすめ機種 ポルタII A80Mf</h4>
               <v-layout justify-center wrap
                 ><v-flex
-                  ><a href="/ec/pd/4955295399529/"
+                  ><router-link to="/ec/pd/4955295399529/"
                     ><v-img
                       src="//shopimg.kitamura.jp/images/pd/45f/b5f/99d/27b/674/30b/cbf/4a7/bae/3fd/7f0/p7e/zwr/1/M.jpg"
                       alt="ビクセン 天体望遠鏡 ポルタII A80Mf"
                       contain
                       max-height="250px"
                       width="auto"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
-              <v-btn block class="bg-btn tx-14 text-center"><a href="/ec/pd/4955295399529/" class="white--text">商品詳細を見る</a></v-btn>
+              <v-btn block class="bg-btn tx-14 text-center"><router-link to="/ec/pd/4955295399529/" class="white--text">商品詳細を見る</router-link></v-btn>
               <p class="tx-14 mt-2">
                 昼の景色から夜の星空まで、丸々一日中活躍する望遠鏡。扱いやすさと性能にこだわったポルタII経緯台、鏡筒、三脚などがセットになっています。 <br />
                 接眼レンズは44倍・144倍のものが付属しています。 （<a href="https://www.vixen.co.jp/lp/mobileporta/" target="_blank" rel="noopener"
@@ -116,16 +116,16 @@
               ><h4 class="tx-16 text-center">天体望遠鏡&スマホ用アダプター</h4>
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/2239530007670/"
+                  <router-link to="/ec/pd/2239530007670/"
                     ><v-img
                       src="//shopimg.kitamura.jp/images/pd/b44/0ee/e6d/e4a/b40/f86/7c9/36d/865/e15/2a2/b0w/nut/c/M.jpg"
                       alt="ビクセン 天体望遠鏡 スペースアイ600&スマホ用アダプターセット"
                       contain
                       max-height="250px"
                       width="auto"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
-              <v-btn block class="bg-btn tx-14 text-center"><a href="/ec/pd/2239530007670/" class="white--text">商品詳細を見る</a></v-btn>
+              <v-btn block class="bg-btn tx-14 text-center"><router-link to="/ec/pd/2239530007670/" class="white--text">商品詳細を見る</router-link></v-btn>
               <p class="tx-14 mt-2">
                 入門機の天体望遠鏡スペースアイ600に、スマホ用アダプターがセット。スマホで気軽に星空を撮影できるので、たくさん撮ってSNSに投稿したり、お友達とシェアしたり、楽しさ広がるおすすめのセットです。（数量限定品ですのでなくなり次第終了となります）
               </p></v-col
@@ -144,16 +144,16 @@
               ><h4 class="tx-16 text-center">ビクセン 天体望遠鏡用31.7mm径接眼レンズ SLV5mm</h4>
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4955295372041/"
+                  <router-link to="/ec/pd/4955295372041/"
                     ><v-img
                       src="//shopimg.kitamura.jp/images/pd/bb4/457/811/38e/979/77c/df3/b8a/e67/095/af5/3xv/jwf/o/M.jpg"
                       alt="ビクセン 天体望遠鏡用31.7mm径接眼レンズ SLV5mm"
                       contain
                       max-height="250px"
                       width="auto"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
-              <v-btn block class="bg-btn tx-14 text-center"><a href="/ec/pd/4955295372041/" class="white--text">商品詳細を見る</a></v-btn>
+              <v-btn block class="bg-btn tx-14 text-center"><router-link to="/ec/pd/4955295372041/" class="white--text">商品詳細を見る</router-link></v-btn>
               <p class="tx-14 mt-2">
                 「天体望遠鏡の見え方は接眼レンズで決まる」と言われるほど、見え方に影響を及ぼす接眼レンズの性能。もっとよく見たい！と思ったら接眼レンズをプラスワン！してみよう！クリアな視界に驚くこと間違いなし！
               </p></v-col
@@ -162,16 +162,16 @@
               ><h4 class="tx-16 text-center">ビクセン<br />SG-L02 天体観測用ライト</h4>
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4955295710898/"
+                  <router-link to="/ec/pd/4955295710898/"
                     ><v-img
                       src="//shopimg.kitamura.jp/images/pd/fc7/6c5/892/839/daf/f8c/783/351/4f2/9ed/d9p/hro/3a9/b/M.JPG"
                       alt="ビクセン SG-L02 天体観測用ライト"
                       contain
                       max-height="250px"
                       width="auto"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
-              <v-btn block class="bg-btn tx-14 text-center"><a href="/ec/pd/4955295710898/" class="white--text">商品詳細を見る</a></v-btn>
+              <v-btn block class="bg-btn tx-14 text-center"><router-link to="/ec/pd/4955295710898/" class="white--text">商品詳細を見る</router-link></v-btn>
               <p class="tx-14 mt-2">
                 暗所では人間の目に刺激を与えない、赤くて弱い光を使うのがベスト。天体望遠鏡メーカーが作った専用設計。暗闇の中で操作するときに便利なライトです。星空を撮影する人からは「神ライト」との評価も！
               </p></v-col
@@ -180,16 +180,16 @@
               ><h4 class="tx-16 text-center">ビクセン<br />レンズヒーター360 III</h4>
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4955295354184/"
+                  <router-link to="/ec/pd/4955295354184/"
                     ><v-img
                       src="//shopimg.kitamura.jp/images/pd/913/8e1/4d7/3b9/efa/bee/2e6/354/1ca/0cb/2av/hkd/r1v/4/M.jpg"
                       alt="ビクセン レンズヒーター360 III"
                       contain
                       max-height="250px"
                       width="auto"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
-              <v-btn block class="bg-btn tx-14 text-center"><a href="/ec/pd/4955295354184/" class="white--text">商品詳細を見る</a></v-btn>
+              <v-btn block class="bg-btn tx-14 text-center"><router-link to="/ec/pd/4955295354184/" class="white--text">商品詳細を見る</router-link></v-btn>
               <p class="tx-14 mt-2">「レンズ曇り」を防ぐ、レンズに巻きつけて使用するUSB電源のヒーターです。野外での天体観測におすすめです。</p></v-col
             >
           </v-col>

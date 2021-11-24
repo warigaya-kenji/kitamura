@@ -4,7 +4,7 @@
     <div class="copyright-area container-wide" v-if="$vuetify.breakpoint.mdAndUp">
       <v-container class="px-0">
         <div class="float-left copyright-height">
-          <div>
+          <div v-show="!simpleFooter">
             <a class="pr-2" href="https://www.kitamura.co.jp/policy/privacy.html" target="_blank">個人情報保護方針</a>
             <a class="pr-2" href="https://www.kitamura.co.jp/news/" target="_blank">ニュースリリース</a>
             <a class="pr-2" href="https://www.kitamura.co.jp/info/" target="_blank">会社概要</a>
@@ -45,7 +45,7 @@
     <!-- 960px未満 -->
     <div class="copyright-area container-narrow" v-if="$vuetify.breakpoint.smAndDown">
       <v-container class="px-0">
-        <v-row no-gutters class="text-center">
+        <v-row no-gutters class="text-center" v-show="!simpleFooter">
           <v-col cols="6">
             <a href="https://www.kitamura.co.jp/policy/privacy.html" target="_blank">個人情報保護方針</a>
           </v-col>
@@ -98,6 +98,12 @@ import { reactive, toRefs } from '@vue/composition-api';
 
 export default Vue.extend({
   name: 'copy-right',
+  props: {
+    simpleFooter: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup: () => {
     const state = reactive({});
 

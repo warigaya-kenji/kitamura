@@ -12,13 +12,13 @@
           <span class="secondary-link-text">{{ product.makerName }}</span>
         </router-link>
       </span>
-      <h2>
-        <span v-if="isUsed"> {{ usedProduct.itemName }}</span>
+      <h1 class="product-name">
+        <span v-if="isUsed">{{ usedItemName }}</span>
         <span v-else>
-          {{ product.itemName }}
+          <span>{{ product.itemName }}</span>
           <span v-if="product.ddDesc">【{{ product.ddDesc }}】</span>
         </span>
-      </h2>
+      </h1>
     </div>
 
     <!-- 画像表示エリア 960px以上 -->
@@ -34,6 +34,14 @@
             </template>
             <div class="product-image-youtube" v-else-if="mainImageType === 'movie'">
               <iframe id="product-movie-player" type="text/html" :src="mainImagePath" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <!-- Coming Soon / Sold Out カバー -->
+            <div
+              v-if="isUsed && (cartOption.text === CART_STATUS.NOTIFY_ARRIVAL || cartOption.text === CART_STATUS.SOLD_OUT)"
+              class="product-image-cover"
+              :class="{ 'coming-soon': cartOption.text === CART_STATUS.NOTIFY_ARRIVAL, 'sold-out': cartOption.text === CART_STATUS.SOLD_OUT }"
+            >
+              <span class="product-image-cover-text">{{ cartOption.text === CART_STATUS.NOTIFY_ARRIVAL ? USED_SALES_STATUS[1].text : cartOption.text }}</span>
             </div>
           </v-card>
           <div class="product-image-thumbnail-list">
@@ -148,6 +156,8 @@
             :isUsed="isUsed"
             :janCode="isUsed ? usedProduct.janCode : product.janCode"
             :isFavorite="memberProduct.isFavorite"
+            :isNoticePriceSetting="memberProduct.noticePrice"
+            :isNoticeUsedSetting="memberProduct.noticeUsed"
             @onRegisterd="onFavoriteRegisterd()"
             @onClosed="onFavoriteDialogClosed()"
           ></product-favorite-dialog>
@@ -192,6 +202,14 @@
             ></iframe>
           </div>
         </v-carousel-item>
+        <!-- Coming Soon / Sold Out カバー -->
+        <div
+          v-if="isUsed && (cartOption.text === CART_STATUS.NOTIFY_ARRIVAL || cartOption.text === CART_STATUS.SOLD_OUT)"
+          class="product-image-cover"
+          :class="{ 'coming-soon': cartOption.text === CART_STATUS.NOTIFY_ARRIVAL, 'sold-out': cartOption.text === CART_STATUS.SOLD_OUT }"
+        >
+          <span class="product-image-cover-text">{{ cartOption.text === CART_STATUS.NOTIFY_ARRIVAL ? USED_SALES_STATUS[1].text : cartOption.text }}</span>
+        </div>
       </v-carousel>
     </div>
 
@@ -299,13 +317,13 @@
             <span class="secondary-link-text">{{ product.makerName }}</span>
           </router-link>
         </span>
-        <h2>
-          <span v-if="isUsed"> {{ usedProduct.itemName }}</span>
+        <h1 class="product-name">
+          <span v-if="isUsed">{{ usedItemName }}</span>
           <span v-else>
-            {{ product.itemName }}
+            <span>{{ product.itemName }}</span>
             <span v-if="product.ddDesc">【{{ product.ddDesc }}】</span>
           </span>
-        </h2>
+        </h1>
         <!-- レビュー -->
         <div class="d-flex" v-if="product.reviewNum">
           <v-rating :value="product.ratingTotal" background-color="warning" color="warning accent-4" dense readonly half-increments size="18"></v-rating>
@@ -411,6 +429,8 @@
               <span class="sell-price-font d-inline-block"> {{ formatPrice(usedProduct.price) }}円 </span>
               <span class="d-inline-block">（税込）</span>
             </div>
+            <!-- 価格表示対象外商品の価格表示 -->
+            <div v-else-if="includeFlag(PRODUCT_FLAG.PRICE_NOT_SHOWN)">-</div>
             <!-- 新品商品の価格表示 -->
             <div v-else>
               <span class="sell-price-font d-inline-block"> {{ formatPrice(product.price) }}円 </span>
@@ -425,6 +445,9 @@
                   </a>
                 </span>
               </span>
+            </div>
+            <div v-if="product.applyCoupon && product.applyCoupon.length" class="product-coupon">
+              クーポンでさらにお値引き！<router-link class="product-coupon-link" to="/ec/mypage/coupon/list" target="_blank">詳しくはコチラ</router-link>
             </div>
           </v-col>
         </v-row>
@@ -473,8 +496,8 @@
         <v-row
           v-if="
             (!isUsed && includeFlag(PRODUCT_FLAG.DELIVERY_ONLY)) ||
-            (!isUsed && includeFlag(PRODUCT_FLAG.STORE_DELIVERY_ONLY)) ||
-            (isUsed && !usedProduct.isDirect)
+              (!isUsed && includeFlag(PRODUCT_FLAG.STORE_DELIVERY_ONLY)) ||
+              (isUsed && !usedProduct.isDirect)
           "
         >
           <v-col cols="4"> 受け取り方法 </v-col>
@@ -569,8 +592,8 @@
         <v-row
           v-if="
             !isUsed &&
-            ((product.delivStockUrl && !includeFlag(PRODUCT_FLAG.STORE_DELIVERY_ONLY)) ||
-              (!includeFlag(PRODUCT_FLAG.DELIVERY_ONLY) && !includeFlag(PRODUCT_FLAG.DIRECT_SHIPMENT)))
+              ((product.delivStockUrl && !includeFlag(PRODUCT_FLAG.STORE_DELIVERY_ONLY)) ||
+                (!includeFlag(PRODUCT_FLAG.DELIVERY_ONLY) && !includeFlag(PRODUCT_FLAG.DIRECT_SHIPMENT)))
           "
         >
           <v-col cols="4">在庫状況</v-col>
@@ -645,8 +668,8 @@
             tile
             :disabled="
               isUsed &&
-              (!variationUsedProducts.filter((item) => item.janCode === variation.janCode).length ||
-                !variationUsedProducts.filter((item) => item.janCode === variation.janCode)[0].itemCount)
+                (!variationUsedProducts.filter((item) => item.janCode === variation.janCode).length ||
+                  !variationUsedProducts.filter((item) => item.janCode === variation.janCode)[0].itemCount)
             "
           >
             <router-link :to="isUsed ? '/ec/list?keyword3=' + variation.janCode + '&type=u' : '/ec/pd/' + variation.janCode">
@@ -757,62 +780,7 @@
             </div>
 
             <!-- カートに入れるオプション -->
-            <div id="cart-dialog-options" class="cart-options">
-              <div class="cart-options-title">オプション選択</div>
-              <div class="cart-options-area">
-                <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.FIVE_YEAR_WARRANTY_COVERAGE)">
-                  <v-checkbox v-model="selectedOption.addWarranty">
-                    <template v-slot:label>
-                      <div class="cart-options-item-text">
-                        5年間保証に加入する
-                        <span v-if="includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) || product.isTrade">
-                          <br />(保証料金 なんでも下取りあり：<span class="red-font mr-2">{{ formatPrice(product.extWarrantyChargeIncludeTrade) }}円</span>
-                          なし：<span class="red-font">{{ formatPrice(product.extWarrantyCharge) }}円</span>)
-                        </span>
-                        <span v-else>
-                          (保証料金：<span class="red-font">{{ formatPrice(product.extWarrantyCharge) }}円 </span>)</span
-                        >
-                        <a href="/sitemap/riyou_hoshou_index.html" @click.stop>
-                          <v-icon class="ml-6"> far fa-question-circle </v-icon>
-                        </a>
-                      </div>
-                    </template>
-                  </v-checkbox>
-                  <div class="cart-options-item-sub-text">
-                    自然故障の際、メーカー保証1年に加え、カメラのキタムラの保証で最長4年間、合計5年間メーカー保証と同等の保証が受けられます
-                  </div>
-                </div>
-                <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.GIFT_AVAILABLE)">
-                  <v-checkbox v-model="selectedOption.addWrapping">
-                    <template v-slot:label>
-                      <div class="cart-options-item-text">
-                        ラッピング(<span class="red-font">300円</span>)※宅配限定
-                        <a href="/special/sale-fair/page/wrapping-gift/" @click.stop>
-                          <v-icon class="ml-6"> far fa-question-circle </v-icon>
-                        </a>
-                      </div>
-                    </template>
-                  </v-checkbox>
-                  <div class="cart-options-item-sub-text">
-                    高級感ある不織布素材使ったラッピングギフトバッグでラッピングいたします<br />
-                    ※商品によってはギフトバッグに入らない場合がございます。その際は、包装紙に包んでお届けいたします
-                  </div>
-                </div>
-                <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) || product.isTrade">
-                  <v-checkbox v-model="selectedOption.applyTradeIn">
-                    <template v-slot:label>
-                      <div class="cart-options-item-text">
-                        下取り申込をする(<span class="red-font">{{ formatPrice(product.tradeInPrice) }}円</span>値引き)
-                        <a href="/sitemap/riyou_shitadori_index.html" @click.stop>
-                          <v-icon class="ml-6"> far fa-question-circle </v-icon>
-                        </a>
-                      </div>
-                    </template>
-                  </v-checkbox>
-                  <div class="cart-options-item-sub-text">ご不要なカメラ・レンズ・ビデオカメラ等をご用意頂くと、販売価格からさらにお安くお求めいただけます</div>
-                </div>
-              </div>
-            </div>
+            <product-cart-option :product="product" :isUsed="isUsed" v-model="selectedOption" />
           </v-card>
         </v-dialog>
 
@@ -860,52 +828,7 @@
                 </v-btn>
               </div>
               <!-- カートに入れるオプション -->
-              <div id="cart-dialog-options" class="cart-options">
-                <div class="cart-options-title">オプション選択</div>
-                <div class="cart-options-area">
-                  <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.FIVE_YEAR_WARRANTY_COVERAGE)">
-                    <v-checkbox v-model="selectedOption.addWarranty">
-                      <template v-slot:label>
-                        <div class="cart-options-item-text">
-                          5年間保証に加入する<br />
-                          <span v-if="includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) || product.isTrade"
-                            >(保証料金<br />なんでも下取り<br />あり：<span class="red-font">{{ formatPrice(product.extWarrantyChargeIncludeTrade) }}円</span
-                            ><br />なし：<span class="red-font">{{ formatPrice(product.extWarrantyCharge) }}円</span>)</span
-                          >
-                          <span v-else
-                            >(保証料金：<span class="red-font">{{ formatPrice(product.extWarrantyCharge) }}円</span>)</span
-                          >
-                        </div>
-                        <a href="/sitemap/riyou_hoshou_index.html" @click.stop>
-                          <v-icon class="cart-options-item-icon"> far fa-question-circle </v-icon>
-                        </a>
-                      </template>
-                    </v-checkbox>
-                  </div>
-                  <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.GIFT_AVAILABLE)">
-                    <v-checkbox v-model="selectedOption.addWrapping">
-                      <template v-slot:label>
-                        <div class="cart-options-item-text">ラッピング(<span class="red-font">300円</span>)<br />※宅配限定</div>
-                        <a href="/special/sale-fair/page/wrapping-gift/" @click.stop>
-                          <v-icon class="cart-options-item-icon"> far fa-question-circle </v-icon>
-                        </a>
-                      </template>
-                    </v-checkbox>
-                  </div>
-                  <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) || product.isTrade">
-                    <v-checkbox v-model="selectedOption.applyTradeIn">
-                      <template v-slot:label>
-                        <div class="cart-options-item-text">
-                          下取り申込をする<br />(<span class="red-font">{{ formatPrice(product.tradeInPrice) }}円</span>値引き)
-                        </div>
-                        <a href="/sitemap/riyou_shitadori_index.html" @click.stop>
-                          <v-icon class="cart-options-item-icon"> far fa-question-circle </v-icon>
-                        </a>
-                      </template>
-                    </v-checkbox>
-                  </div>
-                </div>
-              </div>
+              <product-cart-option :product="product" :isUsed="isUsed" v-model="selectedOption" />
             </div>
           </div>
         </v-navigation-drawer>
@@ -925,6 +848,8 @@
                 :isUsed="isUsed"
                 :janCode="product.janCode"
                 :isFavorite="memberProduct.isFavorite"
+                :isNoticePriceSetting="memberProduct.noticePrice"
+                :isNoticeUsedSetting="memberProduct.noticeUsed"
                 @onRegisterd="onFavoriteRegisterd()"
                 @onClosed="onFavoriteDialogClosed()"
               ></product-favorite-dialog>
@@ -1009,6 +934,9 @@
         </div>
       </div>
     </div>
+
+    <!-- カート投入後の選択ダイアログ -->
+    <cart-inserted-dialog v-model="cartInsertedDialog"></cart-inserted-dialog>
   </div>
 </template>
 
@@ -1029,6 +957,8 @@ import { CART_ERROR_LIST } from '@/constants/cart-error';
 import { PRODUCT_FLAG } from '@/constants/product-flag';
 import { CART_STATUS } from '@/constants/cart-status';
 import { USED_SALES_STATUS } from '@/constants/used-sales-status';
+import CartInsertedDialog from '@/components/common/cart-inserted-dialog.vue';
+import ProductCartOption from '@/components/common/product-cart-option.vue';
 
 /** 画像の種類 */
 type ImageType = 'image' | 'movie';
@@ -1038,7 +968,9 @@ export default Vue.extend({
   components: {
     'product-flags': ProductFlags,
     'product-favorite-dialog': productFavoriteDialog,
-    'product-inner-image-zoom': ProductInnerImageZoom
+    'product-inner-image-zoom': ProductInnerImageZoom,
+    'cart-inserted-dialog': CartInsertedDialog,
+    'product-cart-option': ProductCartOption
   },
   props: {
     // 表示中のアイテムコード
@@ -1081,27 +1013,39 @@ export default Vue.extend({
         /** カートに投入ではなく、お気に入り登録を実行する */
         isFavoriteOperation: boolean;
       }>
+    },
+    specialId: {
+      type: String,
+      default: '',
+      required: false
     }
   },
   setup(props: any, context) {
     const { authorizer, errorStore } = context.root.$store;
 
+    // フラグ
+    function includeFlag(flagNum: number): boolean {
+      return ProductService.includeFlag(props.product.flags, flagNum);
+    }
+
     const state = reactive({
       netChukoUrl: process.env.VUE_APP_NET_CHUKO_URL,
       usedProductsDrawer: false,
       cartDialog: false,
+      cartInsertedDialog: false,
       imageDialog: false,
       stockDialog: false,
       usedGradeDialog: false,
       favoriteDialog: false,
+      // 中古商品タイトル
+      usedItemName: '',
       // 購入可能商品であるかどうか
       canBuyProduct: true,
       cannotBuyReason: '',
       // 購入時のオプション
       selectedOption: {
-        addWarranty: false,
-        addWrapping: false,
-        applyTradeIn: false
+        warranty: false,
+        tradeInHope: false
       },
       // 選択した画像
       selectedImage: '',
@@ -1194,6 +1138,9 @@ export default Vue.extend({
       /** -------------------------------
         中古の場合
       ------------------------------- */
+      // タイトル
+      const itemName = props.usedProduct.itemName?.replace('【中古】', `【中古：${props.usedProduct.grade}】`);
+      state.usedItemName = `${itemName} | ${props.usedProduct.itemCode}`;
 
       // 画像
       state.selectedImage = props.usedProduct.imageUrl1;
@@ -1319,10 +1266,17 @@ export default Vue.extend({
       });
     }
 
-    // フラグ
-    function includeFlag(flagNum: number): boolean {
-      return ProductService.includeFlag(props.product.flags, flagNum);
-    }
+    /**
+     * カートオプションの下取りが適用可能かどうか
+     */
+    const applicableTradeIn = () => {
+      // 各種フラグ 3、21、26 のいずれか存在するなら表示
+      return (
+        includeFlag(PRODUCT_FLAG.TOKUTOKU_EXCHANGE_TARGET) ||
+        includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) ||
+        includeFlag(PRODUCT_FLAG.TRADE_IN_ASSESSMENT_TARGET)
+      );
+    };
 
     // 商品が購入できない理由
     if (props.isUsed) {
@@ -1441,7 +1395,10 @@ export default Vue.extend({
         state.favoriteDialog = true;
       } else {
         alert('お気に入り登録はログインが必要です。');
-        authorizer.openLoginMenu();
+        const successCallback = () => {
+          state.favoriteDialog = true;
+        };
+        authorizer.openLoginMenu(successCallback);
       }
     }
 
@@ -1479,30 +1436,46 @@ export default Vue.extend({
         }
       } else {
         alert('持っている登録はログインが必要です。');
-        authorizer.openLoginMenu();
+        const successCallback = async () => {
+          try {
+            const janCode = props.product?.janCode;
+            await ProductService.registerHaving(janCode);
+            const memberProduct = await ProductService.fetchMemberProduct(janCode);
+            state.memberProduct = memberProduct;
+          } catch (error) {
+            console.error(error);
+            errorStore.errorMessage =
+              'ただいまシステムが混みあっている可能性があります。しばらくお待ちいただきますようお願い申し上げます。ご迷惑をおかけして申し訳ございません。';
+          }
+        };
+        authorizer.openLoginMenu(successCallback);
       }
     }
 
     // カート投入
     function addCart() {
       const displayPrice = props.isUsed ? props.usedProduct.price : props.product.price;
-      const options = props.isUsed ? null : state.selectedOption;
-      ProductService.addCart(props.routeItemCode, props.isUsed, options, displayPrice, state.purchaseNnum).then(() => (location.href = '/cart.html'));
+      const options = state.selectedOption;
+      const specialId = +(props.specialId as string) || undefined;
+      ProductService.addCart(props.routeItemCode, props.isUsed, options, displayPrice, state.purchaseNnum, specialId).then(() => {
+        // 買い物を続けるかを確認する
+        state.cartInsertedDialog = true;
+
+        // オプションを閉じる
+        state.cartDialog = false;
+        state.cartDrawer = false;
+      });
     }
 
     /** カートオプション表示 */
     const openCartOptionDialog = (isFavoriteOperation = false) => {
+      // 新品商品で、オプション（5年保証、下取り）が有効か
+      const enabledCartOptionForNew = !props.isUsed && (includeFlag(PRODUCT_FLAG.FIVE_YEAR_WARRANTY_COVERAGE) || applicableTradeIn());
+
       if (isFavoriteOperation) {
         registerFavorite();
-      } else if (props.isUsed) {
-        addCart();
-      } else if (
-        includeFlag(PRODUCT_FLAG.FIVE_YEAR_WARRANTY_COVERAGE) ||
-        includeFlag(PRODUCT_FLAG.GIFT_AVAILABLE) ||
-        includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) ||
-        props.product.isTrade
-      ) {
-        // オプション（5年保証、ギフト、下取り）が出来る場合でオプションダイアログを表示する
+      } else if (enabledCartOptionForNew) {
+        // オプション（5年保証、下取り）が出来る場合にオプションダイアログを表示する
         if (context.root.$vuetify.breakpoint.mdAndUp) {
           state.cartDialog = true;
         } else {
@@ -1520,21 +1493,34 @@ export default Vue.extend({
      * 中古商品の際の同型商品の数を取得する
      */
     if (props.isUsed) {
-      const itemName = props.usedProduct.itemName.replace('【中古】', '');
-      const condition: Array<ConditionItem> = [
-        {
-          paramCode: 'category',
-          paramText: 'カテゴリ',
-          value: props.usedProduct.prdType,
-          valueText: props.usedProduct.prdType
-        },
-        {
-          paramCode: 'keyword',
-          paramText: '商品名',
-          value: itemName,
-          valueText: itemName
-        }
-      ];
+      let condition: Array<ConditionItem> = [];
+      const janCode = props.usedProduct.janCode;
+      if (janCode) {
+        condition = [
+          {
+            paramCode: 'keyword3',
+            paramText: 'JANコード',
+            value: janCode,
+            valueText: janCode
+          }
+        ];
+      } else {
+        const itemName = props.usedProduct.itemName.replace('【中古】', '');
+        condition = [
+          {
+            paramCode: 'category',
+            paramText: 'カテゴリ',
+            value: props.usedProduct.prdType,
+            valueText: props.usedProduct.prdType
+          },
+          {
+            paramCode: 'keyword',
+            paramText: '商品名',
+            value: itemName,
+            valueText: itemName
+          }
+        ];
+      }
       ProductListService.searchUsedItemCount(condition).then((response) => (state.sameTypeProductCount = response.total));
     }
 
@@ -1557,7 +1543,7 @@ export default Vue.extend({
     /**
      * 中古商品の際の同型商品へのリンクを取得する
      */
-    const getSameTypeProductsLink = computed(function (): string {
+    const getSameTypeProductsLink = computed(function(): string {
       const janCode = props.usedProduct.janCode;
       if (janCode) {
         return `/ec/list?type=u&keyword3=${janCode}`;
@@ -1734,6 +1720,33 @@ hr {
     }
   }
 
+  &-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: auto;
+
+    &-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: $text-white !important;
+      text-align: center;
+    }
+
+    &.coming-soon {
+      background: $bg-black-transparent-3;
+    }
+
+    &.sold-out {
+      background: $bg-black-transparent-6;
+    }
+  }
+
   &-thumbnail-list {
     display: flex;
     flex-wrap: wrap;
@@ -1878,8 +1891,15 @@ $dialog-thumbnail-margin: 20px;
 }
 
 // 製品名
-.product-name-area {
-  margin: 10px 0px;
+.product-name {
+  // SEO対策向けにh1タグを使用し、スタイルはh2タグにする
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+
+  &-area {
+    margin: 10px 0px;
+  }
 }
 
 // 製品のキャッチコピー
@@ -2017,6 +2037,18 @@ $used-grade-table-border: solid 1px $ec-light-grey2;
   }
 }
 
+// 適用クーポン
+.product-coupon {
+  font-weight: bold;
+  color: $text-primary;
+
+  &-link {
+    display: block;
+    font-weight: normal;
+    color: $text-secondary;
+  }
+}
+
 // 商品操作エリア
 .product-operation {
   width: 100%;
@@ -2143,34 +2175,6 @@ $used-grade-table-border: solid 1px $ec-light-grey2;
     width: 300px;
   }
 }
-.cart-options {
-  &-title {
-    padding: 0 20px;
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 60px;
-    background-color: $bg-grey;
-  }
-
-  &-area {
-    padding: 20px;
-  }
-
-  &-item {
-    &-text {
-      font-weight: bold;
-      color: $text-black;
-      font-size: 18px;
-      margin-top: 3px;
-    }
-
-    &-sub-text {
-      margin-top: -15px;
-      margin-left: 30px;
-      font-size: 16px;
-    }
-  }
-}
 
 .dashed-line {
   border-top: dashed 1px $ec-black;
@@ -2233,10 +2237,12 @@ $used-grade-table-border: solid 1px $ec-light-grey2;
   }
 
   // 製品名
-  .product-name-area {
-    width: 100%;
-    margin: 0 0 20px;
-    padding: 0 8px;
+  .product-name {
+    &-area {
+      width: 100%;
+      margin: 0 0 20px;
+      padding: 0 8px;
+    }
   }
 
   // 画像表示エリア
@@ -2498,6 +2504,11 @@ $used-grade-table-border: solid 1px $ec-light-grey2;
     }
   }
 
+  // 「カートに入れる」ボタン
+  .cart-button {
+    font-size: 20px;
+  }
+
   // カートに入れるドロワー
   .cart-drawer {
     &-btn {
@@ -2505,35 +2516,6 @@ $used-grade-table-border: solid 1px $ec-light-grey2;
 
       .cart-button {
         margin: 0;
-      }
-    }
-  }
-  .cart-options {
-    &-title {
-      padding: 0 12px;
-      font-size: 18px;
-      line-height: 48px;
-    }
-
-    &-area {
-      padding: 0;
-    }
-
-    &-item {
-      padding: 0 12px;
-      border-bottom: solid 1px $ec-light-grey2;
-
-      &-text {
-        margin-top: 0;
-        font-size: 16px;
-        line-height: 1.2;
-      }
-
-      &-icon {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
       }
     }
   }

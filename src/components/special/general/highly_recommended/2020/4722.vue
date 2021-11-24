@@ -68,33 +68,15 @@
                 </tr>
                 <tr>
                   <th>商品イメージ</th>
-                  <td>
-                    <v-img
-                      src="https://shopimg.kitamura.jp/images/pd/e12/88b/6e7/e07/d5b/149/aae/891/cbc/736/0e4/mkf/dur/7/M.jpg"
-                      :max-width="$vuetify.breakpoint.mdAndUp ? 174 : 59"
-                      height="auto"
-                    />
-                  </td>
-                  <td>
-                    <v-img
-                      src="https://shopimg.kitamura.jp/images/pd/30b/a83/a4e/26b/a91/200/e88/038/ad5/d4b/a5y/nda/3uh/0/M.jpg"
-                      :max-width="$vuetify.breakpoint.mdAndUp ? 174 : 59"
-                      height="auto"
-                    />
-                  </td>
-                  <td>
-                    <v-img
-                      src="https://shopimg.kitamura.jp/images/pd/9e8/33f/a8b/f16/d6d/385/bf8/f8b/749/f57/aa7/lly/5mz/7/M.jpg"
-                      :max-width="$vuetify.breakpoint.mdAndUp ? 174 : 59"
-                      height="auto"
-                    />
-                  </td>
-                  <td>
-                    <v-img
-                      src="https://shopimg.kitamura.jp/images/pd/427/7c4/e06/58b/8d6/7fd/9be/8eb/bd3/7e7/5ej/d5c/qkm/v/M.jpg"
-                      :max-width="$vuetify.breakpoint.mdAndUp ? 174 : 59"
-                      height="auto"
-                    />
+                  <td v-for="(product, i) in comparisonDetailList" :key="i">
+                    <router-link :to="`/ec/pd/${product.janCode}`">
+                      <v-img
+                        :src="product.images[0].imagePath.replace(/TN/g, 'M')"
+                        :max-width="$vuetify.breakpoint.mdAndUp ? '174' : '59'"
+                        height="auto"
+                        class="hover mx-auto"
+                      ></v-img>
+                    </router-link>
                   </td>
                 </tr>
                 <tr>
@@ -261,7 +243,8 @@ export default Vue.extend({
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       breadcrumbs: [
@@ -328,10 +311,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style scoped>
-.sen-gl {
-    border: #B8B8B8 1px solid !important;
-    box-sizing: border-box;
-}
-</style>

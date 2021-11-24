@@ -29,7 +29,7 @@
       <div class="total-info-item" v-else>
         <span class="total-info-item-label two-line">合計</span>
         <span class="total-info-item-val primary--text">{{ totalInfo.totalPaymentIncTax | price() }}円</span>
-        <span class="total-info-item-label two-line">（うち税）</span>
+        <span class="total-info-item-label">（内消費税）</span>
         <span class="total-info-item-val primary--text">（{{ totalInfo.taxAmount | price() }}円）</span>
       </div>
       <div class="total-info-item" v-if="totalInfo.gainedPoint">
@@ -132,8 +132,7 @@ export default Vue.extend({
       background: $bg-grey;
 
       &.two-line {
-        text-align: left;
-        padding-left: 70%;
+        padding-right: 6em;
       }
     }
 
@@ -163,7 +162,7 @@ export default Vue.extend({
         width: 60%;
 
         &.two-line {
-          padding-left: 35%;
+          padding-right: 5em;
         }
       }
 

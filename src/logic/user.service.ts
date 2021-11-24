@@ -186,12 +186,13 @@ const UserService = {
    * @param page ページ数
    * @param maxItemCount 取得件数
    */
-  async fetchOwnedList(page?: number, maxItemCount?: number): Promise<OwnedList> {
+  async fetchOwnedList(page?: number, maxItemCount?: number, isCart = false): Promise<OwnedList> {
     const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'have';
     const response = await ApiService.get(url, {
       params: {
         page,
-        maxItemCount
+        maxItemCount,
+        isCart
       }
     });
 

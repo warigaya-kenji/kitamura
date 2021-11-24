@@ -264,9 +264,9 @@
                   小型・軽量なのに、本格的。一眼レフデビューにおすすめのキヤノン EOS Kiss X10
                 </h3>
                 <v-col cols="12"
-                  ><a href="/ec/pd/4549292132694">
+                  ><router-link to="/ec/pd/4549292132694">
                     <v-img src="/ec/images2/special/camera/dslr/camera_kissx10.jpg" alt="EOS Kiss X10 商品画像" max-width="100%"></v-img
-                  ></a>
+                  ></router-link>
                 </v-col>
                 <p>
                   <span class="text-h6 txt-org">ポイント① バリアングル液晶モニター</span><br />
@@ -305,9 +305,9 @@
                   高速＆高精度のオートフォーカスでシャッターチャンスに強い！ キヤノン EOS Kiss X90
                 </h3>
                 <v-col cols="12">
-                  <a href="/ec/pd/4549292111828">
+                  <router-link to="/ec/pd/4549292111828">
                     <v-img src="/ec/images2/special/camera/dslr/nfc2.jpg" alt="キヤノン EOS Kiss X90機能イメージ" max-width="100%"></v-img
-                  ></a>
+                  ></router-link>
                 </v-col>
                 <p>
                   <span class="text-h6 txt-org">ポイント① 豊富な撮影モード</span><br />
@@ -349,7 +349,7 @@
             <v-col class="mb-2 float-left" cols="12">
               <h3 class="font-weight-bold text-h6 txt-org mt-4">▼カメラ初心者におすすめのデジタル一眼カメラ</h3>
               <v-col class="pa-2 float-left" cols="6" sm="3">
-                <a href="/ec/pd/4549212297298">
+                <router-link to="/ec/pd/4549212297298">
                   <v-img
                     src="https://shopimg.kitamura.jp/images/pd/13a/94e/f93/838/0e3/1fc/4d2/625/ef6/512/78w/lgd/fgp/0/M.jpg"
                     class="maru"
@@ -357,10 +357,10 @@
                   ></v-img
                   ><br />
                   ペンタックス K-70
-                </a>
+                </router-link>
               </v-col>
               <v-col class="pa-2 float-left" cols="6" sm="3">
-                <a href="/ec/pd/4549292151251">
+                <router-link to="/ec/pd/4549292151251">
                   <v-img
                     src="https://shopimg.kitamura.jp/images/pd/a9e/a37/8b0/9f7/6bc/00d/0b7/5e9/d1e/c0a/1cw/xxc/1ut/g/M.jpg"
                     class="maru"
@@ -368,7 +368,7 @@
                   ></v-img
                   ><br />
                   キヤノン EOS Kiss X10i
-                </a>
+                </router-link>
               </v-col>
             </v-col>
           </v-row>

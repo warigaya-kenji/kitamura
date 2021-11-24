@@ -84,7 +84,10 @@ export default Vue.extend({
         state.favoriteDialog = true;
       } else {
         alert('お気に入り登録はログインが必要です。');
-        authorizer.openLoginMenu();
+        const successCallback = () => {
+          state.favoriteDialog = true;
+        };
+        authorizer.openLoginMenu(successCallback);
       }
     };
 

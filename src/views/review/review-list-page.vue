@@ -122,7 +122,7 @@ import ReviewRatingTable, { Rating } from '@/components/my-page/review/review-ra
 import MoreItemsButton from '@/components/common/more-items-button.vue';
 
 export default Vue.extend({
-  name: 'my-page',
+  name: 'review-list-page',
   components: {
     breadcrumbs: Breadcrumbs,
     product: Product,

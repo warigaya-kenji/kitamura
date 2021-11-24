@@ -20,9 +20,11 @@
     <p class="none-result-message" v-if="!totalCount">条件に該当する商品は見つかりませんでした。</p>
 
     <!-- タイトル（新品；カテゴリー選択時） -->
-    <h1 class="category-title" v-if="!isKeyword3 && currentCategoryInfo && totalCount">{{ currentCategoryInfo.concatenationCategoryName }}</h1>
+    <h1 class="category-title" v-if="!isUsed && !isKeyword3 && currentCategoryInfo && totalCount">{{ currentCategoryInfo.concatenationCategoryName }}</h1>
     <!-- タイトル（中古在庫；同型商品選択時） -->
-    <h1 class="category-title mt-2" v-else-if="isKeyword3 && totalCount">{{ usedTitle }}</h1>
+    <h1 class="category-title mt-2" v-else-if="isUsed && isKeyword3 && totalCount">{{ usedTitle }}</h1>
+    <!-- タイトル（中古；カテゴリー選択時） -->
+    <h1 class="category-title" v-else-if="isUsed && !isKeyword3 && totalCount">{{ usedTitle }}</h1>
 
     <!-- メーカーリスト 960px未満 -->
     <maker-slider
@@ -697,12 +699,12 @@ export default Vue.extend({
      * タイトル・パンくずの生成(新品・中古)
      */
     const generateBreadcrumbs = () => {
-      state.breadcrumbs = [];
+      const breadcrumbs: Array<BreadcrumbItem> = [];
       const jsonLdList = new Array<string>();
       let position = 1;
       if (state.currentCategoryInfo && Object.keys(state.currentCategoryInfo).length) {
         // パンくずの作成（カテゴリー）
-        state.breadcrumbs.push({
+        breadcrumbs.push({
           path: 'ネットショップ',
           linkUrl: '/'
         });
@@ -729,13 +731,13 @@ export default Vue.extend({
                 break;
             }
 
-            state.breadcrumbs.push({
+            breadcrumbs.push({
               path: val,
               linkUrl: `/ec/ct/${linkCode}/`
             });
 
             // JSON-LDのデータ準備
-            const concatenatedCategoryNames = state.breadcrumbs
+            const concatenatedCategoryNames = breadcrumbs
               .slice(1, position + 1)
               .map((b) => b.path)
               .join(':');
@@ -746,32 +748,43 @@ export default Vue.extend({
             position++;
           }
         });
-        // パンくずの最後は、リンクなしとする
-        state.breadcrumbs[state.breadcrumbs.length - 1].linkUrl = '';
-
-        // タイトルの設定
-        const titleItem = state.breadcrumbs
-          .slice(1)
-          .map((b) => b.path)
-          .join('の');
-        document.title = `【カメラのキタムラ】${titleItem}の通販・商品一覧`;
 
         // パンくずの作成（キーワード）
         if (state.currentKeyword) {
           const keyword = state.currentKeyword;
 
-          state.breadcrumbs.push({
+          breadcrumbs.push({
             path: keyword as string,
             linkUrl: `/ec/list?keyword=${keyword}`
           });
 
-          // キーワード検索の場合は別途タイトルを指定する
-          document.title = `${keyword} の商品一覧 | カメラのキタムラ`;
+          if (!state.isUsed) {
+            // タイトルの設定（キーワード）
+            document.title = `${keyword} の商品一覧 | カメラのキタムラ`;
+          }
 
           // JSON-LDのデータ準備
           jsonLdList.push(
             `{"@type": "ListItem", "position": ${position}, "name": "${keyword}", "item": "https://shop.kitamura.jp/ec/list?keyword=${keyword}"}`
           );
+        } else if (!state.isUsed) {
+          // タイトルの設定（カテゴリー）
+          const titleItem = breadcrumbs
+            .slice(1)
+            .map((b) => b.path)
+            .join('の');
+
+          if (breadcrumbs.length < 4) {
+            document.title = `【カメラのキタムラ】${titleItem}の通販・商品一覧`;
+          } else {
+            document.title = `${titleItem}の通販・商品一覧`;
+          }
+        }
+
+        if (!state.isUsed) {
+          // パンくずの最後は、リンクなしとする
+          breadcrumbs[breadcrumbs.length - 1].linkUrl = '';
+          state.breadcrumbs = breadcrumbs;
         }
 
         // JSON-LD
@@ -783,10 +796,10 @@ export default Vue.extend({
     };
 
     /**
-     * パンくずの生成（中古在庫）
+     * タイトル・パンくずの生成（中古在庫）
      * @param itemCode 商品コード
      */
-    const generateUsedBreadcrumbs = async (itemCode: string): Promise<void> => {
+    const generateUsedBreadcrumbs = async (itemCode: string, itemTitle: string): Promise<void> => {
       // カテゴリ指定時
       if (state.currentCategoryInfo.concatenationCategoryName) {
         state.breadcrumbs = [
@@ -794,6 +807,26 @@ export default Vue.extend({
           { path: '中古商品', linkUrl: '/ec/ct/used/list' },
           { path: `${state.currentCategoryInfo.concatenationCategoryName}の中古在庫`, linkUrl: '' }
         ];
+
+        // カテゴリ、マウント、タイプの順番で値があるところまでリストにしてタイトルに使用する
+        const category = state.currentCategoryInfo.concatenationCategoryName;
+        const mount = state.currentConditions.find((condition) => condition.paramCode === 's2');
+        const categoryType = state.currentConditions.find((condition) => condition.paramCode === 's4');
+        let categoryList = mount?.valueText ? [category, mount.valueText, categoryType?.valueText] : [category];
+        categoryList = categoryList.filter((item) => !!item);
+        const titleItem = categoryList.join('の');
+
+        if (categoryList.length < 2) {
+          document.title = `【カメラのキタムラ】中古の${titleItem}のおすすめ商品一覧`;
+        } else if (categoryList.length < 3) {
+          document.title = `【カメラのキタムラ】中古の${titleItem}の通販・商品一覧`;
+        } else {
+          document.title = `【中古】${titleItem}の通販・商品一覧`;
+        }
+
+        // h1タイトル
+        state.usedTitle = categoryList.join('：') + 'の中古商品一覧';
+
         // 同型商品表示時
       } else if (state.isKeyword3) {
         try {
@@ -807,6 +840,11 @@ export default Vue.extend({
             { path: itemName, linkUrl: `/ec/pd/${usedProduct.janCode}` },
             { path: '中古在庫の一覧', linkUrl: '' }
           ];
+          // titleの設定
+          if (state.isKeyword3) {
+            document.title = `【中古】${itemTitle} | ${usedProduct.prdType}`;
+            state.usedTitle = `【中古】 ${itemTitle} の在庫一覧`;
+          }
         } catch (error) {
           console.error(error);
         }
@@ -991,18 +1029,15 @@ export default Vue.extend({
         };
       }
 
+      // パンくずを設定する
+      if (state.isUsed && result.items.length) {
+        generateUsedBreadcrumbs(result.items[0].itemid, result.items[0].title);
+      }
+
       switch (type) {
         case 'search':
           if (result.items.length) {
             state.results = result.items;
-            // titleの設定
-            if (state.isKeyword3) {
-              document.title = `【中古】${result.items[0].title}の通販・在庫一覧`;
-              state.usedTitle = `【中古】 ${result.items[0].title} の在庫一覧`;
-            }
-
-            // パンくずを設定する
-            generateUsedBreadcrumbs(result.items[0].itemid);
           } else {
             searchError();
           }
@@ -1192,6 +1227,7 @@ export default Vue.extend({
       () => {
         // パンくず
         generateBreadcrumbs();
+
         /** インクルードファイルを取得 */
         if (state.currentCategoryInfo && Object.keys(state.currentCategoryInfo).length) {
           IncludeFileService.fetchIncludeFile(`list/${state.currentCategoryInfo.code}.html`)

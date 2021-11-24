@@ -95,7 +95,7 @@ const AuthService = {
       if (user?.isLogin) {
         Vue.prototype.$store.authorizer.login(user);
       } else {
-        Vue.prototype.$store.authorizer.logout();
+        Vue.prototype.$store.authorizer.logout(user);
       }
 
       return user?.isLogin;

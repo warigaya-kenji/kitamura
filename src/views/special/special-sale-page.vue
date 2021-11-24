@@ -45,7 +45,7 @@
           <div id="include-contents" v-html="includeHtml"></div>
 
           <!-- テキスト -->
-          <div class="sale-text mb-4" v-if="jsonConfig.content">{{ jsonConfig.content }}</div>
+          <div class="sale-text mb-4 including-line-breaks" v-if="jsonConfig.content">{{ jsonConfig.content }}</div>
 
           <!-- 子バナー 960px以上 -->
           <v-container class="mb-6" v-if="$vuetify.breakpoint.mdAndUp && jsonConfig.children">
@@ -132,7 +132,14 @@
               <!-- 商品 -->
               <template v-if="loaded.results && currentResult.length > 0">
                 <template>
-                  <product v-for="item in currentResult" :key="item.itemid" :product="item" :display-price-type="displayProductPriceType" :isSpecial="true" />
+                  <product
+                    v-for="item in currentResult"
+                    :key="item.itemid"
+                    :product="item"
+                    :display-price-type="displayProductPriceType"
+                    :isSpecial="true"
+                    :secretInfo="secretInfo"
+                  />
                 </template>
               </template>
               <div class="loading-products-list" v-if="!loaded.results">
@@ -195,6 +202,7 @@ import SpecialProductService from '@/logic/special-product.service';
 import IncludeFileService from '@/logic/include-file.service';
 import { SpecialBanner } from '@/types/tsv-config';
 import { ProductItem } from '@/types/product-list';
+import { SecretInfo } from '@/types/special-product';
 
 type BreadcrumbItem = {
   path: string;
@@ -227,7 +235,7 @@ export default Vue.extend({
       currentSort: SPECIAL_ITEM_SORT_LIST[0].value,
       sort: SPECIAL_ITEM_SORT_LIST,
       // 表示件数
-      currentDisplayCount: 20,
+      currentDisplayCount: 40,
       displayCountList: DISPLAY_COUNT_LIST,
       // 商品件数
       totalCount: -1,
@@ -249,7 +257,9 @@ export default Vue.extend({
       // ロード状態
       loaded: {
         results: false
-      }
+      },
+      // 限定特集用データ
+      secretInfo: {} as SecretInfo
     });
 
     /**
@@ -271,7 +281,15 @@ export default Vue.extend({
     const getSpecialProduct = async () => {
       state.loaded.results = false;
       try {
-        state.results = await SpecialProductService.getSaleSpecialProduct(state.defaultBannerId, state.passCode);
+        if (state.passCode) {
+          state.results = await SpecialProductService.getSaleSecretProduct(state.defaultBannerId, state.passCode);
+          state.secretInfo = {
+            secret: `${state.defaultBannerId}`,
+            passcode: state.passCode
+          };
+        } else {
+          state.results = await SpecialProductService.getSaleSpecialProduct(state.defaultBannerId);
+        }
         state.totalCount = state.results.length;
         setDispalySpecialproduct();
       } catch (error) {

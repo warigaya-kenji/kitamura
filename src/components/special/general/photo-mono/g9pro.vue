@@ -30,7 +30,7 @@
           <v-container>
             <v-row class="mt-sm-5">
               <v-col cols="12" sm="6" class="pa-4">
-                <a href="/ec/pd/4545350050849"><b>オリンパス OM-D E-M1 MarkII</b></a>
+                <router-link to="/ec/pd/4545350050849"><b>オリンパス OM-D E-M1 MarkII</b></router-link>
                 <p class="py-4 caption text-sm-body-1 mb-0">
                   一番のライバル機種となるのはやはり 同じマイクロフォーサーズ機の 「OLYMPUS OM-D E-M1MarkⅡ」でしょう。
                 </p>

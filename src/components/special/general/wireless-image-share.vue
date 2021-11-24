@@ -142,7 +142,7 @@
               </v-col>
               <v-col class="float-left pa-4" sm="6" xs="12">
                 <h4>
-                  <a href="/ec/pd/4960759900388" class="light-blue--text text--darken-4">ニコン<br />COOLPIX A1000</a>
+                  <router-link to="/ec/pd/4960759900388" class="light-blue--text text--darken-4">ニコン<br />COOLPIX A1000</router-link>
                 </h4>
                 <p class="ma-0">EVF搭載、高性能 光学35倍<br />コンパクトな本格ボディー</p>
                 <v-col cols="12" class="pa-0">

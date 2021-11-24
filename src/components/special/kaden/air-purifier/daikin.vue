@@ -121,9 +121,9 @@
           <v-container class="mt-2 mt-sm-15 pa-0 tx-16">
             <v-row no-gutters>
               <v-col cols="12" sm="4">
-                <a href="/ec/pd/4548848519491">
+                <router-link to="/ec/pd/4548848519491">
                   <v-img class="mx-auto mt-6" src="/ec/images2/special/kaden/air-purifier/daikin/mcz70t.png" max-width="266" max-height="266"></v-img>
-                </a>
+                </router-link>
               </v-col>
               <v-col cols="12" sm="8">
                 <v-sheet color="#ffffff" class="px-4 py-6 mt-2">
@@ -131,7 +131,7 @@
                     <v-col cols="12" sm="6">
                       <p>除湿はもちろん、清浄機能でニオイの原因菌も低減</p>
                       <v-divider class="mb-2"></v-divider>
-                      <a href="/ec/pd/4548848519491"> ダイキン 除加湿ストリーマ 空気清浄機 クリアフォースZ MCZ70T </a>
+                      <router-link to="/ec/pd/4548848519491"> ダイキン 除加湿ストリーマ 空気清浄機 クリアフォースZ MCZ70T </router-link>
                       <p class="mt-4">価格：-円(税込)</p>
                     </v-col>
                     <v-col cols="12" sm="6">
@@ -184,9 +184,9 @@
           <v-container class="mt-2 mt-sm-15 pa-0 tx-16">
             <v-row no-gutters>
               <v-col cols="12" sm="4">
-                <a href="/ec/pd/4548848520855">
+                <router-link to="/ec/pd/4548848520855">
                   <v-img class="mx-auto mt-6" src="/ec/images2/special/kaden/air-purifier/daikin/mck70t.png" max-width="266" max-height="266"></v-img>
-                </a>
+                </router-link>
               </v-col>
               <v-col cols="12" sm="8">
                 <v-sheet color="#ffffff" class="px-4 py-6 mt-2">
@@ -194,7 +194,7 @@
                     <v-col cols="12" sm="6">
                       <p>生ゴミ臭を吸い取って分解！<br />LDKにもおすすめのパワフルタイプ。</p>
                       <v-divider class="mb-2"></v-divider>
-                      <a href="/ec/pd/4548848520855"> ダイキン 加湿ストリーマ 空気清浄機 MCK70T</a>
+                      <router-link to="/ec/pd/4548848520855"> ダイキン 加湿ストリーマ 空気清浄機 MCK70T</router-link>
                       <p class="mt-4">価格：-円(税込)</p>
                     </v-col>
                     <v-col cols="12" sm="6">

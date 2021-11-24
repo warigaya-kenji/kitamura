@@ -47,7 +47,7 @@ export default {
 .pointt {
   width: 100%;
   height: auto;
-  margin: 0px 0px 5px 20px;
+  margin: 0px 0px 5px 15px;
   float: left;
   padding: 0px 0px 0px 0px;
   list-style-type: square;

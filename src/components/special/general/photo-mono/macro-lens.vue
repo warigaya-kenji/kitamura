@@ -28,7 +28,7 @@
           <v-container>
             <v-row class="mt-sm-5">
               <v-col cols="12" sm="6" class="pa-4">
-                <a href="/ec/pd/4960999635170"><b>キヤノン EF100mm F2.8L マクロ IS USM</b></a>
+                <router-link to="/ec/pd/4960999635170"><b>キヤノン EF100mm F2.8L マクロ IS USM</b></router-link>
                 <p class="py-4 caption text-sm-body-1 mb-0">
                   このレンズが発売されたのは2009年ですが、今なお高い人気を誇ります。<br />
                   <br />

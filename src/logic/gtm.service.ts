@@ -52,12 +52,12 @@ const GtmService = {
   },
 
   /**
-   * GTMのトラッキングイベントを発行する
+   * GA向けGTMのトラッキングイベントを発行する
    * @param gtmPageName ページ名
    * @param janCode 商品コード
    * @param netMemberId 会員ID
    */
-  trackEvent(gtmPageName: string, janCode = '', netMemberId = '', referrer?: string): void {
+  trackEventForGa(gtmPageName: string, janCode = '', netMemberId = '', referrer?: string): void {
     const event: { [key: string]: object | string } = {
       event: 'optimize.activate',
       page: gtmPageName,
@@ -68,6 +68,20 @@ const GtmService = {
     if (referrer) {
       event.gtm = { oldUrl: referrer };
     }
+
+    Vue.prototype.$gtm.trackEvent(event);
+  },
+
+  /**
+   * GTMのトラッキングイベントを発行する
+   * @param eventName イベント名
+   * @param param 変数
+   */
+  trackEvent(eventName: string, param: { [key: string]: unknown }): void {
+    const event: { [key: string]: object | string } = {
+      event: eventName,
+      ...param
+    };
 
     Vue.prototype.$gtm.trackEvent(event);
   }

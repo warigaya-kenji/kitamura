@@ -4,32 +4,18 @@
       <div class="main-contents-wrap">
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
-        <!-- ↑ パンくず -->
 
-        <a href="/special/general/highly_recommended">
-          <v-hover v-slot="{ hover }">
-            <v-img
-              :src="`/ec/images2/special/general/highly_recommended/2015/1120/pc/rec_gotop_${hover ? 'on' : 'off'}.gif`"
-              max-width="100%"
-              height="auto"
-              class="hover"
-            ></v-img>
-          </v-hover>
-        </a>
+        <titleImage></titleImage>
 
         <div class="my-4 pa-6 line-g"></div>
 
         <!--↓①-->
-        <div class="mt-8 pa-4 line-g">
-          <h2 class="text-h6 font-weight-bold mb-5">
-            <v-icon color="red" class="mr-2">far fa-thumbs-up</v-icon>写真や動画をサッと保存ができます！キヤノン Connect Station CS100
-          </h2>
-          <p class="text-body-2 text-center">▼撮影してから画像の取り込みまでとってもカンタン。とっても便利なCS100の機能を動画でチェック！</p>
-          <watchInVideo :src="'https://www.youtube.com/embed/wBv53RBh258'" :height="$vuetify.breakpoint.mdAndUp ? 473 : 224" :sm="12" />
-        </div>
-
-        <!--線-->
-        <v-divider class="mt-7 mb-5"></v-divider>
+        <content2015
+          :subtitle="'写真や動画をサッと保存ができます！キヤノン Connect Station CS100'"
+          :youtubetxt="'▼撮影してから画像の取り込みまでとってもカンタン。とっても便利なCS100の機能を動画でチェック！'"
+          :youtubeLink="'https://www.youtube.com/embed/wBv53RBh258'"
+        ></content2015>
+        <hr />
 
         <!--↓②-->
         <div class="mt-8 pa-4 line-g">
@@ -55,81 +41,46 @@
             </v-col>
           </v-row>
         </div>
-
-        <!--線-->
-        <v-divider class="mt-7 mb-5"></v-divider>
+        <hr />
 
         <!--↓③-->
-        <div class="mt-8 pa-4 line-g">
-          <h2 class="text-h6 font-weight-bold mb-5">
-            <v-icon color="red" class="mr-2">far fa-thumbs-up</v-icon>データが増えてきたら外付けハードディスクへバックアップ
-          </h2>
-          <p>
-            市販の外付けハードディスクと接続して、CS100に保存した写真や動画をカンタンにバックアップできます。<br />
-            SD/CFカードへのコピーにも対応しているので、お気に入りの写真を集めてフォトブックやプリントをするのも良いかもしれませんね。
-          </p>
-          <p>「画像を選択してコピー」「撮影年月日ごとにコピー」「アルバムをコピー」から選べます。</p>
-          <p class="text-body-2">
-            ※1TB以上のハードディスクを使用してください。ただし、1TBよりも大容量のハードディスクを使用しても、1TBの容量しか使用しません。<br />
-            ※専用電源を備えた外付けハードディスクに対応しています。USBバスパワーでは駆動できません。
-          </p>
-          <p class="mt-5">保存した画像は「撮影年月日」「撮影カメラ別」に自動で整理してくれて、見たい思い出を簡単に見つけることも出来ます。</p>
-          <v-row>
-            <v-col cols="12" sm="6">
-              <v-img src="/ec/images2/special/general/highly_recommended/2015/0605/image3.jpg" max-width="440" max-height="247"></v-img>
-            </v-col>
-            <v-col cols="12" sm="6">
-              <v-img src="/ec/images2/special/general/highly_recommended/2015/0605/image4.jpg" max-width="440" max-height="247"></v-img>
-            </v-col>
-          </v-row>
-        </div>
-
-        <!--線-->
-        <v-divider class="mt-7 mb-5"></v-divider>
+        <content2015
+          :subtitle="'データが増えてきたら外付けハードディスクへバックアップ'"
+          :txt="'市販の外付けハードディスクと接続して、CS100に保存した写真や動画をカンタンにバックアップできます。\nSD/CFカードへのコピーにも対応しているので、お気に入りの写真を集めてフォトブックやプリントをするのも良いかもしれませんね。\n\nSD/CFカードへのコピーにも対応しているので、お気に入りの写真を集めてフォトブックやプリントをするのも良いかもしれませんね。'"
+          :smalltxt="'※1TB以上のハードディスクを使用してください。ただし、1TBよりも大容量のハードディスクを使用しても、1TBの容量しか使用しません。\n※専用電源を備えた外付けハードディスクに対応しています。USBバスパワーでは駆動できません。'"
+          :images="[
+            '/ec/images2/special/general/highly_recommended/2015/0605/image3.jpg',
+            '/ec/images2/special/general/highly_recommended/2015/0605/image4.jpg'
+          ]"
+          :maxWidth="440"
+        ></content2015>
+        <hr />
 
         <!--↓④-->
-        <div class="mt-8 pa-4 line-g">
-          <h2 class="text-h6 font-weight-bold mb-5">
-            <v-icon color="red" class="mr-2">far fa-thumbs-up</v-icon>CS100で保存した写真や動画をTVの大画面で観る事ができます
-          </h2>
-          <p>
-            TVとCS100をケーブルで接続するだけで、CS100に取り込んだ写真や動画をTVの大画面で観ることができます。写真と動画を同時に、BGM付きのスライドショーとして楽しむこともできます。MP4やMOV、AVCHD形式のフルHD動画やHD動画、SD動画にも対応しているから、サイズの大きな動画もスムーズに再生。
-          </p>
-          <p>CS100に保存してあるアルバムをスマートフォンやタブレット、PCなどでも観賞可能。ウェブブラウズ機能を備えた端末であれば、いつでも楽しめます。</p>
-          <p>また、アルバムのタイトルやコメント編集や選んだアルバムをTVでスライドショー再生することもできます。</p>
-          <v-img src="/ec/images2/special/general/highly_recommended/2015/0605/img01.jpg" max-width="840" max-height="238" class="mx-auto"></v-img>
-        </div>
-
-        <!--線-->
-        <v-divider class="mt-7 mb-5"></v-divider>
+        <content2015
+          :subtitle="'CS100で保存した写真や動画をTVの大画面で観る事ができます'"
+          :txt="'TVとCS100をケーブルで接続するだけで、CS100に取り込んだ写真や動画をTVの大画面で観ることができます。写真と動画を同時に、BGM付きのスライドショーとして楽しむこともできます。MP4やMOV、AVCHD形式のフルHD動画やHD動画、SD動画にも対応しているから、サイズの大きな動画もスムーズに再生。\n\nCS100に保存してあるアルバムをスマートフォンやタブレット、PCなどでも観賞可能。ウェブブラウズ機能を備えた端末であれば、いつでも楽しめます。\n\nまた、アルバムのタイトルやコメント編集や選んだアルバムをTVでスライドショー再生することもできます。'"
+          :image="'/ec/images2/special/general/highly_recommended/2015/0605/img01.jpg'"
+        ></content2015>
+        <hr />
 
         <!--↓⑤-->
-        <div class="mt-8 pa-4 line-g">
-          <h2 class="text-h6 font-weight-bold mb-5"><v-icon color="red" class="mr-2">far fa-thumbs-up</v-icon>CS100同士で写真や動画を共有できます</h2>
-          <p>
-            離れたおうちにもう一台CS100を設置しておけば、CANON iMAGE
-            GATEWAYを経由して、アルバムを共有※することができます。一度に、複数の相手を送受信することも可能。受信側のCS100が電源オンまたは待機状態のときは、定期的に自動で受信します。
-          </p>
-          <v-img src="/ec/images2/special/general/highly_recommended/2015/0605/send.jpg" max-width="840" max-height="201" class="mx-auto"></v-img>
-          <p class="text-body-2">
-            ※画像の送受信や共有を行うためには、インターネットに接続できる環境が必要です。 また、事前にCANON iMAGE
-            GATEWAYでの会員登録（無料）や送信先の設定などが必要です。
-          </p>
-        </div>
-
-        <!--線-->
-        <v-divider class="mt-7 mb-5"></v-divider>
+        <content2015
+          :subtitle="'CS100同士で写真や動画を共有できます'"
+          :txt="'離れたおうちにもう一台CS100を設置しておけば、CANON iMAGE GATEWAYを経由して、アルバムを共有※することができます。一度に、複数の相手を送受信することも可能。受信側のCS100が電源オンまたは待機状態のときは、定期的に自動で受信します。'"
+          :images="['/ec/images2/special/general/highly_recommended/2015/0605/send.jpg']"
+          :txt2="'※画像の送受信や共有を行うためには、インターネットに接続できる環境が必要です。 また、事前にCANON iMAGE GATEWAYでの会員登録（無料）や送信先の設定などが必要です。'"
+          :sm="12"
+        ></content2015>
+        <hr />
 
         <!--↓担当者のイチオシインプレッション-->
-        <div class="mt-8 pa-4 line-g">
-          <h2 class="text-h6 font-weight-bold mb-5">大量の写真データーもキヤノン Connect Station CS100 を使ってすっきり整理</h2>
-          <p>
-            パソコンを立ち上げなければ難しかった、画像・動画の整理もこの１台があればすっきりまとまって便利。孫の写真や動画を離れて暮らす祖父母に見せてあげることも出来ます。そして旅行ではスマホ・カメラ・ビデオそれぞれで撮影することも多いはず。そんな写真や動画も一つにまとめられて便利
-          </p>
-        </div>
-
-        <!--線-->
-        <v-divider class="mt-7 mb-5"></v-divider>
+        <content2015
+          :subtitle="'大量の写真データーもキヤノン Connect Station CS100 を使ってすっきり整理'"
+          :isGoodIcon="false"
+          :txt="'パソコンを立ち上げなければ難しかった、画像・動画の整理もこの１台があればすっきりまとまって便利。孫の写真や動画を離れて暮らす祖父母に見せてあげることも出来ます。そして旅行ではスマホ・カメラ・ビデオそれぞれで撮影することも多いはず。そんな写真や動画も一つにまとめられて便利'"
+        ></content2015>
+        <hr />
 
         <!--↓レビュー-->
         <div class="mt-8 pa-4 line-g">
@@ -171,74 +122,9 @@
             ● 動画:MP4、MOV、AVCHD（SD、HD、フルHD画質）
           </p>
         </div>
+        <hr />
 
-        <!--線-->
-        <v-divider class="mt-7 mb-5"></v-divider>
-
-        <h2 class="text-h6 white--text font-weight-bold pa-2 red darken-2">カメラ用品バックナンバー</h2>
-        <v-container class="pa-0 mt-4">
-          <v-row class="pa-2">
-            <v-col cols="12" sm="6">
-              <v-row class="line-g">
-                <v-col cols="4">
-                  <a href="/ec/special/general/highly_recommended/2015/0529">
-                    <v-img
-                      src="https://shop.kitamura.jp/ts_rsc/585/images/ld-120_350px.jpg.jpg"
-                      alt="LEDライト搭載 みせる防湿庫 東洋リビングLD-120"
-                      max-width="150"
-                      max-height="150"
-                      class="hover"
-                    ></v-img>
-                  </a>
-                </v-col>
-                <v-col cols="8">
-                  <h3 class="text-subtitle-1 font-weight-bold">
-                    <a href="/ec/special/general/highly_recommended/2015/0529"> LEDライト搭載 みせる防湿庫 東洋リビングLD-120 </a>
-                  </h3>
-                  <p class="text-body-2">
-                    ドア連動型の18連LEDライトを搭載。<br />
-                    カメラを守るだけでなく、<br />
-                    みせる防湿庫が登場。眺めて楽しく、<br />
-                    出し入れしやすいプレミアムモデル。
-                  </p>
-                  <p class="text-right">
-                    <v-btn text href="/ec/special/general/highly_recommended/2015/0529"> 商品を詳しく見る </v-btn>
-                  </p>
-                </v-col>
-              </v-row>
-            </v-col>
-            <v-col cols="12" sm="6">
-              <v-row class="line-g">
-                <v-col cols="4">
-                  <a href="/ec/special/general/highly_recommended/2015/0501">
-                    <v-img
-                      src="	https://shop.kitamura.jp/ts_rsc/585/images/i-item-blackrapid-joby_350px.jpg"
-                      alt="ブラックラピッド クロスショット RS16SC10-BL・JOBY ウルトラフィットハンドストラップ&ウルトラプレｰト 012779 セット"
-                      max-width="150"
-                      max-height="150"
-                      class="hover"
-                    ></v-img>
-                  </a>
-                </v-col>
-                <v-col cols="8">
-                  <h3 class="text-subtitle-1 font-weight-bold">
-                    <a href="/ec/special/general/highly_recommended/2015/0501"> ブラックラピッド クロスショット × JOBY ウルトラハ … </a>
-                  </h3>
-                  <p class="text-body-2">
-                    速写ストラップをつけたまま、三脚を使う裏技！JOBYウルトラプレートを使えば、速写ストラップをつけたまま、三脚が使える。一眼ユーザーの要望
-                    …【続き】
-                  </p>
-                  <p class="text-right">
-                    <v-btn text href="/ec/special/general/highly_recommended/2015/0501"> 商品を詳しく見る </v-btn>
-                  </p>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-container>
-        <v-btn text href="/ec/special/general/highly_recommended" class="mt-4">
-          <v-icon left small color="red">fal fa-long-arrow-right</v-icon>その他バックナンバーを見る
-        </v-btn>
+        <backnumbers :list="backnumberList"></backnumbers>
       </div>
     </div>
   </v-app>
@@ -247,14 +133,18 @@
 <script lang="ts">
 import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
+import TitleImage from '@/components/common/special/highly-recommended/title-image.vue';
 import { reactive, toRefs } from '@vue/composition-api';
 import { noimage, formatPrice } from '@/logic/utils';
-import WatchInVideo from '@/components/common/special/watch-in-video.vue';
+import Content2015 from '@/components/common/special/highly-recommended/content.vue';
+import BackNumbers from '@/components/common/special/highly-recommended/back-numbers.vue';
 export default Vue.extend({
   name: 'highly-recommended-2015-0605',
   components: {
     breadcrumbs: Breadcrumbs,
-    watchInVideo: WatchInVideo,
+    titleImage: TitleImage,
+    content2015: Content2015,
+    backnumbers: BackNumbers
   },
   setup: () => {
     document.title = '写真のバックアップに最適！キヤノンConnect Station CS100 | カメラのキタムラネットショップ'
@@ -271,6 +161,20 @@ export default Vue.extend({
           disabled: true
         }
       ],
+      backnumberList: [
+        {
+          src: 'https://shop.kitamura.jp/ts_rsc/585/images/ld-120_350px.jpg.jpg',
+          href: '/ec/special/general/highly_recommended/2015/0529',
+          productName: 'LEDライト搭載 みせる防湿庫 東洋リビングLD-120',
+          txt: 'ドア連動型の18連LEDライトを搭載。\nカメラを守るだけでなく、\nみせる防湿庫が登場。眺めて楽しく、\n出し入れしやすいプレミアムモデル。'
+        },
+        {
+          src: 'https://shop.kitamura.jp/ts_rsc/585/images/i-item-blackrapid-joby_350px.jpg',
+          href: '/ec/special/general/highly_recommended/2015/0501',
+          productName: 'ブラックラピッド クロスショット × JOBY ウルトラハ …',
+          txt: '速写ストラップをつけたまま、三脚を使う裏技！JOBYウルトラプレートを使えば、速写ストラップをつけたまま、三脚が使える。一眼ユーザーの要望 …【続き】'
+        },
+      ]
     });
     return {
       ...toRefs(state),

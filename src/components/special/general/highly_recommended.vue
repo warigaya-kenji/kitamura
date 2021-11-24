@@ -21,18 +21,18 @@
         <v-container class="line-g">
           <v-row>
             <v-col cols="12" sm="6">
-              <router-link to="/2020/4925">
+              <a href="/ec/special/general/highly_recommended/2020/4925">
                 <div class="d-flex flex-column justify-space-between align-center">
                   <v-img :src="mainProductList[0].images[0].imagePath.replace(/TN/g, 'M')" max-width="80%" height="auto"></v-img>
                 </div>
                 <p class="main-product-name text-center">{{ mainProductList[0].itemName }}</p>
-              </router-link>
+              </a>
             </v-col>
             <v-col cols="12" sm="6">
               <p class="pt-2 pr-2">
                 1本で広角から望遠までカバーする、フルサイズミラーレス用オールマイティレンズ。高倍率ズームレンズとしては初めてとなる広角側
                 F値2.8からの明るさと、質量575g軽量コンパクトボディで「高画質」と「便利」を両立。旅行時、このレンズだけで...
-                <router-link to="/2020/4925">続きを見る</router-link>
+                <a href="/ec/special/general/highly_recommended/2020/4925">続きを見る</a>
               </p>
               <p class="text-center">
                 価格<span class="red--text text-h4 mx-2">&yen;{{ formatPrice(parseInt(mainProductList[0].price)) }}&nbsp;</span
@@ -75,12 +75,12 @@
               <v-hover v-slot="{ hover }">
                 <v-expand-transition>
                   <v-card :elevation="hover ? 10 : 2">
-                    <router-link :to="campaign.href">
+                    <a :href="campaign.href">
                       <div class="d-flex flex-column justify-space-between align-center">
                         <v-img :src="campaign.src" max-width="50%" class="hover"></v-img>
                       </div>
                       <span class="item-name text-subtitle-2">{{ campaign.productName }}</span>
-                    </router-link>
+                    </a>
                   </v-card>
                 </v-expand-transition>
               </v-hover>
@@ -114,7 +114,7 @@ export default Vue.extend({
     subText: SubText,
     facebookAndTwitter: FacebookAndTwitter,
   },
-  setup: (props, context) => {
+  setup: () => {
     document.title = 'スタッフのイチオシ | カメラのキタムラネットショップ'
     document.querySelector<any>('meta[name="description"]').setAttribute('content', 'スタッフのイチオシ バックナンバー一覧')
 

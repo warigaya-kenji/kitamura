@@ -263,3 +263,48 @@ ul.listAttention li {
 .text-transform {
   text-transform: none
 }
+
+// 文字に黄色のマーカーを引きたいとき
+.marker {
+  background-color: #ffffcc;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+}
+// グレーの棒線を付けたいとき
+.sen-gl {
+  border: #B8B8B8 1px solid !important;
+  box-sizing: border-box;
+}
+// floatを解除したい時
+.cl {
+  clear: both;
+}
+// width 720px にしたい時
+.w720 {
+  max-width: 720px;
+  margin: 0 auto;
+}
+// 今週のイチオシ2015
+section {
+  background: url(https://shop.kitamura.jp/ts_rsc/587/images/bk_line.gif);
+  padding: 19px;
+  p {
+    line-height: 1.5em;
+    font-size: 18px;
+    color: #1a0708;
+  }
+}
+@media screen and (max-width: 463px) {
+  section {
+    padding: 5% 2%;
+  }
+}
+
+// 点線を引きたい時
+hr {
+  background: #fff;
+  border: 0;
+  border-bottom: #999 1px dashed;
+  height: 30px;
+  margin-bottom: 30px;
+}

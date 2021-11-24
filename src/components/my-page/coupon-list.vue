@@ -42,8 +42,8 @@
               <v-row>
                 <v-col cols="6">併用</v-col>
                 <v-col cols="6">
-                  <span v-if="coupon.isCombined">可</span>
-                  <span v-else>不可</span>
+                  <span v-if="coupon.isCombined">不可</span>
+                  <span v-else>可</span>
                 </v-col>
               </v-row>
               <v-row>

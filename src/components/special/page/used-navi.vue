@@ -9,38 +9,52 @@
         <h1 class="mb-8 title-1">カメラのキタムラ 中古ナビ</h1>
         <v-row class="menu-btn">
           <v-col cols="12" sm="4">
-            <v-btn block color="#fff" href="#a01" x-large>
-              <span>キタムラの中古が<br class="d-none d-sm-block" />選ばれる6つの理由</span>
+            <v-btn block color="#fff" x-large>
+              <a v-scroll-to="'#a01'">
+                <span>キタムラの中古が<br class="d-none d-sm-block" />選ばれる6つの理由</span>
+              </a>
             </v-btn>
           </v-col>
           <v-col cols="12" sm="4">
-            <v-btn block color="#fff" href="#a02" x-large>
-              <span>中古購入のコツ</span>
+            <v-btn block color="#fff" x-large>
+              <a v-scroll-to="'#a02'">
+                <span>中古購入のコツ</span>
+              </a>
             </v-btn>
           </v-col>
           <v-col cols="12" sm="4">
-            <v-btn block color="#fff" href="#a03" x-large>
-              <span>お店と宅配受取り<br class="d-none d-sm-block" />どう違うの?</span>
+            <v-btn block color="#fff" x-large>
+              <a v-scroll-to="'#a03'">
+                <span>お店と宅配受取り<br class="d-none d-sm-block" />どう違うの?</span>
+              </a>
             </v-btn>
           </v-col>
           <v-col cols="12" sm="4">
-            <v-btn block color="#fff" href="#a04" x-large>
-              <span>中古カメラの<br class="d-none d-sm-block" />保証について</span>
+            <v-btn block color="#fff" x-large>
+              <a v-scroll-to="'#a04'">
+                <span>中古カメラの<br class="d-none d-sm-block" />保証について</span>
+              </a>
             </v-btn>
           </v-col>
           <v-col cols="12" sm="4">
-            <v-btn block color="#fff" href="#a05" x-large>
-              <span>中古商品の<br class="d-none d-sm-block" />よくある質問</span>
+            <v-btn block color="#fff" x-large>
+              <a v-scroll-to="'#a05'">
+                <span>中古商品の<br class="d-none d-sm-block" />よくある質問</span>
+              </a>
             </v-btn>
           </v-col>
           <v-col cols="12" sm="4">
-            <v-btn block color="#fff" href="#a06" x-large>
-              <span>返品規約</span>
+            <v-btn block color="#fff" x-large>
+              <a v-scroll-to="'#a06'">
+                <span>返品規約</span>
+              </a>
             </v-btn>
           </v-col>
           <v-col cols="12" sm="4">
-            <v-btn block color="#fff" href="#a07" x-large>
-              <span>中古商品はこちら</span>
+            <v-btn block color="#fff" x-large>
+              <a v-scroll-to="'#a07'">
+                <span>中古商品はこちら</span>
+              </a>
             </v-btn>
           </v-col>
         </v-row>
@@ -205,7 +219,7 @@
           <v-col cols="12" sm="8">
             <p>1万円以上の中古カメラ・中古レンズには6ヶ月間の保証が付きます。</p>
             <p>※一部保証対象外の商品もございます。</p>
-            <a class="icon-open" href="https://www.net-chuko.com/ec/service/used-6months-warranty.html">詳しくはこちらをご覧ください</a>
+            <a class="icon-open" href="https://www.net-chuko.com/ec/service/used-6months-warranty.html" target="_blank">詳しくはこちらをご覧ください</a>
           </v-col>
           <v-col cols="12" sm="4" class="text-center">
             <img src="/ec/images2/special/page/used-navi/used-navi_05.png" alt="中古カメラ6ヶ月保証" />
@@ -215,7 +229,7 @@
 
       <section class="mb-16">
         <h2 class="title-2" id="a05">中古品のよくある質問</h2>
-        <p>中古品ご購入に関する、<a class="icon-open" href="https://ecfaq.kitamura.jp/s/">よくある質問はこちら</a>をご確認ください。</p>
+        <p>中古品ご購入に関する、<a class="icon-open" href="https://ecfaq.kitamura.jp/s/" target="_blank">よくある質問はこちら</a>をご確認ください。</p>
       </section>
 
       <section class="mb-16">
@@ -327,6 +341,7 @@ export default Vue.extend({
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 2%;
 }
 
 .title-1 {

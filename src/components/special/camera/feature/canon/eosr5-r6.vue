@@ -416,9 +416,9 @@ export default Vue.extend({
     priceAndPurchase: PriceAndPurchase,
     specificationsExamplesBtn: SpecificationsExamplesBtn
   },
-  setup: (props, context) => {
-    document.title = '好評発売中！キヤノンEOS R5 R6 | カメラのキタムラネットショップ'
-    document.querySelector<any>('meta[name="description"]').setAttribute('content', 'キヤノン EOS R5 R6 好評発売中！比較や、価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！')
+  setup: () => {
+    document.title = '好評発売中！キヤノンEOS R5 R6 | カメラのキタムラネットショップ',
+      document.querySelector<any>('meta[name="description"]').setAttribute('content', 'キヤノン EOS R5 R6 好評発売中！比較や、価格・発売日・スペック・お得な情報をチェック！新製品ならカメラのキタムラにおまかせください！');
 
     const state = reactive({
       naviList: [
@@ -532,7 +532,8 @@ export default Vue.extend({
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       breadcrumbs: [

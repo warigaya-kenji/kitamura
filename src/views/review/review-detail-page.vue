@@ -94,7 +94,7 @@ import ReviewContentsForm, { ReviewContents } from '@/components/my-page/review/
 import UserService from '@/logic/user.service';
 
 export default Vue.extend({
-  name: 'my-page',
+  name: 'review-detail-page',
   components: {
     breadcrumbs: Breadcrumbs,
     product: Product,
@@ -194,7 +194,14 @@ export default Vue.extend({
         });
       } else {
         alert('参考になったレビューの登録にはログインが必要です。');
-        authorizer.openLoginMenu();
+        const successCallback = () => {
+          UserService.postHelpful(reviewId).then(() => {
+            // 参考なった人数および参考なったボタンの状態を更新
+            fetchReview(reviewId);
+            checkHelpful(reviewId, state.janCode);
+          });
+        };
+        authorizer.openLoginMenu(successCallback);
       }
     };
 

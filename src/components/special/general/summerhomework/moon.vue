@@ -33,7 +33,7 @@
                 <ol>
                   <li>天体望遠鏡</li>
                   <li>
-                    <a href="/ec/pd/4955295391974" target="_blank">ユニバーサルデジタルカメラアダプター</a>
+                    <router-link to="/ec/pd/4955295391974" target="_blank">ユニバーサルデジタルカメラアダプター</router-link>
                   </li>
                   <li>スマホ</li>
                 </ol>

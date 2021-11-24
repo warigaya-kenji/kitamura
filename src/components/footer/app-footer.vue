@@ -5,23 +5,23 @@
       <div class="footer-contents">
         <back-to-top />
       </div>
-      <div class="footer-sns">
+      <div class="footer-sns" v-show="!simpleFooter">
         <div class="footer-contents">
           <sns-link />
         </div>
       </div>
       <div class="footer-contents">
-        <service-link />
-        <product-link />
-        <copy-right />
+        <service-link v-show="!simpleFooter" />
+        <product-link v-show="!simpleFooter" />
+        <copy-right :simpleFooter="simpleFooter" />
       </div>
     </div>
 
     <!-- 960px未満 -->
     <div class="footer-area-narrow" v-if="$vuetify.breakpoint.smAndDown">
-      <sns-link />
-      <service-link />
-      <copy-right />
+      <sns-link v-show="!simpleFooter" />
+      <service-link v-show="!simpleFooter" />
+      <copy-right :simpleFooter="simpleFooter" />
       <back-to-top />
     </div>
   </v-footer>
@@ -29,6 +29,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { reactive, toRefs, watch } from '@vue/composition-api';
 
 import BackToTop from '@/components/common/back-to-top.vue';
 import SnsLink from '@/components/footer/sns-link.vue';
@@ -44,6 +45,24 @@ export default Vue.extend({
     'service-link': ServiceLink,
     'product-link': ProductLink,
     'copy-right': CopyRight
+  },
+  setup: (_, context) => {
+    const state = reactive({
+      simpleFooter: false
+    });
+
+    watch(
+      () => context.root.$route.meta,
+      () => {
+        const meta = context.root.$route.meta;
+        state.simpleFooter = meta?.simpleFooter != null ? meta.simpleFooter : false;
+      },
+      { immediate: true }
+    );
+
+    return {
+      ...toRefs(state)
+    };
   }
 });
 </script>

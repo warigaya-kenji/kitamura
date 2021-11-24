@@ -46,7 +46,7 @@ type BreadcrumbItem = {
 };
 
 export default Vue.extend({
-  name: 'my-page',
+  name: 'my-page-layout',
   props: {
     title: {
       required: true,

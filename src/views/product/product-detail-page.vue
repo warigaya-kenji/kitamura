@@ -25,6 +25,7 @@
         :usedProductsSummary="usedProductsSummary"
         :productImageList="productImageList"
         :cartOption="cartOption"
+        :specialId="specialId"
       ></product-info>
 
       <!-- 中古商品情報 960px以上 -->
@@ -226,6 +227,7 @@ import NotFound from '@/components/common/not-found.vue';
 import { CART_STATUS } from '@/constants/cart-status';
 import { PRODUCT_FLAG } from '@/constants/product-flag';
 import { Route } from 'vue-router';
+import SpecialProductService from '@/logic/special-product.service';
 
 export default Vue.extend({
   name: 'product-detail-page',
@@ -239,6 +241,7 @@ export default Vue.extend({
     'not-found': NotFound
   },
   setup(props, context) {
+    const { product } = context.root.$store;
     const state = reactive({
       netChukoUrl: process.env.VUE_APP_NET_CHUKO_URL,
       routeItemCode: '',
@@ -293,7 +296,9 @@ export default Vue.extend({
       /** JSON-LD */
       jsonLd: '',
       // 内部スクロール用：tab指定
-      tab: 0
+      tab: 0,
+      // 特集ID
+      specialId: undefined as string | undefined
     });
 
     function sanitize(text: string) {
@@ -367,7 +372,7 @@ export default Vue.extend({
      * 新品用商品詳細を取得する
      */
     function fetchNewProduct() {
-      ProductService.fetchProducts([state.janCode], false)
+      ProductService.fetchProducts([state.janCode], false, undefined, undefined, state.specialId)
         .then((result) => {
           state.cartMaxCount = result.cartMaxCount;
           state.product = result.items[0];
@@ -392,7 +397,12 @@ export default Vue.extend({
             });
 
             // カートに入れるオプション
-            if (ProductService.includeFlag(state.product.flags, PRODUCT_FLAG.FINISHED_PRODUCT) || state.product.isSalesEnd) {
+            if (ProductService.includeFlag(state.product.flags, PRODUCT_FLAG.PRICE_NOT_SHOWN)) {
+              // 価格表示対象外商品
+              state.cartOption.text = CART_STATUS.PRICE_NOT_SHOWN;
+              state.cartOption.disabled = true;
+              state.cartOption.canBuyNum = 0;
+            } else if (ProductService.includeFlag(state.product.flags, PRODUCT_FLAG.FINISHED_PRODUCT) || state.product.isSalesEnd) {
               // 完了商品
               state.cartOption.isShow = false;
               state.cartOption.canBuyNum = 0;
@@ -429,11 +439,11 @@ export default Vue.extend({
             }
 
             // タイトルを設定する
-            let title = state.product.itemName + ' | ';
-            if (state.product.breadcrumbs?.length >= 2) {
-              title += state.product.breadcrumbs[1].path + 'の通販 | ';
+            let title = state.product.itemName;
+            if (state.product.breadcrumbs?.length > 0) {
+              title += ' | ' + state.product.breadcrumbs[0].path;
             }
-            document.title = title + 'カメラのキタムラ';
+            document.title = title;
           }
 
           // JSON-LDを設定する
@@ -596,7 +606,7 @@ export default Vue.extend({
           ];
 
           // タイトルを設定する
-          document.title = `${state.usedProduct.itemName} | ${state.usedProduct.prdType} | ${state.usedProduct.itemCode}の在庫詳細`;
+          document.title = `【中古：${state.usedProduct.grade}】${itemName} | ${state.usedProduct.itemCode}`;
 
           // カートに入れるオプション
           // 中古在庫商品の場合
@@ -714,12 +724,46 @@ export default Vue.extend({
       };
       /** JSON-LD */
       state.jsonLd = '';
+      /** 特集ID */
+      state.specialId = undefined;
     }
+
+    /**
+     * 限定商品のパスコードチェック
+     */
+    const checkSecretPass = async () => {
+      let secretId = '';
+      let passcode = '';
+
+      // 「URLParamでの直アクセス」か「特集ページからの遷移」かを判定
+      const query = context.root.$route.query;
+      if (query.secret && query.passcode) {
+        secretId = `${query.secret}`;
+        passcode = `${query.passcode}`;
+      } else if (Object.keys(product.secretInfo).length) {
+        secretId = product.secretInfo.secret;
+        passcode = product.secretInfo.passcode;
+        product.resetSecretInfo();
+      }
+
+      // 以下、TODOコメントアウト解除時に削除
+      if (secretId) state.specialId = secretId;
+
+      // TODO: 限定販売対象商品APIにて、パスコードのチェックができるようになり次第、コメントアウト解除
+      // if (secretId && passcode) {
+      //   try {
+      //     const results = await SpecialProductService.getSaleSecretProduct(secretId, passcode);
+      //     if (results.length) state.specialId = secretId;
+      //   } catch (error) {
+      //     console.error(error);
+      //   }
+      // }
+    };
 
     /**
      * 商品詳細情報を取得して設定する
      */
-    function setProduct(route: Route) {
+    async function setProduct(route: Route) {
       // ページ内状態を初期化
       initState();
 
@@ -735,6 +779,9 @@ export default Vue.extend({
       } else {
         // 新品の場合は、ルートパスがJANコード
         state.janCode = state.routeItemCode;
+
+        // 限定価格表示チェック
+        await checkSecretPass();
 
         // 各種情報取得
         fetchNewProduct();

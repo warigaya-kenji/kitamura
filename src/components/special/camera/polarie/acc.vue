@@ -179,14 +179,14 @@
             <p class="text-center"><v-icon small left color="black">fas fa-arrow-up</v-icon> ポラリエを使用し撮影</p>
           </v-col>
           <v-col cols="10" sm="4">
-            <a href="/ec/pd/4955295355051">
+            <router-link to="/ec/pd/4955295355051">
               <v-img
                 src="https://shopimg.kitamura.jp/images/pd/b60/a10/665/298/232/292/861/b83/346/80b/ea1/89n/zn0/x/L.jpg"
                 max-width="220px"
                 max-height="220px"
                 class="mx-auto mb-2"
               ></v-img>
-            </a>
+            </router-link>
             <orangeBtn :btntxt="'星空雲台 ポラリエ '" :href="'/ec/pd/4955295355051'" :height="'40px'" :type="3" />
           </v-col>
         </v-row>

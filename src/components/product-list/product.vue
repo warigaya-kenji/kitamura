@@ -11,37 +11,70 @@
           label="比較する"
           :disabled="!comparisonCheck && comparison.comparisonList.length >= comparison.limit"
         ></v-checkbox>
-
         <!-- お気に入り登録 -->
         <v-dialog class="dialog" max-width="550px" v-model="favoriteDialog">
           <template v-slot:activator="{ attrs }">
             <v-btn class="product-fav ma-2" text icon color="rgba(216, 11, 36, 1)" v-bind="attrs" @click="clickFavorite()">
-              <v-icon>{{ productFavorite ? 'fas fa-heart' : 'far fa-heart' }}</v-icon>
+              <v-icon>{{ memberProduct.isFavorite ? 'fas fa-heart' : 'far fa-heart' }}</v-icon>
             </v-btn>
           </template>
           <product-favorite-dialog
             :janCode="stateProduct.itemid"
-            :isFavorite="productFavorite"
+            :isFavorite="memberProduct.isFavorite"
+            :isNoticePriceSetting="memberProduct.noticePrice"
+            :isNoticeUsedSetting="memberProduct.noticeUsed"
             @onRegisterd="onFavoriteRegisterd()"
             @onClosed="onFavoriteDialogClosed()"
           ></product-favorite-dialog>
         </v-dialog>
       </div>
+      <!-- 商品画像 -->
+      <!-- 特集の限定商品用 -->
+      <div
+        v-if="secretInfo && Object.keys(secretInfo).length"
+        class="product-link"
+        @click="
+          toSpecialDetail(
+            displayPriceType === SEARCH_STATE.option[2].value ? `/ec/list/?type=u&keyword3=${stateProduct.itemid}` : `/ec/pd/${stateProduct.itemid}`
+          )
+        "
+      >
+        <div class="product-img-area" v-on:mouseover="isHover = true" v-on:mouseleave="isHover = false">
+          <img class="product-img" height="160px" contain :src="stateProduct.image.replace(/TN/g, 'M')" @error="noimage" :alt="stateProduct.title" />
+        </div>
+      </div>
       <router-link
+        v-else
         class="product-link"
         :to="displayPriceType === SEARCH_STATE.option[2].value ? `/ec/list/?type=u&keyword3=${stateProduct.itemid}` : `/ec/pd/${stateProduct.itemid}`"
       >
         <div class="product-img-area" v-on:mouseover="isHover = true" v-on:mouseleave="isHover = false">
-          <img class="product-img" height="160px" contain :src="stateProduct.image" @error="noimage" :alt="stateProduct.title" />
+          <img class="product-img" height="160px" contain :src="stateProduct.image.replace(/TN/g, 'M')" @error="noimage" :alt="stateProduct.title" />
         </div>
       </router-link>
+      <!-- メーカー名 -->
       <div class="product-maker-name">{{ stateProduct.narrow1 }}</div>
+      <!-- 商品名 -->
+      <!-- 特集の限定商品用 -->
+      <div
+        v-if="secretInfo && Object.keys(secretInfo).length"
+        class="product-link"
+        @click="
+          toSpecialDetail(
+            displayPriceType === SEARCH_STATE.option[2].value ? `/ec/list/?type=u&keyword3=${stateProduct.itemid}` : `/ec/pd/${stateProduct.itemid}`
+          )
+        "
+      >
+        <div class="product-name" v-on:mouseover="isHover = true" v-on:mouseleave="isHover = false">{{ stateProduct.title }}</div>
+      </div>
       <router-link
+        v-else
         class="product-link"
         :to="displayPriceType === SEARCH_STATE.option[2].value ? `/ec/list/?type=u&keyword3=${stateProduct.itemid}` : `/ec/pd/${stateProduct.itemid}`"
       >
         <div class="product-name" v-on:mouseover="isHover = true" v-on:mouseleave="isHover = false">{{ stateProduct.title }}</div>
       </router-link>
+      <!-- 価格 -->
       <div class="product-price-area">
         <div class="product-text" v-show="displayPriceType === SEARCH_STATE.option[0].value || displayPriceType === SEARCH_STATE.option[1].value">
           価格:<span class="product-price">{{ isSpecial && stateProduct.isSalesEnd ? '-' : formatPrice(parseInt(stateProduct.price)) }}円</span>
@@ -55,6 +88,7 @@
           >
         </div>
       </div>
+      <!-- レビュー -->
       <div class="product-review-area" v-show="+stateProduct.data18 !== 0">
         <v-rating
           class="product-rating"
@@ -77,31 +111,63 @@
           <v-dialog class="dialog" max-width="550px" v-model="favoriteDialog">
             <template v-slot:activator="{ attrs }">
               <v-btn class="product-fav" text icon color="rgba(216, 11, 36, 1)" v-bind="attrs" @click.stop="clickFavorite()">
-                <v-icon>{{ productFavorite ? 'fas fa-heart' : 'far fa-heart' }}</v-icon>
+                <v-icon>{{ memberProduct.isFavorite ? 'fas fa-heart' : 'far fa-heart' }}</v-icon>
               </v-btn>
             </template>
             <product-favorite-dialog
               :janCode="stateProduct.itemid"
-              :isFavorite="productFavorite"
+              :isFavorite="memberProduct.isFavorite"
+              :isNoticePriceSetting="memberProduct.noticePrice"
+              :isNoticeUsedSetting="memberProduct.noticeUsed"
               @onRegisterd="onFavoriteRegisterd()"
               @onClosed="onFavoriteDialogClosed()"
             ></product-favorite-dialog>
           </v-dialog>
+          <!-- 商品画像 -->
+          <!-- 特集の限定商品用 -->
+          <div
+            v-if="secretInfo && Object.keys(secretInfo).length"
+            class="product-link"
+            @click="
+              toSpecialDetail(
+                displayPriceType === SEARCH_STATE.option[2].value ? `/ec/list/?type=u&keyword3=${stateProduct.itemid}` : `/ec/pd/${stateProduct.itemid}`
+              )
+            "
+          >
+            <img class="product-img" height="120px" contain :src="stateProduct.image.replace(/TN/g, 'M')" @error="noimage" :alt="stateProduct.title" />
+          </div>
           <router-link
+            v-else
             class="product-link"
             :to="displayPriceType === SEARCH_STATE.option[2].value ? `/ec/list/?type=u&keyword3=${stateProduct.itemid}` : `/ec/pd/${stateProduct.itemid}`"
           >
-            <img class="product-img" height="120px" contain :src="stateProduct.image" @error="noimage" :alt="stateProduct.title" />
+            <img class="product-img" height="120px" contain :src="stateProduct.image.replace(/TN/g, 'M')" @error="noimage" :alt="stateProduct.title" />
           </router-link>
         </div>
         <div class="product-info">
+          <!-- メーカー名 -->
           <div class="product-maker-name">{{ stateProduct.narrow1 }}</div>
+          <!-- 商品名 -->
+          <!-- 特集の限定商品用 -->
+          <div
+            v-if="secretInfo && Object.keys(secretInfo).length"
+            class="product-link"
+            @click="
+              toSpecialDetail(
+                displayPriceType === SEARCH_STATE.option[2].value ? `/ec/list/?type=u&keyword3=${stateProduct.itemid}` : `/ec/pd/${stateProduct.itemid}`
+              )
+            "
+          >
+            <div class="product-name">{{ stateProduct.title }}</div>
+          </div>
           <router-link
+            v-else
             class="product-link"
             :to="displayPriceType === SEARCH_STATE.option[2].value ? `/ec/list/?type=u&keyword3=${stateProduct.itemid}` : `/ec/pd/${stateProduct.itemid}`"
           >
             <div class="product-name">{{ stateProduct.title }}</div>
           </router-link>
+          <!-- 価格 -->
           <div class="product-price-area">
             <div class="product-text" v-show="displayPriceType === SEARCH_STATE.option[0].value || displayPriceType === SEARCH_STATE.option[1].value">
               価格:<span class="product-price">{{ isSpecial && stateProduct.isSalesEnd ? '-' : formatPrice(parseInt(stateProduct.price)) }}円</span>
@@ -116,6 +182,7 @@
               >
             </div>
           </div>
+          <!-- レビュー -->
           <div class="product-review-area" v-show="+stateProduct.data18 !== 0">
             <v-rating
               class="product-rating"
@@ -142,6 +209,8 @@ import { ProductItem } from '@/types/product-list';
 import { SEARCH_STATE } from '@/constants/search-state';
 import { noimage, formatPrice } from '@/logic/utils';
 import productFavoriteDialog from '../common/product-favorite-dialog.vue';
+import { MemberProduct } from '@/types/product';
+import { SecretInfo } from '@/types/special-product';
 
 // TODO: searchUsedProductsSummaryのリターンがanyではなくなったら、修正
 type usedProductsSummary = {
@@ -172,14 +241,18 @@ export default Vue.extend({
       type: Boolean,
       default: false,
       required: false
+    },
+    secretInfo: {
+      type: Object as PropType<SecretInfo>,
+      required: false
     }
   },
   setup: (props, context) => {
-    const { authorizer, comparison } = context.root.$store;
+    const { authorizer, comparison, product } = context.root.$store;
 
     const state = reactive({
       stateProduct: props.product as ProductItem,
-      productFavorite: false,
+      memberProduct: {} as MemberProduct,
       productMakerName: '',
       comparisonCheck: false,
       favoriteDialog: false,
@@ -220,12 +293,15 @@ export default Vue.extend({
 
     // お気に入り商品登録
     const clickFavorite = async () => {
-      const isLoggedIn = authorizer.isLoggedIn;
+      const isLoggedIn = authorizer.isLoggedIn as boolean;
       if (isLoggedIn) {
         state.favoriteDialog = true;
       } else {
         alert('お気に入り登録はログインが必要です。');
-        authorizer.openLoginMenu();
+        const successCallback = () => {
+          state.favoriteDialog = true;
+        };
+        authorizer.openLoginMenu(successCallback);
       }
     };
 
@@ -238,12 +314,18 @@ export default Vue.extend({
     async function onFavoriteRegisterd() {
       try {
         const memberProduct = await ProductService.fetchMemberProduct(state.stateProduct.itemid);
-        state.productFavorite = memberProduct.isFavorite;
+        state.memberProduct = memberProduct;
       } catch (error) {
         console.error(error);
       }
       state.favoriteDialog = false;
     }
+
+    // 特集の限定商品用の遷移処理
+    const toSpecialDetail = (url: string) => {
+      product.secretInfo = props.secretInfo;
+      context.root.$router.push({ path: url });
+    };
 
     return {
       ...toRefs(state),
@@ -254,7 +336,8 @@ export default Vue.extend({
       onFavoriteRegisterd,
       onFavoriteDialogClosed,
       noimage,
-      formatPrice
+      formatPrice,
+      toSpecialDetail
     };
   }
 });
@@ -280,9 +363,11 @@ export default Vue.extend({
     .product {
       &-img {
         opacity: 0.75;
+        cursor: pointer;
       }
       &-name {
         color: $text-primary;
+        cursor: pointer;
       }
     }
   }

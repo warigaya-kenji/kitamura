@@ -118,14 +118,14 @@
                   <v-col>
                     <v-layout justify-center wrap
                       ><v-flex>
-                        <a href="/ec/pd/4960759900388">
+                        <router-link to="/ec/pd/4960759900388">
                           <v-img
                             contain
                             alt="ニコン COOLPIX"
                             src="/ec/images2/special/camera/compact/camera_b.jpg"
                             max-height="125"
                             width="auto"
-                          ></v-img></a></v-flex
+                          ></v-img></router-link></v-flex
                     ></v-layout>
                   </v-col>
                   <p class="float-left">■広角24mmからの光学35倍ズーム<br />■4K動画も撮影できる<br />■暗いシーンもキレイに撮れる最高感度ISO6400</p>
@@ -233,14 +233,14 @@
                   <v-col>
                     <v-layout justify-center wrap
                       ><v-flex>
-                        <a href="/ec/pd/4549292056389">
+                        <router-link to="/ec/pd/4549292056389">
                           <v-img
                             contain
                             alt="キヤノン PowerShot G7 X MarkII"
                             src="/ec/images2/special/camera/compact/camera_e.jpg"
                             max-height="125"
                             width="auto"
-                          ></v-img></a></v-flex
+                          ></v-img></router-link></v-flex
                     ></v-layout>
                   </v-col>
                   <p class="float-left">■■ズーム全域で明るいレンズと1インチの大型センサーを搭載<br />■「写真をキレイに撮る」ことにこだわった1台！</p>
@@ -360,14 +360,14 @@
                   <v-col>
                     <v-layout justify-center wrap
                       ><v-flex>
-                        <a href="/ec/pd/4960759148803">
+                        <router-link to="/ec/pd/4960759148803">
                           <v-img
                             contain
                             alt="ニコン COOLPIX P1000"
                             src="/ec/images2/special/camera/compact/camera_i.jpg"
                             max-height="125"
                             width="auto"
-                          ></v-img></a></v-flex
+                          ></v-img></router-link></v-flex
                     ></v-layout>
                   </v-col>
                   <p class="float-left">

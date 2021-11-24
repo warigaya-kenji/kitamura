@@ -5,13 +5,13 @@
     <v-sheet :color="color" class="white--text darken-2 pa-2">{{ name }}</v-sheet>
     <v-row class="mb-10">
       <v-col cols="12" sm="4" class="mt-1 pa-4" v-if="type === 1">
-        <router-link :to="`/ec/pd/${itemList.janCode}`"><v-img :src="src" max-width="100%" height="auto" /></router-link>
+        <router-link :to="`/ec/pd/${itemList.janCode}`"><v-img :src="src" max-width="100%" height="auto"/></router-link>
       </v-col>
       <v-col cols="6" sm="2" class="mt-1 pa-4" v-if="type === 2">
-        <router-link :to="`/ec/pd/${itemList.janCode}`"><v-img :src="src" max-width="100%" height="auto" /></router-link>
+        <router-link :to="`/ec/pd/${itemList.janCode}`"><v-img :src="src" max-width="100%" height="auto"/></router-link>
       </v-col>
       <v-col cols="6" sm="2" class="mt-1 pa-4" v-if="type === 2">
-        <router-link :to="`/ec/pd/${itemList2.janCode}`"><v-img :src="src2" max-width="100%" height="auto" /></router-link>
+        <router-link :to="`/ec/pd/${itemList2.janCode}`"><v-img :src="src2" max-width="100%" height="auto"/></router-link>
       </v-col>
       <v-col cols="12" sm="4" class="mt-1" v-if="type === 3">
         <v-row justify="center" align-content="center" no-gutters>
@@ -36,12 +36,12 @@
         <v-row justify="end" class="mb-2">
           <v-col cols="6">
             <v-hover v-slot="{ hover }">
-              <v-btn block :elevation="hover ? 10 : 6" :href="`/ec/pd/${itemList.janCode}`" :color="hover ? '#4296e2' : '#1167b5'" height="45px"
+              <v-btn block :elevation="hover ? 10 : 6" :to="`/ec/pd/${itemList.janCode}`" :color="hover ? '#4296e2' : '#1167b5'" height="45px"
                 ><span class="white--text text-subtitle-1">商品詳細を見る</span></v-btn
               >
             </v-hover>
             <v-hover v-slot="{ hover }" v-if="isCartBtn">
-              <v-btn block :elevation="hover ? 0 : 8" href="/cart.html" color="#fcad26" height="45px" class="mt-2"
+              <v-btn block :elevation="hover ? 0 : 8" to="/ec/cart" color="#fcad26" height="45px" class="mt-2"
                 ><span class="white--text text-subtitle-1"><v-icon class="mx-2">far fa-cart-arrow-down</v-icon>カートへ</span></v-btn
               >
             </v-hover>
@@ -60,12 +60,12 @@
           <v-row justify="end">
             <v-col cols="6">
               <v-hover v-slot="{ hover }">
-                <v-btn block :elevation="hover ? 10 : 6" :href="`/ec/pd/${itemList2.janCode}`" :color="hover ? '#4296e2' : '#1167b5'" height="45px"
+                <v-btn block :elevation="hover ? 10 : 6" :to="`/ec/pd/${itemList2.janCode}`" :color="hover ? '#4296e2' : '#1167b5'" height="45px"
                   ><span class="white--text text-subtitle-1">商品詳細を見る</span></v-btn
                 >
               </v-hover>
               <v-hover v-slot="{ hover }" v-if="isCartBtn">
-                <v-btn block :elevation="hover ? 0 : 8" href="/cart.html" color="#fcad26" height="45px" class="mt-2"
+                <v-btn block :elevation="hover ? 0 : 8" to="/ec/cart" color="#fcad26" height="45px" class="mt-2"
                   ><span class="white--text text-subtitle-1"><v-icon class="mx-2">far fa-cart-arrow-down</v-icon>カートへ</span></v-btn
                 >
               </v-hover>

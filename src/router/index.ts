@@ -18,7 +18,11 @@ import ProductComparePage from '../views/product/product-compare-page.vue';
 import SpecialSalePage from '../views/special/special-sale-page.vue';
 import SpecialNewsPage from '../views/special/special-news-page.vue';
 import SpecialPage from '../views/special/special-page.vue';
-import SpecialCameraFramePage from '../views/special/camera/frame.vue';
+import SpecialCameraFramePage from '../views/special/camera/frame-page.vue';
+import SpecialCameraAlbumPage from '../views/special/camera/album-page.vue';
+import SpecialCameraPhotomountPage from '../views/special/camera/photomount-page.vue';
+import SpecialCameraPrinterPage from '../views/special/camera/printer-page.vue';
+import SpecialCameraBagFeaturePage from '../views/special/camera/bag-feature-page.vue';
 import NewsListPage from '../views/news/news-list-page.vue';
 import NewsDetailPage from '../views/news/news-detail-page.vue';
 import MyPage from '../views/my-page.vue';
@@ -50,6 +54,15 @@ import GuideSyuuriSyouhinQandAPage from '../views/guide/syuuri/syouhinQ&A.vue';
 import GuideRiyouKaiinPage from '../views/guide/riyou_kaiin.vue';
 import GuideRiyouKaiinkakakuPage from '../views/guide/riyou_kaiinkakaku.vue';
 import Guide3DsecurePage from '../views/guide/3Dsecure.vue';
+
+// 遅延ローディング
+const CartListPage = () => import(/* webpackChunkName: "Cart" */ '../views/cart/cart-list-page.vue');
+const OrderPrecheckPage = () => import(/* webpackChunkName: "Cart" */ '../views/cart/order-precheck-page.vue');
+const OrderPage = () => import(/* webpackChunkName: "Cart" */ '../views/cart/order-page.vue');
+const OrderCompletePage = () => import(/* webpackChunkName: "Cart" */ '../views/cart/order-complete-page.vue');
+const ShoppingCreditCompletePage = () => import(/* webpackChunkName: "Cart" */ '../views/cart/shopping-credit-complete-page.vue');
+const OrderConfirmPage = () => import(/* webpackChunkName: "Cart" */ '../views/cart/order-confirm-page.vue');
+const OrderErrorPage = () => import(/* webpackChunkName: "Cart" */ '../views/cart/order-error-page.vue');
 
 Vue.use(VueRouter);
 Vue.use(VueMeta);
@@ -277,12 +290,36 @@ const routes: Array<RouteConfig> = [
     meta: { gtm: 'SpecialNewsPage' },
     component: SpecialNewsPage
   },
-  // {
-  //   path: '/ec/special/camera/frame/:id',
-  //   name: 'camera-frame-page',
-  //   meta: { gtm: 'SpecialCameraFramePage' },
-  //   component: SpecialCameraFramePage
-  // },
+  {
+    path: '/ec/special/camera/frame/:id',
+    name: 'camera-frame-page',
+    meta: { gtm: 'SpecialCameraFramePage' },
+    component: SpecialCameraFramePage
+  },
+  {
+    path: '/ec/special/camera/album/:id',
+    name: 'camera-album-page',
+    meta: { gtm: 'SpecialCameraAlbumPage' },
+    component: SpecialCameraAlbumPage
+  },
+  {
+    path: '/ec/special/camera/photomount/:id',
+    name: 'camera-photomount-page',
+    meta: { gtm: 'SpecialCameraPhotomountPage' },
+    component: SpecialCameraPhotomountPage
+  },
+  {
+    path: '/ec/special/camera/printer/:id',
+    name: 'camera-printer-page',
+    meta: { gtm: 'SpecialCameraPrinterPage' },
+    component: SpecialCameraPrinterPage
+  },
+  {
+    path: '/ec/special/camera/bag/feature/:id',
+    name: 'camera-bag-feature-page',
+    meta: { gtm: 'SpecialCameraBagFeaturePage' },
+    component: SpecialCameraBagFeaturePage
+  },
   {
     path: '/ec/special/*',
     name: 'special-page',
@@ -311,6 +348,66 @@ const routes: Array<RouteConfig> = [
     path: '/ec/mypage',
     component: MyPage,
     children: [...MyPageRoutes]
+  },
+  {
+    path: '/ec/cart',
+    name: 'cart-list-page',
+    meta: {
+      gtm: 'CartListPage',
+      showTabMenu: false,
+      showSearchMenu: false
+    },
+    component: CartListPage
+  },
+  {
+    path: '/ec/order',
+    name: 'order-page',
+    meta: {
+      gtm: 'OrderPage',
+      simpleHeader: true,
+      simpleFooter: true
+    },
+    component: OrderPage
+  },
+  {
+    // order-pageと同じpathだが、ルーティング設定で切り替わる
+    path: '/ec/order',
+    name: 'order-precheck-page',
+    meta: {
+      gtm: 'OrderPrecheckPage',
+      simpleHeader: true,
+      simpleFooter: true
+    },
+    component: OrderPrecheckPage
+  },
+  {
+    // order-pageと同じpathだが、ルーティング設定で切り替わる
+    path: '/ec/order',
+    name: 'order-confirm-page',
+    meta: {
+      gtm: 'OrderConfirmPage',
+      simpleHeader: true,
+      simpleFooter: true
+    },
+    component: OrderConfirmPage
+  },
+  {
+    path: '/ec/orderComp',
+    name: 'order-complete-page',
+    meta: { gtm: 'OrderCompletePage' },
+    component: OrderCompletePage
+  },
+  {
+    path: '/ec/orderError',
+    name: 'order-error-page',
+    meta: { gtm: 'OrderErrorPage' },
+    component: OrderErrorPage
+  },
+  {
+    path: '/ec/orderShoppingCredit',
+    name: 'order-shopping-credit-page',
+    meta: { gtm: 'orderShoppingCredit' },
+    component: ShoppingCreditCompletePage
   },
   {
     path: '*',
@@ -363,7 +460,7 @@ const _trackEvent = async (route: Route): Promise<void> => {
     const janCode = route.params.id;
     const netMemberId = Vue.prototype.$store.authorizer.user?.netMemberId || AuthService.getSession();
     const referrer = route.meta?.gtmAdditionalEventData?.gtm?.oldUrl;
-    GtmService.trackEvent(gtmPageName, janCode, netMemberId, referrer);
+    GtmService.trackEventForGa(gtmPageName, janCode, netMemberId, referrer);
   }
 };
 
@@ -388,6 +485,22 @@ router.beforeEach(async (to, from, next) => {
       next({ name: 'product-compare-page', query: { prd: sortJancodes } });
       return;
     }
+  }
+  // レジページはクエリパラメータによって遷移先を変更する
+  else if (to.name === 'order-page' && to.query.step === 'precheck') {
+    next({ name: 'order-precheck-page', query: to.query });
+    return;
+  } else if (to.name === 'order-page' && to.query.step === 'confirm') {
+    next({ name: 'order-confirm-page', query: to.query });
+    return;
+  } else if (to.name === 'order-precheck-page' && to.query.step !== 'precheck') {
+    to.query.step = 'precheck';
+    next({ name: 'order-precheck-page', query: to.query });
+    return;
+  } else if (to.name === 'order-confirm-page' && to.query.step !== 'confirm') {
+    to.query.step = 'confirm';
+    next({ name: 'order-confirm-page', query: to.query });
+    return;
   }
 
   if (isLocalHost() || equalsHostname(process.env.VUE_APP_SSO_SKIP_HOSTNAME)) {

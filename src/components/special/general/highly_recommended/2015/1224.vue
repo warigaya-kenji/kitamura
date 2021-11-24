@@ -4,18 +4,8 @@
       <div class="main-contents-wrap">
         <!-- ↓ パンくず -->
         <breadcrumbs :breadcrumbs="breadcrumbs" />
-        <!-- ↑ パンくず -->
 
-        <router-link to="/ec/special/general/highly_recommended">
-          <v-hover v-slot="{ hover }">
-            <v-img
-              :src="`/ec/images2/special/general/highly_recommended/2015/1224/rec_gotop_${hover ? 'on' : 'off'}.gif`"
-              max-width="100%"
-              height="auto"
-              class="hover"
-            ></v-img>
-          </v-hover>
-        </router-link>
+        <titleImage></titleImage>
 
         <!--↓イチオシ品-->
         <div class="my-4 pa-6 line-g"></div>
@@ -175,11 +165,13 @@ import Vue from 'vue';
 import Breadcrumbs from '@/components/common/breadcrumbs.vue';
 import { reactive, toRefs } from '@vue/composition-api';
 import { noimage, formatPrice } from '@/logic/utils';
+import TitleImage from '@/components/common/special/highly-recommended/title-image.vue';
 
 export default Vue.extend({
   name: 'highly_recommended-2015-1224',
   components: {
-    breadcrumbs: Breadcrumbs
+    breadcrumbs: Breadcrumbs,
+    titleImage: TitleImage
   },
   setup: () => {
     document.title = 'ペリカン スーベレーンＭ600を購入しました | カメラのキタムラネットショップ'

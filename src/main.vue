@@ -7,7 +7,7 @@
 
     <!-- 960px以上 -->
     <div class="outer-header-wide" v-if="$vuetify.breakpoint.mdAndUp">
-      <app-header v-if="this.$route.path.indexOf('tablet') === -1" />
+      <app-header :simpleHeader="simpleHeader" v-if="this.$route.path.indexOf('tablet') === -1" />
     </div>
     <div class="outer-main-wide">
       <div class="width-wide" v-if="$vuetify.breakpoint.mdAndUp">
@@ -22,12 +22,12 @@
 
     <!-- 960px未満 -->
     <div class="width-narrow" v-if="$vuetify.breakpoint.smAndDown">
-      <app-header v-if="this.$route.path.indexOf('tablet') === -1" />
+      <app-header :simpleHeader="simpleHeader" v-if="this.$route.path.indexOf('tablet') === -1" />
       <v-main>
         <router-view />
       </v-main>
       <app-footer v-if="this.$route.path.indexOf('tablet') === -1" />
-      <v-app-bar-nav-icon @click="drawer = true" class="menu-position menu-bar-nav-icon"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = true" class="menu-position menu-bar-nav-icon" v-show="!simpleHeader"></v-app-bar-nav-icon>
       <v-navigation-drawer v-model="drawer" fixed temporary class="menu-drawer" v-if="$vuetify.breakpoint.smAndDown">
         <nav-drawer-menu @on-close-menu="closeMenu" />
       </v-navigation-drawer>
@@ -55,10 +55,11 @@ export default Vue.extend({
     'error-dialog': ErrorDialog,
     'confirm-dialog': ConfirmDialog
   },
-  setup: (props, context) => {
+  setup: (_, context) => {
     const state = reactive({
       drawer: false,
-      rendered: false
+      rendered: false,
+      simpleHeader: false
     });
 
     // routerイベントをwatch
@@ -68,6 +69,15 @@ export default Vue.extend({
         state.rendered = isRouteLoaded;
       },
       { deep: true, immediate: true }
+    );
+
+    watch(
+      () => context.root.$route.meta,
+      () => {
+        const meta = context.root.$route.meta;
+        state.simpleHeader = meta?.simpleHeader != null ? meta.simpleHeader : false;
+      },
+      { immediate: true }
     );
 
     /**

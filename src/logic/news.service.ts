@@ -24,6 +24,7 @@ const NewsService = {
       to?: string;
       newsNo?: string;
       newsType?: Array<number>;
+      shiteiDttm?: string;
     }
   ): Promise<Array<News>> {
     const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'news';
@@ -35,7 +36,8 @@ const NewsService = {
         from: option?.from,
         to: option?.to,
         newsNo: option?.newsNo,
-        newsType: option?.newsType?.join(',')
+        newsType: option?.newsType?.join(','),
+        shiteiDttm: option?.shiteiDttm
       }
     });
 

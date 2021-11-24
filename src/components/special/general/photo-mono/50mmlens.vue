@@ -38,7 +38,7 @@
           <v-container>
             <v-row class="mt-sm-5">
               <v-col cols="12" sm="6" class="pa-4">
-                <a href="/ec/pd/4960999354798"><b>キヤノン EF-S17-55mm F2.8 IS USM</b></a>
+                <router-link to="/ec/pd/4960999354798"><b>キヤノン EF-S17-55mm F2.8 IS USM</b></router-link>
                 <p class="py-4 caption text-sm-body-1 mb-0">
                   35mm換算の焦点距離イメージで 27-88mmの標準域をカバー 開放F2.8の明るさに手振れ補正機構IMAGE STABILIZERをプラスした大口径・標準ズーム
                 </p>

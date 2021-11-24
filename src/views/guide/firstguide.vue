@@ -71,11 +71,11 @@ export default Vue.extend({
         }
       ],
       FeaturesList: [
-        { class: 'welcome02', title: 'ネットで注文、お店で安心受け取り！', src: 'https://shop.kitamura.jp/files/miseuketori/images/anshin-uketori.jpg', href: "https://sss.kitamura.jp/", btntxt: 'お近くの店舗を探す', btnColor: '#d9760f' },
-        { class: 'welcome03', title: '専門店だから安心！アフターフォロー', src: 'https://shop.kitamura.jp/files/miseuketori/images/senmonten.jpg', text: 'ご購入後も、お近くの店舗でサポート！\n使い方から、修理のお申し込みまでお気軽にご相談ください', href: "https://shop.kitamura.jp/sitemap/riyou_afterservice_index.html", btntxt: 'アフターフォローについて', btnColor: '#8ca114' },
-        { class: 'welcome04', title: '5年間の長期保証', src: 'https://shop.kitamura.jp/files/miseuketori/images/tyoukihoshou.jpg', text: 'ご購入代金の5％のお支払いで自然故障なら何度でも使える、安心の5年間保証にご加入いただけます', href: "https://shop.kitamura.jp/ec/guide/hoshou", btntxt: 'キタムラ5年間保証について', btnColor: '#297364' },
-        { class: 'welcome05', title: 'お支払い方法を多数ご用意', src: 'https://shop.kitamura.jp/files/miseuketori/images/shiharai.jpg', text: '店舗決済／クレジットカード／コンビニ決済\n代金引換（手数料無料！）／銀行振込\nPay-easy決済（インターネットバンク振込）\nショッピングクレジット（48回まで無金利！）\nPayPayオンライン決済', href: "https://shop.kitamura.jp/ec/guide/shiharai", btntxt: 'お支払い方法について', btnColor: '#205b85' },
-        { class: 'welcome06', title: '下取りやTポイントでさらにおトク！', src: 'https://shop.kitamura.jp/files/miseuketori/images/shitadorit.jpg', text: '下取りのご利用で大幅値引き\nお買いものでTポイントが貯まる・使える！', href: "https://www.net-chuko.com/static/contents/page/sell-guide.html#a03", btntxt: '下取りについて', href2: 'https://www.kitamura.jp/service/tcard/', btn2txt: 'Tポイントについて', btnColor: '#d80b24' },
+        { class: 'welcome02', title: 'ネットで注文、お店で安心受け取り！', src: '/ec/images2/guide/firstguide/anshin-uketori.jpg', href: "https://sss.kitamura.jp/", btntxt: 'お近くの店舗を探す', btnColor: '#d9760f' },
+        { class: 'welcome03', title: '専門店だから安心！アフターフォロー', src: '/ec/images2/guide/firstguide/senmonten.jpg', text: 'ご購入後も、お近くの店舗でサポート！\n使い方から、修理のお申し込みまでお気軽にご相談ください', href: "https://shop.kitamura.jp/sitemap/riyou_afterservice_index.html", btntxt: 'アフターフォローについて', btnColor: '#8ca114' },
+        { class: 'welcome04', title: '5年間の長期保証', src: '/ec/images2/guide/firstguide/tyoukihoshou.jpg', text: 'ご購入代金の5％のお支払いで自然故障なら何度でも使える、安心の5年間保証にご加入いただけます', href: "https://shop.kitamura.jp/ec/guide/hoshou", btntxt: 'キタムラ5年間保証について', btnColor: '#297364' },
+        { class: 'welcome05', title: 'お支払い方法を多数ご用意', src: '/ec/images2/guide/firstguide/shiharai.jpg', text: '店舗決済／クレジットカード／コンビニ決済\n代金引換（手数料無料！）／銀行振込\nPay-easy決済（インターネットバンク振込）\nショッピングクレジット（48回まで無金利！）\nPayPayオンライン決済', href: "https://shop.kitamura.jp/ec/guide/shiharai", btntxt: 'お支払い方法について', btnColor: '#205b85' },
+        { class: 'welcome06', title: '下取りやTポイントでさらにおトク！', src: '/ec/images2/guide/firstguide/shitadorit.jpg', text: '下取りのご利用で大幅値引き\nお買いものでTポイントが貯まる・使える！', href: "https://www.net-chuko.com/static/contents/page/sell-guide.html#a03", btntxt: '下取りについて', href2: 'https://www.kitamura.jp/service/tcard/', btn2txt: 'Tポイントについて', btnColor: '#d80b24' },
       ]
     });
 

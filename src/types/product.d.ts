@@ -13,6 +13,7 @@ export type RecommendProducts = {
 
 /** 新品の商品詳細APIで受け取れる値 */
 export type ProductDetail = {
+  applyCoupon: Array<ApplyCoupon>;
   isChuko: boolean;
   breadcrumbs: Array<{
     no: number;
@@ -259,4 +260,26 @@ export type MemberProduct = {
 
   /** 参考になったレビューID */
   helpfulReviewId: Array<any>;
+};
+
+/** 適用クーポン */
+export type ApplyCoupon = {
+  // クーポンコード必要かどうか
+  isCouponCodeNeeded: string;
+  // クーポンコード
+  couponCode: string;
+  // クーポン名
+  couponName: string;
+  // 併用可否
+  isCombined: string;
+  // 残り枚数
+  couponRemainingNum: string;
+  // クーポン説明文（フロント表示用）
+  description: string;
+  // クーポン種類
+  couponType: string;
+  // クーポン値引き額
+  couponDiscountPrice: string;
+  // クーポン値引き率
+  couponDiscountRatio: string;
 };

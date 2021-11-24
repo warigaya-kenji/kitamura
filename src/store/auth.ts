@@ -14,7 +14,10 @@ export default function authStore() {
     user: ref<User | null>(null),
 
     /** ログインメニューの開閉状態 */
-    loginMenuOpenState: false
+    loginMenuOpenState: false,
+
+    /** コールバック関数 */
+    callback: {} as { [key: string]: () => void }
   });
 
   return {
@@ -34,17 +37,24 @@ export default function authStore() {
       return state.user;
     },
 
+    get callback(): { [key: string]: () => void } {
+      return state.callback;
+    },
+
     login(user: User) {
       state.isLoggedIn = true;
       state.user = user;
+      if (state.callback['sucsses']) state.callback['sucsses']();
+      state.callback = {};
     },
 
-    logout(): void {
+    logout(user?: User): void {
       state.isLoggedIn = false;
-      state.user = null;
+      state.user = user || null;
     },
 
-    openLoginMenu(): void {
+    openLoginMenu(onSuccessCallback?: () => void): void {
+      if (onSuccessCallback) state.callback['sucsses'] = onSuccessCallback;
       AuthService.checkLoginStatus().then((isLoggedIn) => {
         state.loginMenuOpenState = !isLoggedIn;
       });

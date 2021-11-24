@@ -7,17 +7,17 @@ import TsvConfigService from './tsv/tsv-config.service';
 import { isLocalHost, splitList } from '@/logic/utils';
 
 const SpecialProductService = {
-  convertProduct(productList: any[]): ProductItem[] {
+  convertProduct(productList: any[], secretType = false): ProductItem[] {
     const updatedProductList: ProductItem[] = [];
     productList.forEach((element) => {
       const item: ProductItem = {
         title: element.itemName,
-        data18: element.ratingTotal,
-        price: element.price,
-        image: element.images[0].imagePath,
+        data18: secretType ? element.rating || 0 : element.ratingTotal,
+        price: secretType ? element.secretPrice : element.price,
+        image: secretType ? element.imagePath : element.images[0].imagePath,
         itemid: element.janCode,
         narrow1: element.makerName,
-        isSalesEnd: element.isSalesEnd
+        isSalesEnd: secretType ? false : element.isSalesEnd
       };
       updatedProductList.push(item);
     });
@@ -27,13 +27,10 @@ const SpecialProductService = {
   /**
    * テンプレートA 特集商品取得
    * @param id 特集ID
-   * @param passCode パスコード
    */
-  async getSaleSpecialProduct(id: string, passCode?: string): Promise<ProductItem[]> {
-    const url = passCode ? process.env.VUE_APP_API_PRODUCT_BASE_URL + 'secret_product' : process.env.VUE_APP_API_PRODUCT_BASE_URL + 'special_product';
-    const specialProduct = await ApiService.get(url, {
-      params: { id }
-    });
+  async getSaleSpecialProduct(id: string): Promise<ProductItem[]> {
+    const url = process.env.VUE_APP_API_PRODUCT_BASE_URL + 'special_product';
+    const specialProduct = await ApiService.get(url, { params: { id } });
 
     const janCodes = specialProduct.results.map((item: any) => item.janCode);
 
@@ -42,8 +39,19 @@ const SpecialProductService = {
     const responses = splittedJanCodes.map((splittedJanCodes) => ProductService.fetchProducts(splittedJanCodes, true, undefined, undefined, id));
     const items = (await Promise.all(responses)).reduce((list, value) => list.concat(value.items), new Array<ProductDetail>());
 
-    const productList = this.convertProduct(items);
-    return productList;
+    return this.convertProduct(items);
+  },
+
+  /**
+   * テンプレートA 限定商品取得
+   * @param id 特集ID
+   * @param passCode パスコード
+   */
+  async getSaleSecretProduct(id: string, passcode?: string): Promise<ProductItem[]> {
+    const url = process.env.VUE_APP_API_PRODUCT_BASE_URL + 'secret_product';
+    const secretProduct = await ApiService.get(url, { params: { id, passcode } });
+
+    return this.convertProduct(secretProduct.results, true);
   },
 
   /**

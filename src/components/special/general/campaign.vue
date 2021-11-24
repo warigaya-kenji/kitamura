@@ -17,9 +17,9 @@
               <v-col cols="12" md="4" sm="6" v-for="(campaign, index) in campaignList" :key="`campaign-${index}`">
                 <v-card tile color="#fffff0" class="c-contents pa-2 mb-2" height="400px">
                   <v-card-text class="black--text font-weight-bold border-l-red pl-2 pt-0 pb-0 pr-0 mb-2 name-height">{{ campaign.campaignName }}</v-card-text>
-                  <router-link :to="campaign.href" target="_blank">
-                    <v-img :src="campaign.img" alt="ソニー 新VLOGCAM発売記念キャンペーン" max-width="100%" height="auto" class="hover mb-2"></v-img
-                  ></router-link>
+                  <a :href="campaign.href" target="_blank">
+                    <v-img :src="campaign.img" :alt="campaign.campaignName" max-width="350" height="auto" class="hover mb-2 mx-auto"></v-img
+                  ></a>
                   <v-card-text class="black--text pa-0 content-height">{{ campaign.Contents }} </v-card-text>
                   <v-card-text class="black--text pa-0 caption my-4 period-height">【対象期間】<br />{{ campaign.TargetPeriod }} </v-card-text>
                   <v-btn elevation="10" block class="orange-btn white--text font-weight-bold my-4" height="45" @click="linkToOtherWindow(campaign.href)"
@@ -73,33 +73,40 @@ export default Vue.extend({
         }
       ],
       campaignList: [
+        // {
+        //   campaignName: '',
+        //  img: '',
+        //  href: '',
+        //  Contents: '',
+        //  TargetPeriod: ''
+        // },
         {
-          campaignName: 'ソニー 新VLOGCAM発売記念キャンペーン',
-          img: 'https://shopimg.kitamura.jp/images/banner/8557.jpg',
-          href: 'https://www.sony.jp/camera/campaign/cb21apsc_summer/',
-          Contents: '期間中、VLOGCAM ZV-E10シリーズと対象レンズ・アクセサリーを同時購入＆ご応募で、もれなく対象商品ごとに定めた金額をキャッシュバック！',
-          TargetPeriod: '発売日～2021年10月3日(日)'
+          campaignName: '欲しい！をかなえる Winter Campaign',
+          img: 'https://shopimg.kitamura.jp/images/banner/8701.jpg',
+          href: 'https://cweb.canon.jp/eos/campaign/eos-winter2021/',
+          Contents: '期間中、対象商品をご購入＆応募されたお客様に、もれなく最大3万円分のVISAギフトカードをキャッシュバック！',
+          TargetPeriod: '2021年11月19日(金)～2022年1月11日(火)'
         },
         {
-          campaignName: 'ニコン Z 5 キャッシュバックキャンペーン',
-          img: 'https://shopimg.kitamura.jp/images/banner/8556.jpg',
-          href: 'https://www.sony.jp/camera/campaign/cb21apsc_summer/',
-          Contents: '>期間中、対象製品をご購入後ニコンイメージング会員登録&製品登録し、ご応募された方全員に、最大3万円をキャッシュバック！',
-          TargetPeriod: '2021年7月30日(金)～2021年10月4日(月)'
+          campaignName: '新ブランド『OM SYSTEM』発表記念キャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8696.jpg',
+          href: 'https://www.olympus-imaging.jp/event_campaign/campaign/c211104a/index.html',
+          Contents: '期間中、対象商品をご購入後、ユーザー登録と製品登録をして頂き、ご応募された方を対象に、もれなくUCギフトカード（プリペイド式）をプレゼント！',
+          TargetPeriod: '2021年11月4日(木)～2021年12月31日(金)'
         },
         {
-          campaignName: 'パナソニック LUMIX Sシリーズ フルサイズ一眼カメラキャッシュバックキャンペーン',
-          img: 'https://shopimg.kitamura.jp/images/banner/8520.jpg',
-          href: 'https://panasonic.jp/dc/products/s_series/campaign_cashback2021.html',
-          Contents: '期間中、対象商品をご購入&ご応募で、もれなく最大4万円をキャッシュバック！',
-          TargetPeriod: '2021年7月15日(木)～2021年9月12日(日)'
+          campaignName: 'ソニー αフルサイズ ウインタープレミアムキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8656.jpg',
+          href: 'https://www.sony.jp/camera/campaign/cb22ffml_winter/',
+          Contents: '期間中、対象商品をご購入&ご応募されたお客様に、対象商品ごとに定めた金額をもれなくキャッシュバック！',
+          TargetPeriod: '2021年10月22日(金)～2022年1月11日(日)'
         },
         {
-          campaignName: 'ライカ Mマウントアダプター プレゼントキャンペーン',
-          img: 'https://shopimg.kitamura.jp/images/banner/8514.jpg',
-          href: 'https://jp.leica-camera.com/フォトグラフィー/ライカSL/The-fundamental-choice-本質的な選択/M-Adapter-L-Promotion',
-          Contents: '期間中、対象品をご購入&お申し込みで、「M用L レンズアダプター ブラック」をプレゼント！',
-          TargetPeriod: '2021年7月2日(金)～2021年9月30日(木)'
+          campaignName: 'リコー GR IIIx オリジナル PURPLEリングキャッププレゼントキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8612.jpg',
+          href: 'http://www.ricoh-imaging.co.jp/japan/event/2021/griiix_purplering/',
+          Contents: '期間中、対象商品をご購入&製品登録とアンケートにご回答された方に、先着でオリジナル PURPLEリングキャップをプレゼント！',
+          TargetPeriod: '本体発売日～数量なくなり次第終了'
         },
         {
           campaignName: 'ニコンZ fc発売記念！プレミアムエクステリア張替えキャンペーン',
@@ -109,74 +116,165 @@ export default Vue.extend({
           TargetPeriod: '対象製品の発売日～数量なくなり次第終了'
         },
         {
-          campaignName: 'ニコン Z 7II&Z 6II XQD同梱キャンペーン',
-          href: 'https://www.nikon-image.com/event/campaign/xqd_campaign2021/',
-          img: 'https://shopimg.kitamura.jp/images/banner/8496.jpg',
-          Contents: '期間中、Z 7IIもしくはZ 6IIをご購入で、もれなくXQDメモリーカードプレゼント！<br>※数量限定、なくなり次第終了',
-          TargetPeriod: '2021年7月1日(水)～なくなり次第終了'
+          campaignName: 'カメラのキタムラ限定 カールツァイス何でも下取りキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8709.jpg',
+          href: 'https://shop.kitamura.jp/ec/special/news?news=12090&bn=8708',
+          Contents: 'なんでも下取りをご利用で対象商品が最大2万円引き！',
+          TargetPeriod: '2021年11月19日(金)～2022年1月10日(月)'
         },
         {
-          campaignName: 'パナソニック LUMIX GH5M2＆Gレンズキャッシュバックキャンペーン',
-          href: 'https://panasonic.jp/dc/products/g_series/gh5m2/campaign_cashback.html',
-          img: 'http://shopimg.kitamura.jp/images/banner/8483.jpg',
-          Contents: '期間中、対象商品をご購入&ご応募で、もれなく最大67,000円をキャッシュバック！',
-          TargetPeriod: '2021年6月25日(金)～2021年8月29日(日)'
+          campaignName: 'ピークデザイン製 ZEISSカメラストラッププレゼントキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8693.jpg',
+          href: 'https://www.kenko-tokina.co.jp/lp/campaign2021/zeiss.html',
+          Contents: 'ZEISSカメラ用交換レンズ、Batis・Loxia・Touit購入で先着200名様にオリジナルストラッププレゼント！※無くなり次第終了',
+          TargetPeriod: '2021年11月1日(月)～無くなり次第終了'
         },
         {
-          campaignName: 'オリンパス PEN E-P7 発売記念',
-          href: 'https://www.olympus-imaging.jp/event_campaign/campaign/c210609a/index.html',
-          img: 'https://shopimg.kitamura.jp/images/banner/8454.jpg',
-          Contents: '期間中、対象商品をご購入後、ユーザー登録しキャンペーンにご応募された方に、もれなく応募コースに準じた景品をプレゼント！',
-          TargetPeriod: '2021年6月9日(水)～ 2021年9月30日(木)'
+          campaignName: 'SIGMA 60th Anniversary キャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8684.jpg',
+          href: 'https://www.sigma-global.com/jp/news/2021/10/19/16898/',
+          Contents: '期間中、対象製品をご購入&ご応募された方に、最大3万円をキャッシュバック！',
+          TargetPeriod: '2021年10月28日(木)～2022年1月12日(水)'
         },
         {
-          campaignName: 'パナソニック LUMIX DC-GH5 II キャッシュバックキャンペーン',
-          href: 'https://panasonic.jp/dc/products/g_series/gh5m2/campaign_cashback.html',
-          img: 'http://shopimg.kitamura.jp/images/banner/8436.jpg',
-          Contents: '期間中、対象商品をご購入&ご応募で、もれなく最大20,000円をキャッシュバック！',
-          TargetPeriod: '2021年6月25日(金)～2021年8月29日(日)'
+          campaignName: 'Tokinaレンズキャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8682.jpg',
+          href: 'https://www.kenko-tokina.co.jp/lp/campaign2021/tokina.html',
+          Contents: '期間中、対象商品をご購入&ご応募されたお客様に、5,000円をキャッシュバック！',
+          TargetPeriod: '2021年11月1日(月)～2022年1月15日(土)'
         },
         {
-          campaignName: 'パナソニック LUMIX G100&Ｇレンズキャッシュバックキャンペーン',
-          href: 'https://panasonic.jp/dc/products/g_series/g100/campaign_cashback.html',
-          img: 'http://shopimg.kitamura.jp/images/banner/8482.jpg',
-          Contents: '期間中、対象商品をご購入&ご応募で、もれなく最大57,000円をキャッシュバック！',
-          TargetPeriod: '2021年6月25日(金)～2021年8月29日(日)'
+          campaignName: '銘匠光学 ビューファインダープレゼントキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8586.jpg',
+          href: 'https://stkb.co.jp/info/?p=18267',
+          Contents: '期間中、TTArtisan 21mm f/1.5 ASPH Mマウントレンズを購入でビューファインダーをプレゼント！※なくなり次第終了',
+          TargetPeriod: '2021年9月1日(水)～なくなり次第終了'
         },
         {
-          campaignName: 'フジフイルム XFレンズ&GFレンズキャッシュバックキャンペーン',
-          href: 'https://fujifilm-x.com/ja-jp/special/cb21-xgfx-summer/',
-          img: 'https://shopimg.kitamura.jp/images/banner/8517.jpg',
-          Contents: '期間中、対象製品をご購入&製品登録し、ご応募されたお客様全員に、最大20万円をキャッシュバック！',
-          TargetPeriod: '2021年7月9日(金)～2021年9月20日(月)'
-        },
-        // {
-        //   campaignName: 'GoPro サマーキャンペーン 2021',
-        //   href: 'https://www.tajima-motor.com/gopro/campaign/210722cam/',
-        //   img: 'https://shopimg.kitamura.jp/images/banner/8548.jpg',
-        //   Contents: '期間中、対象商品をご購入&WEB応募で、お得なセットをもれなくプレゼント！',
-        //   TargetPeriod: '2021年7月22日(木)～2021年8月8日(日)'
-        // },
-        {
-          campaignName: 'HD DA★16-50mm レンズアップグレードキャンペーン',
-          href: 'http://www.ricoh-imaging.co.jp/japan/event/2021/16-50_upgrade/',
-          img: 'https://shopimg.kitamura.jp/images/banner/8542.jpg',
-          Contents: '期間中、対象商品をご購入いただいたお客様のお手持ちのPENTAXレンズを一律1万円で下取り！',
-          TargetPeriod: '発売日～2021年11月7日(日)'
+          campaignName: 'パナソニック 新米5銘柄プレゼントキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8699.jpg',
+          href: 'https://panasonic.jp/suihan/campaign/cp2111.html',
+          Contents: '期間中、対象の炊飯器をご購入、ご応募いただいたお客様に、新米5銘柄の各2合パックセットをプレゼント！',
+          TargetPeriod: '2021年11月17日(水)～12月31日(金)'
         },
         {
-          campaignName: 'パナソニック カメラグランプリレンズ賞 受賞記念キャンペーン',
-          href: 'https://panasonic.jp/dc/products/s_series_lens/lumix_s_20-60/camera_gp_lens_2021cp.html',
-          img: 'http://shopimg.kitamura.jp/images/banner/8464.jpg',
-          Contents: '期間中、対象商品をご購入&ご応募で、記念品をプレゼント！',
-          TargetPeriod: '2021年5月17日(月)～2021年8月29日(日)'
+          campaignName: 'パナソニック 食洗機専用洗剤プレゼントキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8697.jpg',
+          href: 'https://panasonic.jp/dish/contents/campaign/present2111.html',
+          Contents: '期間中、対象機種をご購入&ご応募いただいたお客様に、もれなく『食洗機専用洗剤 約3か月分』をプレゼント！',
+          TargetPeriod: '2021年11月10日(水)～12月26日(日)'
         },
         {
-          campaignName: 'instax mini40 instax mini11 フィルムプレゼントキャンペーン',
-          href: 'https://mini11-40-filmcp.com',
-          img: 'https://shopimg.kitamura.jp/images/banner/8523.jpg',
-          Contents: '期間中、対象商品をご購入&応募された方全員に、フジフイルムモールで使用できる「miniフィルム10枚入1パック無料クーポン」をプレゼント！',
-          TargetPeriod: '2021年7月16日(金)～2021年9月26日(日)'
+          campaignName: 'ソニー #音ロト冬まつり キャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8692.jpg',
+          href: 'https://www.sony.jp/headphone/campaign/2021_otolotofuyu/',
+          Contents: '期間中、抽選に参加し、対象商品をご購入&応募されたお客様に、最大1万円をキャッシュバック！',
+          TargetPeriod: '2021年11月5日(金)～2022年1月11日(火)'
+        },
+        {
+          campaignName: 'ソニー ワイヤレススピーカー 冬のキャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8691.jpg',
+          href: 'https://www.sony.jp/active-speaker/campaign/SRS_2021winter/',
+          Contents: '期間中、対象商品をご購入&応募された方全員に、最大5,000円をキャッシュバック！',
+          TargetPeriod: '2021年11月5日(金)～2022年1月11日(火)'
+        },
+        {
+          campaignName: 'ストリーミングWALKMANキャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8690.jpg',
+          href: 'https://www.sony.jp/walkman/campaign/2021_winter/',
+          Contents: '期間中、対象商品をご購入、応募された方に最大8,000円をキャッシュバック！さらに対象イヤホンを同時購入で＋3,000円をキャッシュバック！',
+          TargetPeriod: '2021年11月5日(金)～2022年1月11日(火)'
+        },
+        {
+          campaignName: 'アルカリイオン整水器マイボトルプレゼントキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8689.jpg',
+          href: 'https://panasonic.jp/alkaline/campaign/2021_mybottle02.html',
+          Contents: '期間中、対象商品をご購入・ご応募いただくと、もれなくコークシクルボトルをプレゼント！',
+          TargetPeriod: '2021年11月1日(月)～2022年1月31日(月)'
+        },
+        {
+          campaignName: 'ソニー Xperia View キャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8679.jpg',
+          href: 'https://www.sony.jp/xperia-sp/campaign/viewcp_21autumn',
+          Contents: '期間中、Xperia Viewおよび対象Xperiaをどちらもご購入&応募で、もれなく1万円をキャッシュバック！',
+          TargetPeriod: '2021年10月26日(火)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'SIMフリー Xperia 1 III 発売記念キャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8680.jpg',
+          href: 'http://xperia.sony.jp/campaign/simfree-1m3/',
+          Contents: '期間中、SIMフリーXperiaをご購入&応募で、もれなく1万円をキャッシュバック！',
+          TargetPeriod: '2021年10月26日(火)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'Xperiaで好きを極める！機能体験クーポンプレゼントキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8677.jpg',
+          href: 'https://xperia.sony.jp/campaign/taiken-present/',
+          Contents: '期間中、ご購入ご応募いただいた方に、もれなく写真・音楽・ゲームをXperiaで楽しみ尽くす特典をプレゼント！',
+          TargetPeriod: '2021年9月30日(木)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'ラクに使えてお得！コードレススティック掃除機キャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8667.jpg',
+          href: 'https://panasonic.jp/soji/campaign/stick/cb_2021.html',
+          Contents: '期間中、対象商品をご購入・ご応募いただくと、もれなく3,000円をキャッシュバック！',
+          TargetPeriod: '2021年10月20日(水)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'ロボット掃除機を買ってスマホと繋ごう！プレゼントキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8666.jpg',
+          href: 'https://panasonic.jp/soji/campaign/rulo/connect_2021.html',
+          Contents: '期間中、対象商品をご購入のお客様に、もれなくサイドブラシ２セットプレゼント！',
+          TargetPeriod: '2021年10月20日(水)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'パナソニック ドライヤー ナノケア ビューティ キャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8664.jpg',
+          href: 'https://panasonic.jp/beauty/campaign/21autumn_cashback.html',
+          Contents: '期間中、対象商品をご購入・ご応募された方に、最大3,000円をキャッシュバック！',
+          TargetPeriod: '2021年10月20日(水)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'パナソニック スチーマー ナノケア ビューティ キャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8663.jpg',
+          href: 'https://panasonic.jp/beauty/campaign/21autumn_cashback.html',
+          Contents: '期間中、対象商品をご購入・ご応募された方に、最大5,000円をキャッシュバック！',
+          TargetPeriod: '2021年10月20日(水)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'ラムダッシュ 6枚刃キャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8662.jpg',
+          href: 'https://panasonic.jp/shaver/6blade_2021_02cp.html',
+          Contents: '期間中、対象商品をご購入・ご応募いただいたお客様に、もれなく最大5,000円をキャッシュバック！',
+          TargetPeriod: '2021年10月20日(水)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'ラムダッシュ 5枚刃キャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8661.jpg',
+          href: 'https://panasonic.jp/shaver/5blade_2021_02cp.html',
+          Contents: '期間中、対象商品をご購入・ご応募いただいたお客様に、もれなく最大3,000円をキャッシュバック！',
+          TargetPeriod: '2021年10月20日(水)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'ラムダッシュ 3枚刃 替刃同時購入キャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8660.jpg',
+          href: 'https://panasonic.jp/shaver/3blade_2021cp.html',
+          Contents: '期間中、対象商品をご購入・ご応募いただいたお客様に、もれなく3,000円をキャッシュバック！',
+          TargetPeriod: '2021年10月20日(水)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'パナソニック レッグリフレキャッシュバックキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8642.jpg',
+          href: 'https://panasonic.jp/massage_parts/campaign/2021.html',
+          Contents: '期間中、対象商品をご購入・ご応募で、もれなく全員にキャッシュバック！',
+          TargetPeriod: '2021年9月17日(金)～2022年1月10日(月)'
+        },
+        {
+          campaignName: 'シャープ スマートライフ家電400万台突破キャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8611.jpg',
+          href: 'https://jp.sharp/smartCP400/',
+          Contents: '期間中、対象商品をご購入の上、Wi-Fi接続・ご登録・ご応募された方に、お好きな地域特産品をプレゼント！',
+          TargetPeriod: '2021年9月15日(水)～2021年12月31日(金)'
         },
         {
           campaignName: 'パナソニック 炊飯器&レンジ アプリ接続でクラパナコイン2,000円分プレゼント',
@@ -185,41 +283,12 @@ export default Vue.extend({
           Contents: '期間中、対象商品をご購入&アプリとつないで家電登録後、アンケートにご回答いただいた方全員に2,000円分のクラパナコインをプレゼント！',
           TargetPeriod: '2021年8月18日(水)～2022年1月10日(月)'
         },
-
         {
-          campaignName: 'ソニー ワイヤレスポータブルスピーカー Summerキャンペーン2021',
-          href: 'https://www.sony.jp/active-speaker/campaign/SRS_2021summer/',
-          img: 'https://shopimg.kitamura.jp/images/banner/8497.jpg',
-          Contents: '期間中、対象商品をご購入&応募された方全員に、最大3,000円をキャッシュバック！',
-          TargetPeriod: '2021年7月9日(金)～2021年9月21日(火)'
-        },
-        {
-          campaignName: 'パナソニック この夏いい音はじめようキャンペーン',
-          href: 'https://panasonic.jp/headphone/campaign/2021sa_twcp.html',
-          img: 'https://shopimg.kitamura.jp/images/banner/8433.jpg',
-          Contents: '期間中、対象商品をご購入&ご応募いただくと、もれなくLINEポイントをプレゼント！',
-          TargetPeriod: '2021年6月9日(水)～2021年8月29日(日)'
-        },
-        {
-          campaignName: 'ソニー 音楽配信サービス ガラポン抽選キャンペーン',
-          href: 'https://www.sony.jp/headphone/campaign/2021garapon',
-          img: 'https://shopimg.kitamura.jp/images/banner/8448.jpg',
-          Contents: '期間中、対象商品をご購入後LINEでくじ引きすると、指定の音楽配信サービスの利用が最大1年無料！',
-          TargetPeriod: '2021年6月9日(水)～2021年9月21日(火)'
-        },
-        {
-          campaignName: 'ソニー 360 Reality Audio 体験がアタル！キャンペーン',
-          href: 'https://www.sony.jp/headphone/campaign/2021_360RealityAudio_taiken/',
-          img: 'https://shopimg.kitamura.jp/images/banner/8446.jpg',
-          Contents: '期間中、対象商品をご購入し製品登録&応募された方に、抽選で『360 Reality Audio 体験』をプレゼント！',
-          TargetPeriod: '2021年6月9日(水)～2021年9月21日(火)'
-        },
-        {
-          campaignName: 'ソニー Xperiaで最新の音楽体験キャンペーン',
-          href: 'https://xperia.sony.jp/campaign/360RA/',
-          img: 'https://shopimg.kitamura.jp/images/banner/8428.jpg',
-          Contents: '期間中、対象商品をご購入&ご応募された方に、対象音楽配信サービスのうち、いずれかの3ヶ月無料体験クーポンをプレゼント！',
-          TargetPeriod: '2021年5月28日(金)～2021年9月21日(火)'
+          campaignName: 'ドルツ 替ブラシプレゼントキャンペーン',
+          img: 'https://shopimg.kitamura.jp/images/banner/8561.jpg',
+          href: 'https://panasonic.jp/teeth/campaign/brush_202102.html',
+          Contents: '期間中、対象商品をご購入・応募すると、もれなく替えブラシをプレゼント！',
+          TargetPeriod: '2021年8月18日(水)～2022年1月10日(月)'
         },
         {
           campaignName: 'ソニー 360 Reality Audio 無料トライアルキャンペーン',

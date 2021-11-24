@@ -57,12 +57,7 @@
                 6の記事も公開していますので、ぜひご覧ください。
               </p>
               <a href="https://shasha.kitamura.jp/article/468688716.html" target="_blank">
-                <v-img
-                  class="mx-auto mt-4 hover"
-                  max-width="900px"
-                  src="/ec/images2/special/camera/feature/canon/eosr/shashabnr.jpg"
-                >
-                </v-img>
+                <v-img class="mx-auto mt-4 hover" max-width="900px" src="/ec/images2/special/camera/feature/canon/eosr/shashabnr.jpg"> </v-img>
               </a>
             </v-card>
           </div>
@@ -94,12 +89,7 @@
             href="https://www.net-chuko.com/ec/sell/item-list?category=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E4%B8%80%E7%9C%BC%E3%83%AC%E3%83%95&keyword=5D%20MarkIV&maker=&s2=&s3=&s4=&s5=&s7=&n2c=&n3c=&n4c=&n5c=&n6c=&n1c=&limit=20&tokutoku=0&sort="
             target="_blank"
           >
-            <v-img
-              class="mt-4 hover"
-              max-width="350px"
-              src="/ec/images2/special/camera/feature/canon/eosr/bnr_shitadori_350-130.png"
-            >
-            </v-img>
+            <v-img class="mt-4 hover" max-width="350px" src="/ec/images2/special/camera/feature/canon/eosr/bnr_shitadori_350-130.png"> </v-img>
           </a>
         </div>
         <!--高価買取実施中-->
@@ -356,7 +346,8 @@ export default Vue.extend({
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       breadcrumbs: [

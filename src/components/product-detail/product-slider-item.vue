@@ -129,7 +129,7 @@ export default Vue.extend({
       default: 'あわせて買う'
     }
   },
-  setup: (props: any) => {
+  setup: (props: any, context) => {
     const state = reactive({
       model: null,
       showAddingCart: false
@@ -139,6 +139,7 @@ export default Vue.extend({
     function addCart() {
       ProductService.addCart(props.product.janCode, props.product.isChuko, null, props.product.price, 1).then(() => {
         state.showAddingCart = true;
+        context.emit('addCart');
         setTimeout(() => {
           // 3秒後に結果を非表示にする
           state.showAddingCart = false;

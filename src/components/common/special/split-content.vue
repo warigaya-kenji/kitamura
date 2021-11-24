@@ -1,10 +1,10 @@
 <template>
-  <v-container>
-    <v-row class="mb-10" justify="center">
-      <v-col cols="11" sm="4" class="px-0">
+  <v-container class="mb-10">
+    <v-row justify="center">
+      <v-col cols="12" sm="4" class="px-0">
         <a :href="`/ec/pd/${ProductList.janCode}`" target="_blank">
-          <div class="px-8"><v-img :src="ProductList.images[0].imagePath.replace(/TN/g, 'M')" class="hover" max-width="100%" height="auto"></v-img></div
-        ></a>
+          <v-img :src="ProductList.images[0].imagePath.replace(/TN/g, 'M')" class="hover mx-auto" max-width="287" height="auto"></v-img>
+        </a>
         <p class="text-subtitle-2 text-center">
           {{ ProductList.itemName }}<br /><span class="primary--text">{{ formatPrice(parseInt(ProductList.price)) }}</span
           >円
@@ -50,22 +50,20 @@
           <span class="red--text">※</span>60回無金利はジャックスショッピングクレジットに限ります<br />
           <span class="red--text">※</span>ショッピングクレジット60回まで無金利キャンペーンは｢宅配受取限定｣のサービスです
         </p>
-        <v-row v-if="isCreditBtn" justify="center">
-          <v-col cols="10" sm="10">
-            <v-hover v-slot="{ hover }">
-              <v-btn
-                :elevation="hover ? 12 : 2"
-                block
-                height="45px"
-                color="#D73500"
-                class="white--text text-center main-product-btn py-1"
-                href="/ec/guide/s_credit_01"
-              >
-                ショッピングクレジットについて<br v-if="$vuetify.breakpoint.smAndDown" />詳細はこちら
-              </v-btn>
-            </v-hover>
-          </v-col>
-        </v-row>
+        <div v-if="isCreditBtn" class="px-2 px-sm-6">
+          <v-hover v-slot="{ hover }">
+            <v-btn
+              :elevation="hover ? 12 : 2"
+              block
+              height="45px"
+              color="#D73500"
+              class="white--text text-center main-product-btn"
+              href="/ec/guide/s_credit_01"
+            >
+              ショッピングクレジットについて詳細はこちら
+            </v-btn>
+          </v-hover>
+        </div>
       </v-col>
     </v-row>
   </v-container>

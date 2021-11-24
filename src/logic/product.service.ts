@@ -4,6 +4,7 @@ import ApiService from './api.service';
 import { generateImagePath } from './utils';
 import { CART_ERROR_LIST } from '@/constants/cart-error';
 import { ReviewList } from '@/types/review-list';
+import AuthService from './auth.service';
 
 /**
  * Windowのinterfaceにレコメンド (ppz.js) 関連のプロパティを追加する
@@ -204,36 +205,38 @@ const ProductService = {
   async addCart(
     janCode: string,
     isChuko: boolean,
-    option: { addWarranty: boolean; addWrapping: boolean; applyTradeIn: boolean } | null,
+    option: { warranty: boolean; tradeInHope: boolean } | null,
     displayPrice: number,
     count = 1,
-    secretId?: string
+    secretId?: number
   ): Promise<any> {
     const url = process.env.VUE_APP_API_COMMON_BASE_URL + 'cart';
     const config = {
       janCode,
       isChuko,
-      isWarranty: !!option?.addWarranty,
-      isWrapping: !!option?.addWrapping,
-      wrappingJanCode: option?.addWrapping ? '2240480042741' : null, // ラッピング自体の商品コード
-      isTrade: !!option?.applyTradeIn,
+      isWarranty: !!option?.warranty,
+      tradeInHope: !!option?.tradeInHope,
       displayPrice,
       secretId,
-      count: count
+      count
     };
 
     try {
       const response = await ApiService.post(url, config);
+
+      // ヘッダーに表示するカート内商品数を更新するため、セッション情報を取り直す。
+      AuthService.checkLoginStatus();
+
       return response;
     } catch (error) {
-      console.error(error.message);
+      console.error((error as any).message);
 
       // タイムアウトエラー
-      if (error.code === 'ECONNABORTED') {
+      if ((error as any).code === 'ECONNABORTED') {
         Vue.prototype.$store.errorStore.errorMessage = '一部のシステムがご利用いただけない可能性があります。しばらく待ってからご利用ください（cart）';
       } else {
         // 5xxエラー
-        const errorDetails = error.response.data?.details || [];
+        const errorDetails = (error as any).response.data?.details || [];
         const errorCode = errorDetails.length > 0 ? errorDetails[0].errorCode : '';
         const errorCodeMessage = errorCode ? '：' + errorCode : '';
         Vue.prototype.$store.errorStore.errorMessage =

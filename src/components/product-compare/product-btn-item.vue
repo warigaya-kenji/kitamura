@@ -21,7 +21,7 @@
           depressed
           block
           dark
-          @click="fetchProductDetail(productBtnInfo.janCode)"
+          @click="openCartOptionDialog(productBtnInfo.janCode)"
           v-bind="attrs"
           :disabled="productBtnInfo.isSalesEnd"
         >
@@ -56,62 +56,7 @@
         </div>
 
         <!-- カートに入れるオプション -->
-        <div id="cart-dialog-options" class="cart-options">
-          <div class="cart-options-title">オプション選択</div>
-          <div class="cart-options-area">
-            <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.FIVE_YEAR_WARRANTY_COVERAGE)">
-              <v-checkbox v-model="selectedOption.addWarranty">
-                <template v-slot:label>
-                  <div class="cart-options-item-text">
-                    5年間保証に加入する
-                    <span v-if="includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) || productDetail.isTrade">
-                      <br />(保証料金 なんでも下取りあり：<span class="red-font mr-2">{{ productDetail.extWarrantyChargeIncludeTrade | price }}円</span>
-                      なし：<span class="red-font">{{ productDetail.extWarrantyCharge | price }}円</span>)
-                    </span>
-                    <span v-else>
-                      (保証料金：<span class="red-font">{{ productDetail.extWarrantyCharge | price }}円 </span>)</span
-                    >
-                    <a href="/sitemap/riyou_hoshou_index.html" @click.stop>
-                      <v-icon class="ml-6"> far fa-question-circle </v-icon>
-                    </a>
-                  </div>
-                </template>
-              </v-checkbox>
-              <div class="cart-options-item-sub-text">
-                自然故障の際、メーカー保証1年に加え、カメラのキタムラの保証で最長4年間、合計5年間メーカー保証と同等の保証が受けられます
-              </div>
-            </div>
-            <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.GIFT_AVAILABLE)">
-              <v-checkbox v-model="selectedOption.addWrapping">
-                <template v-slot:label>
-                  <div class="cart-options-item-text">
-                    ラッピング(<span class="red-font">300円</span>)※宅配限定
-                    <a href="/special/sale-fair/page/wrapping-gift/" @click.stop>
-                      <v-icon class="ml-6"> far fa-question-circle </v-icon>
-                    </a>
-                  </div>
-                </template>
-              </v-checkbox>
-              <div class="cart-options-item-sub-text">
-                高級感ある不織布素材使ったラッピングギフトバッグでラッピングいたします<br />
-                ※商品によってはギフトバッグに入らない場合がございます。その際は、包装紙に包んでお届けいたします
-              </div>
-            </div>
-            <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) || productDetail.isTrade">
-              <v-checkbox v-model="selectedOption.applyTradeIn">
-                <template v-slot:label>
-                  <div class="cart-options-item-text">
-                    下取り申込をする(<span class="red-font">{{ productDetail.tradeInPrice | price }}円</span>値引き)
-                    <a href="/sitemap/riyou_shitadori_index.html" @click.stop>
-                      <v-icon class="ml-6"> far fa-question-circle </v-icon>
-                    </a>
-                  </div>
-                </template>
-              </v-checkbox>
-              <div class="cart-options-item-sub-text">ご不要なカメラ・レンズ・ビデオカメラ等をご用意頂くと、販売価格からさらにお安くお求めいただけます</div>
-            </div>
-          </div>
-        </div>
+        <product-cart-option :product="productDetail" v-model="selectedOption" />
       </v-card>
     </v-dialog>
 
@@ -122,7 +67,7 @@
       depressed
       block
       dark
-      @click="fetchProductDetail(productBtnInfo.janCode)"
+      @click="openCartOptionDialog(productBtnInfo.janCode)"
       :disabled="productBtnInfo.isSalesEnd"
       v-if="$vuetify.breakpoint.smAndDown"
     >
@@ -144,55 +89,13 @@
             </v-btn>
           </div>
           <!-- カートに入れるオプション -->
-          <div id="cart-dialog-options" class="cart-options">
-            <div class="cart-options-title">オプション選択</div>
-            <div class="cart-options-area">
-              <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.FIVE_YEAR_WARRANTY_COVERAGE)">
-                <v-checkbox v-model="selectedOption.addWarranty">
-                  <template v-slot:label>
-                    <div class="cart-options-item-text">
-                      5年間保証に加入する<br />
-                      <span v-if="includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) || productDetail.isTrade"
-                        >(保証料金<br />なんでも下取り<br />あり：<span class="red-font">{{ productDetail.extWarrantyChargeIncludeTrade | price }}円</span
-                        ><br />なし：<span class="red-font">{{ productDetail.extWarrantyCharge | price }}円</span>)</span
-                      >
-                      <span v-else
-                        >(保証料金：<span class="red-font">{{ productDetail.extWarrantyCharge | price }}円</span>)</span
-                      >
-                    </div>
-                    <a href="/sitemap/riyou_hoshou_index.html" @click.stop>
-                      <v-icon class="cart-options-item-icon"> far fa-question-circle </v-icon>
-                    </a>
-                  </template>
-                </v-checkbox>
-              </div>
-              <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.GIFT_AVAILABLE)">
-                <v-checkbox v-model="selectedOption.addWrapping">
-                  <template v-slot:label>
-                    <div class="cart-options-item-text">ラッピング(<span class="red-font">300円</span>)<br />※宅配限定</div>
-                    <a href="/special/sale-fair/page/wrapping-gift/" @click.stop>
-                      <v-icon class="cart-options-item-icon"> far fa-question-circle </v-icon>
-                    </a>
-                  </template>
-                </v-checkbox>
-              </div>
-              <div class="cart-options-item" v-if="includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) || productDetail.isTrade">
-                <v-checkbox v-model="selectedOption.applyTradeIn">
-                  <template v-slot:label>
-                    <div class="cart-options-item-text">
-                      下取り申込をする<br />(<span class="red-font">{{ productDetail.tradeInPrice | price }}円</span>値引き)
-                    </div>
-                    <a href="/sitemap/riyou_shitadori_index.html" @click.stop>
-                      <v-icon class="cart-options-item-icon"> far fa-question-circle </v-icon>
-                    </a>
-                  </template>
-                </v-checkbox>
-              </div>
-            </div>
-          </div>
+          <product-cart-option :product="productDetail" v-model="selectedOption" />
         </div>
       </div>
     </v-navigation-drawer>
+
+    <!-- カート投入後の選択ダイアログ -->
+    <cart-inserted-dialog v-model="cartInsertedDialog"></cart-inserted-dialog>
   </div>
 </template>
 
@@ -202,6 +105,8 @@ import { reactive, toRefs, PropType, computed } from '@vue/composition-api';
 import { PRODUCT_FLAG } from '@/constants/product-flag';
 import ProductService from '@/logic/product.service';
 import { ProductDetail } from '@/types/product';
+import ProductCartOption from '@/components/common/product-cart-option.vue';
+import CartInsertedDialog from '@/components/common/cart-inserted-dialog.vue';
 
 type ProductBtnInfo = {
   // 商品コード
@@ -212,7 +117,10 @@ type ProductBtnInfo = {
 
 export default Vue.extend({
   name: 'product-btn-item',
-  components: {},
+  components: {
+    'product-cart-option': ProductCartOption,
+    'cart-inserted-dialog': CartInsertedDialog
+  },
   props: {
     productBtnInfo: {
       type: Object as PropType<ProductBtnInfo>,
@@ -224,25 +132,58 @@ export default Vue.extend({
       default: false
     }
   },
-  setup: (props, context) => {
+  setup: (_, context) => {
     const state = reactive({
       productDetail: {} as ProductDetail,
       cartDialog: false,
       cartDrawer: false,
       // 購入時のオプション
       selectedOption: {
-        addWarranty: false,
-        addWrapping: false,
-        applyTradeIn: false
-      }
+        warranty: false,
+        tradeInHope: false
+      },
+      cartInsertedDialog: false
     });
 
+    // フラグ
+    function includeFlag(flagNum: number): boolean {
+      return ProductService.includeFlag(state.productDetail.flags, flagNum);
+    }
+
+    // カート投入
+    function addCart() {
+      const displayPrice = state.productDetail.price;
+      const options = state.selectedOption;
+      ProductService.addCart(state.productDetail.janCode, false, options, displayPrice, 1).then(() => {
+        // 買い物を続けるかを確認する
+        state.cartInsertedDialog = true;
+
+        // オプションを閉じる
+        state.cartDialog = false;
+        state.cartDrawer = false;
+      });
+    }
+
     // 商品詳細取得
-    const fetchProductDetail = (jancode: string) => {
+    const openCartOptionDialog = (jancode: string) => {
       ProductService.fetchProducts([jancode], false).then((result) => {
         state.productDetail = result.items[0];
-        state.cartDialog = true;
-        state.cartDrawer = true;
+
+        // オプション（5年保証、下取り）が有効か
+        // 比較ページは新品のみである前提の条件
+        const enabledCartOption =
+          includeFlag(PRODUCT_FLAG.FIVE_YEAR_WARRANTY_COVERAGE) ||
+          includeFlag(PRODUCT_FLAG.TOKUTOKU_EXCHANGE_TARGET) ||
+          includeFlag(PRODUCT_FLAG.TRADE_IN_ANYTHING_TARGET) ||
+          includeFlag(PRODUCT_FLAG.TRADE_IN_ASSESSMENT_TARGET);
+
+        if (enabledCartOption) {
+          // オプション（5年保証、下取り）が出来る場合にオプションダイアログを表示する
+          state.cartDialog = true;
+          state.cartDrawer = true;
+        } else {
+          addCart();
+        }
       });
     };
 
@@ -264,11 +205,6 @@ export default Vue.extend({
       }
     });
 
-    // フラグ
-    function includeFlag(flagNum: number): boolean {
-      return ProductService.includeFlag(state.productDetail.flags, flagNum);
-    }
-
     // 送料
     const getPostage = computed((): string => {
       if (includeFlag(PRODUCT_FLAG.FREE_SHIPPING)) {
@@ -284,17 +220,10 @@ export default Vue.extend({
       }
     });
 
-    // カート投入
-    function addCart() {
-      const displayPrice = state.productDetail.price;
-      const options = state.selectedOption;
-      ProductService.addCart(state.productDetail.janCode, false, options, displayPrice, 1).then(() => (location.href = '/cart.html'));
-    }
-
     return {
       PRODUCT_FLAG,
       ...toRefs(state),
-      fetchProductDetail,
+      openCartOptionDialog,
       getProductPriceLabel,
       includeFlag,
       getPostage,
@@ -401,34 +330,6 @@ $compare-border-dash: dashed 1px $ec-light-grey2;
     }
   }
 }
-.cart-options {
-  &-title {
-    padding: 0 20px;
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 60px;
-    background-color: $bg-grey;
-  }
-
-  &-area {
-    padding: 20px;
-  }
-
-  &-item {
-    &-text {
-      font-weight: bold;
-      color: $text-black;
-      font-size: 18px;
-      margin-top: 3px;
-    }
-
-    &-sub-text {
-      margin-top: -15px;
-      margin-left: 30px;
-      font-size: 16px;
-    }
-  }
-}
 
 /** -------------------------------
   商品ボタン群 960px未満
@@ -494,35 +395,6 @@ $compare-border-dash: dashed 1px $ec-light-grey2;
       &-icon {
         @extend %compare-btn-icon;
         left: 0;
-      }
-    }
-  }
-  .cart-options {
-    &-title {
-      padding: 0 12px;
-      font-size: 18px;
-      line-height: 48px;
-    }
-
-    &-area {
-      padding: 0;
-    }
-
-    &-item {
-      padding: 0 12px;
-      border-bottom: solid 1px $ec-light-grey2;
-
-      &-text {
-        margin-top: 0;
-        font-size: 16px;
-        line-height: 1.2;
-      }
-
-      &-icon {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
       }
     }
   }

@@ -144,7 +144,7 @@
               ></v-img>
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4547410206159"
+                  <router-link to="/ec/pd/4547410206159"
                     ><v-img
                       contain
                       src="https://shop.kitamura.jp/ec/images2/special/camera/lens/fujinon/kore/btn1.png"
@@ -152,7 +152,7 @@
                       max-height="79"
                       alt="XF35mm F1.4 R 詳細・ご注文はこちら"
                       class="mt-8"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
 
               <v-img
@@ -214,7 +214,7 @@
               ></v-img>
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4547410289879"
+                  <router-link to="/ec/pd/4547410289879"
                     ><v-img
                       contain
                       src="https://shop.kitamura.jp/ec/images2/special/camera/lens/fujinon/kore/btn2.png"
@@ -222,7 +222,7 @@
                       max-height="79"
                       alt="XF16-55mmF2.8 R LM WR 詳細・ご注文はこちら"
                       class="mt-8"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
             </v-col>
           </v-row>
@@ -317,7 +317,7 @@
 
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4547410289855"
+                  <router-link to="/ec/pd/4547410289855"
                     ><v-img
                       contain
                       src="https://shop.kitamura.jp/ec/images2/special/camera/lens/fujinon/kodawari/btn3.png"
@@ -325,7 +325,7 @@
                       max-height="79"
                       alt="XF56mmF1.2 R APD 詳細・ご注文はこちら"
                       class="mt-8"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
 
               <p class="cl"><span>＊1</span>APDフィルターを搭載したレンズで、世界で初めてAF撮影が可能。平成26年9月現在。当社調べ。</p>
@@ -378,7 +378,7 @@
 
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4547410289862"
+                  <router-link to="/ec/pd/4547410289862"
                     ><v-img
                       contain
                       src="https://shop.kitamura.jp/ec/images2/special/camera/lens/fujinon/kodawari/btn4.png"
@@ -386,7 +386,7 @@
                       max-height="79"
                       alt="XF56mmF1.2 R APD 詳細・ご注文はこちら"
                       class="mt-8"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
 
               <p class="cl">
@@ -464,7 +464,7 @@
 
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4547410302776"
+                  <router-link to="/ec/pd/4547410302776"
                     ><v-img
                       contain
                       src="https://shop.kitamura.jp/ec/images2/special/camera/lens/fujinon/wadai/btn1.png"
@@ -472,7 +472,7 @@
                       max-height="79"
                       alt="XF90mmF2 R LM WR 詳細・ご注文はこちら"
                       class="mt-8"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
 
               <p class="cl"><span>＊3</span>CIPAガイドライン準拠、内部測定方法。ハイパフォーマンスモードON時。</p>
@@ -534,7 +534,7 @@
 
               <v-layout justify-center wrap
                 ><v-flex>
-                  <a href="/ec/pd/4547410302783"
+                  <router-link to="/ec/pd/4547410302783"
                     ><v-img
                       contain
                       src="https://shop.kitamura.jp/ec/images2/special/camera/lens/fujinon/wadai/btn2.png"
@@ -542,7 +542,7 @@
                       max-height="79"
                       alt="XF16mmF1.4R WR 詳細・ご注文はこちら"
                       class="mt-8"
-                    ></v-img></a></v-flex
+                    ></v-img></router-link></v-flex
               ></v-layout>
 
               <p class="cl mt-8">
@@ -782,7 +782,8 @@ export default Vue.extend({
         {
           href: 'https://www.net-chuko.com/static/contents/sell/kakaku-hosyo.html',
           img: 'https://shopimg.kitamura.jp/images/banner/2439.gif',
-          alt: 'トクトク買取'
+          alt: 'トクトク買取',
+          target: 'blank'
         }
       ],
       breadcrumbs: [
